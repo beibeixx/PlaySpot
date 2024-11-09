@@ -1,0 +1,1 @@
+// For photos on add/editing playground page 

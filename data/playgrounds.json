@@ -1,0 +1,2272 @@
+[
+  {
+    "id": "pg0001",
+    "name": "EAST CAMPUS PARK PLAYGROUND",
+    "address": "PLUS CODE: 7Q66+W5 VANCOUVER, BC",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/04/East-campus-park-playground-nest.jpeg"
+    ],
+    "description": "This all natural, driftwood play structure is hidden in a small wooded area out at UBC.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "pea gravel",
+      "Shade": "almost full",
+      "Fenced": "partial",
+      "Fallen Fruit": "pine cones"
+    },
+    "amenities": {
+      "Seating": "no",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Hours": "unknown",
+      "School": "no"
+    },
+    "special_notes": [
+      "Very unique but small! Best to go drop by when visiting other things at UBC.",
+      "Limited parking in the area as most are reserved. Few free spots. Some paid spots.",
+      "Broken glass bottles found in forest."
+    ]
+  },
+  {
+    "id": "pg0002",
+    "name": "CROSSTOWN ELEMENTARY SCHOOL PLAYGROUND",
+    "address": "55 EXPO BLVD, VANCOUVER, BC V6B 0P8",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/04/Crosstown-elementary-rope-climber1.jpeg"
+    ],
+    "description": "This playground beautifully matches the bright blue skies above. Hardcore fans might even go as far to say it’s a shoutout the Canucks’ official colours displayed across the street at Rogers Arena. I know, it’s a stretch.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "4 seated multi-user (we-saw)",
+      "Telescope": "no",
+      "Music Features": "xylophone, babel drum",
+      "Spinners": "overhead spinner, pole with base",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "surfacing, ramp, We-saw, clear lines of sight"
+    },
+    "environment": {
+      "Ground": "rubber, artificial turf, concrete",
+      "Shade": "partial",
+      "Fenced": "partial",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches, picnic table, basketball court steps",
+      "Washrooms": "no",
+      "Water Fountain": "yes",
+      "Hours": "non-school hours or weekends 6am to 10pm",
+      "School": "yes"
+    },
+    "special_notes": [
+      "Please only visit this playground outside of school hours or on the weekend.",
+      "This park is technically part of Andy Livingstone Park.",
+      "Rough part of town. Please do a safety check before letting your kids play.",
+      "Pond is behind the hill, not visible from playground."
+    ]
+  },
+  {
+    "id": "pg0003",
+    "name": "KERRISDALE CENTENNIAL PARK PLAYGROUND",
+    "address": "5898 YEW ST, VANCOUVER, BC V6M 2B6",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/01/Kerrisdale-Centennial-playground1.jpeg"
+    ],
+    "description": "Tucked behind the Kerrisdale Community Centre is a partially fenced playground, coloured in a combination of pink, teal, yellow and a touch of red for a complete throwback to the 80s or 90s.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips",
+      "Shade": "partial",
+      "Fenced": "partial",
+      "Fallen Fruit": "unknown"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "community centre",
+      "Water Fountain": "community centre",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "A small but very wavy slide.",
+      "Plastic stairs molded like a cliff might make climbing up to the medium slide easier for little kids.",
+      "Windows beside the playground look into the indoor swimming pool.",
+      "COVID NOTE: Play space inside the community center is closed."
+    ]
+  },
+  {
+    "id": "pg0004",
+    "name": "CAROLINA PARK PLAYGROUND",
+    "address": "2100 CAROLINA ST, VANCOUVER, BC V5T 4P1",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/03/Carolina-Park-playground1.jpeg"
+    ],
+    "description": "This playground at Carolina Park in Mount Pleasant left us with so many unanswered questions. The first and foremost question was, and still is, what the heck is going on with this clubhouse? Why is there no legroom?! Is it designed this way? Did they forget to install the legs? Did they go overboard with the mulch and bury half of it?",
+    "features": {
+      "Baby Swings": "1 baby swing",
+      "Swings": "1 standard",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips",
+      "Shade": "partial",
+      "Fenced": "partial",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "Emily Carr University"
+    },
+    "special_notes": [
+      "Fun view of skytrains from park's high elevation.",
+      "Playground components lower than normal or buried in bark mulch.",
+      "Fence opening leads to steep foot path.",
+      "Some thorny vines were sticking out of chainlink fence.",
+      "Playground is between buildings with no park signage so can be missed or assumed private property."
+    ]
+  },
+  {
+    "id": "pg0005",
+    "name": "TISDALL PARK PLAYGROUND",
+    "address": "6210 TISDALL ST, VANCOUVER, BC V5Z 3N4",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/03/Tisdall-park-exercise-circuit2.jpeg"
+    ],
+    "description": "Ever had the sudden urge to work out while your kids played at the playground? Me neither. So ignore that fitness circuit here at Tisdall Park because you don’t need to feel even more guilty about eating that whole bag of chips last night.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "yes",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips, rubber",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches, stone circle",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "beside Tisdall Elementary"
+    },
+    "special_notes": [
+      "Wellness circuit with 13 activity stations.",
+      "Unique spinner that holds multiple friends.",
+      "Gym equipment has lots of moving parts. Watch out for curious little fingers.",
+      "Lots of goose poop in  the large field.",
+      "A separate playground can be found at the adjacent Tisdall Elementary."
+    ]
+  },
+  {
+    "id": "pg0006",
+    "name": "COOPERS' PARK PLAYGROUND",
+    "address": "1020 MARINASIDE CR, VANCOUVER, BC V6Z 3A2",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/01/Coopers-park-playground-1.jpeg"
+    ],
+    "description": "Escape the elements of pouring rain or scorching sun, by ducking below the north side of Cambie Street bridge to find a fully sheltered playground free of trolls and Billy Goats Gruffs. It’s a pretty mellow space under this concrete roof, complimented with a nice view of Science World and aqua buses passing by on False Creek.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "2 standard",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "rubber, concrete",
+      "Shade": "full",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches, picnic tables",
+      "Washrooms": "no",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "Completely sheltered under the Cambie St Bridge.",
+      "Right beside the seawall with a nice view of False Creek.",
+      "The seawall's protective guard rail end at one side of the playground, leaving an opening to the water below. (See gallery photo).",
+      "There is a basketball court, picnic and ping pong tables behind the bridge columns.",
+      "The City is holding public engagements for the future rebuild of this playground. Dates are yet TBD.",
+      "The rain-friendly pop plaza is City initiative to create more outdoor spaces during COVID. It is currently in a trial phase."
+    ]
+  },
+  {
+    "id": "pg0007",
+    "name": "ARBUTUS GREENWAY PARK PLAYGROUND",
+    "address": "2205 W 11TH AVE, VANCOUVER, BC V6K 4T1",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/06/Arbutus-greenway-park-playground.jpeg"
+    ],
+    "description": "This huge slide was a big surprise considering it’s quite rare to see such a long tube slide as part of an old school, wooden playground. It’s simple with one platform to climb up to, a submarine window to peer out of, and a green tube slide to zoom down.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches, arbour with table and seating",
+      "Washrooms": "no",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "St John's School"
+    },
+    "special_notes": [
+      "Very long plastic tube slide!",
+      "Seating area with beautiful wisteria in the springtime."
+    ]
+  },
+  {
+    "id": "pg0008",
+    "name": "CARTIER PARK PLAYGROUND",
+    "address": "390 E 36TH AVE, VANCOUVER, BC V5W 4B9",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2022/03/Cartier-park-playground-tire-bridge1.jpg"
+    ],
+    "description": "The unique tire bridge is the main attraction here at Cartier Park playground. It provides a balancing act for kids as it sways and jiggles with every careful step. Although the tires are suspended by chains, they’re also anchored to the ground, similar to those balance poles found at other playgrounds. My 5 year old is a cautious one, so it was a precarious and slow but triumphant journey across the tire walkway. It was fun just sitting on a tire for a swing and a rest as well.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "2 standard",
+      "Sandbox": "ground is sandy",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "sandy gravel",
+      "Shade": "partial afternoon shade",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "no",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "The two baby swings are at different heights. Maybe a perk for someone?",
+      "There were few wasps that would not stop bugging us."
+    ]
+  },
+  {
+    "id": "pg0009",
+    "name": "PANDORA PARK PLAYGROUND",
+    "address": "2325 FRANKLIN ST, VANCOUVER, BC V5L 1S2",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2020/10/Pandora-playground-1.jpeg"
+    ],
+    "description": "Obviously, this playground was where Pandora played at as a child before she unleashed misery and evil into the world. During the summer months, children can play back and forth between the playground and spray park and if one is in a wet swimsuit, it can create some unintended speedy slip and slide experiences! As for the water park, there’s a unique water stopper feature that lets water pool into a large puddle. Lift it up and the water streams down to a nearby storm drain. Perfect for those who love jumping in big puddles.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "1 universal, 1 standard",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "yes",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "yes",
+      "Accessible Features": "swing"
+    },
+    "environment": {
+      "Ground": "rubber, woodchips",
+      "Shade": "partial",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches, picnic tables, lounge chairs",
+      "Washrooms": "fieldhouse",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": []
+  },
+  {
+    "id": "pg0010",
+    "name": "ANDY LIVINGSTONE PARK PLAYGROUND",
+    "address": "CARRALL ST, VANCOUVER, BC V6B 6N5",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/04/Andy-livingstone-playground.jpeg"
+    ],
+    "description": "Normally we don’t rate playgrounds but in this case, it’s a safety issue.Bottom line, don’t come here. There’s too much broad daylight drug use, paraphernalia and risk of encountering an unpleasant situation. There are much better and safer places to play where you don’t have to potentially take your children near illicit drugs.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "rubber",
+      "Shade": "partial",
+      "Fenced": "partial",
+      "Fallen Fruit": "pine cones"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "fieldhouse, use at own risk (aka don't go here)",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "yes"
+    },
+    "special_notes": [
+      "Daytime drug use and paraphernalia in area. Don't go to this playground.",
+      "Don't use the fieldhouse washrooms.",
+      "Downtown skateboard plaza is by the southeast corner of Andy Livingstone Park"
+    ]
+  },
+  {
+    "id": "pg0011",
+    "name": "KASLO PARK PLAYGROUND",
+    "address": "2851 E 7TH AVE, VANCOUVER, BC V5M 1T9",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/05/Kaslo-playground1.jpeg"
+    ],
+    "description": "Completed in July 2020, this new playground rebuild features a similar play structure as the one at Tisdall Park, with the addition of a long roller slide, stairs and sliding pole.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "2 standard",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "2 seater",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "twirly pole",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips, rubber",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "no",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "Vancouver Technical School, Chief Maquinna Elementary and Annex"
+    },
+    "special_notes": [
+      "A fenced tennis court is right next to the playground.",
+      "The sloped hill isn't ideal for sledding, as there are too many things to run into at the bottom.",
+      "COVID NOTE: Playgrounds such as this one are sometimes being used as outdoor classrooms."
+    ]
+  },
+  {
+    "id": "pg0012",
+    "name": "EAGLES PARK PLAYGROUND",
+    "address": "7Q53+FG University Endowment Lands",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/07/Eagles-park-playground-main-structure.jpg"
+    ],
+    "description": "This little playground is visible from the street on Eagles Dr and located between a few residential buildings. There’s a shared lawn space beside the play area and a dry stone stream along the perimeter. Two mysteriously shaped spring riders and a small multi-level platform sums up this little play spot.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "yes",
+      "See Saw": "no",
+      "Telescope": "binoculars",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Hours": "unknown",
+      "School": "no"
+    },
+    "special_notes": [
+      "Parking is quite limited in this area."
+    ]
+  },
+  {
+    "id": "pg0013",
+    "name": "SAHALI PARK PLAYGROUND",
+    "address": "2300 FRASER ST, VANCOUVER, BC",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2022/05/Sahali-playground1-1.jpg"
+    ],
+    "description": "Sahali Park playground comes with a crow. Sometimes two. Can you spot them in the photos? We didn’t test the equipment out in case the crows were territorial but they stayed perched either here or the electrical wires near the community garden with the pigeons. Is it called a murder flock if a bunch of crows and pigeons hang out?",
+    "features": {
+      "Baby Swings": "1 baby swings",
+      "Swings": "1 standard",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": ""
+    },
+    "amenities": {
+      "Seating": "lots of benches, couple of picnic tables",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "Multiple pedestrian paths for small ones to enjoy.",
+      "Saw some human poop closer to the alleyway. Beware."
+    ]
+  },
+  {
+    "id": "pg0014",
+    "name": "BREWERS PARK PLAYGROUND",
+    "address": "4175 VICTORIA DR, VANCOUVER, BC V5N 4M9",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/05/Brewers-park-playground1.jpeg"
+    ],
+    "description": "What’s a brewing at Brewers’ Park? A new playground, that’s what!",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "2 standard",
+      "Sandbox": "with water feature",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "yes",
+      "Zipline": "no",
+      "Trampoline": "yes",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "rubber, woodchips, sand",
+      "Shade": "partial",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "picnic tables, concrete ledges",
+      "Washrooms": "fieldhouse under construction. Portable washrooms nearby.",
+      "Water Fountain": "under construction",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "The park itself is still partially under construction, but the playground is open.",
+      "Swings were installed exceptionally low. Hopefullly will be fixed in the near future.",
+      "Super slide encourages assessing risky play."
+    ]
+  },
+  {
+    "id": "pg0015",
+    "name": "JONATHAN ROGERS PARK PLAYGROUND",
+    "address": "110 W 7th AVE, VANCOUVER, BC V5Y 1L7",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/01/Jonathan-Rogers-park-playground.jpeg"
+    ],
+    "description": "This playground is located on the southeast corner of the park, in between a wading pool, community garden and fieldhouse. On one side, there are two sets of swings and on the other is an odd play structure that looks like a pink turtle shell-like UFO trolley thing that glides along a monorail.",
+    "features": {
+      "Baby Swings": "4 baby swings",
+      "Swings": "4 standard",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "wading pool",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "pea gravel",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": "unknown"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "fieldhouse",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "Come try the rare, hand cranked trolley on a monorail.",
+      "The medium-sized slope is great for sledding.",
+      "Wading pools are open in the summer during certain hours decided by the City.",
+      "COVID NOTE: Wading pools are not operating during the pandemic."
+    ]
+  },
+  {
+    "id": "pg0016",
+    "name": "SUTCLIFFE PARK PLAYGROUND",
+    "address": "1318 CARTWRIGHT ST, VANCOUVER, BC V6H 3R8",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/04/Sutcliffe-park-playground1.jpeg"
+    ],
+    "description": "I know, you probably call this playground the “Granville Island Playground” and you’re right. It’s the iconic Granville Island Water Park and Playground and the official Sutcliffe Park name just doesn’t have the same ring to it.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "saucer swing",
+      "Sandbox": "yes with water",
+      "Sand Digger": "no",
+      "Spring Rider": "4 seater",
+      "See Saw": "no",
+      "Telescope": "periscope",
+      "Music Features": "yes",
+      "Spinners": "yes",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "yes",
+      "Accessible Features": "surfacing"
+    },
+    "environment": {
+      "Ground": "rubber, concrete",
+      "Shade": "partial",
+      "Fenced": "no",
+      "Fallen Fruit": "pine cones"
+    },
+    "amenities": {
+      "Seating": "benches, picnic tables",
+      "Washrooms": "False Creek community centre",
+      "Water Fountain": "False Creek CC",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "This is one of three playgrounds on Granville Island.",
+      "Waterslide is on a steep hill that's easy to stumble down for the uncoordinated.",
+      "Saucer swing is not in separate area to avoid bumping into kids.",
+      "Waterpark is activated during summer with certain hours decided by the City.",
+      "COVID NOTE: Access to community centre may be limited."
+    ]
+  },
+  {
+    "id": "pg0017",
+    "name": "TEA SWAMP PARK PLAYGROUND",
+    "address": "266 E 15TH AVE, VANCOUVER, BC V5T 2T5",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2020/11/Tea-Swamp-park-playground.jpeg"
+    ],
+    "description": "There is neither tea nor a swamp at this park anymore, but best you believe that both used to dominate this area, giving this playground such an odd and unappealing name. Another oddity is that the playground could be fully fenced but instead, one corner is wide open for wanderers. Other than that, this spot is great for the younger crowd and the swings are thoughtfully separated from the main playing area. Next to the playground, there’s a small field, a community garden and a pathway of stones that leads to a fancy arbour and benches.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "2 standard",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "yes",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips, concrete",
+      "Shade": "evening",
+      "Fenced": "partial",
+      "Fallen Fruit": "acorns, inedible berries"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "no",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "This playground may look fully fenced but the northeast corner is wide open.",
+      "COVID NOTE: Pre-pandemic, there was a plethora of abandoned toys to play with here."
+    ]
+  },
+  {
+    "id": "pg0018",
+    "name": "TROUT LAKE PLAYGROUND",
+    "address": "7W4P+46 VANCOUVER, BC",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2020/09/Trout-Lake-playground-1.jpeg"
+    ],
+    "description": "This is the playground found beside the Trout Lake Community Centre and not the other one by the lake, which is actually called John Hendry Park playground. Needless to say, John Hendry Park and Trout Lake Park seem to be synonymous, so let’s keep the confusion going. There’s some fun features here like the climbing rope dome (aka explorer dome) for balancing, hanging, sitting and uh, climbing. Apart from a few trees that provide some shade on the perimeter, this playground is in full sun. So if your kid insists on melting in the sun, a good spot to be is under the shade of that play hut.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "1 universal, 3 standard, 1 saucer",
+      "Sandbox": "yes with water play",
+      "Sand Digger": "yes",
+      "Spring Rider": "yes",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "xylophone",
+      "Spinners": "yes",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "swing"
+    },
+    "environment": {
+      "Ground": "woodchips, sand",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "in community centre",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "Remember there's John Hendry Park playground on the south side of the lake, right beside the fieldhouse/concession stand.",
+      "There's not a lot of space separating the swings and saucer swing from the rest of the playground causing excited and unaware kids to get unintentionally knocked over.",
+      "If community centre is closed, there is a public washroom at the fieldhouse/concession stand.",
+      "COVID NOTE: Water hasn't been activated in the sandbox as usual in the summer."
+    ]
+  },
+  {
+    "id": "pg0019",
+    "name": "MOUNT PLEASANT FAMILY CENTRE PLAYGROUND",
+    "address": "2910 ST GEORGE ST, VANCOUVER, BC V5T 4L9",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/01/MPFC-playground1.jpeg"
+    ],
+    "description": "Mount Pleasant Family Centre provides a fully fenced playground for little ones participating in their drop in programs throughout the day. Non-members are also welcomed to join this space if they are respectful of the Centre’s participants and outdoor toys. If you’re lucky, you may meet some of the lovely ladies who run MPFC and be graced by their kindness and empathetic ears that are highly attuned to the joys and struggles of parenthood.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "yes",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "yes",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "wading pool at Robson park",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips, rubber",
+      "Shade": "partial",
+      "Fenced": "yes",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches, platforms",
+      "Washrooms": "at Robson park",
+      "Water Fountain": "at Robson park",
+      "Restricted Hours": "please respect members and drop in program hours",
+      "School": "Florence Nightingale nearby"
+    },
+    "special_notes": [
+      "This playground is fully fenced!",
+      "Slide is unexpectedly hot in the summer sun.",
+      "Area is shared with Robson Park, which has a playground of it's own."
+    ]
+  },
+  {
+    "id": "pg0020",
+    "name": "MUNDELL PARK PLAYGROUND",
+    "address": "WEBBER LN, VANCOUVER, BC V6T 1W5",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/05/Mundell-park-playground1.jpeg"
+    ],
+    "description": "The unique climber hills make this playground look very familiar to the one at Shannon Mews Park. The hills invite children to climb over and under but can be a bit tricky for the younger ones. My two year old was able to climb them but going down was a bit too steep.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips",
+      "Shade": "partial",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "Wesbrook community centre across street",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "University Hill Secondary"
+    },
+    "special_notes": [
+      "Ponds nearby with no barriers for little ones.",
+      "Bright yellow lounge chairs are near the ponds. One set is under a pergola.",
+      "COVID NOTE: Washroom access at community centre is limited."
+    ]
+  },
+  {
+    "id": "pg0021",
+    "name": "HEATHER PLACE PLAYGROUND",
+    "address": "774 W 13TH AVE, VANCOUVER, BC V5Z 4E4",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2020/09/Heather-place-playground1.jpeg"
+    ],
+    "description": "Found at the corner of 14th Ave and Willow St, this small playground is part of the Heather Place affordable housing redevelopment completed in 2020. Best for younger children, this playground is shaded by trees for most of the day and benches are found around the perimeter. There’s also a bike repair station and a water fountain on the south side of the playground. Sadly the red balls on the climbing net are not Pokémon balls.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "rubber",
+      "Shade": "yes",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "no",
+      "Water Fountain": "yes",
+      "Restricted Hours": "no",
+      "School": "no"
+    },
+    "special_notes": [
+      "Bike repair station",
+      "There are potato sized rocks by the building's windows. Easy found by children to throw down the slide.",
+      "This playground is a closer to the sidewalk and road than most parks."
+    ]
+  },
+  {
+    "id": "pg0022",
+    "name": "CHINA CREEK NORTH PLAYGROUND",
+    "address": "1001 E 7TH AVE, VANCOUVER, BC V5T 1E5",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2020/10/Chine-Creek-North-playground-1.jpeg"
+    ],
+    "description": "It’s pretty obvious that whoever designed this playground is a huge fan of Blippi. Admittedly, the neon popping colours are pretty inviting, especially during the dreary seasons in Vancouver. This brightly coloured playground is found at the bottom of a meadow-y hill that’s home to happy bees and a lush spread of wildflowers. There’s a steep hill with challenging features for climbing up it, and a wide metal slide for sliding down with multiple friends. I’ve been told the rubber surfacing gets quite hot in the summer sun, as there is little shade in the afternoon.",
+    "features": {
+      "Baby Swings": "1 baby swing",
+      "Swings": "1 universal, 2 standard",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "yes",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "bell, drums",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "yes (open space, swing)"
+    },
+    "environment": {
+      "Ground": "rubber",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches, picnic tables",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "Remember to bring a little toy car for your child to slide down the little toy race track!",
+      "The hill could be a tad too steep for some toddlers."
+    ]
+  },
+  {
+    "id": "pg0023",
+    "name": "ROBSON PARK PLAYGROUND",
+    "address": "599 KINGSWAY, VANCOUVER, BC V5T 4L9",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/01/Robson-park-playground1.jpeg"
+    ],
+    "description": "It’s a bit confusing that Robson Park is nowhere near Vancouver’s Robson Street downtown, even though it’s named after the same guy from the local history books. There’s a double slide as well as a fun wavy slide here, a spring rider with four seats, a plastic climbing wall, a store play panel and an unexciting sandbox under a chestnut tree. Two sets of swings are thoughtfully placed away from the main play structure and because the playground faces Kingsway, kids can ride the swings while catching views of big trucks, emergency vehicles and other speedy things.",
+    "features": {
+      "Baby Swings": "4 baby swings",
+      "Swings": "4 standard",
+      "Sandbox": "yes",
+      "Sand Digger": "no",
+      "Spring Rider": "4 seater",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "wading pool",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "sand",
+      "Shade": "partial",
+      "Fenced": "partial",
+      "Fallen Fruit": "chestnuts"
+    },
+    "amenities": {
+      "Seating": "benches, picnic tables",
+      "Washrooms": "fieldhouse",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "Florence Nightingale nearby"
+    },
+    "special_notes": [
+      "Most wavy slides are nothing to write home about, but this one actually does a good dip in the middle, making it an extra fun ride.",
+      "Good view of trucks and other vehicles speeding by on Kingsway.",
+      "Most dogs in the field are off-leash, even though the field has an on-leash policy.",
+      "Wading pools are open in the summer during certain hours decided by the City. Sometimes the fieldhouse provides activities and outdoor toys.",
+      "COVID NOTE: Wading pools are not operating during the pandemic."
+    ]
+  },
+  {
+    "id": "pg0024",
+    "name": "COAL HARBOUR PARK PLAYGROUND",
+    "address": "500 BROUGHTON ST, VANCOUVER, BC V6G 3E3",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/01/Coal-harbour-playground.jpeg"
+    ],
+    "description": "To the untrained eye, this playground is ground level to Hastings Street but you’d be surprised to know it’s also on top of the Coal Harbour community centre’s parkade. From it’s high vantage point, this spot overlooks Coal Harbour’s beautiful views of the mountains, busy seawall and Boaty McBoatface’s friends. There are two play structures here, plus a small creeky swing set, a courtyard and grassy lawn. The standard swing is unusually low, but it can be an advantage for toddlers wanting to try a big kid swing.",
+    "features": {
+      "Baby Swings": "1 baby swing",
+      "Swings": "1 standard",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "yes",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "rubber",
+      "Shade": "partial",
+      "Fenced": "partial",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "community centre",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "Slides are either bendy or wavy.",
+      "Standard swing is unusually low.",
+      "Rubber surfacing is chipping away in some areas.",
+      "The small barrier on one side of the playground doesn't prevent kids from climbing over it and onto the sidewalk on Hastings Street.",
+      "Continue the fun by following the path behind the community centre, to get down to the seawall. Head west to Stanley Park or head east to visit the splashpad at Harbour Green Park."
+    ]
+  },
+  {
+    "id": "pg0025",
+    "name": "DRIFTWOOD PLAYGROUND",
+    "address": "Plus Code: 6X44+6V VANCOUVER, BC",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/03/Driftwood-playground1.jpeg"
+    ],
+    "description": "As the name implies, Driftwood Playground is made mostly out of driftwood, albeit the metal pole and plastic slide. Perhaps looking like a skeletal belly of a marine animal, a strange blooming flower, or cold, skinny zombie fingers grasping towards the sky, this interactive, public art piece is open for interpretation and open for play.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips",
+      "Shade": "partial",
+      "Fenced": "no",
+      "Fallen Fruit": "blackberries near path"
+    },
+    "amenities": {
+      "Seating": "benches, logs",
+      "Washrooms": "restaurant if lucky",
+      "Water Fountain": "no",
+      "Restricted Hours": "no",
+      "School": "no"
+    },
+    "special_notes": [
+      "Uniquely made out of recycled materials.",
+      "Blackberry bushes can be found along the riverfront.",
+      "Some thorny bushes right between the playground and walkway."
+    ]
+  },
+  {
+    "id": "pg0026",
+    "name": "MAJOR MATTHEWS PARK PLAYGROUND",
+    "address": "2627 MANITOBA ST, VANCOUVER, BC V5Y 1S8",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2020/09/Major-Matthews-playground1.jpeg"
+    ],
+    "description": "This is the playground where all abandoned toys live their final days. Made for ages 2-5 years, this playground structure has more open panels on the top platform than some are comfortable with, causing caregivers to go back and forth from one side to the other while their little ones climb around. Otherwise, it’s an excellent place to sit and watch your kids play with the orphaned toys. The black rubber surfacing makes it a great canvas for chalk drawing as well. In the fall, there are plenty of fallen chestnuts to be found.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "rubber",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": "chestnuts"
+    },
+    "amenities": {
+      "Seating": "benches, picnic table, gazebo",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "Unlike most playgrounds, this one is a little close to the road. Please keep an eye out if you have a kid that's a runner."
+    ]
+  },
+  {
+    "id": "pg0027",
+    "name": "PROSPECT POINT PICNIC AREA PLAYGROUND",
+    "address": "6200 STANLEY PARK DR,  VANCOUVER,",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2022/05/Prospect-point-picnic-playground1.jpg"
+    ],
+    "description": "This is a fine playground yet I can’t recommend it to anyone because there’s a hot coal disposal pit right next to it. Like who does that? Who in the city approved that this was the best spot for a coal disposal pit? Curious kids like mine obviously went to see why there was smoke coming out from it, climbed on top of it, and used it as a jumping point.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "saucer swing",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "sheltered picnic tables",
+      "Washrooms": "fieldhouse",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "Paid parking lot.",
+      "Unfortunate placement of coal disposal pit right near the playground.",
+      "Sheltered picnic area can be reserved for a fee through the City of Vancouver website."
+    ]
+  },
+  {
+    "id": "pg0028",
+    "name": "CONNAUGHT PARK PLAYGROUND",
+    "address": "2390 W 10TH AVE, VANCOUVER, BC",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2020/10/Connaught-toddler-playground1.jpeg"
+    ],
+    "description": "OMG you guys, this playground is FULLY fenced in. That’s right. As long as your kid doesn’t know how to open those metal fence gates, you can sit back, relax and let your kids loose. Located right beside the Kitsilano Community Centre and Ice Rink, this playground has two play structures meant to separate older and younger kids. Plenty of extra seating can be found around the deliciously coloured water park which was redone in 2020. The black rubber tiles in the toddler area are warping which can cause little kids to trip, but otherwise, it’s a *Fully Fenced* playground. What more could a parent ask for?",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "2 standard swings",
+      "Sandbox": "ground is a sandy gravel",
+      "Sand Digger": "no",
+      "Spring Rider": "yes",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "yes",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "sand, gravel",
+      "Shade": "yes",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "community centre, port-a-potties",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "beside Kitsilano Secondary"
+    },
+    "special_notes": [
+      "Playground might be shared with preschool children from the community centre during the day.",
+      "Very large field is in view for one to watch soccer or rugby games.",
+      "Acorns can be found across the field where there are oak trees.",
+      "Did we mention it's fully fenced in?",
+      "COVID NOTE: Normally the washrooms are at the Kitsilano community centre but due to COVID, there are port-a-potties nearby."
+    ]
+  },
+  {
+    "id": "pg0029",
+    "name": "CHARLESON PARK PLAYGROUND",
+    "address": "999 CHARLESON ST, VANCOUVER, BC V5Z 4A2",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/06/Charleson-park-playground.jpeg"
+    ],
+    "description": "Charleson Park is one of two playgrounds in the City of Vancouver, that feature an eye-catching, wooden pirate ship! (The other “pirate park” is Jones Park) Complete with a steering wheel and telescope on deck, it also includes components like climbing nets, a rope and log bridge, a rubber hammock and table with seats below. From above, children can take in the views of False Creek and shout, “Ahoy ye maties!” to those walking the seawall.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "1 accessible, 3 standard, 1 saucer, 1 tandem",
+      "Sandbox": "yes",
+      "Sand Digger": "yes",
+      "Spring Rider": "yes",
+      "See Saw": "4 seated multi-user (We-Saw)",
+      "Telescope": "yes",
+      "Music Features": "no",
+      "Spinners": "rope pyramid",
+      "Zipline": "no",
+      "Trampoline": "yes",
+      "Splash park": "no",
+      "Accessible Features": "surfacing, We-Saw, clear lines of sight, accessible swing, low tandem swing"
+    },
+    "environment": {
+      "Ground": "rubber, woodchips, sand",
+      "Shade": "partial",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches, picnic tables",
+      "Washrooms": "no",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "False Creek Elementary"
+    },
+    "special_notes": [
+      "Many fun features like a pirate ship, trampolines and big embankment slide.",
+      "False Creek elementary uses this playground during the school day.",
+      "Climbing up the stone steps to the embankment slide can be a bit trecherous for younger kids.",
+      "Dog park is nearby and sometimes playing by the waterfall.",
+      "It's challenging to access this area by car. Nearby, there is a small unpaid parking lot, a medium paid lot, and very limited free street parking."
+    ]
+  },
+  {
+    "id": "pg0030",
+    "name": "SUNNYSIDE PARK PLAYGROUND",
+    "address": "1100 E 17th Ave, VANCOUVER, BC, V5V 1C4",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2020/10/Sunnyside-playground1.jpeg"
+    ],
+    "description": "This playground separates play spaces quite well so big kids don’t trample over the little kids. This is also true for the swings as they are separated into two sets of four. The toddler’s playground is fully shaded while the one for older kids is left to the elements. There are plenty of big trees on the north side of the park, excellent for climbing and making a pseudo tree house as seen on our last visit. The lawn becomes a slope on the northeast side of the park and ends at the top of a retaining wall. This creates a drop-off, so make sure to catch your kid before they catch any momentum running down that side.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "4 standard swings",
+      "Sandbox": "no",
+      "Sand Digger": "ground is sandy gravel",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "bells",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "gravel, sand",
+      "Shade": "partial",
+      "Fenced": "no",
+      "Fallen Fruit": "chestnuts"
+    },
+    "amenities": {
+      "Seating": "benches, picnic tables",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "beside Charles Dickens"
+    },
+    "special_notes": [
+      "Play spaces for older and younger kids are separated well",
+      "There's a small drop-off from the retaining wall on the sloped north side of the park",
+      "Charles Dickens Elementary school nearby has a playground as well"
+    ]
+  },
+  {
+    "id": "pg0031",
+    "name": "BEACONSFIELD PARK PLAYGROUND",
+    "address": "3215 SLOCAN ST, VANCOUVER, BC V5M 3E4",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/07/Beaconsfield-park-playground.jpeg"
+    ],
+    "description": "Beaconsfield Park is one of three new playgrounds that have reopened to the public in July 2021. The main feature here is the climbing rope dome that we’ve seen a handful of times at playgrounds such as Trout Lake and Nobel Park. Inside this web of ropes is a vinyl mat and plastic seat, a rope ladder, sliding pole and plastic plank.",
+    "features": {
+      "Baby Swings": "1 baby swing",
+      "Swings": "1 accessible, 2 standard",
+      "Sandbox": "yes",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "yes",
+      "Zipline": "no",
+      "Trampoline": "yes",
+      "Splash park": "no",
+      "Accessible Features": "swing, surface"
+    },
+    "environment": {
+      "Ground": "rubber, woodchips, sand mixed with rocks",
+      "Shade": "afternoon shade in sand area",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches, picnic tables, natural logs",
+      "Washrooms": "fieldhouse",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "Westside Montessori Academy"
+    },
+    "special_notes": [
+      "Unique spherical overhead spinner.",
+      "Wonderful community garden behind the garden worth exploring.",
+      "The Italian Community Centre's Il Forno Community Oven is on the other side of the park.",
+      "Fine sand can make the embankment hill slippery for some. Fine sand can also be dusty."
+    ]
+  },
+  {
+    "id": "pg0032",
+    "name": "HEATHER PARK PLAYGROUND",
+    "address": "702 W 18TH AVE, VANCOUVER, BC V5Z 1W1",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2020/11/Heather-park-playground.jpeg"
+    ],
+    "description": "One could call this a starter park for any first time parent that hasn’t stepped foot on a playground since their elementary school days. It’s unintimidating and it barely even passes as a playground. Sandwiched between the tennis courts and the field, there are two baby swings, a bench and two spring riders. Pop that baby into the baby swing and you’ll feel golden as you realize your baby likes swinging back and forth and but can’t escape, making it the first time since birth that you can feel some sort of freedom. At least, I’m hoping that’s what happens for you, you superstar caregiver that’s sustaining life as we speak. There are some hilly areas and big rocks to balance on for the toddlers and a pretty great tree to climb up for the older kids. Personally I think the highlight of this park are the chestnuts that litter the northside of the field during the fall, which for kids is like finding a bounty of treasure.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "2 standard",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "yes",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips, gravel",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": "chestnuts"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "A barely there playground for newbies.",
+      "Lots of chestnuts to be found in the fall."
+    ]
+  },
+  {
+    "id": "pg0033",
+    "name": "LUMBERMEN'S ARCH PLAYGROUND",
+    "address": "PLUS CODE: 8V28+PX VANCOUVER, BC",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/05/Lumbermans-arch-playground1.jpeg"
+    ],
+    "description": "The playground here at Lumbermen’s Arch is old but well loved. Tall wooden poles topped with green cones playfully mimic it’s forested surroundings.",
+    "features": {
+      "Baby Swings": "1 baby swing",
+      "Swings": "2 standard",
+      "Sandbox": "ground is sand",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "sandy gravel",
+      "Shade": "partial",
+      "Fenced": "no",
+      "Fallen Fruit": "unknown"
+    },
+    "amenities": {
+      "Seating": "benches, sheltered picnic tables",
+      "Washrooms": "fieldhouse",
+      "Drinking Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "Pay parking is in effect all throughout Stanley Park.",
+      "Many wild animals live in Stanely Park, including coyotes. Do not feed them and reference resources on how to co-exist with wild animals."
+    ]
+  },
+  {
+    "id": "pg0034",
+    "name": "CAMBIE PARK PLAYGROUND",
+    "address": "500 W 54TH Ave, VANCOUVER, BC V6P 1L9",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/05/Cambie-park-playground1.jpeg"
+    ],
+    "description": "Apart from some late afternoon shade, this toddler playground is in full sun during the day and can be a scorcher in the summer.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "4 standard",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "pea gravel",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": "acorns(?)"
+    },
+    "amenities": {
+      "Seating": "benches, picnic tables",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "Churchill Secondary"
+    },
+    "special_notes": [
+      "4 steering wheels for steering.",
+      "Medium-small slopes in the far field for winter sledding.",
+      "Slides are a tad steep and the end is a tad short and high for little ones.",
+      "Community garden nearby."
+    ]
+  },
+  {
+    "id": "pg0035",
+    "name": "GRANVILLE LOOP PARK PLAYGROUND",
+    "address": "1435 W 5th AVE, VANCOUVER, BC",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2020/10/Granville-Loop-playground1.jpeg"
+    ],
+    "description": "The best feature of this playground has to be the bad ass Jeep, perfect for reenacting that scene from Jurassic Park. Fully shaded and located on a hill, this playground is best accessible by bus as free parking around the area is a little hard to come by. I’m not gonna lie, the wooden slats on the play structure feels really old, especially standing on them as an adult. The window panel has seen better days as well, because it’s fully opaque. There’s some open lawn space with hills and dips that can be fun for little kids. Bus lovers can watch buses stop and rest on the south side of the park. There’s also an open fountain on the south side that someone on the internets nicknamed “Stargate” for fun.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "yes",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips",
+      "Shade": "yes",
+      "Fenced": "no",
+      "Fallen Fruit": "pinecones"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "no",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "Nearby, there's an underground pathway that goes under the Granville St bridge and one can loop back around to return to the park.",
+      "Bus lovers can watch buses stop for a rest on the south side of the park.",
+      "The open fountain nearby can be a bit dangerous for smaller ones.",
+      "W 4th Ave is on the north side of the park and is quite busy. Please make sure kids don't run off down the hill past the fence there."
+    ]
+  },
+  {
+    "id": "pg0036",
+    "name": "ALMOND PARK PLAYGROUND",
+    "address": "3600 W 12TH AVE, VANCOUVER, BC V6R 2R6",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2020/10/Almond-playground.jpeg"
+    ],
+    "description": "Are you familiar with that steep, windy part of Alma Street between West 16th Ave and Broadway? As a child, I used to shout “slide!” as my dad drove down it at a conservative speed. Enjoying that car slide can easily cause one to miss Almond Park, which is located right at the bottom of this hill next to a field and some tennis courts.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "2 standard swings",
+      "Sandbox": "ground is sand",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "sand",
+      "Shade": "partial",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "Swings are located away from main playing area.",
+      "The hill behind the playground is steep and drops off at the retaining wall.",
+      "Field is an on-leash dog park."
+    ]
+  },
+  {
+    "id": "pg0037",
+    "name": "ROSEMARY BROWN PARK PLAYGROUND",
+    "address": "2299 REDBUD LN, VANCOUVER, BC V6K 4V7",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/06/Rosemary-brown-park-playground1.jpg"
+    ],
+    "description": "This very small toddler playground features a shaded swing set and a little playhut in the sand. The playhouse is a nice height for little ones and includes a table-like ledge inside. There isn’t much else to do here for older kids but for toddlers the elevated lawn is fun for running around. A rectangular stone ledge may also be fun for climbing and balancing.",
+    "features": {
+      "Baby Swings": "1 baby swing",
+      "Swings": "1 standard",
+      "Sandbox": "ground is sand",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "sandy gravel",
+      "Shade": "yes",
+      "Fenced": "partial",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "St John's School"
+    },
+    "special_notes": [
+      "Very minimal playground, suited for very young kids."
+    ]
+  },
+  {
+    "id": "pg0038",
+    "name": "ARBUTUS VILLAGE PARK PLAYGROUND",
+    "address": "PLUS CODE: 6RXR+GH VANCOUVER, BC",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2020/09/Arbutus-Village-playground-1.jpeg"
+    ],
+    "description": "This quiet playground is tucked away in a wooded area at the west end of the Arbutus Village Park Trail near Valley Dr and McBain Ave. It’s not marked on Google Maps so we’ve linked our map to a Plus Code that computationally geolocates the longitute and latitude coordinates for your eyeballs. Because we’re fancy like that. Under a canopy of trees, there’s plenty of shade and fallen acorns and a possibly vintage spring rider horse.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "1 standard swing",
+      "Sandbox": "ground is sand",
+      "Sand Digger": "no",
+      "Spring Rider": "yes",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "zip track",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "sand",
+      "Shade": "yes",
+      "Fenced": "no",
+      "Fallen Fruit": "acorns"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "no",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "The 0.5 km Arbutus Village Park Trail is a pleasant walk among green spaces, trees, flowers and plenty of benches. Paths are smooth and wide enough for kids to comfortably ride their scooters or bikes. The Arbutus Shopping Centre is found at the halfway point of the trail."
+    ]
+  },
+  {
+    "id": "pg0039",
+    "name": "VANCOUVER GENERAL HOSPITAL (VGH) PLAYGROUND",
+    "address": "795 W 13TH Ave, Vancouver, BC V5Z 1M9NO",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2020/09/VGH-playground-1.jpeg"
+    ],
+    "description": "This playground is located at the corner of a grassy field, opposite the Alan Storey’s VGH Energy Centre Plaza*. The play structure has a double toddler slide and a twisty slide, as well as a spinning gears play panel. Like most talk horns, the one here doesn’t seem to carry anyone’s voices across the playground. It’s worth noting that there is a hard-to-find seesaw that seats four. Benches line the perimeter for parents to sit in the shade while their kids play.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "2 standard swings",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "yes",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "rubber",
+      "Shade": "morning shade",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches, picnic tables",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Restricted Hours": "no",
+      "School": "no"
+    },
+    "special_notes": [
+      "Rubber surfacing is starting to crumble.",
+      "Keep small valuables away from the ventilation grate that's between the playground and the picnic benches.",
+      "Across the field is the VGH Energy Centre Plaza. It's reflective pool has unfortunately been stagnant for the past few years, with no water raining down from the curvy pipes above as intended. But it's still a neat spot to explore while watching the steam billowing from stainless steel combustion pipes. There are concrete planks that used to release steam from the power plant below but this fun concept doesn't seem to be currently functioning upon our inspection."
+    ]
+  },
+  {
+    "id": "pg0040",
+    "name": "LILIAN TO PARK PLAYGROUND",
+    "address": "3276 YUKON ST, VANCOUVER, BC V5Y 3R9",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2020/11/Lilian-To-playground1.jpeg"
+    ],
+    "description": "The “To” in Lilian To Park refers to a surname and not a preposition, making it a rarity to find a park named after local woman in this city. Unless one rides a bicycle down Yukon St, this playground can be easily missed. The main focal point of this spot is the massive saucer swing. Notice this swing is unlike most saucer or disc swings, in that it hangs from one anchor point enabling it to spin while swaying. It’s an adventure of centrifugal force if one is daring enough to hold on tight. Along with a few more climbing and balancing features, there’s also a small ditch with rocks and a log to explore while bicycles whiz by behind it.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "saucer swing",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips",
+      "Shade": "partial",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches, chairs",
+      "Washrooms": "no",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": []
+  },
+  {
+    "id": "pg0041",
+    "name": "FALAISE PARK PLAYGROUND",
+    "address": "3434 FALAISE AVE, VANCOUVER, BC V5M 4C1",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/08/Falaise-park-toddler-playground.jpg"
+    ],
+    "description": "This playground is actually located at the top of the slope and across the street from Falaise Park, making it slightly confusing if one were to make a playdate without knowing this tidbit. Otherwise, this colourful playground is divided into two play areas with plenty to do for different ages.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "2 standard swings",
+      "Sandbox": "yes",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "ziptrack",
+      "Trampoline": "no",
+      "Splash park": "wading pool",
+      "Accessible Features": "fieldhouse washrooms"
+    },
+    "environment": {
+      "Ground": "pea gravel, gravely sand",
+      "Shade": "no",
+      "Fenced": "partially",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "two benches by wading pool",
+      "Washrooms": "fieldhouse",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "Happy Corner Preschool, Vancouver Christian School, etc"
+    },
+    "special_notes": [
+      "Fun play vehicle with 4 steering wheels.",
+      "Fieldhouse is high tech but enables children to be able to open it prematurely."
+    ]
+  },
+  {
+    "id": "pg0042",
+    "name": "GRIMMETT PARK PLAYGROUND",
+    "address": "169 E 19th AVE, VANCOUVER, BC V5V 1J1",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/01/Grimmett-park-playground1.jpeg"
+    ],
+    "description": "Although small and unassuming, Grimmett Park is another hot spot for young families in the Mount Pleasant and/or Riley-Little Mountain area. Located just off Main Street, it’s got two play structures made with a combination of wood and plastic.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "2 standard",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "duck and dolphin",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "pea gravel",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": "unknown"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "A circular path in the lawn makes for a great little scooter or bike track.",
+      "Pea gravel in the ball hockey court can cause children to slip."
+    ]
+  },
+  {
+    "id": "pg0043",
+    "name": "HILLCREST/RILEY PARK PRESCHOOL PLAYGROUND",
+    "address": "4575 CLANCY LORANGER WAY, VANCOUVER, BC V5Y 2M4",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/11/Hillcrest-Riley-park-preschool-playground.jpg"
+    ],
+    "description": "Similar to other playgrounds that are dedicated to preschools, this one is available after hours and is fully fenced. It’s part of the Hillcrest Community Centre and is located on the same side as the Terry Salman Library entrance.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "yes",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "yes",
+      "Telescope": "use megaphone",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "rubber, concrete, sand",
+      "Shade": "no",
+      "Fenced": "yes",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "community centre",
+      "Water Fountain": "community centre",
+      "Hours": "after preschool hours and weekends",
+      "School": "Hillcrest Riley Park Preschool"
+    },
+    "special_notes": [
+      "Yay, FULLY fenced!",
+      "There is a checkerboard painted on the ground between the library and playground.",
+      "People tend to leave the gates open from time to time. Gates fortunately don't lead to a high traffic area.",
+      "Available after preschool hours and on weekends."
+    ]
+  },
+  {
+    "id": "pg0044",
+    "name": "SHANNON MEWS PARK PLAYGROUND",
+    "address": "43 W 57TH AVE, Vancouver, BC V6P 1T2",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/02/Shannon-mews-playground1.jpeg"
+    ],
+    "description": "It’s not every day one can be at a playground while gazing at an old, fancy pants mansion, let alone a mansion that was commissioned by sugar mogul, BT Rogers of Rogers Sugar. Yes, I’m talking about that bag of Rogers Sugar in your kitchen pantry, a discretely prolific staple amongst many Vancouverites.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "with water",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "sand, rubber, concrete",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": "unknown"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "no",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "Very unique, bumpy, hill-like climbers.",
+      "Beautiful estate preserving a historic Vancouver heritage building. Lots to explore, such as the Italian Garden, Rose Garden, hedge maze, modern art, etc.",
+      "Watch for open pools of water in front of the mansion and in the Rose Garden.",
+      "COVID NOTE: water feature in sandbox is not operating during the pandemic."
+    ]
+  },
+  {
+    "id": "pg0045",
+    "name": "JIM TAYLOR PARK PLAYGROUND",
+    "address": "7Q52+MW University Endowment Lands",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/06/Jim-Taylor-park-playground.jpeg"
+    ],
+    "description": "Back in the day when I attended UBC, this southern area of campus used to be a giant parking lot called, “B Lot”. Now, it’s completely unrecognizable as it’s been converted into a residential neighbourhood called Hawthorn Place. The then-brand new Forestry building across the street was the only reason I could find my bearings, as my kids and I checked out the playground at Jim Taylor Park in UBC.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "stools",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips",
+      "Shade": "no",
+      "Fenced": "partial",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "Old Barn community centre",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "Leisurely park where people come to lounge around on the lawn.",
+      "Giant chessboard floor available but no game pieces.",
+      "Open fountains nearby.",
+      "COVID NOTE:  Access to the community centre may be limited."
+    ]
+  },
+  {
+    "id": "pg0046",
+    "name": "RENFREW COMMUNITY PARK PLAYGROUND",
+    "address": "2929 E 22ND AVE, VANCOUVER, BC",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2022/03/Renfrew-community-park-playground1.jpg"
+    ],
+    "description": "There’s a lot to enjoy around Renfrew Community Centre, such as the aquatic centre, library, dog park and wooded ravine. Our focus for this post is the playground on the north side of the community centre in Renfrew Community Park.",
+    "features": {
+      "Baby Swings": "1 baby swings",
+      "Swings": "3 standard",
+      "Sandbox": "ground is sandy",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "wading pool",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "sandy gravel",
+      "Shade": "evening shade",
+      "Fenced": "no",
+      "Fallen Fruit": ""
+    },
+    "amenities": {
+      "Seating": "benches, picnic tables",
+      "Washrooms": "fieldhouse",
+      "Water Fountain": "by wading pool",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "Near Still Creek and Renfew Ravine.",
+      "Renfew Library has a wonderful children's section with play area, featuring a light wall, gears, small plastic and large foam building blocks.",
+      "Wading pools are open in the summer during certain hours decided by the City. Sometimes the fieldhouse provides activities and outdoor toys."
+    ]
+  },
+  {
+    "id": "pg0047",
+    "name": "RIVERFRONT PARK WEST PLAYGROUND",
+    "address": "PLUS CODE: 6W4V+59",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/02/Riverfront-Park-West-playground1.jpeg"
+    ],
+    "description": "Although this playground is technically part of Riverfront Park, many mistaken it to be part of Gladstone-Riverside Park because it’s located almost exactly at the halfway point between the two parks. Cartographic essay and powerpoint presentation aside, let’s just say there’s more than one route to get to this playground.",
+    "features": {
+      "Baby Swings": "1 baby swing",
+      "Swings": "2 standard, 1 universal",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "universal swing"
+    },
+    "environment": {
+      "Ground": "woodchips",
+      "Shade": "yes",
+      "Fenced": "no",
+      "Fallen Fruit": "blackberries"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "Blackberry bushes can be found along the path.",
+      "Minimal barriers to deter kids from peeking over to the riverbank.",
+      "Many dogs off leash and walk through the playground, wanting to play.",
+      "Extra notes above on a handful of ways to get here."
+    ]
+  },
+  {
+    "id": "pg0048",
+    "name": "KIDS MARKET COURTYARD PLAYGROUND",
+    "address": "1496 CARTWRIGHT ST, VANCOUVER, BC",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/01/Kids-market-playground1.jpeg"
+    ],
+    "description": "This cube shaped climbing structure appeared in the Kids Market courtyard on Granville Island after they revamped their courtyard in early 2020. I’m not sure if this qualifies as a playground but it definitely is a public, outdoor play area that warrants a mention. And if you’re one that appreciates landscape architecture, the bright red ropes nicely match the existing red accents of the area, including the red dome at the adjacent Crystal Ark shop.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "rubber",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches, platforms",
+      "Washrooms": "yes",
+      "Water Fountain": "yes",
+      "Restricted Hours": "no",
+      "School": "no"
+    },
+    "special_notes": [
+      "Reminder that there's two other playgrounds on Granville Island. Railspur Park and Sutcliffe Park linked below.",
+      "Washrooms are located in Kids Market or the coffee shop.",
+      "Water fountain is upstairs in the Kids Market.",
+      "Most dogs in the field are off-leash, even though the field has an on-leash policy."
+    ]
+  },
+  {
+    "id": "pg0049",
+    "name": "RIVERFRONT PARK EAST PLAYGROUND",
+    "address": "2750 EAST KENT AVE S, VANCOUVER, BC V5S 4V7",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/03/Riverfront-playground1.jpeg"
+    ],
+    "description": "A couple of large trees provide partial shade for this happy Minions-coloured playground. It comes complete with a plastic tunnel slide, a wide metal slide, a hanging bridge, chain link ladder and a rare, square shaped tunnel. From the top platform, children can enjoy seeing barges and tugboats chugging along the Fraser River with log booms in tow. Pea gravel lies below with surprises of little acorns and twigs, creating some tactile play for little ones.",
+    "features": {
+      "Baby Swings": "1 baby swing",
+      "Swings": "1 standard",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "pea gravel",
+      "Shade": "partial",
+      "Fenced": "no",
+      "Fallen Fruit": "acorns, blackberries"
+    },
+    "amenities": {
+      "Seating": "benches, picnic tables",
+      "Washrooms": "fieldhouse",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "There's a second playground here! Walk further west to Riverfront Park West Playground",
+      "Blackberry bushes can be found along the riverfront.",
+      "Dogs seen here are friendly, but off leash."
+    ]
+  },
+  {
+    "id": "pg0050",
+    "name": "OAK MEADOWS PARK PLAYGROUND",
+    "address": "899 W 37TH AVE, VANCOUVER, BC V5Z 3S1",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/07/Oak-Meadows-park-playground.jpg"
+    ],
+    "description": "This playground can be found on the eastside of the park by Willow St. It’s slightly hidden as it’s encompassed by a circle of trees and brush. The play structure here comes with multiple climbing options, such as blocky steps (similar to the ones seen at Coal Harbour Park playground), stone steps, climbing wall and two different ladders. Extra features include a maze panel, rubber mat bridge and a small metal slide.",
+    "features": {
+      "Baby Swings": "2 baby swings",
+      "Swings": "no",
+      "Sandbox": "yes",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips",
+      "Shade": "partial",
+      "Fenced": "no",
+      "Fallen Fruit": "pinecones"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "fieldhouse (see special note below for directions)",
+      "Water Fountain": "at fieldhouse",
+      "Hours": "6am to 10pm",
+      "School": "Eric Hamber Secondary"
+    },
+    "special_notes": [
+      "Washrooms are located by the other sports field with artificial turf on the far northwest side beside Eric Hamber Secondary school. One must pass some trees and go down the slope to find the fieldhouse beside the parking lot. It's a bit far.",
+      "Off-leash dog park is across the field.",
+      "Thorny plants can be found in meadow areas of natural growth."
+    ]
+  },
+  {
+    "id": "pg0051",
+    "name": "RAILSPUR PARK PLAYGROUND",
+    "address": "1249 CARTWRIGHT ST VANCOUVER, BC",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2020/10/Railspur-playground1.jpeg"
+    ],
+    "description": "People always seem to be surprised by this playground, as if it appeared out of nowhere. And maybe it did, considering Granville Island is a place of magic and wonder. Tucked behind the Opus Art Supply store and across the street from the old Arts Umbrella building, this playground can be found on the east end of the studios along Railspur Alley. This brightly coloured play space has a fun slanted window for little ones to peek out of and a couple of spinners to get as dizzy as one pleases. Right beside it is a free library of artsy books and a garden path with lots of big rocks and dirt for kids to practice their balance, coordination and mudpie making skills.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "yes",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "woodchips, gravel",
+      "Shade": "partial",
+      "Fenced": "no",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches",
+      "Washrooms": "community centre, port-a-potties",
+      "Water Fountain": "community centre",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "There are two other playgrounds on Granville Island. One on the other side of the False Creek Community Centre called Sutcliffe Park, right beside the water park. The second playground is a climbing dome behind the Children's Market. Listings coming soon!",
+      "COVID NOTE: Normally the washrooms are at False Creek community centre but due to COVID, there are port-a-potties nearby."
+    ]
+  },
+  {
+    "id": "pg0052",
+    "name": "JONES PARK PLAYGROUND",
+    "address": "5350 COMMERCIAL ST, VANCOUVER, BC V5P 3N3",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/01/Jones-park-playground.jpeg"
+    ],
+    "description": "A giant snail sits majestically in the sandpit, ready to be hydrated by the waterspout perched next to it’s solemn head. Did this creature catch a ride on the pirate boat and have tales to impart from the high seas? Is this snail in fact a pirate snail that’s up to no good? Blimey! I’m not sure ye will ever know.But gather ’round, ye maties, because what we do know is this modest sized playground has a lot going on fer landlubbers like us. The pirate ship here is almost identical to the one at Charleston Park, except fer a bridge plank that attaches the stern to a steep rubber hill. Under the ole shipwreck is a charming wee play table n’ rubber hammock.",
+    "features": {
+      "Baby Swings": "3 baby swings",
+      "Swings": "1 universal, 2 standard",
+      "Sandbox": "with water",
+      "Sand Digger": "no",
+      "Spring Rider": "yes",
+      "See Saw": "no",
+      "Telescope": "yes",
+      "Music Features": "no",
+      "Spinners": "merry go round",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "swing"
+    },
+    "environment": {
+      "Ground": "rubber, sand, woodchips",
+      "Shade": "nicely shaded by large trees",
+      "Fenced": "partial",
+      "Fallen Fruit": "pinecones"
+    },
+    "amenities": {
+      "Seating": "picnic tables, logs",
+      "Washrooms": "fieldhouse",
+      "Water Fountain": "yes",
+      "Hours": "6am to 10pm",
+      "School": "no"
+    },
+    "special_notes": [
+      "The giant snail spouts water in the summer months.",
+      "There is an unexpected drop created by sand pit's retaining wall.",
+      "COVID NOTE: Water features are not operating during the pandemic."
+    ]
+  },
+  {
+    "id": "pg0053",
+    "name": "TUGBOAT LANDING PLAYGROUND",
+    "address": "3302 N ARM AVE, VANCOUVER, BC V5S 0A6",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2021/02/Tugboat-Landing-playground1.jpeg"
+    ],
+    "description": "While Tugboat Landing is a small community west of the River District area, this playground with the same name is located further east at the foot of Kincross St and North Arm Ave. Discrepancy aside, this bright red, almost boat shaped playground, pays tribute to the tugboats that chug along the Fraser River with log booms in tow.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "no",
+      "See Saw": "no",
+      "Telescope": "periscope",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "pea gravel",
+      "Shade": "no",
+      "Fenced": "partial",
+      "Fallen Fruit": "no"
+    },
+    "amenities": {
+      "Seating": "benches, picnic tables",
+      "Washrooms": "no",
+      "Water Fountain": "no",
+      "Restricted Hours": "no",
+      "School": "no"
+    },
+    "special_notes": [
+      "The name of the playground doesn't match the location, but this playground is behind the Wesgroup River District Sales Centre, aka MODE Presentation Centre. It is not in the actual Tugboat Landing neighbourhood (which is around Victoria Drive at East Kent Ave South).",
+      "Fun playground that alludes to the tugboats along the Fraser River.",
+      "Lots of development still happening in area. Good for construction site fans."
+    ]
+  },
+  {
+    "id": "pg0054",
+    "name": "WEST POINT GREY COMMUNITY CENTRE PLAYGROUND",
+    "address": "4397 W 2ND AVE, VANCOUVER, BC V6R 1K4",
+    "images": [
+      "https://www.vancouverplaygrounds.com/wp-content/uploads/2022/04/West-Point-grey-CC-playground1.jpg"
+    ],
+    "description": "This little old playground at West Point Grey Community Centre is mostly enjoyed by the preschool kids that attend here. The most memorable feature is the vintage blue whale, that waits with a smile to take the next kid for a springy ride to nowhere.",
+    "features": {
+      "Baby Swings": "no",
+      "Swings": "no",
+      "Sandbox": "no",
+      "Sand Digger": "no",
+      "Spring Rider": "yes",
+      "See Saw": "no",
+      "Telescope": "no",
+      "Music Features": "no",
+      "Spinners": "no",
+      "Zipline": "no",
+      "Trampoline": "no",
+      "Splash park": "no",
+      "Accessible Features": "no"
+    },
+    "environment": {
+      "Ground": "pea gravel",
+      "Shade": "no",
+      "Fenced": "no",
+      "Fallen Fruit": ""
+    },
+    "amenities": {
+      "Seating": "picnic table",
+      "Washrooms": "community centre",
+      "Water Fountain": "no",
+      "Hours": "6am to 10pm",
+      "School": "preschool"
+    },
+    "special_notes": [
+      "Right beside Abertau Mansion where there is a lounge and additional washroom facilities.",
+      "COVID NOTE: Facilities in Aberthau Mansion may not be available for public use."
+    ]
+  }
+]

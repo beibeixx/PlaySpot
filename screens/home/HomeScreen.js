@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native'
+import { FlatList, StyleSheet, Text, TouchableOpacity, View, Image, Pressable} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import dataService, { fetchData } from '../../services/dataService'
 
@@ -22,12 +22,12 @@ export default function HomeScreen({ navigation}) {
 
   const renderItem = ({item}) => {
     return(
-    <TouchableOpacity>
+    <Pressable>
       <View>
         <Image source={{ uri: item.images[0]}} style={{width: 100, height: 100}}/>
         <Text>{item.name}</Text>
       </View>
-    </TouchableOpacity>
+    </Pressable>
     )
   }
 

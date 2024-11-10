@@ -12,13 +12,13 @@ import MainTabNavigator from "./MainTabNavigator";
 const Stack = createNativeStackNavigator();
 
 const defaultScreenOptions = {
-    headerStyle: {
-      backgroundColor: "blue",
-    },
-    headerTintColor: "white",
-    headerBackTitleVisible: false,
-  };
-  
+  headerStyle: {
+    backgroundColor: "blue",
+  },
+  headerTintColor: "white",
+  headerBackTitleVisible: false,
+};
+
 export default function AppNavigator() {
   return (
     <Stack.Navigator>
@@ -30,65 +30,23 @@ export default function AppNavigator() {
         }}
       />
 
-      <Stack.Screen
-        name="Modify Playground"
-        component={AddEditPlaygroundScreen}
-        options={({ route }) => ({
-          headerStyle: {
-            backgroundColor: "blue",
-          },
-          headerTintColor: "white",
-          headerBackTitleVisible: false,
-        })}
-      />
+      <Stack.Group screenOptions={defaultScreenOptions}>
+        <Stack.Screen
+          name="Modify Playground"
+          component={AddEditPlaygroundScreen}
+        />
 
-      <Stack.Screen
-        name="Playground Details"
-        component={PlaygroundDetailScreen}
-        options={({ route }) => ({
-          headerStyle: {
-            backgroundColor: "blue",
-          },
-          headerTintColor: "white",
-          headerBackTitleVisible: false,
-        })}
-      />
+        <Stack.Screen
+          name="Playground Details"
+          component={PlaygroundDetailScreen}
+        />
 
-      <Stack.Screen
-        name="User Info"
-        component={UserInfoScreen}
-        options={({ route }) => ({
-          headerStyle: {
-            backgroundColor: "blue",
-          },
-          headerTintColor: "white",
-          headerBackTitleVisible: false,
-        })}
-      />
+        <Stack.Screen name="User Info" component={UserInfoScreen} />
 
-      <Stack.Screen
-        name="Contributions"
-        component={ContributionsScreen}
-        options={({ route }) => ({
-          headerStyle: {
-            backgroundColor: "blue",
-          },
-          headerTintColor: "white",
-          headerBackTitleVisible: false,
-        })}
-      />
+        <Stack.Screen name="Contributions" component={ContributionsScreen} />
 
-      <Stack.Screen
-        name="Notification"
-        component={NotificationsScreen}
-        options={({ route }) => ({
-          headerStyle: {
-            backgroundColor: "blue",
-          },
-          headerTintColor: "white",
-          headerBackTitleVisible: false,
-        })}
-      />
+        <Stack.Screen name="Notification" component={NotificationsScreen} />
+      </Stack.Group>
     </Stack.Navigator>
   );
 }

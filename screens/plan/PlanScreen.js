@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function ContributionsScreen() {
+export default function PlanScreen() {
   return (
     <View>
-      <Text>ContributionsScreen</Text>
+      <Text>PlanScreen</Text>
     </View>
   )
 }

@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function MapScreen() {
+export default function ModifyPlanScreen() {
   return (
     <View>
-      <Text>MapScreen</Text>
+      <Text>ModifyPlanScreen</Text>
     </View>
   )
 }

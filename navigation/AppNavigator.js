@@ -1,11 +1,8 @@
 // Main navigator
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import AddEditPlaygroundScreen from "../screens/playground/AddEditPlaygroundScreen";
 import PlaygroundDetailScreen from "../screens/playground/PlaygroundDetailScreen";
-import UserInfoScreen from "../screens/account/UserInfoScreen";
-import ContributionsScreen from "../screens/account/ContributionsScreen";
-import NotificationsScreen from "../screens/account/NotificationsScreen";
+import ModifyPlanScreen from "../screens/plan/ModifyPlanScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MainTabNavigator from "./MainTabNavigator";
 
@@ -23,7 +20,7 @@ export default function AppNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
+        name="Main"
         component={MainTabNavigator}
         options={{
           headerShown: false,
@@ -31,21 +28,13 @@ export default function AppNavigator() {
       />
 
       <Stack.Group screenOptions={defaultScreenOptions}>
-        <Stack.Screen
-          name="Modify Playground"
-          component={AddEditPlaygroundScreen}
-        />
 
         <Stack.Screen
           name="Playground Details"
           component={PlaygroundDetailScreen}
         />
 
-        <Stack.Screen name="User Info" component={UserInfoScreen} />
-
-        <Stack.Screen name="Contributions" component={ContributionsScreen} />
-
-        <Stack.Screen name="Notification" component={NotificationsScreen} />
+        <Stack.Screen name="Modify Plan" component={ModifyPlanScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );

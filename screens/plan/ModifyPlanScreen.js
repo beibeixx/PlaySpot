@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function AddEditPlaygroundScreen() {
+export default function ModifyPlanScreen() {
   return (
     <View>
-      <Text>AddEditPlaygroundScreen</Text>
+      <Text>ModifyPlanScreen</Text>
     </View>
   )
 }

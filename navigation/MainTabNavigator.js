@@ -2,12 +2,13 @@
  * MainTabNavigator.js
  *
  * This component sets up the bottom tab navigation for the app,
- * including the Search, Favorites, and Account screens.
+ * including the Home, Plans, Favorites, and Account screens.
  */
 import { StyleSheet, Text, View, Button } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import MapScreen from "../screens/map/MapScreen";
+import HomeScreen from "../screens/home/HomeScreen";
+import PlanScreen from "../screens/plan/PlanScreen";
 import FavoritesScreen from "../screens/favorites/FavoritesScreen";
 import AccountScreen from "../screens/account/AccountScreen";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
@@ -22,12 +23,17 @@ export default function MainTabNavigator() {
       screenOptions={({ route }) => ({
         // Configure the tab bar icons
         tabBarIcon: ({ focused, color, size }) => {
-          if (route.name === "Search") {
+          if (route.name === "Home") {
             return (
               <FontAwesome5 name="search-location" size={24} color="black" />
             );
           }
-          if (route.name === "Favorites") {
+          if (route.name === "Plan") {
+            return (
+              <FontAwesome5 name="search-location" size={24} color="black" />
+            );
+          }
+          if (route.name === "Favorite") {
             return <MaterialIcons name="favorite" size={24} color="black" />;
           }
           if (route.name === "Account") {
@@ -52,14 +58,21 @@ export default function MainTabNavigator() {
           let color = focused
             ? "yellow"
             : "gray";
-          if (route.name === "Search") {
+          if (route.name === "Home") {
             return (
               <Text style={{ color, fontSize: 12 }}>
-                Search
+                Home
               </Text>
             );
           }
-          if (route.name === "Favorites") {
+          if (route.name === "Plan") {
+            return (
+              <Text style={{ color, fontSize: 12 }}>
+                Plan
+              </Text>
+            );
+          }
+          if (route.name === "Favorite") {
             return (
               <Text style={{ color, fontSize: 12 }}>Favorites</Text>
             );
@@ -75,8 +88,9 @@ export default function MainTabNavigator() {
       })}
     >
       {/* Define the tab screens */}
-      <Tab.Screen name="Search" component={MapScreen} />
-      <Tab.Screen name="Favorites" component={FavoritesScreen} />
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Plan" component={PlanScreen} />
+      <Tab.Screen name="Favorite" component={FavoritesScreen} />
       <Tab.Screen name="Account" component={AccountScreen} />
     </Tab.Navigator>
   );

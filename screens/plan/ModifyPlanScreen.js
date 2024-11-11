@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, TextInput, FlatList, TouchableOpacity, Alert} from 'react-native'
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { SearchBar } from 'react-native-elements';
+import { SearchBar } from '@rneui/themed';
 import { fetchData } from '../../services/dataService';
 import PressableButton from '../../components/common/PressableButton';
+import { writeToDB, updateDB } from '../../firebase/firestoreHelper';
 
 export default function ModifyPlanScreen( {navigation, item}) {
   const isModify = item ? true : false;
@@ -15,6 +16,8 @@ export default function ModifyPlanScreen( {navigation, item}) {
   const [reminderTime, setReminderTime] = useState(isModify ? item.reminderTime : new Date())
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredPlaygrounds, setFilteredPlaygrounds] = useState(playgrounds);
+
+  const searchBarRef = useRef(null);
   
   const handleSearch = (query) => {
     setSearchQuery(query);
@@ -34,14 +37,24 @@ export default function ModifyPlanScreen( {navigation, item}) {
       Alert.alert('Please select a playground');
       return;
     }
-    const planData = {
+    const newPlanData = {
       planName,
       playground: selectedPlayground,
       time,
       reminderTime,
     };
     // Save planData to Firestore or any other storage
-    console.log(planData);
+    console.log(newPlanData);
+
+    if (!isModify) {
+      // Adding the new entry to the data
+      writeToDB(newPlanData, 'plan');
+    } else {
+      // Updating the existing entry in the data
+      updateDB(item.id, newPlanData, 'plan');
+    }
+    // Navigating back to the previous screen
+    navigation.goBack();
   };
 
   return (
@@ -52,7 +65,7 @@ export default function ModifyPlanScreen( {navigation, item}) {
         onChangeText={handleSearch}
         value={searchQuery}
         onFocus={() => setSelectedPlayground('')}
-        ref={search => this.search = search}
+        ref={searchBarRef}
         containerStyle={styles.searchContainer}
         inputContainerStyle={styles.searchInputContainer}
         inputStyle={styles.searchInput}
@@ -65,7 +78,7 @@ export default function ModifyPlanScreen( {navigation, item}) {
           <TouchableOpacity onPress={() => {
             setSelectedPlayground(item);
             setSearchQuery(''); // Clear search query
-            this.search.blur();; // Clear search bar
+            searchBarRef.current.blur();; // Clear search bar
             }}>
             <Text style={styles.playgroundItem}>{item.name}</Text>
           </TouchableOpacity>

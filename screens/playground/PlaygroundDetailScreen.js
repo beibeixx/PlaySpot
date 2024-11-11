@@ -25,14 +25,24 @@ export default function PlaygroundDetailScreen({ route }) {
 
   const renderSection = (data, title) => {
     const items = Object.entries(data)
-      .filter(([_, value]) => value.toLowerCase() !== "no" && value.toLowerCase() !== "unknown")
+      .filter(
+        ([_, value]) =>
+          value.toLowerCase() !== "no" && value.toLowerCase() !== "unknown"
+      )
       .map(([key, value]) => (
         <Text key={key}>
           • {key}: {value}
         </Text>
       ));
 
-    if (items.length === 0) return null;
+    if (items.length === 0) {
+      return (
+        <View>
+          <Text>{title}</Text>
+          <Text>• Not Available</Text>
+        </View>
+      );
+    }
 
     return (
       <View>

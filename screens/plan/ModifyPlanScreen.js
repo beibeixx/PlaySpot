@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TextInput, FlatList, Button, TouchableOpacity} from 'react-native'
 import React, {useState} from 'react'
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { SearchBar } from 'react-native-elements';
 import { fetchData } from '../../services/dataService';
 
 export default function ModifyPlanScreen( {navigation, item}) {
@@ -36,23 +37,40 @@ export default function ModifyPlanScreen( {navigation, item}) {
 
   return (
     <View style={styles.container}>
-      <Text>Modify Plan</Text>
-      <TextInput
+      <Text>Select Location</Text>
+      <SearchBar
+        placeholder="Search Playground"
+        onChangeText={handleSearch}
+        value={searchQuery}
+        onFocus={() => setSelectedPlayground('')}
+        ref={search => this.search = search}
+        containerStyle={styles.searchContainer}
+        inputContainerStyle={styles.searchInputContainer}
+        inputStyle={styles.searchInput}
+      />
+      {/* <TextInput
         placeholder="Search Playground"
         value={searchQuery}
         onChangeText={handleSearch}
         style={styles.input}
-      />
+      /> */}
+      {searchQuery && !selectedPlayground && (
       <FlatList
         data={filteredPlaygrounds}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => setSelectedPlayground(item)}>
+          <TouchableOpacity onPress={() => {
+            setSelectedPlayground(item);
+            setSearchQuery(''); // Clear search query
+            this.search.blur();; // Clear search bar
+            }}>
             <Text style={styles.playgroundItem}>{item.name}</Text>
           </TouchableOpacity>
         )}
       />
+      )}
       {selectedPlayground && <Text>Selected Playground: {selectedPlayground.name}</Text>}
+      <Text>Plan Name:</Text>
       <TextInput
         placeholder="Plan Name"
         value={planName}
@@ -93,5 +111,16 @@ const styles = StyleSheet.create({
     padding: 8,
     borderBottomWidth: 1,
     borderBottomColor: 'gray',
+  },
+  searchContainer: {
+    backgroundColor: 'white',
+    borderBottomColor: 'transparent',
+    borderTopColor: 'transparent',
+  },
+  searchInputContainer: {
+    backgroundColor: '#e0e0e0',
+  },
+  searchInput: {
+    color: 'black',
   },
 });

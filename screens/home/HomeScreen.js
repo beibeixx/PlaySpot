@@ -35,7 +35,11 @@ export default function HomeScreen({ navigation }) {
 
   const renderItem = ({ item }) => {
     return (
-      <Pressable>
+      <Pressable
+        onPress={() =>
+          navigation.navigate("Playground Details", { itemID: item.id })
+        }
+      >
         <View>
           <Image
             source={{ uri: item.images[0] }}
@@ -50,7 +54,6 @@ export default function HomeScreen({ navigation }) {
   if (loading) {
     return <ActivityIndicator size="large" />;
   }
-
 
   const handleSearch = (search) => {
     const result = data.filter((item) =>

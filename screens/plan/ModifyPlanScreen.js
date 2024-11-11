@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View, TextInput, FlatList, Button, TouchableOpacity} from 'react-native'
+import { StyleSheet, Text, View, TextInput, FlatList, TouchableOpacity, Alert} from 'react-native'
 import React, {useState} from 'react'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { SearchBar } from 'react-native-elements';
 import { fetchData } from '../../services/dataService';
+import PressableButton from '../../components/common/PressableButton';
 
 export default function ModifyPlanScreen( {navigation, item}) {
   const isModify = item ? true : false;
@@ -25,6 +26,14 @@ export default function ModifyPlanScreen( {navigation, item}) {
   };
 
   const handleSave = () => {
+    if (!planName) {
+      Alert.alert('Please enter a plan name');
+      return;
+    }
+    if (!selectedPlayground) {
+      Alert.alert('Please select a playground');
+      return;
+    }
     const planData = {
       planName,
       playground: selectedPlayground,
@@ -48,12 +57,6 @@ export default function ModifyPlanScreen( {navigation, item}) {
         inputContainerStyle={styles.searchInputContainer}
         inputStyle={styles.searchInput}
       />
-      {/* <TextInput
-        placeholder="Search Playground"
-        value={searchQuery}
-        onChangeText={handleSearch}
-        style={styles.input}
-      /> */}
       {searchQuery && !selectedPlayground && (
       <FlatList
         data={filteredPlaygrounds}
@@ -80,18 +83,25 @@ export default function ModifyPlanScreen( {navigation, item}) {
       <Text>Select Time:</Text>
       <DateTimePicker
         value={time}
-        mode="time"
+        mode="datetime"
         display="default"
         onChange={(event, selectedDate) => setTime(selectedDate || time)}
       />
       <Text>Select Reminder Time:</Text>
       <DateTimePicker
         value={reminderTime}
-        mode="time"
+        mode="datetime"
         display="default"
         onChange={(event, selectedDate) => setReminderTime(selectedDate || reminderTime)}
       />
-      <Button title="Save Plan" onPress={handleSave} />
+      <View style={styles.buttonContainer}>
+      <PressableButton pressHandler={() => navigation.goBack()}>
+        <Text>Cancel</Text>
+      </PressableButton>
+      <PressableButton pressHandler={handleSave}>
+        <Text>Submit</Text>
+      </PressableButton>
+      </View>
     </View>
   );
 }
@@ -122,5 +132,10 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     color: 'black',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 16,
   },
 });

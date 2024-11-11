@@ -11,11 +11,27 @@ import React, { useEffect, useState } from "react";
 import { getItemById } from "../../services/dataService";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import PressableButton from "../../components/common/PressableButton";
-import { writeToDB } from "../../firebase/firestoreHelper";
+import { checkInDB, writeToDB } from "../../firebase/firestoreHelper";
 
 export default function PlaygroundDetailScreen({ navigation, route }) {
   const [data, setData] = useState(null);
   const { itemID } = route.params;
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [favoriteId, setFavoriteId] = useState(null);
+
+
+  useEffect(() => {
+    const checkFavoriteStatus = async () => {
+      const favId = await checkInDB(itemID, "favorite");
+      if (favId){
+        setIsFavorite(favId);
+      }
+      setIsFavorite(favId);
+      setFavoriteId(favId);
+    };
+    return () => checkFavoriteStatus();
+  }, [itemID]);
+
 
   const favoriteHandler = () => {
     const favoriteData = {

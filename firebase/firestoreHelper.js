@@ -1,4 +1,4 @@
-import { collection, addDoc, getDocs, setDoc, doc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, setDoc, doc, deleteDoc, query, where} from "firebase/firestore";
 import { database } from "./firebaseSetup";
 
 export async function writeToDB(data, collectionName) {
@@ -50,5 +50,19 @@ export async function getAllDocuments(collectionName) {
     return data;
   } catch (err) {
     console.log("get all docs", err);
+  }
+}
+
+export async function checkInDB(itemId, collectionName) {
+  try {
+    const q = query(
+      collection(database, collectionName),
+      where("itemId", "==", itemId)
+    );
+    const querySnapshot = await getDocs(q);
+    return !querySnapshot.empty ? querySnapshot.docs[0].id : null;
+  } catch (err) {
+    console.error('Check favorite error:', err);
+    return null;
   }
 }

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInput, FlatList, TouchableOpacity, Alert} from 'react-native'
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { SearchBar } from 'react-native-elements';
 import { fetchData } from '../../services/dataService';
@@ -15,6 +15,8 @@ export default function ModifyPlanScreen( {navigation, item}) {
   const [reminderTime, setReminderTime] = useState(isModify ? item.reminderTime : new Date())
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredPlaygrounds, setFilteredPlaygrounds] = useState(playgrounds);
+
+  const searchBarRef = useRef(null);
   
   const handleSearch = (query) => {
     setSearchQuery(query);
@@ -52,7 +54,7 @@ export default function ModifyPlanScreen( {navigation, item}) {
         onChangeText={handleSearch}
         value={searchQuery}
         onFocus={() => setSelectedPlayground('')}
-        ref={search => this.search = search}
+        ref={searchBarRef}
         containerStyle={styles.searchContainer}
         inputContainerStyle={styles.searchInputContainer}
         inputStyle={styles.searchInput}
@@ -65,7 +67,7 @@ export default function ModifyPlanScreen( {navigation, item}) {
           <TouchableOpacity onPress={() => {
             setSelectedPlayground(item);
             setSearchQuery(''); // Clear search query
-            this.search.blur();; // Clear search bar
+            searchBarRef.current.blur();; // Clear search bar
             }}>
             <Text style={styles.playgroundItem}>{item.name}</Text>
           </TouchableOpacity>

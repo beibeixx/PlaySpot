@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TextInput, FlatList, Button, TouchableOpacity} from 'react-native'
 import React, {useState} from 'react'
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { SearchBar } from 'react-native-elements';
+import { SearchBar } from '@rneui/themed';
 import { fetchData } from '../../services/dataService';
 
 export default function ModifyPlanScreen( {navigation, item}) {

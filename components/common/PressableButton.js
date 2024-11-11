@@ -1,7 +1,7 @@
 import { Pressable } from 'react-native'
 import React from 'react'
-import commonStyles from '.../utils/style'
-import commonColors from '.../utils/color'
+import commonStyles from '../../utils/style'
+import commonColors from '../../utils/color'
 
 export default function PressableButton({children, pressHandler, componentStyle}) {
   return (

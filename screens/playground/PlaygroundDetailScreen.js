@@ -5,31 +5,38 @@ import {
   View,
   Image,
   ActivityIndicator,
+  Pressable,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getItemById } from "../../services/dataService";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import PressableButton from "../../components/common/PressableButton";
+import { writeToDB } from "../../firebase/firestoreHelper";
 
 export default function PlaygroundDetailScreen({ navigation, route }) {
   const [data, setData] = useState(null);
   const { itemID } = route.params;
 
   const favoriteHandler = () => {
-    return;
+    const favoriteData = {
+      playgroundID: itemID,
+      addedAt: new Date().toISOString()
+    }
+    writeToDB(favoriteData, "favorites")
   };
+
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <PressableButton
-          componentStyle={styles.iconStyle}
-          pressedHandler={favoriteHandler}
+        <Pressable
+          style={styles.iconStyle}
+          onPress={favoriteHandler}
         >
           <MaterialIcons name="favorite-border" size={24} color="black" />
-        </PressableButton>
+        </Pressable>
       ),
     });
-  }, []);
+  }, [itemID, favoriteHandler]);
 
   useEffect(() => {
     const data = getItemById(itemID);

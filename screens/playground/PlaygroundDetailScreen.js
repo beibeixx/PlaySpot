@@ -8,10 +8,28 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getItemById } from "../../services/dataService";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import PressableButton from "../../components/common/PressableButton";
 
-export default function PlaygroundDetailScreen({ route }) {
+export default function PlaygroundDetailScreen({ navigation, route }) {
   const [data, setData] = useState(null);
   const { itemID } = route.params;
+
+  const favoriteHandler = () => {
+    return;
+  };
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <PressableButton
+          componentStyle={styles.iconStyle}
+          pressedHandler={favoriteHandler}
+        >
+          <MaterialIcons name="favorite-border" size={24} color="black" />
+        </PressableButton>
+      ),
+    });
+  }, []);
 
   useEffect(() => {
     const data = getItemById(itemID);
@@ -68,4 +86,8 @@ export default function PlaygroundDetailScreen({ route }) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  iconStyle: {
+    opacity: 0.9,
+  },
+});

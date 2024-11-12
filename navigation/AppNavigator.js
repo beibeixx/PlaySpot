@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import PlaygroundDetailScreen from "../screens/playground/PlaygroundDetailScreen";
 import ModifyPlanScreen from "../screens/plan/ModifyPlanScreen";
+import ModifyMemoryScreen from "../screens/memory/ModifyMemoryScreen";
 import PlanDetailsScreen from "../screens/plan/PlanDetailsScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MainTabNavigator from "./MainTabNavigator";
@@ -38,6 +39,7 @@ export default function AppNavigator() {
         />
         <Stack.Screen name="Modify Plan" component={ModifyPlanScreen} />
         <Stack.Screen name="Plan Details" component={PlanDetailsScreen} />
+        <Stack.Screen name="Modify Memory" component={ModifyMemoryScreen} />
         <Stack.Screen name="Favorite List" component={FavoriteListScreen} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />

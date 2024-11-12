@@ -64,7 +64,7 @@ export default function ModifyPlanScreen( {navigation, route} ) {
       updateDB(item.id, newPlanData, 'plan');
     }
     // Navigating back to the previous screen
-    navigation.navigate('Plan');
+    navigation.navigate('Main', {screen: 'Plan'});
   };
 
   return (

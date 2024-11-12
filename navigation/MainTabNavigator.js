@@ -9,7 +9,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/home/HomeScreen";
 import PlanScreen from "../screens/plan/PlanScreen";
-import FavoritesScreen from "../screens/favorites/FavoritesScreen";
+import MemoryScreen from "../screens/memory/MemoryScreen";
 import AccountScreen from "../screens/account/AccountScreen";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -30,11 +30,11 @@ export default function MainTabNavigator() {
           }
           if (route.name === "Plan") {
             return (
-              <FontAwesome5 name="search-location" size={24} color="black" />
+              <MaterialIcons name="task" size={24} color="black" />
             );
           }
-          if (route.name === "Favorite") {
-            return <MaterialIcons name="favorite" size={24} color="black" />;
+          if (route.name === "Memory") {
+            return <MaterialIcons name="menu-book" size={24} color="black" />;
           }
           if (route.name === "Account") {
             return (
@@ -72,9 +72,9 @@ export default function MainTabNavigator() {
               </Text>
             );
           }
-          if (route.name === "Favorite") {
+          if (route.name === "Memory") {
             return (
-              <Text style={{ color, fontSize: 12 }}>Favorites</Text>
+              <Text style={{ color, fontSize: 12 }}>Memory</Text>
             );
           }
           if (route.name === "Account") {
@@ -90,7 +90,7 @@ export default function MainTabNavigator() {
       {/* Define the tab screens */}
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Plan" component={PlanScreen} />
-      <Tab.Screen name="Favorite" component={FavoritesScreen} />
+      <Tab.Screen name="Memory" component={MemoryScreen} />
       <Tab.Screen name="Account" component={AccountScreen} />
     </Tab.Navigator>
   );

@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, View, Image } from 'react-native'
 import React, {useState, useEffect} from 'react'
 import { collection, onSnapshot, query, where} from 'firebase/firestore'
 import { database } from '../../firebase/firebaseSetup'
+import PressableButton from '../common/PressableButton'
 import ItemImage from './ItemImage'
 
 export default function PlanList( {timetype, navigation}) {
@@ -42,11 +43,12 @@ export default function PlanList( {timetype, navigation}) {
 
   function renderItem ({ item }) {
     console.log(item);
-    return <View>
+    return <PressableButton
+        pressHandler={() => navigation.navigate('Plan Details', {item})}>
       <Text>{item.planName || item.memoryName}</Text>
       <ItemImage id={item.playgroundId} />
       <Text>{new Date(item.time.toDate()).toLocaleString()}</Text>
-    </View>
+      </PressableButton>
   };
 
   return (

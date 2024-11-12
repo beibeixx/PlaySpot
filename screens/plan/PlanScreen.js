@@ -25,14 +25,14 @@ export default function PlanScreen( {navigation}) {
   return (
     <Screen>
       <View style={{flex: 1}}>
-      <Text>Upcoming</Text>
-      <DividerLine />
-      <PlanList timetype="upcoming" navigation={navigation} />
+        <Text>Upcoming</Text>
+        <DividerLine />
+        <PlanList timetype="upcoming" navigation={navigation} />
       </View>
       <View style={{flex: 1}}>
-      <Text>Past</Text>
-      <DividerLine />
-      <PlanList timetype="past" navigation={navigation} />
+        <Text>Past</Text>
+        <DividerLine />
+        <PlanList timetype="past" navigation={navigation} />
       </View>
     </Screen>
   )

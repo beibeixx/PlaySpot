@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View, Image } from 'react-native'
 import React, {useState, useEffect} from 'react'
 import { collection, onSnapshot, query, where} from 'firebase/firestore'
 import { database } from '../../firebase/firebaseSetup'
@@ -38,11 +38,15 @@ export default function PlanList( {timetype, navigation}) {
       unsubscribeMemories();
     };
   }, [timetype]);
-  
+
   function renderItem ({ item }) {
     console.log(item);
     return <View>
       <Text>{item.planName || item.memoryName}</Text>
+      <Image
+            source={{ uri: item.playground.images[0] }}
+            style={{ width: 100, height: 100 }}
+      />
       <Text>{new Date(item.time.toDate()).toLocaleString()}</Text>
     </View>
   };

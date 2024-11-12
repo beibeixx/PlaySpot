@@ -1,6 +1,8 @@
-import { StyleSheet, Text, View, FlatList, Image } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Image, Alert } from 'react-native'
 import React, { useEffect } from 'react'
 import { getItemNameById, getImagesById } from '../../services/dataService';
+import PressableButton from '../../components/common/PressableButton';
+import { deleteFromDB } from '../../firebase/firestoreHelper';
 
 export default function PlanDetailsScreen( {navigation, route} ) {
   const { item } = route.params;
@@ -26,7 +28,23 @@ export default function PlanDetailsScreen( {navigation, route} ) {
     const [month, day, year] = datePart.split('/'); 
     const timeString = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     return `${year}/${month}/${day} ${weekday} ${timeString}`;
-};
+  };
+
+  function handleEdit() {
+    navigation.navigate('Modify Plan', {item});
+  }
+
+  function pressDelete() {
+    Alert.alert("Important", "Are you sure you want to delete this plan?", [
+      {text: "No", style: "cancel"},
+      { text: "Yes",
+        onPress: () => {
+          deleteFromDB(item.id, 'plan');
+          navigation.navigate('Plan');
+        },
+      },
+    ]);
+  }
 
 
   return (
@@ -39,8 +57,21 @@ export default function PlanDetailsScreen( {navigation, route} ) {
         horizontal
         showsHorizontalScrollIndicator={false}
       />
+      <View style={styles.buttonContainer}>
+      <PressableButton pressHandler={handleEdit}>
+        <Text>Edit</Text>
+      </PressableButton>
+      <PressableButton pressHandler={pressDelete}>
+        <Text>Delete</Text>
+      </PressableButton>
+      </View>
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+})

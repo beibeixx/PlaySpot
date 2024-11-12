@@ -7,6 +7,8 @@ import PlanDetailsScreen from "../screens/plan/PlanDetailsScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MainTabNavigator from "./MainTabNavigator";
 import FavoriteListScreen from "../screens/favorites/FavoriteListScreen";
+import Login from "../screens/account/Login";
+import Signup from "../screens/account/Signup";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +39,8 @@ export default function AppNavigator() {
         <Stack.Screen name="Modify Plan" component={ModifyPlanScreen} />
         <Stack.Screen name="Plan Details" component={PlanDetailsScreen} />
         <Stack.Screen name="Favorite List" component={FavoriteListScreen} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Signup" component={Signup} />
       </Stack.Group>
     </Stack.Navigator>
   );

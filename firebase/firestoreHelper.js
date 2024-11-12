@@ -52,17 +52,3 @@ export async function getAllDocuments(collectionName) {
     console.log("get all docs", err);
   }
 }
-
-export async function checkInDB(itemId, collectionName) {
-  try {
-    const q = query(
-      collection(database, collectionName),
-      where("itemId", "==", itemId)
-    );
-    const querySnapshot = await getDocs(q);
-    return !querySnapshot.empty ? querySnapshot.docs[0].id : null;
-  } catch (err) {
-    console.error('Check favorite error:', err);
-    return null;
-  }
-}

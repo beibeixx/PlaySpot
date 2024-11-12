@@ -6,12 +6,20 @@ import {
   Image,
   ActivityIndicator,
   Pressable,
+  Alert,
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { getItemById } from "../../services/dataService";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import PressableButton from "../../components/common/PressableButton";
-import { checkInDB, writeToDB } from "../../firebase/firestoreHelper";
+import {
+  checkInDB,
+  deleteFromDB,
+  writeToDB,
+} from "../../firebase/firestoreHelper";
+import { onSnapshot } from "firebase/firestore";
+import { query, where, collection } from "firebase/firestore";
+import { database } from "../../firebase/firebaseSetup";
 
 export default function PlaygroundDetailScreen({ navigation, route }) {
   const [data, setData] = useState(null);
@@ -19,35 +27,43 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteId, setFavoriteId] = useState(null);
 
-
   useEffect(() => {
-    const checkFavoriteStatus = async () => {
-      const favId = await checkInDB(itemID, "favorite");
-      if (favId){
-        setIsFavorite(favId);
+    const checkFavoriteStatus = onSnapshot(
+      query(collection(database, "favorite"), where("itemId", "==", itemID)),
+      (querySnapshot) => {
+        const isFavoriteInDB = !querySnapshot.empty;
+        setIsFavorite(isFavoriteInDB);
+        setFavoriteId(isFavoriteInDB ? querySnapshot.docs[0].id : null);
+      },
+      (err) => {
+        console.log("check favorite error", err);
       }
-      setIsFavorite(favId);
-      setFavoriteId(favId);
-    };
+    );
     return () => checkFavoriteStatus();
   }, [itemID]);
 
-
-  const favoriteHandler = () => {
-    const favoriteData = {
-      playgroundID: itemID,
-      addedAt: new Date().toISOString()
+  const favoriteHandler = useCallback(async () => {
+    try {
+      if (isFavorite) {
+        const remove = await deleteFromDB(favoriteId, "favorite");
+        Alert.alert("Removed from favorites!");
+      } else {
+        const favoriteData = {
+          playgroundID: itemID,
+          addedAt: new Date().toISOString(),
+        };
+        const add = await writeToDB(favoriteData, "favorites");
+        Alert.alert("Added to favorites!");
+      }
+    } catch (err) {
+      console.log("Favorite Button error", err);
     }
-    writeToDB(favoriteData, "favorites")
-  };
+  }, [itemID, isFavorite, favoriteId]);
 
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Pressable
-          style={styles.iconStyle}
-          onPress={favoriteHandler}
-        >
+        <Pressable style={styles.iconStyle} onPress={favoriteHandler}>
           <MaterialIcons name="favorite-border" size={24} color="black" />
         </Pressable>
       ),

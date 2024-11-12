@@ -13,7 +13,7 @@ export default function PlanScreen( {navigation}) {
       headerRight: () => {
         return (
           <PressableButton
-            pressHandler={() => navigation.navigate('Modify Plan')}
+            pressHandler={() => navigation.navigate('Modify Plan', {item: null})}
           >
             <MaterialIcons name="add-box" size={24} color="white" />
           </PressableButton>

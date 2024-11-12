@@ -40,7 +40,7 @@ export default function PlanDetailsScreen( {navigation, route} ) {
       { text: "Yes",
         onPress: () => {
           deleteFromDB(item.id, 'plan');
-          navigation.navigate('Plan');
+          navigation.goBack();
         },
       },
     ]);

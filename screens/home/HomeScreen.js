@@ -20,7 +20,6 @@ export default function HomeScreen({ navigation }) {
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [searchText, setSearchText] = useState('');
 
-  const categories = [...new Set(data.map((item) => item.category))];
 
   useEffect(() => {
     loadData();

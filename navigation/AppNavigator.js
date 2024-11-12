@@ -5,6 +5,7 @@ import PlaygroundDetailScreen from "../screens/playground/PlaygroundDetailScreen
 import ModifyPlanScreen from "../screens/plan/ModifyPlanScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MainTabNavigator from "./MainTabNavigator";
+import FavoriteListScreen from "../screens/favorites/FavoriteListScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,13 +29,14 @@ export default function AppNavigator() {
       />
 
       <Stack.Group screenOptions={defaultScreenOptions}>
-
         <Stack.Screen
           name="Playground Details"
           component={PlaygroundDetailScreen}
         />
 
         <Stack.Screen name="Modify Plan" component={ModifyPlanScreen} />
+
+        <Stack.Screen name="Favorite List" component={FavoriteListScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );

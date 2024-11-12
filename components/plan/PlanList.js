@@ -51,7 +51,6 @@ export default function PlanList( {timetype, navigation}) {
 
   return (
     <View>
-      <Text>PlanList</Text>
       <FlatList
         data={[...plans, ...memories]}
         renderItem={renderItem}

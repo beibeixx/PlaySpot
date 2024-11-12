@@ -15,3 +15,10 @@ export const getItemNameById = (id) => {
 export const getItemImageById = (id) => {
   return data.find((item) => item.id === id).images[0];
 };
+
+export const getImagesById = (id) => {
+  const item = data.find((item) => item.id === id);
+  const images = item ? item.images : [];
+  console.log(images);
+  return images;
+};

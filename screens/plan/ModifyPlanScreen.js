@@ -2,22 +2,32 @@ import { StyleSheet, Text, View, TextInput, FlatList, TouchableOpacity, Alert} f
 import React, {useState, useRef} from 'react'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { SearchBar } from '@rneui/themed';
-import { fetchData } from '../../services/dataService';
+import { fetchData, getItemById } from '../../services/dataService';
 import PressableButton from '../../components/common/PressableButton';
 import { writeToDB, updateDB } from '../../firebase/firestoreHelper';
 
-export default function ModifyPlanScreen( {navigation, item}) {
+export default function ModifyPlanScreen( {navigation, route} ) {
+  const { item } = route.params;
   const isModify = item ? true : false;
   const playgrounds = fetchData();
 
-  const [planName, setPlanName] = useState(isModify ? item.name : '');
-  const [selectedPlayground, setSelectedPlayground] = useState(isModify ? item.playground : '');
-  const [time, setTime] = useState(isModify ? item.time : new Date());
-  const [reminderTime, setReminderTime] = useState(isModify ? item.reminderTime : new Date())
+  const [planName, setPlanName] = useState(isModify ? item.planName : '');
+  const [selectedPlayground, setSelectedPlayground] = useState(checkPlayground(item));
+  const [time, setTime] = useState(isModify ? item.time.toDate() : new Date());
+  const [reminderTime, setReminderTime] = useState(isModify ? item.reminderTime.toDate() : new Date())
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredPlaygrounds, setFilteredPlaygrounds] = useState(playgrounds);
 
   const searchBarRef = useRef(null);
+
+  function checkPlayground(item) {
+    if (isModify) {
+      const playground = getItemById(item.playgroundId);
+      return playground;
+    } else {
+      return '';
+    }
+  };
   
   const handleSearch = (query) => {
     setSearchQuery(query);
@@ -54,7 +64,7 @@ export default function ModifyPlanScreen( {navigation, item}) {
       updateDB(item.id, newPlanData, 'plan');
     }
     // Navigating back to the previous screen
-    navigation.goBack();
+    navigation.navigate('Plan');
   };
 
   return (

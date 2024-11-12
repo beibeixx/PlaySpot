@@ -29,7 +29,7 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
 
   useEffect(() => {
     const checkFavoriteStatus = onSnapshot(
-      query(collection(database, "favorite"), where("itemId", "==", itemID)),
+      query(collection(database, "favorites"), where("playgroundID", "==", itemID)),
       (querySnapshot) => {
         const isFavoriteInDB = !querySnapshot.empty;
         setIsFavorite(isFavoriteInDB);
@@ -45,7 +45,7 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
   const favoriteHandler = useCallback(async () => {
     try {
       if (isFavorite) {
-        const remove = await deleteFromDB(favoriteId, "favorite");
+        const remove = await deleteFromDB(favoriteId, "favorites");
         Alert.alert("Removed from favorites!");
       } else {
         const favoriteData = {

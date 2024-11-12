@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, {useEffect} from 'react'
 import PressableButton from '../../components/common/PressableButton'
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import Screen from '../../components/common/Screen';
 import DividerLine from '../../components/common/DividerLine';
 import PlanList from '../../components/plan/PlanList';
 
@@ -22,14 +23,18 @@ export default function PlanScreen( {navigation}) {
   }, [navigation]);
 
   return (
-    <View>
+    <Screen>
+      <View style={{flex: 1}}>
       <Text>Upcoming</Text>
       <DividerLine />
       <PlanList timetype="upcoming" navigation={navigation} />
+      </View>
+      <View style={{flex: 1}}>
       <Text>Past</Text>
       <DividerLine />
       <PlanList timetype="past" navigation={navigation} />
-    </View>
+      </View>
+    </Screen>
   )
 }
 

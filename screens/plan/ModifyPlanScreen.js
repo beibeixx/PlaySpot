@@ -39,7 +39,7 @@ export default function ModifyPlanScreen( {navigation, item}) {
     }
     const newPlanData = {
       planName,
-      playground: selectedPlayground,
+      playgroundId: selectedPlayground.id,
       time,
       reminderTime,
     };

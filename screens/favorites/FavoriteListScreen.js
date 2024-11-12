@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import FavoriteItemsList from '../../components/favorite/FavoriteItemsList'
 
-export default function FavoriteListScreen() {
+export default function FavoriteListScreen({navigation}) {
   return (
     <View>
-      <Text>FavoriteListScreen</Text>
+        <FavoriteItemsList navigation={navigation} />
     </View>
   )
 }

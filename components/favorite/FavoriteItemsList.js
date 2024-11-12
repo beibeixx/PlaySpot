@@ -5,57 +5,46 @@ import {
   FlatList,
   Pressable,
   Image,
+  Alert,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { collection, onSnapshot } from "firebase/firestore";
-import { database } from "../../firebase/firebaseSetup";
 import { getItemImageById, getItemNameById } from "../../services/dataService";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-export default function FavoriteItemsList({ navigation }) {
-  const [data, setData] = useState([]);
+export default function FavoriteItemsList({
+  playgroundItem,
+  navigation,
+  removeHandler,
+}) {
+  const handleRemove = () => {
+    removeHandler(playgroundItem.id);
+  };
 
-  useEffect(() => {
-    const listerToFirebase = onSnapshot(
-      collection(database, "favorites"),
-      (querySnapshot) => {
-        let newData = [];
-        querySnapshot.forEach((docSnapshot) => {
-          newData.push({
-            ...docSnapshot.data(),
-            id: docSnapshot.data().playgroundID,
-          });
-        });
-        setData(newData);
-      }
-    );
-    return () => listerToFirebase();
-  }, []);
+  const handlePress = () => {
+    navigation.navigate("Playground Details", {
+      itemID: playgroundItem.playgroundID,
+    });
+  };
 
   return (
-    <FlatList
-      data={data}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => (
+    <View>
+      <Pressable onPress={handlePress}>
         <View>
-        <Pressable
-          onPress={() =>
-            navigation.navigate("Playground Details", { itemID: item.id })
-          }
-        >
-          <View>
-            <Image
-              source={{ uri: getItemImageById(item.id) }}
-              style={{ width: 100, height: 100 }}
-            />
-            <Text>{getItemNameById(item.id)}</Text>
-          </View>
-        </Pressable>
-        <Pressable>
-            
-        </Pressable>
+          <Image
+            source={{ uri: getItemImageById(playgroundItem.playgroundID) }}
+            style={{ width: 100, height: 100 }}
+          />
+          <Text>{getItemNameById(playgroundItem.playgroundID)}</Text>
         </View>
-      )}
-    />
+      </Pressable>
+      <Pressable onPress={handleRemove}>
+        <MaterialCommunityIcons
+          name="heart-remove-outline"
+          size={24}
+          color="black"
+        />
+      </Pressable>
+    </View>
   );
 }
 

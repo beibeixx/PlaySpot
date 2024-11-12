@@ -12,14 +12,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import { getItemById } from "../../services/dataService";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import PressableButton from "../../components/common/PressableButton";
-import {
-  checkInDB,
-  deleteFromDB,
-  writeToDB,
-} from "../../firebase/firestoreHelper";
+import { deleteFromDB, writeToDB } from "../../firebase/firestoreHelper";
 import { onSnapshot } from "firebase/firestore";
 import { query, where, collection } from "firebase/firestore";
-import { database } from "../../firebase/firebaseSetup";
+import { auth, database } from "../../firebase/firebaseSetup";
 
 export default function PlaygroundDetailScreen({ navigation, route }) {
   const [data, setData] = useState(null);
@@ -29,7 +25,10 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
 
   useEffect(() => {
     const checkFavoriteStatus = onSnapshot(
-      query(collection(database, "favorites"), where("playgroundID", "==", itemID)),
+      query(
+        collection(database, "favorites"),
+        where("playgroundID", "==", itemID)
+      ),
       (querySnapshot) => {
         const isFavoriteInDB = !querySnapshot.empty;
         setIsFavorite(isFavoriteInDB);
@@ -44,21 +43,29 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
 
   const favoriteHandler = useCallback(async () => {
     try {
-      if (isFavorite) {
-        const remove = await deleteFromDB(favoriteId, "favorites");
-        Alert.alert("Removed from favorites!");
+      if (auth.currentUser) {
+        if (isFavorite) {
+          const remove = await deleteFromDB(favoriteId, "favorites");
+          Alert.alert("Removed from favorites!");
+        } else {
+          const favoriteData = {
+            playgroundID: itemID,
+            addedAt: new Date().toISOString(),
+          };
+          const add = await writeToDB(favoriteData, "favorites");
+          Alert.alert("Added to favorites!");
+        }
       } else {
-        const favoriteData = {
-          playgroundID: itemID,
-          addedAt: new Date().toISOString(),
-        };
-        const add = await writeToDB(favoriteData, "favorites");
-        Alert.alert("Added to favorites!");
+        handleLogin();
       }
     } catch (err) {
       console.log("Favorite Button error", err);
     }
-  }, [itemID, isFavorite, favoriteId]);
+  }, [itemID, isFavorite, favoriteId, auth]);
+
+  const handleLogin = () => {
+    navigation.navigate("Login");
+  };
 
   useEffect(() => {
     navigation.setOptions({

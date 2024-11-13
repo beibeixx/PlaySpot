@@ -1,6 +1,14 @@
 import commonColors from "./color";
 
 const commonStyles = {
+  // container styles
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  galleryContainer: {
+    marginVertical: 20,
+  },
   // PlanList styles
   itemCard: {
     padding: 10,
@@ -22,8 +30,25 @@ const commonStyles = {
     fontSize: 14,
     color: '#2c506b',
   },
-
+  // text styles
+  header: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#2c506b',
+  },
   // PressableButton styles
+  editButton: {
+    padding: 10,
+    margin: 10,
+    backgroundColor: "#74e0aa",
+    borderRadius: 5,
+  },
+  alertButton: {
+    padding: 10,
+    margin: 10,
+    backgroundColor: "#f8d7da",
+    borderRadius: 5,
+  },
   pressed: {
     backgroundColor: commonColors.itemBackgroundSelected,
     opacity: 0.8,

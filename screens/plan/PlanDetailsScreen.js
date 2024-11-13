@@ -2,12 +2,13 @@ import { StyleSheet, Text, View, FlatList, Image, Alert } from 'react-native'
 import React, { useEffect } from 'react'
 import { getItemNameById, getImagesById } from '../../services/dataService';
 import PressableButton from '../../components/common/PressableButton';
-import { deleteFromDB } from '../../firebase/firestoreHelper';
+import { writeToDB, deleteFromDB, updateDB } from '../../firebase/firestoreHelper';
 
 export default function PlanDetailsScreen( {navigation, route} ) {
   const { item } = route.params;
   const images = getImagesById(item.playgroundId);
   const playgroundName = getItemNameById(item.playgroundId);
+  const pastMode = item.time.toDate() < new Date();
   
   useEffect(() => {
     navigation.setOptions({
@@ -46,6 +47,37 @@ export default function PlanDetailsScreen( {navigation, route} ) {
     ]);
   }
 
+  function handleArchive() {
+    // Archive
+    const newMemoryData = {
+      planName: item.planName,
+      playgroundId: item.playgroundId,
+      time: item.time,
+    };
+    writeToDB(newMemoryData, 'memory');
+
+    // Update the plan to be archived
+    const updatedPlanData = {
+      ...item,
+      archived: true,
+    };
+    updateDB(item.id, updatedPlanData, 'plan');
+
+    // Navigate back to the main screen 
+    navigation.navigate('Main', {screen: 'Memory'});
+  }
+
+  function pressArchive() {
+    Alert.alert("Important", "Are you sure you want to archive this plan?", [
+      {text: "No", style: "cancel"},
+      { text: "Yes",
+        onPress: () => {
+          handleArchive();
+          navigation.navigate('Main', {screen: 'Memory'});
+        },
+      },
+    ]);
+  }
 
   return (
     <View>
@@ -57,14 +89,26 @@ export default function PlanDetailsScreen( {navigation, route} ) {
         horizontal
         showsHorizontalScrollIndicator={false}
       />
-      <View style={styles.buttonContainer}>
-      <PressableButton pressHandler={handleEdit}>
-        <Text>Edit</Text>
-      </PressableButton>
-      <PressableButton pressHandler={pressDelete}>
-        <Text>Delete</Text>
-      </PressableButton>
-      </View>
+      {!pastMode && (
+        <View style={styles.buttonContainer}>
+          <PressableButton pressHandler={pressDelete}>
+            <Text>Delete</Text>
+          </PressableButton>
+          <PressableButton pressHandler={handleEdit}>
+            <Text>Edit</Text>
+          </PressableButton>
+        </View>
+      )}
+      {pastMode && (
+        <View style={styles.buttonContainer}>
+          <PressableButton pressHandler={pressDelete}>
+            <Text>Delete</Text>
+          </PressableButton>
+          <PressableButton pressHandler={pressArchive} disabled={item.archived}>
+            <Text>Archive</Text>
+          </PressableButton>
+        </View>
+      )}
     </View>
   )
 }

@@ -7,7 +7,6 @@ import ItemImage from './ItemImage'
 
 export default function PlanList( {timetype, navigation}) {
   const [plans, setPlans] = useState([]);
-  const [memories, setMemories] = useState([]);
 
   useEffect(() => {
     const now = new Date();
@@ -15,11 +14,6 @@ export default function PlanList( {timetype, navigation}) {
       collection(database, 'plan'),
       where('time', timetype === 'upcoming' ? '>=' : '<', now)
     );
-    const memoryQuery = query(
-      collection(database, 'memory'),
-      where('time', timetype === 'upcoming' ? '>=' : '<', now)
-    );
-
     const unsubscribePlans = onSnapshot(planQuery, (querySnapshot) => {
       let newArray = [];
       querySnapshot.forEach((docSnapshot) => {
@@ -27,17 +21,8 @@ export default function PlanList( {timetype, navigation}) {
       });
       setPlans(newArray);
     });
-    const unsubscribeMemories = onSnapshot(memoryQuery, (querySnapshot) => {
-      let newArray = [];
-      querySnapshot.forEach((docSnapshot) => {
-        newArray.push({...docSnapshot.data(), id: docSnapshot.id, time: docSnapshot.data().time});
-      });
-      setMemories(newArray);
-    });
-
     return () => {
       unsubscribePlans();
-      unsubscribeMemories();
     };
   }, [timetype]);
 
@@ -45,7 +30,7 @@ export default function PlanList( {timetype, navigation}) {
     console.log(item);
     return <PressableButton
         pressHandler={() => navigation.navigate('Plan Details', {item})}>
-      <Text>{item.planName || item.memoryName}</Text>
+      <Text>{item.planName}</Text>
       <ItemImage id={item.playgroundId} />
       <Text>{new Date(item.time.toDate()).toLocaleString()}</Text>
       </PressableButton>
@@ -54,7 +39,7 @@ export default function PlanList( {timetype, navigation}) {
   return (
     <View>
       <FlatList
-        data={[...plans, ...memories]}
+        data={plans}
         renderItem={renderItem}
         keyExtractor={item => item.time}
       />

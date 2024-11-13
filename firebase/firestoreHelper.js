@@ -17,9 +17,9 @@ export async function deleteFromDB(deletedID, collectionName) {
   }
 }
 
-export async function updateDB(goalId, data, collectionName) {
+export async function updateDB(updatedID, data, collectionName) {
   try {
-    await setDoc(doc(database, collectionName, goalId), data, { merge: true });
+    await setDoc(doc(database, collectionName, updatedID), data, { merge: true });
   } catch (err) {
     console.log('update db', err);
   }

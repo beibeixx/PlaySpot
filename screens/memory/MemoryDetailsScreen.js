@@ -1,9 +1,12 @@
 import { StyleSheet, Text, View, FlatList, TextInput, Image, Alert } from 'react-native'
-import React, {memo, useState} from 'react'
+import React, { useState } from 'react'
 import { getImagesById, getItemNameById } from '../../services/dataService';
 import { updateDB, deleteFromDB } from '../../firebase/firestoreHelper';
+import Screen from '../../components/common/Screen';
 import PressableButton from '../../components/common/PressableButton';
+import Card from '../../components/common/Card';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import commonStyles from '../../utils/style';
 
 
 export default function MemoryDetailsScreen( {navigation, route} ) {
@@ -12,7 +15,8 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
   const playgroundName = getItemNameById(item.playgroundId);
   const [isEditing, setIsEditing] = useState(false);
   const [newMemoryName, setNewMemoryName] = useState(item.memoryName);
-  const [newPlan, setNewPlan] = useState(null);
+  const [newMemo, setNewMemo] = useState(item.memo ? item.memo : '');
+  const [isMemoVisible, setIsMemoVisible] = useState(false);
 
   function formatDate(date) {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'long' };
@@ -32,6 +36,16 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
     setIsEditing(false);
   };
 
+  function handleUpdateMeno() {
+    const updatedMemoryData = {
+      ...item,
+      memo: newMemo,
+    };
+    updateDB(item.id, updatedMemoryData, 'memory');
+    setIsMemoVisible(false);
+  }
+    
+
   function renderImage({item}) {
     return <Image
       source={{ uri: item }}
@@ -39,15 +53,18 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
   }
 
   function handleAddMemo() {
-    console.log('Add Memo');
+    setIsMemoVisible(true);
+  }
+
+  function memoModalHandler() {
+    setIsMemoVisible(false);
   }
 
   function handleEditPhotos() {
-    console.log('Edit Photos');
+    Alert.alert("This feature is under development.");
   }
 
   function createNewPlan() {
-    console.log('Create New Plan Again');
     const newPlanData = {
       planName: item.memoryName,
       playgroundId: item.playgroundId,
@@ -69,8 +86,8 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
   }
 
   return (
-    <View>
-      <Text>{playgroundName}</Text>
+    <Screen>
+      <Text style={commonStyles.header}>Memory</Text>
       <View style={styles.headerContainer}>
         {isEditing ? (
           <TextInput
@@ -86,30 +103,69 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
           <AntDesign name="edit" size={24} color="black" />
         </PressableButton>
       </View>
+      <Text style={commonStyles.header}>Location</Text>
+      <Text>{playgroundName}</Text>
+      <Text style={commonStyles.header}>Time</Text>
       <Text>{formatDate(item.time.toDate())}</Text>
+      <View style={styles.galleryContainer}>
       <FlatList
         data={images} // Assuming item.images is an array of image URLs
         renderItem={renderImage}
-        horizontal
+        horizontal={true}
         showsHorizontalScrollIndicator={false}
       />
+      </View>
       <View style={styles.buttonContainer}>
-        <PressableButton pressHandler={handleAddMemo}>
+        <PressableButton 
+          pressHandler={handleAddMemo}
+          componentStyle={commonStyles.editButton}>
           <Text>Add Memo</Text>
         </PressableButton>
-        <PressableButton pressHandler={handleEditPhotos}>
+        <PressableButton
+          pressHandler={handleEditPhotos}
+          componentStyle={commonStyles.editButton}>
           <Text>Edit Photos</Text>
         </PressableButton>
       </View>
+      <View style={styles.buttonContainer}>
       <PressableButton
-        pressHandler={createNewPlan}>
+        pressHandler={createNewPlan}
+        componentStyle={commonStyles.editButton}>
         <Text>Create New Plan Again</Text>
       </PressableButton>
+      </View>
+      {isMemoVisible && (
+        <Card isVisible={isMemoVisible} onBack={memoModalHandler}>
+        <TextInput
+          value={newMemo}
+          onChangeText={setNewMemo}
+          placeholder={newMemo ? newMemo : 'Add your memo here'}
+        />
+        <View style={styles.buttonContainer}>
+          <PressableButton
+            pressHandler={memoModalHandler}>
+            <Text>Cancel</Text>
+          </PressableButton>
+        <PressableButton
+          pressHandler={handleUpdateMeno}>
+          <Text>Save Memo</Text>
+        </PressableButton>
+        </View>
+      </Card>
+      )}
+      {newMemo && (
+        <View>
+        <Text style={commonStyles.header}>Memo</Text>
+        <Text>{newMemo}</Text>
+        </View>)}
+      <View style={styles.buttonContainer}>
       <PressableButton
-        pressHandler={pressDelete}>
+        pressHandler={pressDelete}
+        componentStyle={commonStyles.alertButton}>
         <Text>Delete This Memory</Text>
       </PressableButton>
-    </View>
+      </View>
+    </Screen>
   )
 }
 
@@ -122,4 +178,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
+  galleryContainer: {
+    marginVertical: 20,
+  }
 })

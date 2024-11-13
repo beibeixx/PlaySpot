@@ -9,14 +9,22 @@ export default function Card( {children, isVisible, onBack} ) {
       visible={isVisible}
       onRequestClose={onBack}
       transparent={true}>
+      <View style={styles.cardContainer}>
       <View style={styles.card}>
         {children}
+      </View>
       </View>
     </Modal>
   )
 }
 
 const styles = StyleSheet.create({
+  cardContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
   card: {
     padding: 20,
     backgroundColor: 'white',

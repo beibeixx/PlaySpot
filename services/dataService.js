@@ -19,6 +19,5 @@ export const getItemImageById = (id) => {
 export const getImagesById = (id) => {
   const item = data.find((item) => item.id === id);
   const images = item ? item.images : [];
-  console.log(images);
   return images;
 };

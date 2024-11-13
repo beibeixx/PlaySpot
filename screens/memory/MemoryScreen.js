@@ -1,27 +1,41 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, {useEffect} from 'react'
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { StyleSheet, Text, View, FlatList } from 'react-native'
+import React, {useEffect, useState} from 'react'
+import { collection, onSnapshot } from 'firebase/firestore'
+import { database } from '../../firebase/firebaseSetup'
 import PressableButton from '../../components/common/PressableButton'
+import ItemImage from '../../components/plan/ItemImage'
 
 export default function MemoryScreen( {navigation}) {
+  const [memories, setMemories] = useState([]);
 
   useEffect(() => {
-    // Set header options with a Pressable button
-    navigation.setOptions({
-      headerRight: () => {
-        return (
-          <PressableButton
-            pressHandler={() => navigation.navigate('Modify Memory', {item: null})}
-          >
-            <MaterialIcons name="add-box" size={24} color="white" />
-          </PressableButton>
-        );
-      },
+    const unsubscribe = onSnapshot(collection(database, 'memory'), (querySnapshot) => {
+      let newArray = [];
+      querySnapshot.forEach((docSnapshot) => {
+        newArray.push({...docSnapshot.data(), id: docSnapshot.id, time: docSnapshot.data().time});
+      });
+      setMemories(newArray);
     });
-  }, [navigation]);
+    // Clean up the subscription on unmount
+    return () => unsubscribe();
+  }, []);
+
+  function renderItem ({ item }) {
+    return <PressableButton
+        pressHandler={() => navigation.navigate('Memory Details', {item})}>
+      <Text>{item.memoryName}</Text>
+      <ItemImage id={item.playgroundId} />
+      <Text>{new Date(item.time.toDate()).toLocaleString()}</Text>
+      </PressableButton>
+  };
+
   return (
     <View>
-      <Text>MemoryScreen</Text>
+      <FlatList
+        data={memories}
+        renderItem={renderItem}
+        keyExtractor={item => item.time}
+      />
     </View>
   )
 }

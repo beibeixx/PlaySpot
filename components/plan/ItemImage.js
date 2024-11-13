@@ -4,7 +4,6 @@ import { getItemImageById } from '../../services/dataService'
 
 export default function ItemImage( {id}) {
   const imageUri = getItemImageById(id);
-  console.log(imageUri);
   return (
     <Image
     source={{ uri: imageUri}}

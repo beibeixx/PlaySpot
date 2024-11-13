@@ -50,7 +50,7 @@ export default function PlanDetailsScreen( {navigation, route} ) {
   function handleArchive() {
     // Archive
     const newMemoryData = {
-      planName: item.planName,
+      memoryName: item.planName,
       playgroundId: item.playgroundId,
       time: item.time,
     };

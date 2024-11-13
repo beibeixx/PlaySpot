@@ -27,7 +27,6 @@ export default function PlanList( {timetype, navigation}) {
   }, [timetype]);
 
   function renderItem ({ item }) {
-    console.log(item);
     return <PressableButton
         pressHandler={() => navigation.navigate('Plan Details', {item})}>
       <Text>{item.planName}</Text>

@@ -49,6 +49,10 @@ const commonStyles = {
     backgroundColor: "#f8d7da",
     borderRadius: 5,
   },
+  iconButton: {
+    padding: 10,
+    borderRadius: 5,
+  },
   pressed: {
     backgroundColor: commonColors.itemBackgroundSelected,
     opacity: 0.8,

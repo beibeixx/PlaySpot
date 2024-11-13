@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function ModifyMemoryScreen() {
+export default function MemoryDetailsScreen() {
   return (
     <View>
-      <Text>ModifyMemoryScreen</Text>
+      <Text>MemoryDetailsScreen</Text>
     </View>
   )
 }

@@ -13,8 +13,8 @@ export default function ModifyPlanScreen( {navigation, route} ) {
 
   const [planName, setPlanName] = useState(isModify ? item.planName : '');
   const [selectedPlayground, setSelectedPlayground] = useState(checkPlayground(item));
-  const [time, setTime] = useState(isModify ? item.time.toDate() : new Date());
-  const [reminderTime, setReminderTime] = useState(isModify ? item.reminderTime.toDate() : new Date())
+  const [time, setTime] = useState(item.time? item.time.toDate() : new Date());
+  const [reminderTime, setReminderTime] = useState(item.reminderTime ? item.reminderTime.toDate() : new Date())
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredPlaygrounds, setFilteredPlaygrounds] = useState(playgrounds);
 

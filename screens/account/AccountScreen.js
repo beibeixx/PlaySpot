@@ -1,10 +1,9 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { auth } from "../../firebase/firebaseSetup";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut} from "firebase/auth";
 
 export default function AccountScreen({ navigation }) {
-
   const [isUserloggedin, setIsUserLoggedin] = useState(false);
 
   useEffect(() => {
@@ -22,8 +21,8 @@ export default function AccountScreen({ navigation }) {
   };
 
   const handleLogin = () => {
-    navigation.navigate("Login")
-  }
+    navigation.navigate("Login");
+  };
 
   return (
     <View sytle={styles.container}>
@@ -32,6 +31,13 @@ export default function AccountScreen({ navigation }) {
           <Text>{auth.currentUser.email}</Text>
           <Pressable onPress={favoriteHandle}>
             <Text>Favorite List</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => {
+              signOut(auth);
+            }}
+          >
+            <Text>Sign out</Text>
           </Pressable>
         </View>
       ) : (

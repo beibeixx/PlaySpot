@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, FlatList, TextInput, Image, Alert } from 'react-native'
-import React, {useState} from 'react'
+import React, {memo, useState} from 'react'
 import { getImagesById, getItemNameById } from '../../services/dataService';
 import { updateDB, deleteFromDB } from '../../firebase/firestoreHelper';
 import PressableButton from '../../components/common/PressableButton';
@@ -12,6 +12,7 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
   const playgroundName = getItemNameById(item.playgroundId);
   const [isEditing, setIsEditing] = useState(false);
   const [newMemoryName, setNewMemoryName] = useState(item.memoryName);
+  const [newPlan, setNewPlan] = useState(null);
 
   function formatDate(date) {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'long' };
@@ -47,6 +48,12 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
 
   function createNewPlan() {
     console.log('Create New Plan Again');
+    const newPlanData = {
+      planName: item.memoryName,
+      playgroundId: item.playgroundId,
+    };
+    console.log(newPlanData);
+    navigation.navigate('Modify Plan', {item: newPlanData});
   }
 
   function pressDelete() {

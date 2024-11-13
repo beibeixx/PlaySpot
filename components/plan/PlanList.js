@@ -19,6 +19,11 @@ export default function PlanList( {timetype, navigation}) {
       querySnapshot.forEach((docSnapshot) => {
         newArray.push({...docSnapshot.data(), id: docSnapshot.id, time: docSnapshot.data().time});
       });
+      if (timetype === 'past') {
+        newArray.sort((a, b) => b.time.seconds - a.time.seconds); // Sort in reverse chronological order
+      } else {
+        newArray.sort((a, b) => a.time.seconds - b.time.seconds); // Sort in chronological order
+      }
       setPlans(newArray);
     });
     return () => {
@@ -28,9 +33,10 @@ export default function PlanList( {timetype, navigation}) {
 
   function renderItem ({ item }) {
     return <PressableButton
-        pressHandler={() => navigation.navigate('Plan Details', {item})}>
-      <Text>{item.planName}</Text>
+        pressHandler={() => navigation.navigate('Plan Details', {item})}
+        componentStyle={styles.itemContainer}>
       <ItemImage id={item.playgroundId} />
+      <Text>{item.planName}</Text>
       <Text>{new Date(item.time.toDate()).toLocaleString()}</Text>
       </PressableButton>
   };
@@ -40,10 +46,21 @@ export default function PlanList( {timetype, navigation}) {
       <FlatList
         data={plans}
         renderItem={renderItem}
-        keyExtractor={item => item.time}
       />
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  itemContainer: {
+    padding: 10,
+    marginVertical: 5,
+    backgroundColor: '#bee893',
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 2,
+  },
+})

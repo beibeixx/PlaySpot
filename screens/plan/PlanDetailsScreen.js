@@ -28,7 +28,7 @@ export default function PlanDetailsScreen( {navigation, route} ) {
     const [weekday, datePart] = dateString.split(', ');
     const [month, day, year] = datePart.split('/'); 
     const timeString = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-    return `${year}/${month}/${day} ${weekday} ${timeString}`;
+    return `${year}-${month}-${day} ${weekday} ${timeString}`;
   };
 
   function handleEdit() {

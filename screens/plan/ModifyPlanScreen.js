@@ -48,14 +48,14 @@ export default function ModifyPlanScreen( {navigation, route} ) {
       return;
     }
     const newPlanData = {
-      planName,
+      planName: planName,
       playgroundId: selectedPlayground.id,
-      time,
-      reminderTime,
+      time: time,
+      reminderTime:reminderTime,
+      archived: false,
     };
-    // Save planData to Firestore or any other storage
-    console.log(newPlanData);
 
+    // Save planData to Firestore or any other storage
     if (!isModify) {
       // Adding the new entry to the data
       writeToDB(newPlanData, 'plan');

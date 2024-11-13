@@ -6,6 +6,9 @@ const commonStyles = {
     opacity: 0.8,
     borderRadius: 5,
   },
+  disabled: {
+    backgroundColor: 'gray',
+  },
 };
 
 export default commonStyles;

@@ -1,8 +1,11 @@
 import { StyleSheet, Text, View, FlatList, Image, Alert } from 'react-native'
 import React, { useEffect } from 'react'
 import { getItemNameById, getImagesById } from '../../services/dataService';
-import PressableButton from '../../components/common/PressableButton';
 import { writeToDB, deleteFromDB, updateDB } from '../../firebase/firestoreHelper';
+import formatDate from '../../utils/helpers';
+import PressableButton from '../../components/common/PressableButton';
+import Screen from '../../components/common/Screen';
+import commonStyles from '../../utils/style';
 
 export default function PlanDetailsScreen( {navigation, route} ) {
   const { item } = route.params;
@@ -21,15 +24,6 @@ export default function PlanDetailsScreen( {navigation, route} ) {
       source={{ uri: item }}
       style={{ width: 350, height: 200 }} />
   }
-
-  function formatDate(date) {
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'long' };
-    const dateString = date.toLocaleDateString('en-US', options);
-    const [weekday, datePart] = dateString.split(', ');
-    const [month, day, year] = datePart.split('/'); 
-    const timeString = date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-    return `${year}-${month}-${day} ${weekday} ${timeString}`;
-  };
 
   function handleEdit() {
     navigation.navigate('Modify Plan', {item});
@@ -80,36 +74,49 @@ export default function PlanDetailsScreen( {navigation, route} ) {
   }
 
   return (
-    <View>
+    <Screen>
+      <Text style={commonStyles.header}>Location</Text>
       <Text>{playgroundName}</Text>
+      <Text style={commonStyles.header}>Time</Text>
       <Text>{formatDate(item.time.toDate())}</Text>
+      <View style={styles.galleryContainer}>
       <FlatList
         data={images} // Assuming item.images is an array of image URLs
         renderItem={renderImage}
         horizontal
         showsHorizontalScrollIndicator={false}
       />
+      </View>
       {!pastMode && (
         <View style={styles.buttonContainer}>
-          <PressableButton pressHandler={pressDelete}>
+          <PressableButton
+            pressHandler={pressDelete}
+            componentStyle={commonStyles.alertButton}>
             <Text>Delete</Text>
           </PressableButton>
-          <PressableButton pressHandler={handleEdit}>
+          <PressableButton
+            pressHandler={handleEdit}
+            componentStyle={commonStyles.editButton}>
             <Text>Edit</Text>
           </PressableButton>
         </View>
       )}
       {pastMode && (
-        <View style={styles.buttonContainer}>
-          <PressableButton pressHandler={pressDelete}>
+        <View style={commonStyles.buttonContainer}>
+          <PressableButton
+            pressHandler={pressDelete}
+            componentStyle={commonStyles.alertButton}>
             <Text>Delete</Text>
           </PressableButton>
-          <PressableButton pressHandler={pressArchive} disabled={item.archived}>
+          <PressableButton
+            pressHandler={pressArchive}
+            disabled={item.archived}
+            componentStyle={commonStyles.editButton}>
             <Text>Archive</Text>
           </PressableButton>
         </View>
       )}
-    </View>
+    </Screen>
   )
 }
 

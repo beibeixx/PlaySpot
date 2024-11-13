@@ -5,6 +5,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Screen from '../../components/common/Screen';
 import DividerLine from '../../components/common/DividerLine';
 import PlanList from '../../components/plan/PlanList';
+import commonStyles from '../../utils/style';
 
 export default function PlanScreen( {navigation}) {
   useEffect(() => {
@@ -14,8 +15,9 @@ export default function PlanScreen( {navigation}) {
         return (
           <PressableButton
             pressHandler={() => navigation.navigate('Modify Plan', {item: null})}
+            componentStyle={commonStyles.iconButton}
           >
-            <MaterialIcons name="add-box" size={24} color="white" />
+            <MaterialIcons name="add-box" size={28} color="white" />
           </PressableButton>
         );
       },

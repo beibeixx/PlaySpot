@@ -7,7 +7,7 @@ export default function ItemImage( {id}) {
   return (
     <Image
     source={{ uri: imageUri}}
-    style={{ width: 300, height: 100 }}
+    style={{ width: 350, height: 100 }}
     />
   )
 }

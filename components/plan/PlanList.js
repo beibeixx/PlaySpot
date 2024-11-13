@@ -1,9 +1,11 @@
-import { FlatList, StyleSheet, Text, View, Image } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 import React, {useState, useEffect} from 'react'
 import { collection, onSnapshot, query, where} from 'firebase/firestore'
 import { database } from '../../firebase/firebaseSetup'
 import PressableButton from '../common/PressableButton'
 import ItemImage from './ItemImage'
+import formatDate from '../../utils/helpers'
+import commonStyles from '../../utils/style'
 
 export default function PlanList( {timetype, navigation}) {
   const [plans, setPlans] = useState([]);
@@ -34,10 +36,10 @@ export default function PlanList( {timetype, navigation}) {
   function renderItem ({ item }) {
     return <PressableButton
         pressHandler={() => navigation.navigate('Plan Details', {item})}
-        componentStyle={styles.itemContainer}>
+        componentStyle={commonStyles.itemCard}>
       <ItemImage id={item.playgroundId} />
-      <Text>{item.planName}</Text>
-      <Text>{new Date(item.time.toDate()).toLocaleString()}</Text>
+      <Text style={commonStyles.planName}>{item.planName}</Text>
+      <Text style={commonStyles.timeText}>{formatDate(item.time.toDate())}</Text>
       </PressableButton>
   };
 
@@ -49,18 +51,4 @@ export default function PlanList( {timetype, navigation}) {
       />
     </View>
   )
-}
-
-const styles = StyleSheet.create({
-  itemContainer: {
-    padding: 10,
-    marginVertical: 5,
-    backgroundColor: '#bee893',
-    borderRadius: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 2,
-  },
-})
+};

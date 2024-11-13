@@ -4,6 +4,8 @@ import { collection, onSnapshot } from 'firebase/firestore'
 import { database } from '../../firebase/firebaseSetup'
 import PressableButton from '../../components/common/PressableButton'
 import ItemImage from '../../components/plan/ItemImage'
+import Screen from '../../components/common/Screen'
+import commonStyles from '../../utils/style'
 
 export default function MemoryScreen( {navigation}) {
   const [memories, setMemories] = useState([]);
@@ -22,21 +24,22 @@ export default function MemoryScreen( {navigation}) {
 
   function renderItem ({ item }) {
     return <PressableButton
-        pressHandler={() => navigation.navigate('Memory Details', {item})}>
-      <Text>{item.memoryName}</Text>
+        pressHandler={() => navigation.navigate('Memory Details', {item})}
+        componentStyle={commonStyles.itemCard}>
       <ItemImage id={item.playgroundId} />
-      <Text>{new Date(item.time.toDate()).toLocaleString()}</Text>
+      <Text style={commonStyles.planName}>{item.memoryName}</Text>
+      <Text style={commonStyles.timeText}>{new Date(item.time.toDate()).toLocaleString()}</Text>
       </PressableButton>
   };
 
   return (
-    <View>
+    <Screen>
       <FlatList
         data={memories}
         renderItem={renderItem}
         keyExtractor={item => item.time}
       />
-    </View>
+    </Screen>
   )
 }
 

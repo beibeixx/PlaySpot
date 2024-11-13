@@ -24,18 +24,32 @@ export default function PlanScreen( {navigation}) {
 
   return (
     <Screen>
-      <View style={{flex: 1}}>
-        <Text>Upcoming</Text>
-        <DividerLine />
+      <View style={styles.container}>
+        <Text style={styles.category}>Upcoming</Text>
+        {/* <DividerLine /> */}
         <PlanList timetype="upcoming" navigation={navigation} />
       </View>
-      <View style={{flex: 1}}>
-        <Text>Past</Text>
-        <DividerLine />
+      <View style={styles.container}>
+        <Text style={styles.category}>Past</Text>
         <PlanList timetype="past" navigation={navigation} />
       </View>
     </Screen>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container:
+  {
+    flex: 1,
+    paddingHorizontal: 10,
+    backgroundColor: "#f8f4c7",
+  },
+  category: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    margin: 5,
+    color: '#c48d3f',
+    backgroundColor: '#f8f4c7',
+  },
+})

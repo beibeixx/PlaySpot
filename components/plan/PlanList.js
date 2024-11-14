@@ -6,10 +6,10 @@ import PressableButton from '../common/PressableButton'
 import ItemImage from './ItemImage'
 import formatDate from '../../utils/helpers'
 import commonStyles from '../../utils/style'
+import { auth } from '../../firebase/firebaseSetup'
 
 export default function PlanList( {timetype, navigation}) {
   const [plans, setPlans] = useState([]);
-
   useEffect(() => {
     const now = new Date();
     const planQuery = query(

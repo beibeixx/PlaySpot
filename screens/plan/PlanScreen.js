@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PressableButton from "../../components/common/PressableButton";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Screen from "../../components/common/Screen";
@@ -7,8 +7,10 @@ import DividerLine from "../../components/common/DividerLine";
 import PlanList from "../../components/plan/PlanList";
 import commonStyles from "../../utils/style";
 import { auth } from "../../firebase/firebaseSetup";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function PlanScreen({ navigation }) {
+  const [user, setUser] = useState(null);
   useEffect(() => {
     // Set header options with a Pressable button
     navigation.setOptions({
@@ -23,33 +25,49 @@ export default function PlanScreen({ navigation }) {
         );
       },
     });
-  }, [navigation]);
+
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, [navigation, user]);
 
   const createHandle = () => {
-    auth.currentUser
+    user
       ? navigation.navigate("Modify Plan", { item: null })
       : navigation.navigate("Login");
   };
+
+  // to be changed for better vision result
   return (
     <Screen>
-      <View style={styles.container}>
-        <Text style={styles.category}>Upcoming</Text>
-        {/* <DividerLine /> */}
-        <PlanList timetype="upcoming" navigation={navigation} />
-      </View>
-      <View style={styles.container}>
-        <Text style={styles.category}>Past</Text>
-        <PlanList timetype="past" navigation={navigation} />
-      </View>
+      {user ? (
+        <View style={styles.mainContainer}>
+          <View style={styles.container}>
+            <Text style={styles.category}>Upcoming</Text>
+            {/* <DividerLine /> */}
+            <PlanList timetype="upcoming" navigation={navigation} />
+          </View>
+          <View style={styles.container}>
+            <Text style={styles.category}>Past</Text>
+            <PlanList timetype="past" navigation={navigation} />
+          </View>
+        </View>
+      ) : (
+        <View style={styles.mainContainer}></View>
+      )}
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    backgroundColor: "#f8f4c7",
+  },
   container: {
     flex: 1,
     paddingHorizontal: 10,
-    backgroundColor: "#f8f4c7",
   },
   category: {
     fontSize: 22,

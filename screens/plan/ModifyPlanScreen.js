@@ -7,6 +7,7 @@ import { writeToDB, updateDB } from '../../firebase/firestoreHelper';
 import Screen from '../../components/common/Screen';
 import PressableButton from '../../components/common/PressableButton';
 import commonStyles from '../../utils/style';
+import { auth } from '../../firebase/firebaseSetup';
 
 export default function ModifyPlanScreen({ navigation, route }) {
   const { item } = route.params;
@@ -60,6 +61,7 @@ export default function ModifyPlanScreen({ navigation, route }) {
       time: time,
       reminderTime: reminderTime,
       archived: false,
+      owner: auth.currentUser.uid,
     };
 
     // Save planData to Firestore or any other storage

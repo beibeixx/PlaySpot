@@ -36,7 +36,7 @@ export default function Signup({navigation}) {
     try {
       const userCred = await createUserWithEmailAndPassword(auth, email, password);
       console.log('Signup successful');
-      navigation.navigate('Login');
+      navigation.navigate('Account');
     } catch (error) {
       console.log(error);
       Alert.alert('Error', error.message);

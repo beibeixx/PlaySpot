@@ -10,6 +10,8 @@ import {
 import React, { useState, useEffect } from "react";
 import { getItemImageById, getItemNameById } from "../../services/dataService";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import PressableButton from "../common/PressableButton";
+import commonStyles from "../../utils/style";
 
 export default function FavoriteItemsList({
   playgroundItem,
@@ -28,7 +30,10 @@ export default function FavoriteItemsList({
 
   return (
     <View>
-      <Pressable onPress={handlePress}>
+      <PressableButton
+        pressHandler={handlePress}
+        componentStyle={commonStyles.itemCard}
+      >
         <View>
           <Image
             source={{ uri: getItemImageById(playgroundItem.playgroundID) }}
@@ -36,7 +41,7 @@ export default function FavoriteItemsList({
           />
           <Text>{getItemNameById(playgroundItem.playgroundID)}</Text>
         </View>
-      </Pressable>
+      </PressableButton>
       <Pressable onPress={handleRemove}>
         <MaterialCommunityIcons
           name="heart-remove-outline"

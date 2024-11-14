@@ -16,14 +16,12 @@ import { deleteFromDB, writeToDB } from "../../firebase/firestoreHelper";
 import { onSnapshot } from "firebase/firestore";
 import { query, where, collection } from "firebase/firestore";
 import { auth, database } from "../../firebase/firebaseSetup";
-import { userAuth } from "../../hooks/userAuth";
 
 export default function PlaygroundDetailScreen({ navigation, route }) {
   const [data, setData] = useState(null);
   const { itemID } = route.params;
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteId, setFavoriteId] = useState(null);
-  const user = userAuth();
 
   useEffect(() => {
     const checkFavoriteStatus = onSnapshot(
@@ -45,7 +43,7 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
 
   const favoriteHandler = useCallback(async () => {
     try {
-      if (user) {
+      if (auth.currentUser) {
         if (isFavorite) {
           const remove = await deleteFromDB(favoriteId, "favorites");
           Alert.alert("Removed from favorites!");

@@ -6,10 +6,9 @@ import Screen from "../../components/common/Screen";
 import DividerLine from "../../components/common/DividerLine";
 import PlanList from "../../components/plan/PlanList";
 import commonStyles from "../../utils/style";
-import { userAuth } from "../../hooks/userAuth";
+import { auth } from "../../firebase/firebaseSetup";
 
 export default function PlanScreen({ navigation }) {
-  const user = userAuth();
   useEffect(() => {
     // Set header options with a Pressable button
     navigation.setOptions({
@@ -27,7 +26,7 @@ export default function PlanScreen({ navigation }) {
   }, [navigation]);
 
   const createHandle = () => {
-    user
+    auth.currentUser
       ? navigation.navigate("Modify Plan", { item: null })
       : navigation.navigate("Login");
   };

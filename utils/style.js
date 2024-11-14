@@ -43,6 +43,14 @@ const commonStyles = {
     backgroundColor: "#74e0aa",
     borderRadius: 5,
   },
+  timeButton: {
+    padding: 10,
+    margin: 10,
+    backgroundColor: "#f2e5db",
+    borderColor: "#f37e43",
+    borderWidth: 2,
+    borderRadius: 10,
+  },
   alertButton: {
     padding: 10,
     margin: 10,

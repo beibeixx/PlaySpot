@@ -59,23 +59,23 @@ The PlaySpot App is a React Native application that allows users to create, mana
 ## Team Contributions
 
 - **Member 1 Xinyu Xie**:
-  - Architecture & Planning:
-   - Redesigned project architecture and created team prototypes.
-   - Established development standards and project structure.
-  - Setup:
-   - Initialized React Native project structure.
-   - Implemented core navigation `navigation` folder and `App.js`.
-   - Configured Firebase/Firestore integration in `firebase` folder.
-   - Implemented data scraping for playground information in `data` and `Service`.
-   - Implemented authentication system.
-  - Screens:
-   - Implemented the components in `home` and `playground` screen folder to display playground relevant screens with search, filter, and favorite toggle functionality.
-   - Implemented the `FavoriteListScreen` component to display and delete favorite playgrounds.
-   - Implemented the screens in `Account` component for authenticated and non-authenticated states.
-  Others:
-   - Added Create and Delete operations for the `Favorites`collection.
-   - Updated the README.
-   - Styling improvements.
+   - Architecture & Planning:
+      - Redesigned project architecture and created team prototypes.
+      - Established development standards and project structure.
+   - Setup:
+      - Initialized React Native project structure.
+      - Implemented core navigation `navigation` folder and `App.js`.
+      - Configured Firebase/Firestore integration in `firebase` folder.
+      - Implemented data scraping for playground information in `data` and `Service`.
+      - Implemented authentication system.
+   - Screens:
+      - Implemented the components in `home` and `playground` screen folder to display playground relevant screens with search, filter, and favorite toggle functionality.
+      - Implemented the `FavoriteListScreen` component to display and delete favorite playgrounds.
+      - Implemented the screens in `Account` component for authenticated and non-authenticated states.
+   - Others:
+      - Added Create and Delete operations for the `Favorites`collection.
+      - Updated the README.
+      - Styling improvements.
 
 - **Member 2 Yuting Xie**:
   - Setup 

@@ -15,7 +15,27 @@ The PlaySpot App is a React Native application that allows users to create, mana
 
 ## Data Model and Collections
 
-### Plans Collection (Iteration 1 Version)
+### Data model
+The app uses three main collections that are interconnected through the playgroundId and owner fields:
+
+#### Entity Relationships
+- Plans and Memories are linked to specific Playgrounds through `playgroundId`
+- Plans, Memories and Favorites are associated with users through `owner`
+- When a Plan is archived, it generates a new Memory record
+
+#### Data Flow
+1. Users can create Plans for visiting Playgrounds
+2. When a Plan is completed, it can be archived into a Memory
+3. Users can mark Playgrounds as Favorites at any time
+
+#### Data Constraints
+- Each Plan must have a valid `playgroundId` and `owner`
+- One user can have multiple Plans, Memories, and Favorites
+- One Playground can be associated with multiple Plans, Memories, and Favorites
+
+### Collections (Iteration 1 Version)
+
+#### Plans Collection
 - **Fields**:
   - `planName`: string
   - `playgroundId`: string
@@ -25,23 +45,25 @@ The PlaySpot App is a React Native application that allows users to create, mana
   - `owner`: string
 - **Description**: Stores details of the plans created by users.
 
-### Memories Collection
+#### Memories Collection
 - **Fields**:
   - `memoryName`: string
   - `playgroundId`: string
   - `time`: timestamp
   - `memo`: string (optional)
+  - `photo`: string (optional) (TO BE ADDED)
   - `owner`: string (TO BE ADDED, bonding with auth)
 - **Description**: Stores memories created by users.
 
-### Favorites Collection
+#### Favorites Collection
 - **Fields**:
   - `playgroundId`: string
   - `addedAt`: timestamp
   - `owner`: string (TO BE ADDED, bonding with auth)
 - **Description**: Stores favorite playgrounds added from the playground list.
 
-### Playgrounds Collection (Reference Data - stored locally `data/playgrounds.json`)
+### Refernce Data
+#### Playgrounds Collection (stored locally `data/playgrounds.json`)
 - **Fields**:
    - `id`: string
    - `name`: string
@@ -111,23 +133,60 @@ The PlaySpot App is a React Native application that allows users to create, mana
 
 ## Screenshots
 
+- **Home Screen(Playground list)**
+
+<div style="display: flex; justify-content: space-around;">
+  <img src="./assets/screenshots/iteration1/Home.PNG" alt="Playground List" width="300" />
+  <img src="./assets/screenshots/iteration1/Home-Search-Filter.PNG" alt="Search and Filter playground" width="300" />
+</div>
+
+
+- **Playground Details Screen**
+
+<div style="display: flex; justify-content: space-around;">
+  <img src="./assets/screenshots/iteration1/Playground-Details.PNG" alt="Playground Details" width="300" />
+  <img src="./assets/screenshots/iteration1/PGD-Add-Fav.PNG" alt="Add Favorites" width="300" />
+  <img src="./assets/screenshots/iteration1/PGD-Remove-Fav.PNG" alt="Add Favorites" width="300" />
+</div>
+
 - **Plan Screen**
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="./screenshots/iteration1/Plan.png" alt="Plan List" width="300" />
-  <img src="./screenshots/iteration1/ModifyPlan1.png" alt="Modify Plan 1" width="300" />
-  <img src="./screenshots/iteration1/ModifyPlan2.png" alt="Modify Plan 2" width="300"/>
+  <img src="./assets/screenshots/iteration1/Plan.png" alt="Plan List" width="300" />
+  <img src="./assets/screenshots/iteration1/plan-guest.PNG" alt="Plan Guest" width="300" />
+  <img src="./assets/screenshots/iteration1/ModifyPlan1.png" alt="Modify Plan 1" width="300" />
+  <img src="./assets/screenshots/iteration1/ModifyPlan2.png" alt="Modify Plan 2" width="300"/>
 </div>
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="./screenshots/iteration1/PlanDetail1.png" alt="Upcoming Plan Detail" width="300" />
-  <img src="./screenshots/iteration1/PlanDetail2.png" alt="Past Plan Detail" width="300" />
+  <img src="./assets/screenshots/iteration1/PlanDetail1.png" alt="Upcoming Plan Detail" width="300" />
+  <img src="./assets/screenshots/iteration1/PlanDetail2.png" alt="Past Plan Detail" width="300" />
 </div>
 
 - **Memory Screen**
 <div style="display: flex; justify-content: space-around;">
-  <img src="./screenshots/iteration1/Memory.png" alt="Memory List" width="300" />
-  <img src="./screenshots/iteration1/MemoryDetail.png" alt="Memory Detail" width="300" />
+  <img src="./assets/screenshots/iteration1/Memory.png" alt="Memory List" width="300" />
+  <img src="./assets/screenshots/iteration1/memory-guest.PNG" alt="Memory Guest" width="300" />
+  <img src="./assets/screenshots/iteration1/MemoryDetail.png" alt="Memory Detail" width="300" />
+</div>
+
+- **Account Screen**
+<div style="display: flex; justify-content: space-around;">
+  <img src="./assets/screenshots/iteration1/Account.PNG" alt="Account Screen" width="300" />
+  <img src="./assets/screenshots/iteration1/Account-guest.jpeg" alt="Account Guest" width="300" />
+</div>
+
+- **Favorite List Screen**
+<div style="display: flex; justify-content: space-around;">
+  <img src="./assets/screenshots/iteration1/Favo-list.PNG" alt="Favorite List Screen" width="300" />
+  <img src="./assets/screenshots/iteration1/Favo-list-remove.PNG" alt="Favorite List Remove" width="300" />
+</div>
+
+- **Firebase Database Screen**
+<div style="display: flex; justify-content: space-around;">
+  <img src="./assets/screenshots/iteration1/favo-data.png" alt="favo data collection" width="300" />
+  <img src="./assets/screenshots/iteration1/memory-data.png" alt="memory data collection" width="300" />
+  <img src="./assets/screenshots/iteration1/plan-data.png" alt="plan data collection" width="300" />
 </div>
 
 ## Getting Started

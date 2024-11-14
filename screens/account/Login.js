@@ -1,26 +1,29 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase/firebaseSetup';
+import React, { useState } from "react";
+import { View, Text, TextInput, Button, StyleSheet, Alert } from "react-native";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/firebaseSetup";
 
-
-export default function Login({navigation}) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export default function Login({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const loginHandler = async () => {
     if (!email || !password) {
-      Alert.alert('Error', 'All fields are required');
+      Alert.alert("Error", "All fields are required");
       return;
     }
     try {
       const userCred = await signInWithEmailAndPassword(auth, email, password);
-      console.log(userCred.user)
+      navigation.navigate("Account");
     } catch (error) {
       console.log(error);
-      Alert.alert('Error', error.message);
+      Alert.alert("Error", error.message);
     }
-  }
+  };
+
+  const loginSignup = async () => {
+    navigation.navigate("Signup");
+  };
 
   return (
     <View style={styles.container}>
@@ -40,7 +43,7 @@ export default function Login({navigation}) {
         secureTextEntry={true}
       />
       <Button title="Login" onPress={loginHandler} />
-      <Button title="New User? Create an account" onPress={() => navigation.navigate('Signup')} />
+      <Button title="New User? Create an account" onPress={loginSignup} />
     </View>
   );
 }
@@ -48,17 +51,17 @@ export default function Login({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     padding: 20,
   },
   header: {
     fontSize: 24,
     marginBottom: 20,
-    textAlign: 'center',
+    textAlign: "center",
   },
   input: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: "gray",
     borderWidth: 1,
     marginBottom: 20,
     paddingHorizontal: 10,

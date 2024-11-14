@@ -25,26 +25,27 @@ export default function AccountScreen({ navigation }) {
   };
 
   return (
-    <View sytle={styles.container}>
+    <View style={styles.container}>
       {isUserloggedin ? (
-        <View>
-          <Text>{auth.currentUser.email}</Text>
-          <Pressable onPress={favoriteHandle}>
-            <Text>Favorite List</Text>
+        <View style={styles.content}>
+          <Text style={styles.email}>{auth.currentUser.email}</Text>
+          <Pressable style={styles.button} onPress={favoriteHandle}>
+            <Text style={styles.buttonText}>Favorite List</Text>
           </Pressable>
           <Pressable
+            style={styles.button}
             onPress={() => {
               signOut(auth);
             }}
           >
-            <Text>Sign out</Text>
+            <Text style={styles.buttonText}>Sign out</Text>
           </Pressable>
         </View>
       ) : (
-        <View>
-          <Text>Login to get access to all the features!</Text>
-          <Pressable onPress={handleLogin}>
-            <Text>Login</Text>
+        <View style={styles.content}>
+          <Text style={styles.message}>Login to get access to all the features!</Text>
+          <Pressable style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Login</Text>
           </Pressable>
         </View>
       )}
@@ -54,10 +55,30 @@ export default function AccountScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#aaa",
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#fff',
+  },
+  content: {
+    gap: 15,
+    alignItems: 'center',
+  },
+  email: {
+    fontSize: 16,
+    marginBottom: 10,
+  },
+  message: {
+    fontSize: 16,
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: '#ddd',
+    padding: 10,
     borderRadius: 5,
-    margin: 20,
-    flexDirection: "row",
-    alignItems: "center",
+    width: '100%',
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 16,
   },
 });

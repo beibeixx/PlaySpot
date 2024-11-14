@@ -2,7 +2,7 @@
 
 ## Overview
 
-The PlaySpot App is a React Native application that allows users to create, manage, and archive plans for visiting playgrounds. Users can also create memories of their visits and view details about each playground.
+The PlaySpot App is a React Native application that allows users to create, manage, and archive plans for visiting playgrounds in Vancouver areas. Users can also create memories of their visits and view details about each playground.
 
 ## Features
 
@@ -22,6 +22,7 @@ The PlaySpot App is a React Native application that allows users to create, mana
   - `time`: timestamp
   - `reminderTime`: timestamp
   - `archived`: boolean
+  - `owner`: string
 - **Description**: Stores details of the plans created by users.
 
 ### Memories Collection
@@ -30,13 +31,28 @@ The PlaySpot App is a React Native application that allows users to create, mana
   - `playgroundId`: string
   - `time`: timestamp
   - `memo`: string (optional)
+  - `owner`: string (TO BE ADDED, bonding with auth)
 - **Description**: Stores memories created by users.
 
 ### Favorites Collection
 - **Fields**:
   - `playgroundId`: string
   - `addedAt`: timestamp
+  - `owner`: string (TO BE ADDED, bonding with auth)
 - **Description**: Stores favorite playgrounds added from the playground list.
+
+### Playgrounds Collection (Reference Data - stored locally `data/playgrounds.json`)
+- **Fields**:
+   - `id`: string
+   - `name`: string
+   - `address`: string
+   - `images`: array of strings
+   - `description`: string
+   - `features`: map
+   - `environment`: map
+   - `amenities`: map
+   - `special_notes`: array of strings
+- **Description**: Stores playground information including details about features, environment, and amenities for display, save favorites and create plans.
 
 ## CRUD Operations
 
@@ -52,8 +68,9 @@ The PlaySpot App is a React Native application that allows users to create, mana
 - **Update**: Implemented in `MemoryDetailsScreen.js` using the `updateDB` function.
 - **Delete**: Implemented in `MemoryDetailsScreen.js` using the `deleteFromDB` function.
 
-### Favorites Collection (Create and Delete only)
+### Favorites Collection (Create, Read and Delete only)
 - **Create**: Implemented in `PlaygroundDetailScreen.js` when clicking the favorite button on the upper right corner, using the `writeToDB` function.
+- **Read**: Implemented in `FavoriteListScreen.js` using Firestore queries and `onSnapshot` for real-time updates.
 - **Delete**: Implemented in `FavoriteListScreen.js` when clicking the remove button and `PlaygroundDetailScreen.js` when clicking the favorite button again the upper right corner, using the `deleteFromDB` function.
 
 ## Team Contributions
@@ -73,7 +90,7 @@ The PlaySpot App is a React Native application that allows users to create, mana
       - Implemented the `FavoriteListScreen` component to display and delete favorite playgrounds.
       - Implemented the screens in `Account` component for authenticated and non-authenticated states.
    - Others:
-      - Added Create and Delete operations for the `Favorites`collection.
+      - Added CRD operations for the `Favorites`collection.
       - Updated the README.
       - Styling improvements.
 

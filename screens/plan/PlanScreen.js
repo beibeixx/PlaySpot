@@ -38,6 +38,7 @@ export default function PlanScreen({ navigation }) {
       : navigation.navigate("Login");
   };
 
+  // to be changed for better vision result
   return (
     <Screen>
       {user ? (

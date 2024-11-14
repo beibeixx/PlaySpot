@@ -95,21 +95,40 @@ The PlaySpot App is a React Native application that allows users to create, mana
       - Styling improvements.
 
 - **Member 2 Yuting Xie**:
-  - Setup 
-  - Implemented the components in `Plan` and `Memory` screens to display plans and memories.
-  - Implemented the `PlanDetailsScreen` component to display and edit memory details.
-  - Implemented the `MemoryDetailsScreen` component to display and edit memory details.
-  - Added CRUD operations for the `Plans` and `Memories` collection.
-  - Updated the README with contributions and screenshots.
-  - Styling improvements.
+   - Architecture & Planning:
+      - Refactored the interaction logic of the `Plan Details` screen and creation method of the `memory` collection.
+   - Setup:
+      - Initialized reusable components like `Screen`, `PressableButton`, and `Card`.
+      - Set up the data structures of the `plan` and `memory` collection.
+   - Screens:
+      - Implemented the components in `Plan` and `Memory` screens to display plans and memories.
+      - Implemented the `PlanDetailsScreen` component to display and edit memory details.
+      - Implemented the `MemoryDetailsScreen` component to display and edit memory details.
+      - Added CRUD operations for the `plan` and `memory` collection.
+   - Others:
+      - Updated the README with contributions and screenshots.
+      - Styling improvements.
 
 ## Screenshots
 
-![Screenshot 1](path/to/screenshot1.png)
-*Description of Screenshot 1*
+- **Plan Screen**
 
-![Screenshot 2](path/to/screenshot2.png)
-*Description of Screenshot 2*
+<div style="display: flex; justify-content: space-around;">
+  <img src="./screenshots/iteration1/Plan.png" alt="Plan List" width="300" />
+  <img src="./screenshots/iteration1/ModifyPlan1.png" alt="Modify Plan 1" width="300" />
+  <img src="./screenshots/iteration1/ModifyPlan2.png" alt="Modify Plan 2" width="300"/>
+</div>
+
+<div style="display: flex; justify-content: space-around;">
+  <img src="./screenshots/iteration1/PlanDetail1.png" alt="Upcoming Plan Detail" width="300" />
+  <img src="./screenshots/iteration1/PlanDetail2.png" alt="Past Plan Detail" width="300" />
+</div>
+
+- **Memory Screen**
+<div style="display: flex; justify-content: space-around;">
+  <img src="./screenshots/iteration1/Memory.png" alt="Memory List" width="300" />
+  <img src="./screenshots/iteration1/MemoryDetail.png" alt="Memory Detail" width="300" />
+</div>
 
 ## Getting Started
 

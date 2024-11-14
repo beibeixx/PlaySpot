@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import PressableButton from "../../components/common/PressableButton";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Screen from "../../components/common/Screen";
-import DividerLine from "../../components/common/DividerLine";
 import PlanList from "../../components/plan/PlanList";
 import commonStyles from "../../utils/style";
 import { auth } from "../../firebase/firebaseSetup";
@@ -68,6 +67,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 10,
+    backgroundColor: "#f8f4c7",
   },
   category: {
     fontSize: 22,

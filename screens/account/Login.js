@@ -21,7 +21,7 @@ export default function Login({ navigation }) {
     }
   };
 
-  const loginSignup = async () => {
+  const loginSignup = () => {
     navigation.navigate("Signup");
   };
 

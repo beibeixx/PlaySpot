@@ -9,12 +9,15 @@ import commonStyles from "../../utils/style";
 import { auth } from "../../firebase/firebaseSetup";
 import { useSelector } from "react-redux";
 
-
 export default function PlanList({ timetype, navigation }) {
   const [plans, setPlans] = useState([]);
   const { isAuthenticated } = useSelector((state) => state.auth);
 
   useEffect(() => {
+    if (!isAuthenticated || !auth.currentUser) {
+      setPlans([]);
+      return;
+    }
     const now = new Date();
     const planQuery = query(
       collection(database, "plan"),
@@ -40,7 +43,7 @@ export default function PlanList({ timetype, navigation }) {
     return () => {
       unsubscribePlans();
     };
-  }, [timetype]);
+  }, [timetype, isAuthenticated]);
 
   function renderItem({ item }) {
     return (
@@ -59,17 +62,13 @@ export default function PlanList({ timetype, navigation }) {
 
   return (
     <View style={styles.container}>
-      {isAuthenticated ? (
-        <FlatList data={plans} renderItem={renderItem} />
-      ) : null}
+      <FlatList data={plans} renderItem={renderItem} />
     </View>
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
   },
-})
+});

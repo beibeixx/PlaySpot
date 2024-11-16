@@ -6,7 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors } from "../../styles/helper/colors";
 import { searchBarStyles } from "./styles";
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar({ onSearch, placeholder}) {
   return (
     <View style={searchBarStyles.container}>
       <View style={searchBarStyles.inputContainer}>
@@ -17,7 +17,7 @@ export default function SearchBar({ onSearch }) {
           style={searchBarStyles.searchIcon}
         />
         <TextInput
-          placeholder="Search for playground"
+          placeholder={placeholder}
           onChangeText={onSearch}
           clearButtonMode="while-editing"
           style={searchBarStyles.input}

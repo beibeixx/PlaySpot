@@ -1,10 +1,10 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import { colors } from '../helper/colors';
-import { spacing } from '../helper/spacing';
-import { layout } from '../helper/layout';
-import { typography } from '../helper/typography';
+import { StyleSheet, Dimensions } from "react-native";
+import { colors } from "../helper/colors";
+import { spacing } from "../helper/spacing";
+import { layout } from "../helper/layout";
+import { typography } from "../helper/typography";
 
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get("window").width;
 
 export const homeStyles = StyleSheet.create({
   container: {
@@ -14,38 +14,33 @@ export const homeStyles = StyleSheet.create({
   searchFilterContainer: {
     backgroundColor: colors.background.primary,
     paddingTop: spacing.xl,
-    paddingBottom: spacing.md,
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
-    ...layout.shadow.lg,
-    marginBottom: spacing.md,
-  },
-  searchFilterInner: {
-    paddingHorizontal: spacing.lg,
+    paddingBottom: spacing.lg,
+    borderBottomLeftRadius: layout.borderRadius.xl,
+    borderBottomRightRadius: layout.borderRadius.xl,
+    ...layout.shadow.sm,
   },
   listContainer: {
-    paddingHorizontal: spacing.lg,
-    paddingBottom: spacing.xxxl,
+    padding: spacing.lg,
+    paddingTop: spacing.md,
     gap: spacing.lg,
   },
   playgroundCard: {
-    backgroundColor: colors.background.primary,
-    borderRadius: 24,
-    ...layout.shadow.md,
-    overflow: 'hidden',
+    backgroundColor: colors.background.card,
+    borderRadius: layout.borderRadius.md,
+    overflow: "hidden",
+    ...layout.shadow.sm,
   },
   imageContainer: {
-    width: '100%',
+    width: "100%",
     height: 180,
     backgroundColor: colors.neutral[100],
   },
   image: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
   },
-  contentContainer: {
+  cardContent: {
     padding: spacing.lg,
-
   },
   title: {
     fontSize: typography.size.lg,
@@ -53,16 +48,12 @@ export const homeStyles = StyleSheet.create({
     color: colors.text.primary,
     marginBottom: spacing.xs,
   },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.background.primary,
-  },
+  // 标签容器
   tagContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    flexWrap: "wrap",
     gap: spacing.xs,
+    marginTop: spacing.sm,
   },
   tag: {
     paddingHorizontal: spacing.md,

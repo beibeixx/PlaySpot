@@ -6,11 +6,11 @@ import PressableButton from "../../components/common/PressableButton";
 import ItemImage from "../../components/plan/ItemImage";
 import Screen from "../../components/common/Screen";
 import commonStyles from "../../utils/style";
-import { onAuthStateChanged } from "firebase/auth";
+import { useSelector } from "react-redux";
 
 export default function MemoryScreen({ navigation }) {
   const [memories, setMemories] = useState([]);
-  const [user, setUser] = useState(null);
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -27,13 +27,10 @@ export default function MemoryScreen({ navigation }) {
         setMemories(newArray);
       }
     );
-    const unsubscribeAuth = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
+
     // Clean up the subscription on unmount
     return () => {
       unsubscribe();
-      unsubscribeAuth();
     };
   }, []);
 
@@ -54,7 +51,7 @@ export default function MemoryScreen({ navigation }) {
 
   return (
     <Screen>
-      {user ? (
+      {isAuthenticated ? (
         <FlatList
           data={memories}
           renderItem={renderItem}

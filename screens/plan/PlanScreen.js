@@ -8,7 +8,6 @@ import commonStyles from "../../utils/style";
 import { useSelector } from "react-redux";
 
 export default function PlanScreen({ navigation }) {
-
   const { isAuthenticated } = useSelector((state) => state.auth)
 
   useEffect(() => {
@@ -25,7 +24,6 @@ export default function PlanScreen({ navigation }) {
         );
       },
     });
-
   }, [navigation]);
 
   const createHandle = () => {
@@ -37,21 +35,17 @@ export default function PlanScreen({ navigation }) {
   // to be changed for better vision result
   return (
     <Screen>
-      {isAuthenticated ? (
-        <View style={styles.mainContainer}>
-          <View style={styles.container}>
-            <Text style={styles.category}>Upcoming</Text>
-            {/* <DividerLine /> */}
-            <PlanList timetype="upcoming" navigation={navigation} />
-          </View>
-          <View style={styles.container}>
-            <Text style={styles.category}>Past</Text>
-            <PlanList timetype="past" navigation={navigation} />
-          </View>
+      <View style={styles.mainContainer}>
+        <View style={styles.container}>
+          <Text style={styles.category}>Upcoming</Text>
+          {/* <DividerLine /> */}
+          <PlanList timetype="upcoming" navigation={navigation} />
         </View>
-      ) : (
-        <View style={styles.mainContainer}></View>
-      )}
+        <View style={styles.container}>
+          <Text style={styles.category}>Past</Text>
+          <PlanList timetype="past" navigation={navigation} />
+        </View>
+      </View>
     </Screen>
   );
 }

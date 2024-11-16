@@ -2,15 +2,18 @@ import { FlatList, StyleSheet, Text, View, Alert} from "react-native";
 import React, { useState, useEffect } from "react";
 import FavoriteItemsList from "../../components/favorite/FavoriteItemsList";
 import { deleteFromDB } from "../../firebase/firestoreHelper";
-import { collection, onSnapshot } from "firebase/firestore";
-import { database } from "../../firebase/firebaseSetup";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { auth, database } from "../../firebase/firebaseSetup";
 
 export default function FavoriteListScreen({ navigation }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const listerToFirebase = onSnapshot(
-      collection(database, "favorites"),
+      query(
+        collection(database, "favorites"),
+        where("owner", "==", auth.currentUser.uid)
+      ),
       (querySnapshot) => {
         let newData = [];
         querySnapshot.forEach((docSnapshot) => {

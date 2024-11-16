@@ -18,12 +18,14 @@ import { auth, database } from "../../firebase/firebaseSetup";
 import { detailStyles } from "../../styles/screens/playgroundDetails";
 import { colors } from "../../styles/helper/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useSelector } from "react-redux";
 
 export default function PlaygroundDetailScreen({ navigation, route }) {
   const [data, setData] = useState(null);
   const { itemID } = route.params;
   const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteId, setFavoriteId] = useState(null);
+  const { isAuthenticated } = useSelector((state) => state.auth)
 
   useEffect(() => {
     const checkFavoriteStatus = onSnapshot(
@@ -45,7 +47,7 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
 
   const favoriteHandler = useCallback(async () => {
     try {
-      if (auth.currentUser) {
+      if (isAuthenticated) {
         if (isFavorite) {
           const remove = await deleteFromDB(favoriteId, "favorites");
           Alert.alert("Removed from favorites!");
@@ -106,8 +108,8 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
           value.toLowerCase() !== "no" && value.toLowerCase() !== "unknown"
       )
       .map(([key, value]) => (
-        <View style={detailStyles.featureItem}>
-          <Text style={detailStyles.featureText} key={key}>{key}</Text>
+        <View style={detailStyles.featureItem} key={key}>
+          <Text style={detailStyles.featureText}>{key}</Text>
           <Text style={detailStyles.featureValue}>{value}</Text>
         </View>
       ));

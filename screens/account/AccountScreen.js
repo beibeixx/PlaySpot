@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 export default function AccountScreen({ navigation }) {
   const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.auth);
-  const [isUserloggedin, setIsUserLoggedin] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {

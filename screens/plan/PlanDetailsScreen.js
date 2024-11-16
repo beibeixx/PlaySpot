@@ -6,6 +6,7 @@ import formatDate from '../../utils/helpers';
 import PressableButton from '../../components/common/PressableButton';
 import Screen from '../../components/common/Screen';
 import commonStyles from '../../utils/style';
+import { auth } from '../../firebase/firebaseSetup';
 
 export default function PlanDetailsScreen( {navigation, route} ) {
   const { item } = route.params;
@@ -47,6 +48,7 @@ export default function PlanDetailsScreen( {navigation, route} ) {
       memoryName: item.planName,
       playgroundId: item.playgroundId,
       time: item.time,
+      owner: auth.currentUser.uid,
     };
     writeToDB(newMemoryData, 'memory');
 

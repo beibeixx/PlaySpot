@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import FavoriteItemsList from "../../components/favorite/FavoriteItemsList";
 import { deleteFromDB } from "../../firebase/firestoreHelper";
 import { collection, onSnapshot } from "firebase/firestore";
-import { database } from "../../firebase/firebaseSetup";
+import { auth, database } from "../../firebase/firebaseSetup";
 
 export default function FavoriteListScreen({ navigation }) {
   const [data, setData] = useState([]);
@@ -18,6 +18,7 @@ export default function FavoriteListScreen({ navigation }) {
             ...docSnapshot.data(),
             playgroundID: docSnapshot.data().playgroundID,
             id: docSnapshot.id,
+            owner: auth.currentUser.uid,
           });
         });
         setData(newData);

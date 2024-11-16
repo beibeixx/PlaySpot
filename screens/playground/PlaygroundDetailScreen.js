@@ -55,6 +55,7 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
           const favoriteData = {
             playgroundID: itemID,
             addedAt: new Date().toISOString(),
+            owner: auth.currentUser.uid,
           };
           const add = await writeToDB(favoriteData, "favorites");
           Alert.alert("Added to favorites!");

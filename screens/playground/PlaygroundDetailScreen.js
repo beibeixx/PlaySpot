@@ -10,12 +10,14 @@ import {
 } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import { getItemById } from "../../services/dataService";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import PressableButton from "../../components/common/PressableButton";
 import { deleteFromDB, writeToDB } from "../../firebase/firestoreHelper";
 import { onSnapshot } from "firebase/firestore";
 import { query, where, collection } from "firebase/firestore";
 import { auth, database } from "../../firebase/firebaseSetup";
+import { detailStyles } from "../../styles/screens/playgroundDetails";
+import { colors } from "../../styles/helper/colors";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function PlaygroundDetailScreen({ navigation, route }) {
   const [data, setData] = useState(null);
@@ -70,8 +72,18 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Pressable style={styles.iconStyle} onPress={favoriteHandler}>
-          <MaterialIcons name="favorite-border" size={24} color="black" />
+        <Pressable
+          style={({ pressed }) => [
+            detailStyles.headerButton,
+            pressed && { opacity: 0.7 },
+          ]}
+          onPress={favoriteHandler}
+        >
+          <MaterialCommunityIcons
+            name={isFavorite ? "heart" : "heart-outline"}
+            size={24}
+            color={colors.primary[500]}
+          />
         </Pressable>
       ),
     });
@@ -87,48 +99,56 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
     return <ActivityIndicator size="large" />;
   }
 
-  const renderSection = (data, title) => {
+  const renderSection = (data) => {
     const items = Object.entries(data)
       .filter(
         ([_, value]) =>
           value.toLowerCase() !== "no" && value.toLowerCase() !== "unknown"
       )
       .map(([key, value]) => (
-        <Text key={key}>
-          • {key}: {value}
-        </Text>
+        <View style={detailStyles.featureItem}>
+          <Text style={detailStyles.featureText} key={key}>{key}</Text>
+          <Text style={detailStyles.featureValue}>{value}</Text>
+        </View>
       ));
 
     if (items.length === 0) {
       return (
-        <View>
-          <Text>{title}</Text>
-          <Text>• Not Available</Text>
+        <View style={detailStyles.featureList}>
+          <Text>N/A</Text>
         </View>
       );
     }
 
-    return (
-      <View>
-        <Text>{title}</Text>
-        {items}
-      </View>
-    );
+    return <View style={detailStyles.featureList}>{items}</View>;
   };
 
   return (
-    <ScrollView>
-      <Image
-        source={{ uri: data.images[0] }}
-        style={{ width: "100%", height: 200 }}
-      />
-      <Text>{data.name}</Text>
-      <Text>{data.description}</Text>
-      <Text>{data.address}</Text>
-      {renderSection(data.amenities, "Available Amenities")}
-      {renderSection(data.features, "Available Features")}
-      {renderSection(data.environment, "Environment")}
-    </ScrollView>
+    <View style={detailStyles.container}>
+      <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
+        <View style={detailStyles.imageContainer}>
+          <Image
+            source={{ uri: data.images[0] }}
+            style={detailStyles.image}
+            resizeMode="cover"
+          />
+        </View>
+        <View style={detailStyles.content}>
+          <View style={detailStyles.titleContainer}>
+            <Text style={detailStyles.title}>{data.name}</Text>
+            <Text style={detailStyles.address}>{data.description}</Text>
+            <Text style={detailStyles.description}>{data.address}</Text>
+          </View>
+          <Text style={detailStyles.sectionTitle}>Amenities</Text>
+            {renderSection(data.amenities)}
+          <Text style={detailStyles.sectionTitle}>Features</Text>
+          {renderSection(data.features)}
+
+          <Text style={detailStyles.sectionTitle}>Environment</Text>
+          {renderSection(data.environment)}
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 

@@ -10,12 +10,13 @@ import MainTabNavigator from "./MainTabNavigator";
 import FavoriteListScreen from "../screens/favorites/FavoriteListScreen";
 import Login from "../screens/account/Login";
 import Signup from "../screens/account/Signup";
+import { colors } from "../styles/helper/colors";
 
 const Stack = createNativeStackNavigator();
 
 const defaultScreenOptions = {
   headerStyle: {
-    backgroundColor: "blue",
+    backgroundColor: colors.background.secondary,
   },
   headerTintColor: "white",
   headerBackTitleVisible: false,

@@ -2,28 +2,13 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { auth } from "../../firebase/firebaseSetup";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { setUser, clearUser } from "../../redux/features/authSlice";
+import { setUser, clearUser } from "../../redux/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { handleSignOut } from "../../redux/authService";
 
 export default function AccountScreen({ navigation }) {
-  const dispatch = useDispatch();
   const { isAuthenticated, user } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        dispatch(
-          setUser({
-            email: user.email,
-            uid: user.uid,
-          })
-        );
-      } else {
-        dispatch(clearUser());
-      }
-    });
-    return () => unsubscribe();
-  }, [dispatch]);
 
   const favoriteHandle = () => {
     navigation.navigate("Favorite List");
@@ -31,15 +16,6 @@ export default function AccountScreen({ navigation }) {
 
   const handleLogin = () => {
     navigation.navigate("Login");
-  };
-
-  const handleSignOut = async () => {
-    try {
-      await signOut(auth);
-      dispatch(clearUser());
-    } catch (error) {
-      console.error("Sign out error:", error);
-    }
   };
 
   return (

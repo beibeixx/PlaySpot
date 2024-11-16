@@ -13,6 +13,7 @@ import MemoryScreen from "../screens/memory/MemoryScreen";
 import AccountScreen from "../screens/account/AccountScreen";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { colors } from "../styles/helper/colors";
 
 // Create a bottom tab navigator
 const Tab = createBottomTabNavigator();
@@ -25,65 +26,52 @@ export default function MainTabNavigator() {
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === "Home") {
             return (
-              <FontAwesome5 name="search-location" size={24} color="black" />
+              <FontAwesome5 name="search-location" size={24} color={color} />
             );
           }
           if (route.name === "Plan") {
-            return (
-              <MaterialIcons name="task" size={24} color="black" />
-            );
+            return <MaterialIcons name="task" size={24} color={color} />;
           }
           if (route.name === "Memory") {
-            return <MaterialIcons name="menu-book" size={24} color="black" />;
+            return <MaterialIcons name="menu-book" size={24} color={color} />;
           }
           if (route.name === "Account") {
             return (
-              <MaterialIcons name="account-circle" size={24} color="black" />
+              <MaterialIcons name="account-circle" size={24} color={color} />
             );
           }
         },
         // Style the header
         headerStyle: {
-          backgroundColor: "blue",
+          backgroundColor: colors.background.secondary,
+          elevation: 0, // Android
+          shadowOpacity: 0, //ios
         },
-        headerTintColor: "white",
+        headerTintColor: colors.text.primary,
+        headerTitleStyle: {
+          fontWeight: 600,
+        },
         // Style the tab bar
         tabBarStyle: {
-          backgroundColor: "blue",
+          backgroundColor: colors.background.primary,
+          borderTopColor: colors.neutral[200],
         },
-        tabBarActiveTintColor: "yellow",
-        tabBarInactiveTintColor: "gray",
+        tabBarActiveTintColor: colors.primary[500],
+        tabBarInactiveTintColor: colors.neutral[400],
         // Configure the tab bar labels
-        tabBarLabel: ({ focused }) => {
-          let color = focused
-            ? "yellow"
-            : "gray";
-          if (route.name === "Home") {
-            return (
-              <Text style={{ color, fontSize: 12 }}>
-                Home
-              </Text>
-            );
-          }
-          if (route.name === "Plan") {
-            return (
-              <Text style={{ color, fontSize: 12 }}>
-                Plan
-              </Text>
-            );
-          }
-          if (route.name === "Memory") {
-            return (
-              <Text style={{ color, fontSize: 12 }}>Memory</Text>
-            );
-          }
-          if (route.name === "Account") {
-            return (
-              <Text style={{ color, fontSize: 12 }}>
-                Account
-              </Text>
-            );
-          }
+        tabBarLabel: ({ focused, color }) => {
+          return (
+            <Text
+              style={{
+                color,
+                fontSize: 12,
+                fontWeight: focused ? "600" : "400",
+                marginTop: 4,
+              }}
+            >
+              {route.name}
+            </Text>
+          );
         },
       })}
     >

@@ -13,7 +13,9 @@ import dataService, { fetchData } from "../../services/dataService";
 import SearchBar from "../../components/home/SearchBar";
 import FilterBar from "../../components/home/FilterBar";
 import PressableButton from "../../components/common/PressableButton";
-import commonStyles from "../../utils/style";
+import { homeStyles } from "../../styles/screens/home";
+import { colors } from "../../styles/helper/colors";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function HomeScreen({ navigation }) {
   const [data, setData] = useState([]);
@@ -41,14 +43,14 @@ export default function HomeScreen({ navigation }) {
   const filterData = (search, filter) => {
     let result = data;
 
-    // 应用搜索过滤
+    // Search
     if (search) {
       result = result.filter((item) =>
         item.name.toLowerCase().includes(search.toLowerCase())
       );
     }
 
-    // 应用属性过滤
+    // Filter
     if (filter !== "all") {
       result = result.filter((item) => {
         switch (filter) {
@@ -76,28 +78,54 @@ export default function HomeScreen({ navigation }) {
     setFilteredData(result);
   };
 
+  const renderTags = (item) => {
+    const tags = [];
+    if (
+      item.features["Swings"] !== "no" ||
+      item.features["Baby Swings"] !== "no"
+    )
+      tags.push("Swings");
+    if (item.features["Sandbox"]) tags.push("Sandbox");
+    if (item.amenities["Washrooms"]) tags.push("Washrooms");
+    if (item.features["Water Fountain"] !== "no") tags.push("Water Fountain");
+    if (item.environment["Shade"]) tags.push("Shade");
+    if (item.environment["Fenced"] !== "no") tags.push("Fenced");
+    return tags.slice(0, 6).map((tag, index) => (
+      <View key={index} style={homeStyles.tag}>
+        <Text style={homeStyles.tagText}>{tag}</Text>
+      </View>
+    ));
+  };
+
   const renderItem = ({ item }) => {
     return (
       <PressableButton
         pressHandler={() =>
           navigation.navigate("Playground Details", { itemID: item.id })
         }
-        componentStyle={commonStyles.itemCard}
-
+        componentStyle={homeStyles.playgroundCard}
       >
-        <View>
+        <View style={homeStyles.imageContainer}>
           <Image
             source={{ uri: item.images[0] }}
-            style={{ width: 100, height: 100 }}
+            style={homeStyles.image}
+            resizeMode="cover"
           />
-          <Text>{item.name}</Text>
+        </View>
+        <View style={homeStyles.contentContainer}>
+          <Text style={homeStyles.title}>{item.name}</Text>
+          <View style={homeStyles.tagContainer}>{renderTags(item)}</View>
         </View>
       </PressableButton>
     );
   };
 
   if (loading) {
-    return <ActivityIndicator size="large" />;
+    return (
+      <View style={homeStyles.loadingContainer}>
+        <ActivityIndicator size="large" color={colors.primary[500]} />
+      </View>
+    );
   }
 
   const handleSearch = (search) => {
@@ -111,9 +139,12 @@ export default function HomeScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.searchFilterContainer}>
-        <SearchBar onSearch={handleSearch} />
+    <View style={homeStyles.container}>
+      <View style={homeStyles.searchFilterContainer}>
+        <SearchBar
+          onSearch={handleSearch}
+          placeholder="Search for a playground"
+        />
         <FilterBar
           selectedFilter={selectedFilter}
           onSelectFilter={handleFilterSelect}
@@ -123,24 +154,11 @@ export default function HomeScreen({ navigation }) {
         data={filteredData}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.listContainer}
+        contentContainerStyle={homeStyles.listContainer}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  searchFilterContainer: {
-    padding: 10,
-    backgroundColor: '#f5f5f5',
-    borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
-  },
-  listContainer: {
-    padding: 10,
-  },
-});
+const styles = StyleSheet.create({});

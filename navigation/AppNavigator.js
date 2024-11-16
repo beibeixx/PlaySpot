@@ -10,15 +10,27 @@ import MainTabNavigator from "./MainTabNavigator";
 import FavoriteListScreen from "../screens/favorites/FavoriteListScreen";
 import Login from "../screens/account/Login";
 import Signup from "../screens/account/Signup";
+import { colors } from "../styles/helper/colors";
 
 const Stack = createNativeStackNavigator();
 
 const defaultScreenOptions = {
   headerStyle: {
-    backgroundColor: "blue",
+    backgroundColor: colors.background.primary,
+    elevation: 0,
+    shadowOpacity: 0,
   },
-  headerTintColor: "white",
+  headerTitleStyle: {
+    color: colors.text.primary,
+    fontSize: 18,
+    fontWeight: "600",
+  },
+  headerTintColor: colors.primary[500],
   headerBackTitleVisible: false,
+  headerShadowVisible: false,
+  contentStyle: {
+    backgroundColor: colors.background.primary,
+  },
 };
 
 export default function AppNavigator() {

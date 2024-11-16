@@ -5,11 +5,11 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Screen from "../../components/common/Screen";
 import PlanList from "../../components/plan/PlanList";
 import commonStyles from "../../utils/style";
-import { auth } from "../../firebase/firebaseSetup";
-import { onAuthStateChanged } from "firebase/auth";
+import { useSelector } from "react-redux";
 
 export default function PlanScreen({ navigation }) {
-  const [user, setUser] = useState(null);
+  const { isAuthenticated } = useSelector((state) => state.auth)
+
   useEffect(() => {
     // Set header options with a Pressable button
     navigation.setOptions({
@@ -24,15 +24,10 @@ export default function PlanScreen({ navigation }) {
         );
       },
     });
-
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsubscribe();
-  }, [navigation, user]);
+  }, [navigation]);
 
   const createHandle = () => {
-    user
+    isAuthenticated
       ? navigation.navigate("Modify Plan", { item: null })
       : navigation.navigate("Login");
   };
@@ -40,21 +35,17 @@ export default function PlanScreen({ navigation }) {
   // to be changed for better vision result
   return (
     <Screen>
-      {user ? (
-        <View style={styles.mainContainer}>
-          <View style={styles.container}>
-            <Text style={styles.category}>Upcoming</Text>
-            {/* <DividerLine /> */}
-            <PlanList timetype="upcoming" navigation={navigation} />
-          </View>
-          <View style={styles.container}>
-            <Text style={styles.category}>Past</Text>
-            <PlanList timetype="past" navigation={navigation} />
-          </View>
+      <View style={styles.mainContainer}>
+        <View style={styles.container}>
+          <Text style={styles.category}>Upcoming</Text>
+          {/* <DividerLine /> */}
+          <PlanList timetype="upcoming" navigation={navigation} />
         </View>
-      ) : (
-        <View style={styles.mainContainer}></View>
-      )}
+        <View style={styles.container}>
+          <Text style={styles.category}>Past</Text>
+          <PlanList timetype="past" navigation={navigation} />
+        </View>
+      </View>
     </Screen>
   );
 }

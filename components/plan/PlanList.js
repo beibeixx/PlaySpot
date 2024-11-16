@@ -7,9 +7,12 @@ import ItemImage from './ItemImage'
 import formatDate from '../../utils/helpers'
 import commonStyles from '../../utils/style'
 import { auth } from '../../firebase/firebaseSetup'
+import { useSelector } from 'react-redux'
 
 export default function PlanList( {timetype, navigation}) {
   const [plans, setPlans] = useState([]);
+  const { isAuthenticated } = useSelector((state) => state.auth)
+
   useEffect(() => {
     const now = new Date();
     const planQuery = query(
@@ -44,11 +47,12 @@ export default function PlanList( {timetype, navigation}) {
   };
 
   return (
+
     <View>
-      <FlatList
-        data={plans}
-        renderItem={renderItem}
-      />
+    {isAuthenticated ? (      <FlatList
+      data={plans}
+      renderItem={renderItem}
+    />): null}
     </View>
   )
 };

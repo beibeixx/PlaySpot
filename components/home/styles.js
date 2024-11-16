@@ -11,54 +11,65 @@ export const searchBarStyles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.background.primary,
-    borderRadius: layout.borderRadius.md,
+    backgroundColor: colors.neutral[50],
+    borderRadius: layout.borderRadius.full,
     borderWidth: 1,
-    borderColor: colors.neutral[300],
-    paddingHorizontal: spacing.md,
+    borderColor: colors.neutral[200],
+    paddingHorizontal: spacing.lg,
+    height: 46,
   },
   input: {
     flex: 1,
-    height: 40,
     fontSize: typography.size.md,
     color: colors.text.primary,
-    paddingVertical: spacing.sm,
+    marginLeft: spacing.sm,
   },
   searchIcon: {
-    marginRight: spacing.sm,
-    color: colors.icon.medium,
+    color: colors.primary[400],
+
   }
+  
 });
 
 export const filterBarStyles = StyleSheet.create({
     container: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      marginHorizontal: -spacing.xs, // 补偿内部间距
+        flexDirection: 'row',
+        marginHorizontal: -spacing.xs,
+        paddingHorizontal: spacing.xs,
     },
+    scrollContent: {
+        paddingRight: spacing.lg,
+      },
     filterChip: {
-      margin: spacing.xs,
-      paddingVertical: spacing.sm,
-      paddingHorizontal: spacing.md,
-      borderRadius: layout.borderRadius.full,
-      borderWidth: 1,
+        marginHorizontal: spacing.xxs,
+        paddingVertical: spacing.sm,
+        paddingHorizontal: spacing.lg,
+        borderRadius: layout.borderRadius.full,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderWidth: 1.5,
     },
     filterChipSelected: {
-      backgroundColor: colors.interactive.selected.background,
-      borderColor: colors.interactive.selected.primary,
+        backgroundColor: colors.primary[500],
+        borderColor: colors.primary[500],
+        ...layout.shadow.sm,
     },
     filterChipUnselected: {
-      backgroundColor: colors.background.primary,
-      borderColor: colors.neutral[300],
+        backgroundColor: colors.background.primary,
+        borderColor: colors.neutral[200],
     },
     filterText: {
-      fontSize: typography.size.sm,
-      fontWeight: typography.weight.medium,
+        fontSize: typography.size.sm,
+        fontWeight: typography.weight.medium,
     },
     filterTextSelected: {
-      color: colors.interactive.selected.primary,
+        color: colors.text.white,
+
     },
     filterTextUnselected: {
       color: colors.text.secondary,
-    }
+    },
+    icon: {
+        marginRight: spacing.xs,
+    },
   });

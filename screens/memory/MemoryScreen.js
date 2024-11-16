@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { auth, database } from "../../firebase/firebaseSetup";
 import PressableButton from "../../components/common/PressableButton";
 import ItemImage from "../../components/plan/ItemImage";
@@ -14,7 +14,10 @@ export default function MemoryScreen({ navigation }) {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
-      collection(database, "memory"),
+      query(
+        collection(database, "memory"),
+        where("owner", "==", auth.currentUser.uid)
+      ),
       (querySnapshot) => {
         let newArray = [];
         querySnapshot.forEach((docSnapshot) => {

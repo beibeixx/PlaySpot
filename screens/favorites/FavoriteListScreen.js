@@ -18,7 +18,6 @@ export default function FavoriteListScreen({ navigation }) {
             ...docSnapshot.data(),
             playgroundID: docSnapshot.data().playgroundID,
             id: docSnapshot.id,
-            owner: auth.currentUser.uid,
           });
         });
         setData(newData);

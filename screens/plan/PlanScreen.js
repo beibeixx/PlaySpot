@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import PressableButton from "../../components/common/PressableButton";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -8,7 +8,8 @@ import commonStyles from "../../utils/style";
 import { useSelector } from "react-redux";
 
 export default function PlanScreen({ navigation }) {
-  const { isAuthenticated } = useSelector((state) => state.auth)
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const [activeTab, setActiveTab] = useState("upcoming");
 
   useEffect(() => {
     // Set header options with a Pressable button
@@ -34,19 +35,45 @@ export default function PlanScreen({ navigation }) {
 
   // to be changed for better vision result
   return (
-    <Screen>
-      <View style={styles.mainContainer}>
-        <View style={styles.container}>
-          <Text style={styles.category}>Upcoming</Text>
-          {/* <DividerLine /> */}
-          <PlanList timetype="upcoming" navigation={navigation} />
-        </View>
-        <View style={styles.container}>
-          <Text style={styles.category}>Past</Text>
-          <PlanList timetype="past" navigation={navigation} />
-        </View>
+    <View style={styles.mainContainer}>
+      <View style={styles.toggleContainer}>
+        <PressableButton
+          pressHandler={() => setActiveTab("upcoming")}
+          componentStyle={[
+            styles.toggleButton,
+            activeTab === "upcoming" && styles.activeToggle,
+          ]}
+        >
+          <Text
+            style={[
+              styles.toggleText,
+              activeTab === "upcoming" && styles.activeText,
+            ]}
+          >
+            Upcoming
+          </Text>
+        </PressableButton>
+        <PressableButton
+          pressHandler={() => setActiveTab("past")}
+          componentStyle={[
+            styles.toggleButton,
+            activeTab === "past" && styles.activeToggle,
+          ]}
+        >
+          <Text
+            style={[
+              styles.toggleText,
+              activeTab === "past" && styles.activeText,
+            ]}
+          >
+            Past
+          </Text>
+        </PressableButton>
       </View>
-    </Screen>
+      <View style={styles.container}>
+        <PlanList timetype={activeTab} navigation={navigation} />
+      </View>
+    </View>
   );
 }
 
@@ -60,12 +87,30 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     backgroundColor: "#f8f4c7",
   },
-  category: {
-    fontSize: 22,
-    fontWeight: "bold",
-    fontStyle: "italic",
-    margin: 5,
-    color: "#c48d3f",
+  toggleContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    padding: 10,
     backgroundColor: "#f8f4c7",
+  },
+  toggleButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    marginHorizontal: 5,
+    borderRadius: 20,
+    backgroundColor: "#f0e68c",
+    borderWidth: 1,
+    borderColor: "#c48d3f",
+  },
+  activeToggle: {
+    backgroundColor: "#c48d3f",
+  },
+  toggleText: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#c48d3f",
+  },
+  activeText: {
+    color: "#ffffff",
   },
 });

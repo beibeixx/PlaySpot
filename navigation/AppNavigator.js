@@ -16,10 +16,21 @@ const Stack = createNativeStackNavigator();
 
 const defaultScreenOptions = {
   headerStyle: {
-    backgroundColor: colors.background.secondary,
+    backgroundColor: colors.background.primary,
+    elevation: 0,
+    shadowOpacity: 0,
   },
-  headerTintColor: "white",
+  headerTitleStyle: {
+    color: colors.text.primary,
+    fontSize: 18,
+    fontWeight: "600",
+  },
+  headerTintColor: colors.primary[500],
   headerBackTitleVisible: false,
+  headerShadowVisible: false,
+  contentStyle: {
+    backgroundColor: colors.background.primary,
+  },
 };
 
 export default function AppNavigator() {

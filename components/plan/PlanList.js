@@ -4,7 +4,7 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { database } from "../../firebase/firebaseSetup";
 import PressableButton from "../common/PressableButton";
 import ItemImage from "./ItemImage";
-import formatDate from "../../utils/helpers";
+import { formatDate } from "../../utils/helpers";
 import commonStyles from "../../utils/style";
 import { auth } from "../../firebase/firebaseSetup";
 import { useSelector } from "react-redux";

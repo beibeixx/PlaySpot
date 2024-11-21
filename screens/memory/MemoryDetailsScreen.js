@@ -17,6 +17,7 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
   const [newMemoryName, setNewMemoryName] = useState(item.memoryName);
   const [newMemo, setNewMemo] = useState(item.memo ? item.memo : '');
   const [isMemoVisible, setIsMemoVisible] = useState(false);
+  const [userPhotos, setUserPhotos] = useState(item.photos ? item.photos : []);
 
   function formatDate(date) {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'long' };

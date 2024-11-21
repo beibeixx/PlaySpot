@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, Image, Alert } from "react-native";
+import { StyleSheet, Text, View, FlatList, Image, Alert, ScrollView } from "react-native";
 import React, { useEffect } from "react";
 import {
   getItemNameById,
@@ -22,6 +22,9 @@ export default function PlanDetailsScreen({ navigation, route }) {
   const images = getImagesById(item.playgroundId);
   const playgroundName = getItemNameById(item.playgroundId);
   const pastMode = item.time.toDate() < new Date();
+  const diffDays = Math.floor(
+    (new Date() - item.time.toDate()) / (1000 * 60 * 60 * 24)
+  );
 
   useEffect(() => {
     navigation.setOptions({
@@ -85,14 +88,28 @@ export default function PlanDetailsScreen({ navigation, route }) {
   }
 
   return (
-    <Screen>
+    <ScrollView>
       <Text style={commonStyles.header}>Location</Text>
       <Text>{playgroundName}</Text>
       <Text style={commonStyles.header}>Time</Text>
       <Text>{formatDate(item.time.toDate())}</Text>
 
       {!pastMode && (
-        <WeatherSection address={getAddressById(item.playgroundId)} />
+        <View>
+          <Text style={commonStyles.header}>Current Weather</Text>
+          <WeatherSection address={getAddressById(item.playgroundId)} />
+          {Math.abs(diffDays) <= 5 ? (
+            <View>
+              <Text style={commonStyles.header}>Weather on your plan date</Text>
+              <WeatherSection
+                address={getAddressById(item.playgroundId)}
+                time={item.time}
+              />
+            </View>
+          ) : (
+            <Text style={commonStyles.header}>Weather on your plan date will be shown 5 days before your plan</Text>
+          )}
+        </View>
       )}
 
       <View style={styles.galleryContainer}>
@@ -136,7 +153,7 @@ export default function PlanDetailsScreen({ navigation, route }) {
           </PressableButton>
         </View>
       )}
-    </Screen>
+    </ScrollView>
   );
 }
 

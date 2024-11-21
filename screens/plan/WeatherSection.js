@@ -2,7 +2,7 @@ import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getLocationFromAddress } from "../../services/geocodingService";
 
-export default function WeatherSection({ address }) {
+export default function WeatherSection({ address, time=null}) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
@@ -18,12 +18,25 @@ export default function WeatherSection({ address }) {
         const location = await getLocationFromAddress(address);
         setLocationData(location);
 
-        const weatherResponse = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${location.data.latitude}&lon=${location.data.longitude}&appid=${WEATHER_API_KEY}&units=metric`
-        );
+        const isCurrentWeather = new Date(time) <= new Date();
 
+        let endpoint = isCurrentWeather
+          ? `https://api.openweathermap.org/data/2.5//weather?lat=${location.data.latitude}&lon=${location.data.longitude}&appid=${WEATHER_API_KEY}&units=metric`
+          : `https://api.openweathermap.org/data/2.5/forecast?lat=${location.data.latitude}&lon=${location.data.longitude}&appid=${WEATHER_API_KEY}&units=metric`;
+
+        const weatherResponse = await fetch(endpoint);
         const weatherResult = await weatherResponse.json();
-        setWeatherData(weatherResult);
+        if (isCurrentWeather){
+          setWeatherData(weatherResult);
+        } else {
+          const targetTime = new Date(time).getTime();
+          const closestForecast = weatherResult.list.reduce((prev, curr) => {
+            const prevDiff = Math.abs(new Date(prev.dt * 1000).getTime() - targetTime);
+            const currDiff = Math.abs(new Date(curr.dt * 1000).getTime() - targetTime);
+            return prevDiff < currDiff ? prev : curr;
+          });
+          setWeatherData(closestForecast)
+        }
         setLoading(false);
       } catch (error) {
         console.error("Error:", error);

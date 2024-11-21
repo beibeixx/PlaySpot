@@ -21,3 +21,7 @@ export const getImagesById = (id) => {
   const images = item ? item.images : [];
   return images;
 };
+
+export const getAddressById = (id) => {
+  return data.find((item) => item.id === id).address;
+};

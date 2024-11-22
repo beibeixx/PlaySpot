@@ -23,24 +23,53 @@ export default function ImageManager( {receiveImageUri} ) {
   async function takeImageHandler () {
     try {
       const hasPermission = await verifyPermisiion();
-      console.log(hasPermission);
       if (!hasPermission) {
         Alert.alert('You need to give permission for camera');
         return;
       }
       const result = await ImagePicker.launchCameraAsync({
         allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
       });
-      console.log(result);
       if (!result.canceled) {
-      setImageUri(result.assets[0].uri);
-      receiveImageUri(result.assets[0].uri);
+        setImageUri(result.assets[0].uri);
+        receiveImageUri(result.assets[0].uri);
       }
     }
     catch (err) {
       console.log('Error picking image:', err);
     }
   };
+
+  async function pickImageHandler() {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+      if (!result.canceled) {
+        setImageUri(result.assets[0].uri);
+        receiveImageUri(result.assets[0].uri);
+      }
+    } catch (err) {
+      console.log('Error picking image:', err);
+    }
+  }
+
+  function showImagePickerOptions() {
+    Alert.alert(
+      'Select Image',
+      'Would you like to take a photo or choose from gallery?',
+      [
+        { text: 'Take Photo', onPress: takeImageHandler },
+        { text: 'Choose from Gallery', onPress: pickImageHandler },
+        { text: 'Cancel', style: 'cancel' },
+      ],
+      { cancelable: true }
+    );
+  }
 
   return (
     <View>
@@ -51,7 +80,7 @@ export default function ImageManager( {receiveImageUri} ) {
         alt="preview of the image taken"
       />
       )}
-      <PressableButton pressHandler={takeImageHandler}>
+      <PressableButton pressHandler={showImagePickerOptions}>
         <MaterialCommunityIcons name="image-plus" size={100} color="black" />
       </PressableButton>
     </View>

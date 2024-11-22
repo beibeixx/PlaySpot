@@ -225,9 +225,9 @@ Composite query when read data for plan screen
 
 
 ## External APIs
-- **Open Weather APi**
+- **Open Weather API**
    - EXPO_PUBLIC_weatherAPI="01f4b1e258efb2fe82eda4263f4691fa"
-- **Google Map APi**
+- **Google Map API**
    - EXPO_PUBLIC_GOOGLE_API: We reuse the same google map API in the class activities, and I will teams TAs my api key in case they need mine.
 
 

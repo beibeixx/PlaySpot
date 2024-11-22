@@ -1,4 +1,12 @@
-import { StyleSheet, Text, View, FlatList, Image, Alert, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Image,
+  Alert,
+  ScrollView,
+} from "react-native";
 import React, { useEffect } from "react";
 import {
   getItemNameById,
@@ -10,7 +18,7 @@ import {
   deleteFromDB,
   updateDB,
 } from "../../firebase/firestoreHelper";
-import formatDate from "../../utils/helpers";
+import { formatDate } from "../../utils/helpers";
 import PressableButton from "../../components/common/PressableButton";
 import Screen from "../../components/common/Screen";
 import commonStyles from "../../utils/style";
@@ -107,7 +115,9 @@ export default function PlanDetailsScreen({ navigation, route }) {
               />
             </View>
           ) : (
-            <Text style={commonStyles.header}>Weather on your plan date will be shown 5 days before your plan</Text>
+            <Text style={commonStyles.header}>
+              Weather on your plan date will be shown 5 days before your plan
+            </Text>
           )}
         </View>
       )}

@@ -5,6 +5,7 @@ import { updateDB, deleteFromDB } from '../../firebase/firestoreHelper';
 import Screen from '../../components/common/Screen';
 import PressableButton from '../../components/common/PressableButton';
 import Card from '../../components/common/Card';
+import AddMemoryPhotoCard from '../../components/memory/AddMemoryPhotoCard';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import commonStyles from '../../utils/style';
 
@@ -17,6 +18,7 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
   const [newMemoryName, setNewMemoryName] = useState(item.memoryName);
   const [newMemo, setNewMemo] = useState(item.memo ? item.memo : '');
   const [isMemoVisible, setIsMemoVisible] = useState(false);
+  const [showAddPhotoCard, setShowAddPhotoCard] = useState(false);
   const [userPhotos, setUserPhotos] = useState(item.photos ? item.photos : []);
 
   function formatDate(date) {
@@ -62,7 +64,11 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
   }
 
   function handleEditPhotos() {
-    Alert.alert("This feature is under development.");
+    setShowAddPhotoCard(true);
+  }
+
+  function photoCardHandler() {
+    setShowAddPhotoCard(false);
   }
 
   function createNewPlan() {
@@ -86,6 +92,23 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
     ]);
   }
 
+  async function fetchAndUploadImage(uri) {
+    try {
+      const response = await fetch(uri);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const blob = await response.blob();
+      const imageName = uri.substring(uri.lastIndexOf('/') + 1);
+      const storageRef = ref(storage, `images/${imageName}`);
+      const uploadResult = await uploadBytesResumable(storageRef, blob);
+      console.log('Upload is successful', uploadResult);
+      return uploadResult.metadata.fullPath;
+    } catch (err) {
+      console.error('fetch image',err);
+    }
+  }
+
   return (
     <Screen>
       <Text style={commonStyles.header}>Memory</Text>
@@ -104,10 +127,12 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
           <AntDesign name="edit" size={24} color="black" />
         </PressableButton>
       </View>
+
       <Text style={commonStyles.header}>Location</Text>
       <Text>{playgroundName}</Text>
       <Text style={commonStyles.header}>Time</Text>
       <Text>{formatDate(item.time.toDate())}</Text>
+
       <View style={styles.galleryContainer}>
       <FlatList
         data={images} // Assuming item.images is an array of image URLs
@@ -116,6 +141,7 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
         showsHorizontalScrollIndicator={false}
       />
       </View>
+
       <View style={styles.buttonContainer}>
         <PressableButton 
           pressHandler={handleAddMemo}
@@ -153,6 +179,12 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
         </PressableButton>
         </View>
       </Card>
+      )}
+      {showAddPhotoCard && (
+        <AddMemoryPhotoCard
+          isVisible={showAddPhotoCard}
+          cancelHandler={photoCardHandler}
+        />
       )}
       {newMemo && (
         <View>

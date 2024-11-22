@@ -148,6 +148,9 @@ The app uses three main collections that are interconnected through the playgrou
       - Added Google Geocoding API for address-to-coordinates conversion
       - Integrated OpenWeather API for 5-day weather forecasts
       - Implemented weather display logic with service limitations
+   - Notifications:
+      - Implemented plan notifications with push messaging combined with reminders
+      - Improved plan timing and reminder logic in modify plan feature
    - Others:
       - Updated the README
 
@@ -211,6 +214,22 @@ The app uses three main collections that are interconnected through the playgrou
   <img src="./assets/screenshots/iteration1/memory-data.png" alt="memory data collection" width="300" />
   <img src="./assets/screenshots/iteration1/plan-data.png" alt="plan data collection" width="300" />
 </div>
+
+
+## Firebase Settings
+- **Firebase Database Indexes**
+Composite query when read data for plan screen
+<div style="display: flex; justify-content: space-around;">
+<img src="./assets/screenshots/iteration2/firebase-indexes.png" alt="indexes setting" width="300"  />
+</div>
+
+
+## External APIs
+- **Open Weather APi**
+   - EXPO_PUBLIC_weatherAPI="01f4b1e258efb2fe82eda4263f4691fa"
+- **Google Map APi**
+   - EXPO_PUBLIC_GOOGLE_API: We reuse the same google map API in the class activities, and I will teams TAs my api key in case they need mine.
+
 
 ## Getting Started
 

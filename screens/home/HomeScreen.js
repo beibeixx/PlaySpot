@@ -14,8 +14,9 @@ import SearchBar from "../../components/home/SearchBar";
 import FilterBar from "../../components/home/FilterBar";
 import PressableButton from "../../components/common/PressableButton";
 import { homeStyles } from "../../styles/screens/home";
-import { colors } from "../../styles/helper/colors";
+import { colors, getTagColors } from "../../styles/helper/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function HomeScreen({ navigation }) {
   const [data, setData] = useState([]);
@@ -90,11 +91,19 @@ export default function HomeScreen({ navigation }) {
     if (item.features["Water Fountain"] !== "no") tags.push("Water Fountain");
     if (item.environment["Shade"]) tags.push("Shade");
     if (item.environment["Fenced"] !== "no") tags.push("Fenced");
-    return tags.slice(0, 6).map((tag, index) => (
-      <View key={index} style={homeStyles.tag}>
-        <Text style={homeStyles.tagText}>{tag}</Text>
-      </View>
-    ));
+    return tags.slice(0, 6).map((tag, index) => {
+      const colors = getTagColors(tag);
+      return (
+        <View
+          key={index}
+          style={[homeStyles.tag, { backgroundColor: colors.bg }]}
+        >
+          <Text style={[homeStyles.tagText, { color: colors.text }]}>
+            {tag}
+          </Text>
+        </View>
+      );
+    });
   };
 
   const renderItem = ({ item }) => {
@@ -105,17 +114,21 @@ export default function HomeScreen({ navigation }) {
         }
         componentStyle={homeStyles.playgroundCard}
       >
-        <View style={homeStyles.imageContainer}>
-          <Image
-            source={{ uri: item.images[0] }}
-            style={homeStyles.image}
-            resizeMode="cover"
-          />
-        </View>
-        <View style={homeStyles.contentContainer}>
-          <Text style={homeStyles.title}>{item.name}</Text>
-          <View style={homeStyles.tagContainer}>{renderTags(item)}</View>
-        </View>
+        <LinearGradient
+          colors={[colors.background.primary, colors.primary[50]]}
+        >
+          <View style={homeStyles.imageContainer}>
+            <Image
+              source={{ uri: item.images[0] }}
+              style={homeStyles.image}
+              resizeMode="cover"
+            />
+          </View>
+          <View style={homeStyles.contentContainer}>
+            <Text style={homeStyles.title}>{item.name}</Text>
+            <View style={homeStyles.tagContainer}>{renderTags(item)}</View>
+          </View>
+        </LinearGradient>
       </PressableButton>
     );
   };

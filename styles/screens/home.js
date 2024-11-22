@@ -9,14 +9,14 @@ const screenWidth = Dimensions.get("window").width;
 export const homeStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background.warm,
+    backgroundColor: colors.primary[100],
   },
   searchFilterContainer: {
-    backgroundColor: colors.background.primary,
-    paddingTop: spacing.xl,
-    paddingBottom: spacing.lg,
-    borderBottomLeftRadius: layout.borderRadius.xl,
-    borderBottomRightRadius: layout.borderRadius.xl,
+    backgroundColor: colors.secondary[50],
+    paddingTop: spacing.md,
+    paddingBottom: spacing.xs,
+    borderBottomLeftRadius: layout.borderRadius.sm,
+    borderBottomRightRadius: layout.borderRadius.sm,
     ...layout.shadow.sm,
   },
   listContainer: {
@@ -25,14 +25,15 @@ export const homeStyles = StyleSheet.create({
     gap: spacing.lg,
   },
   playgroundCard: {
-    backgroundColor: colors.background.card,
+    backgroundColor: colors.primary[50],
     borderRadius: layout.borderRadius.md,
     overflow: "hidden",
+    paddingBottom: spacing.sm,
     ...layout.shadow.sm,
   },
   imageContainer: {
     width: "100%",
-    height: 180,
+    height: 150,
     backgroundColor: colors.neutral[100],
   },
   image: {
@@ -45,27 +46,26 @@ export const homeStyles = StyleSheet.create({
   title: {
     fontSize: typography.size.lg,
     fontWeight: typography.weight.bold,
-    color: colors.text.primary,
-    marginBottom: spacing.xs,
+    color: colors.neutral[800],
+    paddingLeft: spacing.xs,
+    paddingTop: spacing.xxs,
   },
-  // 标签容器
   tagContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
     gap: spacing.xs,
-    marginTop: spacing.sm,
+    marginTop: spacing.xs,
+    paddingLeft: spacing.xxs,
   },
   tag: {
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.xs,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.xxs,
     borderRadius: layout.borderRadius.full,
-    backgroundColor: colors.primary[50],
     borderWidth: 1,
-    borderColor: colors.primary[100],
+    borderColor: colors.secondary[100],
   },
   tagText: {
     fontSize: typography.size.xs,
-    color: colors.primary[600],
     fontWeight: typography.weight.medium,
   },
 });

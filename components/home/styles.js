@@ -11,8 +11,8 @@ export const searchBarStyles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: colors.background.primary,
-    borderRadius: layout.borderRadius.full,
+    backgroundColor: colors.neutral[50],
+    borderRadius: layout.borderRadius.lg,
     paddingHorizontal: spacing.md,
     height: 44,
     borderWidth: 1,
@@ -21,7 +21,7 @@ export const searchBarStyles = StyleSheet.create({
   },
   searchIcon: {
     marginRight: spacing.xs,
-    color: colors.primary[400],
+    color: colors.neutral[400],
   },
   input: {
     flex: 1,
@@ -30,7 +30,7 @@ export const searchBarStyles = StyleSheet.create({
     color: colors.text.primary,
   },
   placeholder: {
-    color: colors.text.tertiary,
+    color: colors.neutral[500],
   },
 });
 
@@ -44,10 +44,10 @@ export const filterBarStyles = StyleSheet.create({
     paddingBottom: spacing.xs,
   },
   filterChip: {
-    paddingVertical: spacing.xs,
-    paddingHorizontal: spacing.lg,
-    borderRadius: layout.borderRadius.full,
-    backgroundColor: colors.background.primary,
+    paddingVertical: spacing.xxs,
+    paddingHorizontal: spacing.md,
+    borderRadius: layout.borderRadius.lg,
+    backgroundColor: colors.secondary[100],
     borderWidth: 1,
     borderColor: colors.neutral[200],
     flexDirection: "row",
@@ -55,15 +55,15 @@ export const filterBarStyles = StyleSheet.create({
     marginRight: spacing.xs,
   },
   filterChipSelected: {
-    backgroundColor: colors.primary[500],
-    borderColor: colors.primary[500],
+    backgroundColor: colors.background.highlight,
+    borderColor: colors.primary[200],
   },
   filterText: {
     fontSize: typography.size.sm,
-    color: colors.text.secondary,
+    color: colors.neutral[500],
   },
   filterTextSelected: {
-    color: colors.text.white,
+    color: colors.primary[500],
     fontWeight: typography.weight.medium,
   },
 });

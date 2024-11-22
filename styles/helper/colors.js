@@ -1,65 +1,115 @@
 export const colors = {
   primary: {
-    50: '#FFF6ED',
-    100: '#FFEDD5',
-    200: '#FED7AA',
-    300: '#FDBA74',
-    400: '#FB923C',
-    500: '#F97316',
-    600: '#EA580C',
-    700: '#C2410C',
-    800: '#9A3412',
-    900: '#7C2D12',
+    50: '#EFF6FF',
+    100: '#DBEAFE',
+    200: '#BFDBFE',
+    300: '#93C5FD',
+    400: '#60A5FA',
+    500: '#3B82F6',
+    600: '#2563EB',
+    700: '#1D4ED8',
+    800: '#1E40AF',
+    900: '#1E3A8A',
   },
 
+  // 次要色：使用紫色作为次要色调
   secondary: {
-    50: '#F0FDF4',
-    100: '#DCFCE7',
-    200: '#BBF7D0',
-    300: '#86EFAC',
-    400: '#4ADE80',
-    500: '#22C55E',
-    600: '#16A34A',
-    700: '#15803D',
-    800: '#166534',
-    900: '#14532D',
+    50: '#F5F3FF',
+    100: '#EDE9FE',
+    200: '#DDD6FE',
+    300: '#C4B5FD',
+    400: '#A78BFA',
+    500: '#8B5CF6',
+    600: '#7C3AED',
+    700: '#6D28D9',
+    800: '#5B21B6',
+    900: '#4C1D95',
   },
 
+  // 中性色：用于文字、边框等
   neutral: {
-    50: '#FAFAFA',
-    100: '#F4F4F5',
-    200: '#E4E4E7',
-    300: '#D4D4D8',
-    400: '#A1A1AA',
-    500: '#71717A',
-    600: '#52525B',
-    700: '#3F3F46',
-    800: '#27272A',
-    900: '#18181B',
+    50: '#F9FAFB',
+    100: '#F3F4F6',
+    200: '#E5E7EB',
+    300: '#D1D5DB',
+    400: '#9CA3AF',
+    500: '#6B7280',
+    600: '#4B5563',
+    700: '#374151',
+    800: '#1F2937',
+    900: '#111827',
   },
+
 
   // 状态颜色
   status: {
-    success: '#22C55E',
-    warning: '#F97316',
-    error: '#EF4444',
+    success: '#059669',
+    warning: '#D97706',
+    error: '#DC2626',
     info: '#3B82F6',
   },
 
-  // 背景色
+  // 背景颜色
   background: {
     primary: '#FFFFFF',
-    secondary: '#FFF6ED',
+    secondary: '#F9FAFB',
+    tertiary: '#F3F4F6',
     card: '#FFFFFF',
-    warm: '#FFFBF5',
-    highlight: '#FFF6ED',
+    highlight: '#EFF6FF',
+    tag: '#F3F4F6',
+    input: '#F3F4F6'
   },
 
   // 文字颜色
   text: {
-    primary: '#27272A',
-    secondary: '#71717A',
-    tertiary: '#A1A1AA',
+    primary: '#1F2937',
+    secondary: '#6B7280',
+    tertiary: '#9CA3AF',
     white: '#FFFFFF',
+    link: '#3B82F6',
+    placeholder: '#9CA3AF'
   },
+
+  // 边框颜色
+  border: {
+    light: '#E5E7EB',
+    default: '#D1D5DB',
+    dark: '#9CA3AF'
+  },
+};
+
+export const tagColors = {
+
+  Swings: {
+    bg: '#EFF6FF',
+    text: '#3B82F6'
+  },
+  Sandbox: {
+    bg: '#FEF3C7',
+    text: '#D97706'
+  },
+  'Water Fountain': {
+    bg: '#F0FDFF',
+    text: '#0891B2'
+  },
+  Washrooms: {
+    bg: '#ECFDF5',
+    text: '#059669'
+  },
+  Shade: {
+    bg: '#F5F3FF',
+    text: '#7C3AED'
+  },
+  Fenced: {
+    bg: '#FCE7F3',
+    text: '#DB2777'
+  },
+  default: {
+    bg: '#F3F4F6',
+    text: '#6B7280'
+  }
+};
+
+export const getTagColors = (tagText) => {
+  return tagColors[tagText] || tagColors.default;
 };

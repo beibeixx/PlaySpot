@@ -28,6 +28,7 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
   const { isAuthenticated } = useSelector((state) => state.auth)
 
   useEffect(() => {
+    if (isAuthenticated){
     const checkFavoriteStatus = onSnapshot(
       query(
         collection(database, "favorites"),
@@ -43,6 +44,7 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
       }
     );
     return () => checkFavoriteStatus();
+  }
   }, [itemID]);
 
   const favoriteHandler = useCallback(async () => {

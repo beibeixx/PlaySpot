@@ -43,7 +43,7 @@ export default function MainTabNavigator() {
         },
         // Style the header
         headerStyle: {
-          backgroundColor: colors.background.secondary,
+          backgroundColor: colors.primary[50],
           elevation: 0, // Android
           shadowOpacity: 0, //ios
         },
@@ -53,7 +53,7 @@ export default function MainTabNavigator() {
         },
         // Style the tab bar
         tabBarStyle: {
-          backgroundColor: colors.background.primary,
+          backgroundColor: colors.secondary[50],
           borderTopColor: colors.neutral[200],
         },
         tabBarActiveTintColor: colors.primary[500],
@@ -66,7 +66,7 @@ export default function MainTabNavigator() {
                 color,
                 fontSize: 12,
                 fontWeight: focused ? "600" : "400",
-                marginTop: 4,
+                marginTop: -6,
               }}
             >
               {route.name}

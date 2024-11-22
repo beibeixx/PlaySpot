@@ -1,6 +1,8 @@
 import { Alert, Button, StyleSheet, View, Image } from 'react-native';
 import React, { useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import PressableButton from './PressableButton';
 
 export default function ImageManager( {receiveImageUri} ) {
   const [response, requestPermission] = ImagePicker.useCameraPermissions();
@@ -42,7 +44,6 @@ export default function ImageManager( {receiveImageUri} ) {
 
   return (
     <View>
-      <Button title="Take An Image" onPress={takeImageHandler} />
       { imageUri && (
       <Image 
         source={{ uri: imageUri }}
@@ -50,13 +51,16 @@ export default function ImageManager( {receiveImageUri} ) {
         alt="preview of the image taken"
       />
       )}
+      <PressableButton pressHandler={takeImageHandler}>
+        <MaterialCommunityIcons name="image-plus" size={100} color="black" />
+      </PressableButton>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   Image: {
-    width: 350,
-    height: 100,
+    width: 150,
+    height: 150,
   },
 })

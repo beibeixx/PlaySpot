@@ -1,4 +1,4 @@
-import { Alert, Button, StyleSheet, View, Image } from 'react-native';
+import { Alert, Button, StyleSheet, View, Image, ScrollView } from 'react-native';
 import React, { useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -6,7 +6,7 @@ import PressableButton from './PressableButton';
 
 export default function ImageManager( {receiveImageUri} ) {
   const [response, requestPermission] = ImagePicker.useCameraPermissions();
-  const [imageUri, setImageUri] = useState(""); 
+  const [imageUri, setImageUri] = useState([]); 
 
   async function verifyPermisiion() {
     try {
@@ -33,8 +33,9 @@ export default function ImageManager( {receiveImageUri} ) {
         quality: 1,
       });
       if (!result.canceled) {
-        setImageUri(result.assets[0].uri);
-        receiveImageUri(result.assets[0].uri);
+        const newImageUris = [...imageUri, result.assets[0].uri];
+        setImageUri(newImageUris);
+        receiveImageUri(newImageUris);
       }
     }
     catch (err) {
@@ -50,8 +51,9 @@ export default function ImageManager( {receiveImageUri} ) {
         quality: 1,
       });
       if (!result.canceled) {
-        setImageUri(result.assets[0].uri);
-        receiveImageUri(result.assets[0].uri);
+        const newImageUris = [...imageUri, result.assets[0].uri];
+        setImageUri(newImageUris);
+        receiveImageUri(newImageUris);
       }
     } catch (err) {
       console.log('Error picking image:', err);
@@ -73,16 +75,18 @@ export default function ImageManager( {receiveImageUri} ) {
 
   return (
     <View>
-      { imageUri && (
-      <Image 
-        source={{ uri: imageUri }}
-        style={styles.Image}
-        alt="preview of the image taken"
-      />
-      )}
+      <ScrollView horizontal={true} style={styles.scrollView}>
+        {imageUri.map((uri, index) => (
+          <Image
+            key={index}
+            source={{ uri: uri }}
+            style={styles.Image}
+            alt={`previed of the image ${index + 1}`}/>
+        ))}
       <PressableButton pressHandler={showImagePickerOptions}>
         <MaterialCommunityIcons name="image-plus" size={100} color="black" />
       </PressableButton>
+      </ScrollView>
     </View>
   )
 }
@@ -91,5 +95,9 @@ const styles = StyleSheet.create({
   Image: {
     width: 150,
     height: 150,
+    margin: 5,
+  },
+  scrollView: {
+    margin: 10,
   },
 })

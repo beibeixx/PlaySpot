@@ -52,14 +52,14 @@ The app uses three main collections that are interconnected through the playgrou
   - `time`: timestamp
   - `memo`: string (optional)
   - `photo`: string (optional) (TO BE ADDED)
-  - `owner`: string (TO BE ADDED, bonding with auth)
+  - `owner`: string
 - **Description**: Stores memories created by users.
 
 #### Favorites Collection
 - **Fields**:
   - `playgroundId`: string
   - `addedAt`: timestamp
-  - `owner`: string (TO BE ADDED, bonding with auth)
+  - `owner`: string
 - **Description**: Stores favorite playgrounds added from the playground list.
 
 ### Refernce Data
@@ -95,7 +95,7 @@ The app uses three main collections that are interconnected through the playgrou
 - **Read**: Implemented in `FavoriteListScreen.js` using Firestore queries and `onSnapshot` for real-time updates.
 - **Delete**: Implemented in `FavoriteListScreen.js` when clicking the remove button and `PlaygroundDetailScreen.js` when clicking the favorite button again the upper right corner, using the `deleteFromDB` function.
 
-## Team Contributions
+## Team Contributions - Iteration 1
 
 - **Member 1 Xinyu Xie**:
    - Architecture & Planning:
@@ -130,6 +130,29 @@ The app uses three main collections that are interconnected through the playgrou
    - Others:
       - Updated the README with contributions and screenshots.
       - Styling improvements.
+
+## Team Contributions - Iteration 2
+
+- **Member 1 Xinyu Xie**:
+   - UI/UX Improvements:
+      - Revamped overall application styling
+      - Redesigned `HomeScreen` layout and display
+      - Enhanced `PlaygroundDetailScreen` layout
+      - Optimized `PlanScreen` layout for better presentation
+   - Authentication & Security:
+      - Implemented Redux for state management, focusing on authentication
+      - Added auth-based conditional rendering and access control
+      - Updated Firebase security rules
+      - Restricted user data access to authorized users only
+   - External APIs:
+      - Added Google Geocoding API for address-to-coordinates conversion
+      - Integrated OpenWeather API for 5-day weather forecasts
+      - Implemented weather display logic with service limitations
+   - Others:
+      - Updated the README
+
+- **Member 2 Yuting Xie**:
+
 
 ## Screenshots
 

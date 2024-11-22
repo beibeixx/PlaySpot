@@ -31,16 +31,17 @@ export default function ModifyPlanScreen({ navigation, route }) {
   const { item } = route.params;
   const isModify = item ? true : false;
   const playgrounds = fetchData();
+  const defaultPlanTime = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
   const [planName, setPlanName] = useState(isModify ? item.planName : "");
   const [selectedPlayground, setSelectedPlayground] = useState(
     checkPlayground(item)
   );
   const [time, setTime] = useState(
-    isModify && item.time ? item.time.toDate() : new Date()
+    isModify && item.time ? item.time.toDate() : defaultPlanTime
   );
   const [reminderTime, setReminderTime] = useState(
-    isModify && item.reminderTime ? item.reminderTime.toDate() : new Date()
+    isModify && item.reminderTime ? item.reminderTime.toDate() : null
   );
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredPlaygrounds, setFilteredPlaygrounds] = useState(playgrounds);
@@ -54,10 +55,17 @@ export default function ModifyPlanScreen({ navigation, route }) {
   );
 
   const searchBarRef = useRef(null);
+  const isPastTime = time < new Date();
 
   useEffect(() => {
     requestNotificationPermissions();
   }, []);
+
+  useEffect(() => {
+    if (reminderTime && time < reminderTime) {
+      setReminderTime(null);
+    }
+  }, [time]);
 
   function checkPlayground(item) {
     if (isModify) {
@@ -75,6 +83,24 @@ export default function ModifyPlanScreen({ navigation, route }) {
         playground.name.toLowerCase().includes(query.toLowerCase())
       )
     );
+  };
+
+  const handleTimeChange = (event, selectedTime, isReminderTime = false) => {
+    if (!selectedTime) return;
+
+    if (isReminderTime) {
+      if (selectedTime > time) {
+        Alert.alert("Reminder time must be before or equal to plan time");
+        return;
+      }
+      setReminderTime(selectedTime);
+    } else {
+      setTime(selectedTime);
+
+      if (selectedTime < new Date()) {
+        setReminderTime(null);
+      }
+    }
   };
 
   const handleSave = async () => {
@@ -193,7 +219,7 @@ export default function ModifyPlanScreen({ navigation, route }) {
               display="default"
               onChange={(event, selectedDate) => {
                 setShowDatePicker(false);
-                if (selectedDate) setTime(selectedDate);
+                if (selectedDate) handleTimeChange(event, selectedDate);
               }}
             />
           )}
@@ -204,63 +230,73 @@ export default function ModifyPlanScreen({ navigation, route }) {
               display="default"
               onChange={(event, selectedTime) => {
                 setShowTimePicker(false);
-                if (selectedTime)
-                  setTime(
-                    new Date(
-                      time.setHours(
-                        selectedTime.getHours(),
-                        selectedTime.getMinutes()
-                      )
-                    )
+                if (selectedTime) {
+                  const newTime = new Date(time);
+                  newTime.setHours(
+                    selectedTime.getHours(),
+                    selectedTime.getMinutes()
                   );
+                  handleTimeChange(event, newTime);
+                }
               }}
             />
           )}
         </View>
         {/* Date and Time Pickers for Reminder Time */}
-        <Text style={commonStyles.header}>Reminder Time:</Text>
-        <View style={commonStyles.buttonContainer}>
-          <PressableButton
-            pressHandler={() => setShowReminderDatePicker(true)}
-            componentStyle={commonStyles.timeButton}
-          >
-            <Text>{reminderTime.toLocaleDateString()}</Text>
-          </PressableButton>
-          <PressableButton
-            pressHandler={() => setShowReminderTimePicker(true)}
-            componentStyle={commonStyles.timeButton}
-          >
-            <Text>{reminderTime.toLocaleTimeString()}</Text>
-          </PressableButton>
-        </View>
+        {!isPastTime && (
+          <>
+            <Text style={commonStyles.header}>Reminder Time:</Text>
+            <View style={commonStyles.buttonContainer}>
+              <PressableButton
+                pressHandler={() => setShowReminderDatePicker(true)}
+                componentStyle={commonStyles.timeButton}
+              >
+                <Text>
+                  {reminderTime
+                    ? reminderTime.toLocaleDateString()
+                    : "Set Date"}
+                </Text>
+              </PressableButton>
+              <PressableButton
+                pressHandler={() => setShowReminderTimePicker(true)}
+                componentStyle={commonStyles.timeButton}
+              >
+                <Text>
+                  {reminderTime
+                    ? reminderTime.toLocaleTimeString()
+                    : "Set Time"}
+                </Text>
+              </PressableButton>
+            </View>
+          </>
+        )}
         <View style={commonStyles.buttonContainer}>
           {showReminderDatePicker && (
             <DateTimePicker
-              value={reminderTime}
+              value={reminderTime || time}
               mode="date"
               display="default"
               onChange={(event, selectedDate) => {
                 setShowReminderDatePicker(false);
-                if (selectedDate) setReminderTime(selectedDate);
+                if (selectedDate) handleTimeChange(event, selectedDate, true);
               }}
             />
           )}
           {showReminderTimePicker && (
             <DateTimePicker
-              value={reminderTime}
+              value={reminderTime || time}
               mode="time"
               display="default"
               onChange={(event, selectedTime) => {
                 setShowReminderTimePicker(false);
-                if (selectedTime)
-                  setReminderTime(
-                    new Date(
-                      reminderTime.setHours(
-                        selectedTime.getHours(),
-                        selectedTime.getMinutes()
-                      )
-                    )
+                if (selectedTime) {
+                  const newTime = new Date(reminderTime || time);
+                  newTime.setHours(
+                    selectedTime.getHours(),
+                    selectedTime.getMinutes()
                   );
+                  handleTimeChange(event, newTime, true);
+                }
               }}
             />
           )}

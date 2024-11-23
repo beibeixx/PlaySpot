@@ -1,15 +1,15 @@
-import { StyleSheet, Image } from 'react-native'
-import React from 'react'
-import { getItemImageById } from '../../services/dataService'
+import { StyleSheet, Image, View } from "react-native";
+import React from "react";
+import { getItemImageById } from "../../services/dataService";
+import { itemImageStyles } from "../../styles/components/itemImage";
 
-export default function ItemImage( {id}) {
+export default function ItemImage({ id }) {
   const imageUri = getItemImageById(id);
   return (
-    <Image
-    source={{ uri: imageUri}}
-    style={{ width: 350, height: 100 }}
-    />
-  )
+    <View style={itemImageStyles.imageContainer}>
+      <Image source={{ uri: imageUri }} style={itemImageStyles.image} />
+    </View>
+  );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

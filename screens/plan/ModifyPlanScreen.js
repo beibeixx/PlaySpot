@@ -184,6 +184,7 @@ export default function ModifyPlanScreen({ navigation, route }) {
             )}
           />
         )}
+        <Button title="Select on Map" onPress={() => navigation.navigate("Playground Map")} />
         {selectedPlayground && (
           <Text style={commonStyles.planName}>
             Selected: {selectedPlayground.name}

@@ -29,10 +29,19 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
   const { isAuthenticated } = useSelector((state) => state.auth)
 
   useEffect(() => {
-    if (isAuthenticated){
+    const data = getItemById(itemID);
+    setData(data);
+  }, [itemID]);
+
+  useEffect(() => {
+    if (!isAuthenticated || !auth.currentUser) {
+      setIsFavorite(false);
+      return;
+    }
     const checkFavoriteStatus = onSnapshot(
       query(
         collection(database, "favorites"),
+        where("owner", "==", auth.currentUser.uid),
         where("playgroundID", "==", itemID)
       ),
       (querySnapshot) => {
@@ -45,8 +54,7 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
       }
     );
     return () => checkFavoriteStatus();
-  }
-  }, [itemID]);
+  }, [itemID,isAuthenticated]);
 
   const favoriteHandler = useCallback(async () => {
     try {
@@ -69,7 +77,7 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
     } catch (err) {
       console.log("Favorite Button error", err);
     }
-  }, [itemID, isFavorite, favoriteId]);
+  }, [itemID, isFavorite, favoriteId, isAuthenticated]);
 
   const handleLogin = () => {
     navigation.navigate("Login");
@@ -95,11 +103,6 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
     });
   }, [itemID, favoriteHandler]);
 
-  useEffect(() => {
-    const data = getItemById(itemID);
-    // console.log(data)
-    setData(data);
-  }, [itemID]);
 
   if (!data) {
     return <ActivityIndicator size="large" />;

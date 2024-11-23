@@ -1,1 +1,0 @@
-// For amenities list on playground details page 

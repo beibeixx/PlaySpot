@@ -4,11 +4,15 @@ import FavoriteItemsList from "../../components/favorite/FavoriteItemsList";
 import { deleteFromDB } from "../../firebase/firestoreHelper";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { auth, database } from "../../firebase/firebaseSetup";
+import { useSelector } from "react-redux";
+import { favoriteStyles } from "../../styles/screens/favorite";
 
 export default function FavoriteListScreen({ navigation }) {
   const [data, setData] = useState([]);
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   useEffect(() => {
+    if (isAuthenticated) { 
     const listerToFirebase = onSnapshot(
       query(
         collection(database, "favorites"),
@@ -27,12 +31,23 @@ export default function FavoriteListScreen({ navigation }) {
       }
     );
     return () => listerToFirebase();
+  }
   }, []);
 
   const handleFavoriteRomove = (removeID) => {
     deleteFromDB(removeID, "favorites");
     Alert.alert("Removed from favorites!");
   };
+
+  if (data.length === 0) {
+    return (
+      <View style={favoriteStyles.emptyContainer}>
+        <Text style={favoriteStyles.emptyText}>
+          No favorite playground yet
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <FlatList

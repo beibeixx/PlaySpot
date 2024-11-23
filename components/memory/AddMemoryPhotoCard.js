@@ -4,16 +4,17 @@ import Card from '../common/Card'
 import PressableButton from '../common/PressableButton';
 import ImageManager from '../common/ImageManager';
 
-export default function AddMemoryPhotoCard( {isVisible, cancelHandler} ) {
+export default function AddMemoryPhotoCard( {isVisible, cancelHandler, inputHandler} ) {
+  const [newImageUris, setImageUris] = useState([]);
 
   function submitHandler() {
     console.log('submit');
-    cancelHandler();
+    inputHandler(newImageUris);
   }
 
   function receiveImageUri(uri) {
     console.log('Received image uri:', uri);
-    setImageUri(uri);
+    setImageUris(uri);
 }
 
   return (

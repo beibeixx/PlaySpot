@@ -1,6 +1,7 @@
-import { StyleSheet, Image } from 'react-native';
-import React, {useState, useEffect} from 'react';
-import { getItemImageById } from '../../services/dataService';
+import { StyleSheet, Image, View } from "react-native";;
+import React, {useState, useEffect} from "react";;
+import { getItemImageById } from "../../services/dataService";
+import { itemImageStyles } from "../../styles/components/itemImage";;
 import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/firebaseSetup';
 

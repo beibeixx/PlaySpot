@@ -5,9 +5,9 @@ import { database } from "../../firebase/firebaseSetup";
 import PressableButton from "../common/PressableButton";
 import ItemImage from "./ItemImage";
 import { formatDate } from "../../utils/helpers";
-import commonStyles from "../../utils/style";
 import { auth } from "../../firebase/firebaseSetup";
 import { useSelector } from "react-redux";
+import { planListStyles } from "../../styles/components/planList";
 
 export default function PlanList({ timetype, navigation }) {
   const [plans, setPlans] = useState([]);
@@ -49,26 +49,44 @@ export default function PlanList({ timetype, navigation }) {
     return (
       <PressableButton
         pressHandler={() => navigation.navigate("Plan Details", { item })}
-        componentStyle={commonStyles.itemCard}
+        componentStyle={planListStyles.planCard}
       >
         <ItemImage id={item.playgroundId} />
-        <Text style={commonStyles.planName}>{item.planName}</Text>
-        <Text style={commonStyles.timeText}>
-          {formatDate(item.time.toDate())}
-        </Text>
+        <View style={planListStyles.cardContent}>
+          <Text style={planListStyles.planName}>{item.planName}</Text>
+          <Text style={planListStyles.timeText}>
+            {formatDate(item.time.toDate())}
+          </Text>
+        </View>
       </PressableButton>
     );
   }
 
+  // console.log(plans.length)
+  if (plans.length === 0) {
+    return (
+      <View style={planListStyles.emptyContainer}>
+        <Text style={planListStyles.emptyText}>
+          {isAuthenticated
+            ? `No ${timetype} plans yet`
+            : "Please login to view your plans"}
+        </Text>
+      </View>
+    );
+  }
   return (
-    <View style={styles.container}>
-      <FlatList data={plans} renderItem={renderItem} />
-    </View>
+    // <View style={styles.container}>
+    //   <FlatList data={plans} renderItem={renderItem} />
+    // </View>
+
+    <FlatList
+      data={plans}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.id}
+      contentContainerStyle={planListStyles.listContainer}
+      showsVerticalScrollIndicator={false}
+    />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+const styles = StyleSheet.create({});

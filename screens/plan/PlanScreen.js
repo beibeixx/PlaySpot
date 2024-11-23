@@ -4,8 +4,9 @@ import PressableButton from "../../components/common/PressableButton";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Screen from "../../components/common/Screen";
 import PlanList from "../../components/plan/PlanList";
-import commonStyles from "../../utils/style";
 import { useSelector } from "react-redux";
+import { planStyles } from "../../styles/screens/plan";
+import { spacing } from "../../styles/helper/spacing";
 
 export default function PlanScreen({ navigation }) {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -18,9 +19,9 @@ export default function PlanScreen({ navigation }) {
         return (
           <PressableButton
             pressHandler={createHandle}
-            componentStyle={commonStyles.iconButton}
+            componentStyle={planStyles.addButton}
           >
-            <MaterialIcons name="add-box" size={28} color="white" />
+            <MaterialIcons name="add-box" size={spacing.xl} color="white" />
           </PressableButton>
         );
       },
@@ -35,19 +36,19 @@ export default function PlanScreen({ navigation }) {
 
   // to be changed for better vision result
   return (
-    <View style={styles.mainContainer}>
-      <View style={styles.toggleContainer}>
+    <View style={planStyles.mainContainer}>
+      <View style={planStyles.toggleContainer}>
         <PressableButton
           pressHandler={() => setActiveTab("upcoming")}
           componentStyle={[
-            styles.toggleButton,
-            activeTab === "upcoming" && styles.activeToggle,
+            planStyles.toggleButton,
+            activeTab === "upcoming" && planStyles.activeToggle,
           ]}
         >
           <Text
             style={[
-              styles.toggleText,
-              activeTab === "upcoming" && styles.activeText,
+              planStyles.toggleText,
+              activeTab === "upcoming" && planStyles.activeText,
             ]}
           >
             Upcoming
@@ -56,61 +57,25 @@ export default function PlanScreen({ navigation }) {
         <PressableButton
           pressHandler={() => setActiveTab("past")}
           componentStyle={[
-            styles.toggleButton,
-            activeTab === "past" && styles.activeToggle,
+            planStyles.toggleButton,
+            activeTab === "past" && planStyles.activeToggle,
           ]}
         >
           <Text
             style={[
-              styles.toggleText,
-              activeTab === "past" && styles.activeText,
+              planStyles.toggleText,
+              activeTab === "past" && planStyles.activeText,
             ]}
           >
             Past
           </Text>
         </PressableButton>
       </View>
-      <View style={styles.container}>
+      <View>
         <PlanList timetype={activeTab} navigation={navigation} />
       </View>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    backgroundColor: "#f8f4c7",
-  },
-  container: {
-    flex: 1,
-    paddingHorizontal: 10,
-    backgroundColor: "#f8f4c7",
-  },
-  toggleContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    padding: 10,
-    backgroundColor: "#f8f4c7",
-  },
-  toggleButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 20,
-    marginHorizontal: 5,
-    borderRadius: 20,
-    backgroundColor: "#f0e68c",
-    borderWidth: 1,
-    borderColor: "#c48d3f",
-  },
-  activeToggle: {
-    backgroundColor: "#c48d3f",
-  },
-  toggleText: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#c48d3f",
-  },
-  activeText: {
-    color: "#ffffff",
-  },
-});
+const styles = StyleSheet.create({});

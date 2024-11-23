@@ -124,7 +124,7 @@ export default function HomeScreen({ navigation }) {
               resizeMode="cover"
             />
           </View>
-          <View style={homeStyles.contentContainer}>
+          <View style={homeStyles.cardContent}>
             <Text style={homeStyles.title}>{item.name}</Text>
             <View style={homeStyles.tagContainer}>{renderTags(item)}</View>
           </View>

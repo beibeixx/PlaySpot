@@ -1,21 +1,26 @@
-import { Pressable } from 'react-native'
-import React from 'react'
-import commonStyles from '../../utils/style'
-import commonColors from '../../utils/color'
+import { Pressable } from "react-native";
+import React from "react";
+import { pressableButtonStyles } from "../../styles/components/pressableButton";
+import { colors } from "../../styles/helper/colors";
 
-export default function PressableButton({children, pressHandler, componentStyle, disabled}) {
+export default function PressableButton({
+  children,
+  pressHandler,
+  componentStyle,
+  disabled,
+}) {
   return (
-    <Pressable 
+    <Pressable
       onPress={pressHandler}
       style={({ pressed }) => [
         componentStyle,
-        disabled && commonStyles.disabled,
-        pressed && commonStyles.pressed,
+        disabled && pressableButtonStyles.disabled,
+        pressed && pressableButtonStyles.pressed,
       ]}
-        android_ripple={{color: commonColors.itemBackgroundSelected}}
+      android_ripple={{ color: colors.secondary[100]}}
       disabled={disabled}
-      >
+    >
       {children}
     </Pressable>
-  )
+  );
 }

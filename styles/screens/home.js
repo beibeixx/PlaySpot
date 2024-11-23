@@ -3,6 +3,7 @@ import { colors } from "../helper/colors";
 import { spacing } from "../helper/spacing";
 import { layout } from "../helper/layout";
 import { typography } from "../helper/typography";
+import { cardStyles } from "../components/card";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -19,29 +20,18 @@ export const homeStyles = StyleSheet.create({
     borderBottomRightRadius: layout.borderRadius.sm,
     ...layout.shadow.sm,
   },
-  listContainer: {
-    padding: spacing.lg,
-    paddingTop: spacing.md,
-    gap: spacing.lg,
-  },
+  listContainer: cardStyles.listContainer,
   playgroundCard: {
-    backgroundColor: colors.primary[50],
-    borderRadius: layout.borderRadius.md,
-    overflow: "hidden",
     paddingBottom: spacing.sm,
-    ...layout.shadow.sm,
+    ...cardStyles.cardContainer,
   },
   imageContainer: {
-    width: "100%",
     height: 150,
-    backgroundColor: colors.neutral[100],
+    ...cardStyles.imageContainer,
   },
-  image: {
-    width: "100%",
-    height: "100%",
-  },
+  image: cardStyles.image,
   cardContent: {
-    padding: spacing.lg,
+    padding: spacing.xs,
   },
   title: {
     fontSize: typography.size.lg,

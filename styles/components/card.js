@@ -29,4 +29,14 @@ export const cardStyles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  emptyContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    padding: spacing.xl,
+  },
+  emptyText: {
+    fontSize: typography.size.md,
+    color: colors.text.secondary,
+    textAlign: "center",
+  },
 });

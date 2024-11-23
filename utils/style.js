@@ -61,10 +61,14 @@ const commonStyles = {
     padding: 10,
     borderRadius: 5,
   },
+  // pressed: {
+  //   backgroundColor: commonColors.itemBackgroundSelected,
+  //   opacity: 0.8,
+  //   borderRadius: 5,
+  // },
   pressed: {
-    backgroundColor: commonColors.itemBackgroundSelected,
-    opacity: 0.8,
-    borderRadius: 5,
+    opacity: 0.95,
+    transform: [{ scale: 0.98 }],
   },
   disabled: {
     backgroundColor: 'gray',

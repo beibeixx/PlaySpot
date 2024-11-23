@@ -3,31 +3,19 @@ import { colors } from "../helper/colors";
 import { spacing } from "../helper/spacing";
 import { layout } from "../helper/layout";
 import { typography } from "../helper/typography";
+import { cardStyles } from "./card";
 
 const screenWidth = Dimensions.get("window").width;
 
 export const planListStyles = StyleSheet.create({
-
-  listContainer: {
-    padding: spacing.lg,
-    paddingTop: spacing.md,
-    gap: spacing.lg,
-  },
-  planCard: {
-    backgroundColor: colors.primary[50],
-    borderRadius: layout.borderRadius.md,
-    overflow: "hidden",
-    paddingBottom: spacing.sm,
-    ...layout.shadow.sm,
-  },
+  listContainer: cardStyles.listContainer,
+  planCard: cardStyles.cardContainer,
   cardContent: {
-    padding: spacing.lg,
+    padding: spacing.sm,
   },
   planName: {
-    fontSize: typography.size.lg,
-    fontWeight: typography.weight.bold,
-    color: colors.neutral[800],
     marginBottom: spacing.xxs,
+    ...cardStyles.title,
   },
   timeText: {
     fontSize: typography.size.sm,

@@ -5,11 +5,9 @@ import { database } from "../../firebase/firebaseSetup";
 import PressableButton from "../common/PressableButton";
 import ItemImage from "./ItemImage";
 import { formatDate } from "../../utils/helpers";
-import commonStyles from "../../utils/style";
 import { auth } from "../../firebase/firebaseSetup";
 import { useSelector } from "react-redux";
 import { planListStyles } from "../../styles/components/planList";
-import { cardStyles } from "../../styles/components/card";
 
 export default function PlanList({ timetype, navigation }) {
   const [plans, setPlans] = useState([]);
@@ -69,7 +67,7 @@ export default function PlanList({ timetype, navigation }) {
     return (
       <View style={planListStyles.emptyContainer}>
         <Text style={planListStyles.emptyText}>
-          {isAuthenticated 
+          {isAuthenticated
             ? `No ${timetype} plans yet`
             : "Please login to view your plans"}
         </Text>
@@ -81,16 +79,14 @@ export default function PlanList({ timetype, navigation }) {
     //   <FlatList data={plans} renderItem={renderItem} />
     // </View>
 
-        <FlatList
-          data={plans}
-          renderItem={renderItem}
-          keyExtractor={item => item.id}
-          contentContainerStyle={planListStyles.listContainer}
-          showsVerticalScrollIndicator={false}
-        />
-
+    <FlatList
+      data={plans}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.id}
+      contentContainerStyle={planListStyles.listContainer}
+      showsVerticalScrollIndicator={false}
+    />
   );
 }
 
-const styles = StyleSheet.create({
-});
+const styles = StyleSheet.create({});

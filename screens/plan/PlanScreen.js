@@ -4,11 +4,9 @@ import PressableButton from "../../components/common/PressableButton";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Screen from "../../components/common/Screen";
 import PlanList from "../../components/plan/PlanList";
-import commonStyles from "../../utils/style";
 import { useSelector } from "react-redux";
 import { planStyles } from "../../styles/screens/plan";
 import { spacing } from "../../styles/helper/spacing";
-import { cardStyles } from "../../styles/components/card";
 
 export default function PlanScreen({ navigation }) {
   const { isAuthenticated } = useSelector((state) => state.auth);

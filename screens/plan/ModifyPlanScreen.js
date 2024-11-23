@@ -26,6 +26,7 @@ import {
   scheduleNotification,
   cancelNotification,
 } from "../../utils/helpers";
+import { getLocationFromAddress } from "../../services/geocodingService";
 
 export default function ModifyPlanScreen({ navigation, route }) {
   const { item } = route.params;
@@ -53,6 +54,7 @@ export default function ModifyPlanScreen({ navigation, route }) {
   const [notificationId, setNotificationId] = useState(
     isModify ? item.notificationId : null
   );
+  const [location, setLocation] = useState(isModify ? item.location : null);
 
   const searchBarRef = useRef(null);
   const isPastTime = time < new Date();
@@ -66,6 +68,16 @@ export default function ModifyPlanScreen({ navigation, route }) {
       setReminderTime(null);
     }
   }, [time]);
+
+  useEffect(() => {
+    async function fetchLocation() {
+      if (selectedPlayground) {
+        const address = await getLocationFromAddress(selectedPlayground.address);
+        setLocation(address);
+      }
+    }
+    fetchLocation();
+  }, [selectedPlayground]);
 
   function checkPlayground(item) {
     if (isModify) {

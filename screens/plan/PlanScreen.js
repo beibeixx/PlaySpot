@@ -34,7 +34,6 @@ export default function PlanScreen({ navigation }) {
       : navigation.navigate("Login");
   };
 
-  // to be changed for better vision result
   return (
     <View style={planStyles.mainContainer}>
       <View style={planStyles.toggleContainer}>
@@ -71,9 +70,7 @@ export default function PlanScreen({ navigation }) {
           </Text>
         </PressableButton>
       </View>
-      <View>
-        <PlanList timetype={activeTab} navigation={navigation} />
-      </View>
+      <PlanList timetype={activeTab} navigation={navigation} />
     </View>
   );
 }

@@ -85,6 +85,7 @@ export default function PlanList({ timetype, navigation }) {
       keyExtractor={(item) => item.id}
       contentContainerStyle={planListStyles.listContainer}
       showsVerticalScrollIndicator={false}
+    
     />
   );
 }

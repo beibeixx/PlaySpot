@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, TextInput, Image, Alert } from 'react-native'
+import { StyleSheet, Text, View, FlatList, TextInput, Image, Alert, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { getImagesById, getItemNameById } from '../../services/dataService';
 import { updateDB, deleteFromDB } from '../../firebase/firestoreHelper';
@@ -6,6 +6,7 @@ import Screen from '../../components/common/Screen';
 import PressableButton from '../../components/common/PressableButton';
 import Card from '../../components/common/Card';
 import AddMemoryPhotoCard from '../../components/memory/AddMemoryPhotoCard';
+import LocationManager from '../../components/map/LocationManager';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import commonStyles from '../../utils/style';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
@@ -147,6 +148,7 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
 
   return (
     <Screen>
+    <ScrollView>
       <Text style={commonStyles.header}>Memory</Text>
       <View style={styles.headerContainer}>
         {isEditing ? (
@@ -228,6 +230,7 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
         <Text style={commonStyles.header}>Memo</Text>
         <Text>{newMemo}</Text>
         </View>)}
+      <LocationManager selectedPlace={item.playgroundId} />
       <View style={styles.buttonContainer}>
       <PressableButton
         pressHandler={pressDelete}
@@ -235,6 +238,7 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
         <Text>Delete This Memory</Text>
       </PressableButton>
       </View>
+    </ScrollView>
     </Screen>
   )
 }

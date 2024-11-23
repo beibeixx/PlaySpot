@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, FlatList, TextInput, Image, Alert } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { getImagesById, getItemNameById } from '../../services/dataService';
 import { updateDB, deleteFromDB } from '../../firebase/firestoreHelper';
 import Screen from '../../components/common/Screen';
@@ -8,6 +8,8 @@ import Card from '../../components/common/Card';
 import AddMemoryPhotoCard from '../../components/memory/AddMemoryPhotoCard';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import commonStyles from '../../utils/style';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../firebase/firebaseSetup';
 
 
 export default function MemoryDetailsScreen( {navigation, route} ) {
@@ -19,7 +21,23 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
   const [newMemo, setNewMemo] = useState(item.memo ? item.memo : '');
   const [isMemoVisible, setIsMemoVisible] = useState(false);
   const [showAddPhotoCard, setShowAddPhotoCard] = useState(false);
-  const [userPhotos, setUserPhotos] = useState(item.photos ? item.photos : []);
+  const [userPhotos, setUserPhotos] = useState([]);
+
+  useEffect(() => {
+    async function getImageUris() {
+      try {
+        const imageUris = await Promise.all(item.photos.map(async (photo) => {
+        const imageRef = ref(storage, photo);
+        const httpsImageUri = await getDownloadURL(imageRef);
+        return httpsImageUri;
+      }));
+        setUserPhotos(imageUris);
+      } catch (error) {
+        console.error('Error getting image uri:', error);
+      }
+    }
+    getImageUris();
+  }, [item.photos]);
 
   function formatDate(date) {
     const options = { year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'long' };
@@ -47,7 +65,21 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
     updateDB(item.id, updatedMemoryData, 'memory');
     setIsMemoVisible(false);
   }
-    
+  
+  async function handleUpdatePhotos(userPhotos) {
+    let newPhotos = [];
+    if (userPhotos.length > 0) {
+      newPhotos = await fetchAndUploadImage(userPhotos);
+    }
+    if (newPhotos.length > 0) {
+      const updatedMemoryData = {
+        ...item,
+        photos: [...item.photos, ...newPhotos],
+      };
+      updateDB(item.id, updatedMemoryData, 'memory');
+    }
+    setShowAddPhotoCard(false);
+  }
 
   function renderImage({item}) {
     return <Image
@@ -92,21 +124,25 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
     ]);
   }
 
-  async function fetchAndUploadImage(uri) {
-    try {
-      const response = await fetch(uri);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+  async function fetchAndUploadImage(imageUris) {
+    const uploadResults = [];
+    for (const uri of imageUris) {
+      try {
+        const response = await fetch(uri);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const blob = await response.blob();
+        const imageName = uri.substring(uri.lastIndexOf('/') + 1);
+        const storageRef = ref(storage, `images/${imageName}`);
+        const uploadResult = await uploadBytesResumable(storageRef, blob);
+        console.log('Upload is successful', uploadResult);
+        uploadResults.push(uploadResult.metadata.fullPath);
+      } catch (err) {
+        console.error('fetch image',err);
       }
-      const blob = await response.blob();
-      const imageName = uri.substring(uri.lastIndexOf('/') + 1);
-      const storageRef = ref(storage, `images/${imageName}`);
-      const uploadResult = await uploadBytesResumable(storageRef, blob);
-      console.log('Upload is successful', uploadResult);
-      return uploadResult.metadata.fullPath;
-    } catch (err) {
-      console.error('fetch image',err);
     }
+    return uploadResults;
   }
 
   return (
@@ -135,7 +171,7 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
 
       <View style={styles.galleryContainer}>
       <FlatList
-        data={images} // Assuming item.images is an array of image URLs
+        data={userPhotos.length > 0 ? userPhotos : images} // Assuming item.images is an array of image URLs
         renderItem={renderImage}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
@@ -184,6 +220,7 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
         <AddMemoryPhotoCard
           isVisible={showAddPhotoCard}
           cancelHandler={photoCardHandler}
+          inputHandler={handleUpdatePhotos}
         />
       )}
       {newMemo && (

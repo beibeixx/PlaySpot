@@ -6,7 +6,6 @@ import PressableButton from "../../components/common/PressableButton";
 import ItemImage from "../../components/plan/ItemImage";
 import { useSelector } from "react-redux";
 import { memoryStyles } from "../../styles/screens/memory";
-import MemoryList from "../../components/memory/memoryList";
 
 export default function MemoryScreen({ navigation }) {
   const [memories, setMemories] = useState([]);

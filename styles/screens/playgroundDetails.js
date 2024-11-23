@@ -9,42 +9,43 @@ const { width } = Dimensions.get("window");
 export const detailStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background.primary,
+    backgroundColor: colors.background.secondary,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   imageContainer: {
-    width: "100%",
-    height: width * 0.7,
-    backgroundColor: colors.neutral[100],
+    height: 250,
+    width: '100%',
+    position: 'relative',
   },
   image: {
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
   },
-  favoriteButton: {
-    position: "absolute",
-    right: spacing.lg,
-    bottom: -spacing.xl,
-    backgroundColor: colors.background.primary,
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    alignItems: "center",
-    justifyContent: "center",
-    ...layout.shadow.md,
+  gradient: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 100,
   },
-  favoriteIcon: {
-    color: colors.primary[500],
-  },
-  favoriteIconActive: {
-    color: colors.primary[500],
-  },
-  content: {
+  contentContainer: {
     flex: 1,
-    padding: spacing.lg,
-    paddingTop: spacing.xl + spacing.md,
+    marginTop: -20,
+    borderTopLeftRadius: layout.borderRadius.xl,
+    borderTopRightRadius: layout.borderRadius.xl,
+    backgroundColor: colors.background.secondary,
+    paddingBottom: spacing.xl,
   },
-  titleContainer: {
-    marginBottom: spacing.lg,
+  headerCard: {
+    margin: spacing.lg,
+    padding: spacing.lg,
+    backgroundColor: colors.background.card,
+    borderRadius: layout.borderRadius.lg,
+    ...layout.shadow.sm,
   },
   title: {
     fontSize: typography.size.xl,
@@ -52,81 +53,76 @@ export const detailStyles = StyleSheet.create({
     color: colors.text.primary,
     marginBottom: spacing.xs,
   },
-  address: {
+  description: {
     fontSize: typography.size.md,
     color: colors.text.secondary,
     marginBottom: spacing.sm,
+    lineHeight: typography.size.md * 1.4,
   },
-  description: {
-    fontSize: typography.size.md,
-    color: colors.text.primary,
-    lineHeight: typography.size.md * 1.5,
-    marginBottom: spacing.xl,
+  addressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: spacing.sm,
+    gap: spacing.xxs,
+  },
+  address: {
+    fontSize: typography.size.sm,
+    color: colors.text.tertiary,
+  },
+  locationContainer: {
+    margin: spacing.lg,
+    marginTop: 0,
+  },
+  section: {
+    margin: spacing.lg,
+    marginTop: 0,
+    padding: spacing.lg,
+    borderRadius: layout.borderRadius.lg,
+    ...layout.shadow.sm,
   },
   sectionTitle: {
     fontSize: typography.size.lg,
     fontWeight: typography.weight.semibold,
     color: colors.text.primary,
     marginBottom: spacing.md,
-    marginTop: spacing.lg,
   },
-  featureList: {
-    backgroundColor: colors.background.secondary,
-    borderRadius: layout.borderRadius.lg,
-    padding: spacing.lg,
-    marginBottom: spacing.lg,
+  featureContainer: {
+    gap: spacing.sm,
   },
   featureItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: spacing.sm,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: spacing.xs,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border.light,
+  },
+  featureKeyContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs,
   },
   featureIcon: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: colors.background.primary,
-    alignItems: "center",
-    justifyContent: "center",
-    marginRight: spacing.md,
+    opacity: 0.8,
   },
-  featureText: {
+  featureKey: {
     fontSize: typography.size.md,
-    color: colors.text.primary,
-    flex: 1,
+    color: colors.text.secondary,
   },
   featureValue: {
-    fontSize: typography.size.sm,
-    color: colors.primary[500],
+    fontSize: typography.size.md,
     fontWeight: typography.weight.medium,
   },
-  divider: {
-    height: 1,
-    backgroundColor: colors.neutral[200],
-    marginVertical: spacing.md,
+  emptyContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: spacing.xl,
+    gap: spacing.xs,
+    borderRadius: layout.borderRadius.md,
   },
-  envCard: {
-    flexDirection: "row",
-    backgroundColor: colors.secondary[50],
-    borderRadius: layout.borderRadius.lg,
-    padding: spacing.md,
-    marginBottom: spacing.sm,
-  },
-  envIcon: {
-    marginRight: spacing.md,
-    color: colors.secondary[500],
-  },
-  envInfo: {
-    flex: 1,
-  },
-  envTitle: {
+  emptyText: {
     fontSize: typography.size.sm,
+    textAlign: 'center',
     fontWeight: typography.weight.medium,
-    color: colors.text.primary,
-    marginBottom: spacing.xxs,
-  },
-  envValue: {
-    fontSize: typography.size.sm,
-    color: colors.text.secondary,
   },
 });

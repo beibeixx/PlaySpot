@@ -19,6 +19,7 @@ import { detailStyles } from "../../styles/screens/playgroundDetails";
 import { colors } from "../../styles/helper/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
+import LocationManager from "../../components/map/LocationManager";
 
 export default function PlaygroundDetailScreen({ navigation, route }) {
   const [data, setData] = useState(null);
@@ -143,6 +144,7 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
             <Text style={detailStyles.title}>{data.name}</Text>
             <Text style={detailStyles.address}>{data.description}</Text>
             <Text style={detailStyles.description}>{data.address}</Text>
+            <LocationManager/>
           </View>
           <Text style={detailStyles.sectionTitle}>Amenities</Text>
             {renderSection(data.amenities)}

@@ -40,7 +40,7 @@ export default function MemoryScreen({ navigation }) {
         pressHandler={() => navigation.navigate("Memory Details", { item })}
         componentStyle={commonStyles.itemCard}
       >
-        <ItemImage id={item.playgroundId} />
+        <ItemImage id={item.playgroundId} photos={item.photos} item={item}/>
         <Text style={commonStyles.planName}>{item.memoryName}</Text>
         <Text style={commonStyles.timeText}>
           {new Date(item.time.toDate()).toLocaleString()}

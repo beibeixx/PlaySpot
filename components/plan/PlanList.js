@@ -51,7 +51,7 @@ export default function PlanList({ timetype, navigation }) {
         pressHandler={() => navigation.navigate("Plan Details", { item })}
         componentStyle={planListStyles.planCard}
       >
-        <ItemImage id={item.playgroundId} />
+        <ItemImage item={item} />
         <View style={planListStyles.cardContent}>
           <Text style={planListStyles.planName}>{item.planName}</Text>
           <Text style={planListStyles.timeText}>

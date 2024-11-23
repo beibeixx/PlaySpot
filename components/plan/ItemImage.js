@@ -1,15 +1,21 @@
 import { StyleSheet, Image, View } from "react-native";
 import React, { useState, useEffect } from "react";
 import { getItemImageById } from "../../services/dataService";
-import { itemImageStyles } from "../../styles/components/itemImage";
+import { itemImageStylesMemory, itemImageStylesPlan } from "../../styles/components/itemImage";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase/firebaseSetup";
 
-export default function ItemImage({ item }) {
+export default function ItemImage({ item, screen}) {
   const [imageUri, setImageUri] = useState(
     getItemImageById(item.playgroundId) || ""
   );
 
+  let imageStyle;
+  if (screen=="plan"){
+    imageStyle = itemImageStylesPlan
+  } else if (screen=="memory"){
+    imageStyle = itemImageStylesMemory
+  }
   useEffect(() => {
     async function fetchLastImage() {
       if (item && item.photos && item.photos.length > 0) {
@@ -27,8 +33,8 @@ export default function ItemImage({ item }) {
   }, [item]);
 
   return (
-    <View style={itemImageStyles.imageContainer}>
-      <Image source={{ uri: imageUri }} style={itemImageStyles.image} />
+    <View style={imageStyle.imageContainer}>
+      <Image source={{ uri: imageUri }} style={imageStyle.image} />
     </View>
   );
 }

@@ -3,12 +3,13 @@ import { colors } from "../helper/colors";
 import { spacing } from "../helper/spacing";
 import { layout } from "../helper/layout";
 import { typography } from "../helper/typography";
-import { cardStyles } from "./card";
+import { cardStyles } from "../components/card";
 
 const screenWidth = Dimensions.get("window").width;
 
-export const planListStyles = StyleSheet.create({
+export const memoryStyles = StyleSheet.create({
   listContainer: cardStyles.listContainer,
+
   planCard: cardStyles.cardContainer,
   cardContent: {
     padding: spacing.sm,
@@ -21,6 +22,4 @@ export const planListStyles = StyleSheet.create({
     fontSize: typography.size.sm,
     color: colors.text.secondary,
   },
-  emptyContainer: cardStyles.emptyContainer,
-  emptyText: cardStyles.emptyText,
 });

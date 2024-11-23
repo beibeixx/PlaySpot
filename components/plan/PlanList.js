@@ -51,7 +51,7 @@ export default function PlanList({ timetype, navigation }) {
         pressHandler={() => navigation.navigate("Plan Details", { item })}
         componentStyle={planListStyles.planCard}
       >
-        <ItemImage item={item} />
+        <ItemImage item={item} screen="plan"/>
         <View style={planListStyles.cardContent}>
           <Text style={planListStyles.planName}>{item.planName}</Text>
           <Text style={planListStyles.timeText}>
@@ -62,7 +62,6 @@ export default function PlanList({ timetype, navigation }) {
     );
   }
 
-  // console.log(plans.length)
   if (plans.length === 0) {
     return (
       <View style={planListStyles.emptyContainer}>
@@ -75,17 +74,12 @@ export default function PlanList({ timetype, navigation }) {
     );
   }
   return (
-    // <View style={styles.container}>
-    //   <FlatList data={plans} renderItem={renderItem} />
-    // </View>
-
     <FlatList
       data={plans}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
       contentContainerStyle={planListStyles.listContainer}
       showsVerticalScrollIndicator={false}
-    
     />
   );
 }

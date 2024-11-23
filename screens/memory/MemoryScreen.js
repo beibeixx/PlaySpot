@@ -4,9 +4,8 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { auth, database } from "../../firebase/firebaseSetup";
 import PressableButton from "../../components/common/PressableButton";
 import ItemImage from "../../components/plan/ItemImage";
-import Screen from "../../components/common/Screen";
-import commonStyles from "../../utils/style";
 import { useSelector } from "react-redux";
+import { memoryStyles } from "../../styles/screens/memory";
 
 export default function MemoryScreen({ navigation }) {
   const [memories, setMemories] = useState([]);
@@ -27,8 +26,6 @@ export default function MemoryScreen({ navigation }) {
         setMemories(newArray);
       }
     );
-
-    // Clean up the subscription on unmount
     return () => {
       unsubscribe();
     };
@@ -38,35 +35,40 @@ export default function MemoryScreen({ navigation }) {
     return (
       <PressableButton
         pressHandler={() => navigation.navigate("Memory Details", { item })}
-        componentStyle={commonStyles.itemCard}
+        componentStyle={memoryStyles.planCard}
       >
-        <ItemImage id={item.playgroundId} photos={item.photos} item={item}/>
-        <Text style={commonStyles.planName}>{item.memoryName}</Text>
-        <Text style={commonStyles.timeText}>
-          {new Date(item.time.toDate()).toLocaleString()}
-        </Text>
+        <ItemImage item={item} screen="memory"/>
+        <View style={memoryStyles.cardContent}>
+          <Text style={memoryStyles.planName}>{item.memoryName}</Text>
+          <Text style={memoryStyles.timeText}>
+            {new Date(item.time.toDate()).toLocaleString()}
+          </Text>
+        </View>
       </PressableButton>
     );
   }
 
+  if (memories.length === 0) {
+    return (
+      <View style={memoryStyles.emptyContainer}>
+        <Text style={memoryStyles.emptyText}>
+          {isAuthenticated
+            ? `No memory yet. \n Acheive one of your plan to create memories!`
+            : "Please login to view your Memories"}
+        </Text>
+      </View>
+    );
+  }
+
   return (
-    <Screen>
-      {isAuthenticated ? (
-        <FlatList
-          data={memories}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.time}
-        />
-      ) : (
-        <View style={styles.mainContainer}></View>
-      )}
-    </Screen>
+    <FlatList
+      data={memories}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.time}
+      contentContainerStyle={memoryStyles.listContainer}
+      showsVerticalScrollIndicator={false}
+    />
   );
 }
 
-const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    backgroundColor: "#f8f4c7",
-  },
-});
+const styles = StyleSheet.create({});

@@ -9,11 +9,12 @@ import { auth } from "../../firebase/firebaseSetup";
 import { getAddressById } from "../../services/dataService";
 import { getLocationFromAddress } from "../../services/geocodingService";
 
-export default function LocationManager() {
+export default function LocationManager({selectedPlace}) {
   const [loading, setLoading] = useState(true);
   const [location, setLocation] = useState(null);
   const route = useRoute();
-  const address = getAddressById(route.params.itemID);
+  const address = selectedPlace? getAddressById(selectedPlace) : getAddressById(route.params.itemID);
+
   useEffect(() => {
     const fetchData = async () => {
       try {

@@ -22,4 +22,6 @@ export const memoryStyles = StyleSheet.create({
     fontSize: typography.size.sm,
     color: colors.text.secondary,
   },
+  emptyContainer: cardStyles.emptyContainer,
+  emptyText: cardStyles.emptyText,
 });

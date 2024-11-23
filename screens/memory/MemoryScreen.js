@@ -6,12 +6,17 @@ import PressableButton from "../../components/common/PressableButton";
 import ItemImage from "../../components/plan/ItemImage";
 import { useSelector } from "react-redux";
 import { memoryStyles } from "../../styles/screens/memory";
+import MemoryList from "../../components/memory/memoryList";
 
 export default function MemoryScreen({ navigation }) {
   const [memories, setMemories] = useState([]);
   const { isAuthenticated } = useSelector((state) => state.auth);
 
   useEffect(() => {
+    if (!isAuthenticated || !auth.currentUser) {
+      setMemories([]);
+      return;
+    }
     const unsubscribe = onSnapshot(
       collection(database, "memory"),
       (querySnapshot) => {
@@ -29,7 +34,7 @@ export default function MemoryScreen({ navigation }) {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [isAuthenticated]);
 
   function renderItem({ item }) {
     return (
@@ -37,7 +42,7 @@ export default function MemoryScreen({ navigation }) {
         pressHandler={() => navigation.navigate("Memory Details", { item })}
         componentStyle={memoryStyles.planCard}
       >
-        <ItemImage item={item} screen="memory"/>
+        <ItemImage item={item} screen="memory" />
         <View style={memoryStyles.cardContent}>
           <Text style={memoryStyles.planName}>{item.memoryName}</Text>
           <Text style={memoryStyles.timeText}>

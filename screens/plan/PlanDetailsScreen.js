@@ -20,10 +20,10 @@ import {
 } from "../../firebase/firestoreHelper";
 import { formatDate } from "../../utils/helpers";
 import PressableButton from "../../components/common/PressableButton";
-import Screen from "../../components/common/Screen";
 import commonStyles from "../../utils/style";
 import { auth } from "../../firebase/firebaseSetup";
 import WeatherSection from "./WeatherSection";
+import LocationManager from "../../components/map/LocationManager";
 
 export default function PlanDetailsScreen({ navigation, route }) {
   const { item } = route.params;
@@ -99,6 +99,7 @@ export default function PlanDetailsScreen({ navigation, route }) {
     <ScrollView>
       <Text style={commonStyles.header}>Location</Text>
       <Text>{playgroundName}</Text>
+      <LocationManager selectedPlace={item.playgroundId} />
       <Text style={commonStyles.header}>Time</Text>
       <Text>{formatDate(item.time.toDate())}</Text>
 

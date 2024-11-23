@@ -26,7 +26,7 @@ import {
   scheduleNotification,
   cancelNotification,
 } from "../../utils/helpers";
-import { getLocationFromAddress } from "../../services/geocodingService";
+import LocationManager from "../../components/map/LocationManager";
 
 export default function ModifyPlanScreen({ navigation, route }) {
   const { item } = route.params;
@@ -68,16 +68,6 @@ export default function ModifyPlanScreen({ navigation, route }) {
       setReminderTime(null);
     }
   }, [time]);
-
-  useEffect(() => {
-    async function fetchLocation() {
-      if (selectedPlayground) {
-        const address = await getLocationFromAddress(selectedPlayground.address);
-        setLocation(address);
-      }
-    }
-    fetchLocation();
-  }, [selectedPlayground]);
 
   function checkPlayground(item) {
     if (isModify) {
@@ -194,11 +184,16 @@ export default function ModifyPlanScreen({ navigation, route }) {
             )}
           />
         )}
+        <Button title="Select on Map" onPress={() => navigation.navigate("Playground Map")} />
         {selectedPlayground && (
           <Text style={commonStyles.planName}>
             Selected: {selectedPlayground.name}
           </Text>
         )}
+        {selectedPlayground && (
+          <LocationManager selectedPlace={selectedPlayground.id} />
+        )}
+        {/* Plan Name Input */}
         <Text style={commonStyles.header}>Plan Name:</Text>
         <TextInput
           placeholder="Plan Name"

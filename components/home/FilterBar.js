@@ -1,7 +1,8 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { colors } from "../../styles/helper/colors";
-import { filterBarStyles } from "./styles";
+import { filterBarStyles } from "../../styles/components/homeSearch";
+
 
 export default function FilterBar({ selectedFilter, onSelectFilter }) {
   const filterOptions = [

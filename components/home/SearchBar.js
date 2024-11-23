@@ -4,7 +4,7 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 import React from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors } from "../../styles/helper/colors";
-import { searchBarStyles } from "./styles";
+import { searchBarStyles } from "../../styles/components/homeSearch";
 
 export default function SearchBar({ onSearch, placeholder}) {
   return (

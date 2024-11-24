@@ -33,16 +33,17 @@ The app uses three main collections that are interconnected through the playgrou
 - One user can have multiple Plans, Memories, and Favorites
 - One Playground can be associated with multiple Plans, Memories, and Favorites
 
-### Collections (Iteration 1 Version)
+### Collections
 
 #### Plans Collection
 - **Fields**:
   - `planName`: string
   - `playgroundId`: string
   - `time`: timestamp
-  - `reminderTime`: timestamp
+  - `reminderTime`: timestamp (optional)
   - `archived`: boolean
   - `owner`: string
+  - `notificationId`: string
 - **Description**: Stores details of the plans created by users.
 
 #### Memories Collection
@@ -51,7 +52,7 @@ The app uses three main collections that are interconnected through the playgrou
   - `playgroundId`: string
   - `time`: timestamp
   - `memo`: string (optional)
-  - `photo`: string (optional) (TO BE ADDED)
+  - `photo`: string (optional)
   - `owner`: string
 - **Description**: Stores memories created by users.
 
@@ -132,6 +133,15 @@ The app uses three main collections that are interconnected through the playgrou
       - Styling improvements.
 
 ## Team Contributions - Iteration 2
+
+### App Progress
+   - The following functionalities should be ready for iteration 2 evalution
+      - Authentication
+      - Notification
+      - External API use
+   - The others are still under constructing
+
+### Detailed Contributions
 
 - **Member 1 Xinyu Xie**:
    - UI/UX Improvements:
@@ -220,8 +230,43 @@ The app uses three main collections that are interconnected through the playgrou
 
 
 ## Screenshots - Iteration 2
+- **Notifications (Plan)**
+   <div style="display: flex; justify-content: space-around;">
+   <img src="./assets/screenshots/iteration2/notification.PNG" alt="Plan Notification" width="300" />
+   </div>
 
+- **Auth Screens(Login vs Guest)**
+   - Account Page
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration2/account-login.PNG" alt="account login" width="300" />
+         <img src="./assets/screenshots/iteration2/account-guest.PNG" alt="account guest" width="300" />
+      </div>
+   
+   - Plan Page
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration2/plan-login.PNG" alt="plan login" width="300" />
+         <img src="./assets/screenshots/iteration2/plan-guest.PNG" alt="plan guest" width="300" />
+      </div>
 
+   - Memory Page
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration2/memory-login.PNG" alt="memory login" width="300" />
+         <img src="./assets/screenshots/iteration2/memory-guest.PNG" alt="memory guest" width="300" />
+      </div>
+
+- **External APIs (Weather & Map preview)**
+   - Weather - current and on plan date (within 5 days)
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration2/weather-within5.PNG" alt="weather with future weather" width="300" />
+      </div>
+   - Weather - current (longer than 5 days)
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration2/weather-longer-date.PNG" alt="weather without future weather" width="300" />
+      </div>
+   - Map preview
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration2/map_preview.PNG" alt="map preview on playground detail page" width="300" />
+      </div>
 
 
 

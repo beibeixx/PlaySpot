@@ -140,6 +140,8 @@ The app uses three main collections that are interconnected through the playgrou
       - Notification
       - External API use
    - The others are still under constructing
+      - Location use (in modify plan and show plan/memory details feature)
+      - Camera use (in modify memory feature )
 
 ### Detailed Contributions
 
@@ -168,6 +170,26 @@ The app uses three main collections that are interconnected through the playgrou
       - Organized reusable components and deleted invalidated components
 
 - **Member 2 Yuting Xie**:
+   - UI/UX Improvements:
+      - Enhanced `PlanDetailScreen` and `MemoryDetailScreen` layout
+      - Optimized `MemoryScreen` to display the latest photo uploaded by the user
+      - Optimized `MemoryDetailScreen` to display multiple photos
+   - Location:
+      - Defined `verifyPermission` function for the location feature
+      - Implemented `LocationManager` to display the map preview on `ModifyPlanScreen`, `PlanDetailScreen` and `MemoryDetailScreen`
+      - Implemented the `PlaygroundMap` to display nearby playground markers based on user location
+      - Integrated `PlaygroundMap` component in `ModifyPlanScreen`, users can select or updated destination on the map
+      - Provided a preview of the destination park on the `PlaygroundMap`
+   - Camera:
+      - Defined `verifyPermission` function, only if permission is granted, proceed with launching the camera
+      - Inplemented `AddMemoryPhotoCard` component for adding photos to memories
+      - Inplemented `ImageManager` component to handle image upload
+      - Supported multiple image uploads
+      - Provided options for taking a photo or choosing from the gallery
+   - Others:
+      - Updated the README
+      - Organized reusable components and deleted invalidated components
+
 
 
 ## Screenshots - Iteration 1
@@ -233,6 +255,7 @@ The app uses three main collections that are interconnected through the playgrou
 - **Notifications (Plan)**
    <div style="display: flex; justify-content: space-around;">
    <img src="./assets/screenshots/iteration2/notification.PNG" alt="Plan Notification" width="300" />
+   <img src="./assets/screenshots/iteration2/notification_android.png" alt="Android Notification" width="300">
    </div>
 
 - **Auth Screens(Login vs Guest)**
@@ -266,6 +289,31 @@ The app uses three main collections that are interconnected through the playgrou
    - Map preview
       <div style="display: flex; justify-content: space-around;">
          <img src="./assets/screenshots/iteration2/map_preview.PNG" alt="map preview on playground detail page" width="300" />
+      </div>
+
+   - **Location**
+   - Playground Map
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration2/playgroundmap_1.png" alt="playground map" width="300" />
+         <img src="./assets/screenshots/iteration2/playgroundmap_2.png" alt="playground map with information" width="300" />
+      </div>
+   
+   - Detail Map
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration2/memory_details_1.png" alt="memory detail map" width="300" />
+      </div>
+
+   - **Camera**
+   - Upload Photos
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration2/upload_photos_1.png" alt="upload photos1" width="300" />
+         <img src="./assets/screenshots/iteration2/upload_photos_2.png" alt="upload photos2" width="300" />
+         <img src="./assets/screenshots/iteration2/upload_photos_3.png" alt="upload photos3" width="300" />
+      </div>
+
+   - Show Photos
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration2/memory_list.png" alt="memory photo" width="300" />
       </div>
 
 

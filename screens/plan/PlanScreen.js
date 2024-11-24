@@ -26,7 +26,7 @@ export default function PlanScreen({ navigation }) {
         );
       },
     });
-  }, [navigation]);
+  }, [navigation, isAuthenticated]);
 
   const createHandle = () => {
     isAuthenticated

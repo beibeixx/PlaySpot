@@ -5,10 +5,15 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { setUser, clearUser } from "../../redux/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { handleSignOut } from "../../redux/authService";
+import { LinearGradient } from "expo-linear-gradient";
+import { accountStyles } from "../../styles/screens/account";
+import PressableButton from "../../components/common/PressableButton";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { colors } from "../../styles/helper/colors";
+import MenuItem from "../../components/account/MenuItem";
 
 export default function AccountScreen({ navigation }) {
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
-
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   const favoriteHandle = () => {
     navigation.navigate("Favorite List");
@@ -19,57 +24,91 @@ export default function AccountScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      {isAuthenticated ? (
-        <View style={styles.content}>
-          <Text style={styles.email}>{auth.currentUser.email}</Text>
-          <Pressable style={styles.button} onPress={favoriteHandle}>
-            <Text style={styles.buttonText}>Favorite List</Text>
-          </Pressable>
-          <Pressable style={styles.button} onPress={handleSignOut}>
-            <Text style={styles.buttonText}>Sign out</Text>
-          </Pressable>
+    <View style={accountStyles.container}>
+      <LinearGradient
+        colors={[colors.primary[200],colors.primary[400], colors.primary[800]]}
+        style={accountStyles.header}
+      >
+        <View style={accountStyles.headerContent}>
+          {isAuthenticated ? (
+            <>
+              <View style={accountStyles.avatarContainer}>
+                <MaterialCommunityIcons
+                  name="account-circle"
+                  size={60}
+                  color={colors.background.primary}
+                />
+              </View>
+              <Text style={accountStyles.emailText}>
+                {auth.currentUser.email}
+              </Text>
+              <Text style={accountStyles.welcomeText}>Welcome back!</Text>
+            </>
+          ) : (
+            <>
+              <View style={accountStyles.avatarContainer}>
+                <MaterialCommunityIcons
+                  name="account-circle-outline"
+                  size={60}
+                  color={colors.background.primary}
+                />
+              </View>
+              <Text style={accountStyles.welcomeText}>
+                Welcome to Playground App
+              </Text>
+              <Text style={accountStyles.subtitleText}>
+                Login to access all features
+              </Text>
+            </>
+          )}
         </View>
-      ) : (
-        <View style={styles.content}>
-          <Text style={styles.message}>
-            Login to get access to all the features!
-          </Text>
-          <Pressable style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Login</Text>
-          </Pressable>
-        </View>
-      )}
+      </LinearGradient>
+
+      <View style={accountStyles.content}>
+        {isAuthenticated ? (
+          <View style={accountStyles.menuContainer}>
+            <MenuItem
+              icon="heart-outline"
+              title="Favorite Playgrounds"
+              onPress={favoriteHandle}
+            />
+            {/* TO BE ADDED */}
+            {/* <MenuItem
+              icon="bell-outline"
+              title="Notifications"
+              onPress={() => {}}
+            /> */}
+            {/* <MenuItem icon="cog-outline" title="Settings" onPress={() => {}} /> */}
+            <MenuItem
+              icon="logout"
+              title="Sign Out"
+              type="danger"
+              onPress={handleSignOut}
+            />
+          </View>
+        ) : (
+          <View style={accountStyles.loginContainer}>
+            <Text style={accountStyles.loginMessage}>
+              Login to save your favorite playgrounds, receive updates, and
+              more!
+            </Text>
+            <PressableButton
+              componentStyle={accountStyles.loginButton}
+              pressedStyle={accountStyles.loginButtonPressed}
+              pressHandler={handleLogin}
+            >
+              <MaterialCommunityIcons
+                name="login"
+                size={24}
+                color={colors.background.primary}
+              />
+              <Text style={accountStyles.loginButtonText}>Login</Text>
+            </PressableButton>
+          </View>
+        )}
+      </View>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: "#fff",
-  },
-  content: {
-    gap: 15,
-    alignItems: "center",
-  },
-  email: {
-    fontSize: 16,
-    marginBottom: 10,
-  },
-  message: {
-    fontSize: 16,
-    marginBottom: 20,
-  },
-  button: {
-    backgroundColor: "#ddd",
-    padding: 10,
-    borderRadius: 5,
-    width: "100%",
-    alignItems: "center",
-  },
-  buttonText: {
-    fontSize: 16,
-  },
-});
+const styles = StyleSheet.create({});

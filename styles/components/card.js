@@ -5,6 +5,10 @@ import { layout } from "../helper/layout";
 import { typography } from "../helper/typography";
 
 export const cardStyles = StyleSheet.create({
+    mainContainer: {
+        flex: 1,
+        backgroundColor: colors.primary[100],
+      },
   listContainer: {
     padding: spacing.lg,
     paddingTop: spacing.md,

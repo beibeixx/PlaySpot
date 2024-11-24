@@ -8,10 +8,7 @@ import { cardStyles } from "../components/card";
 const screenWidth = Dimensions.get("window").width;
 
 export const homeStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.primary[100],
-  },
+  container: cardStyles.mainContainer,
   searchFilterContainer: {
     backgroundColor: colors.secondary[50],
     paddingTop: spacing.md,

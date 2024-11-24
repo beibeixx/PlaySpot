@@ -3,14 +3,12 @@ import { colors } from "../helper/colors";
 import { spacing } from "../helper/spacing";
 import { layout } from "../helper/layout";
 import { typography } from "../helper/typography";
+import { cardStyles } from "../components/card";
 
 const screenWidth = Dimensions.get("window").width;
 
 export const planStyles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    backgroundColor: colors.primary[100],
-  },
+  mainContainer: cardStyles.cardContainer,
   addButton: {
     padding: spacing.xs,
     borderRadius: layout.borderRadius.md,

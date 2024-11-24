@@ -7,6 +7,7 @@ export default function PressableButton({
   children,
   pressHandler,
   componentStyle,
+  pressedStyle,
   disabled,
 }) {
   return (
@@ -15,6 +16,7 @@ export default function PressableButton({
       style={({ pressed }) => [
         componentStyle,
         disabled && pressableButtonStyles.disabled,
+        pressed && pressedStyle,
         pressed && pressableButtonStyles.pressed,
       ]}
       android_ripple={{ color: colors.secondary[100]}}

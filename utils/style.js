@@ -42,6 +42,12 @@ const commonStyles = {
     backgroundColor: "#74e0aa",
     borderRadius: 5,
   },
+  cancelButton: {
+    padding: 10,
+    margin: 10,
+    backgroundColor: "#f8d7da",
+    borderRadius: 5,
+  },
   timeButton: {
     padding: 10,
     margin: 10,

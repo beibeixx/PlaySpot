@@ -7,6 +7,7 @@ import playgrounds from '../../data/playgrounds.json'
 import { getLocationFromAddress } from '../../services/geocodingService'
 import Card from '../../components/common/Card'
 import PressableButton from '../../components/common/PressableButton'
+import commonStyles from '../../utils/style'
 
 export default function PlaygroundMap() {
   const [selectedPlayground, setSelectedPlayground] = useState(null);
@@ -120,12 +121,18 @@ export default function PlaygroundMap() {
               <Text style={styles.modalTitle}>{selectedPlayground.name}</Text>
               <Text>{selectedPlayground.address}</Text>
               <Text>{selectedPlayground.description}</Text>
-              <TouchableOpacity onPress={handleCloseModal} style={styles.closeButton}>
-                <Text style={styles.closeButtonText}>Close</Text>
-              </TouchableOpacity>
-              <PressableButton pressHandler={handleSelectPlayground}>
+              <View style={commonStyles.buttonContainer}>
+              <PressableButton 
+                pressHandler={handleCloseModal}
+                componentStyle={commonStyles.cancelButton}>
+              <Text>Cancel</Text>
+              </PressableButton>
+              <PressableButton 
+                pressHandler={handleSelectPlayground}
+                componentStyle={commonStyles.editButton}>
               <Text>Select</Text>
               </PressableButton>
+              </View>
             </View>
         </Card>
       )}

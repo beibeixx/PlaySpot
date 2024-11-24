@@ -65,6 +65,7 @@ export default function MemoryScreen({ navigation }) {
   }
 
   return (
+    <View style={memoryStyles.mainContainer}>
     <FlatList
       data={memories}
       renderItem={renderItem}
@@ -72,6 +73,7 @@ export default function MemoryScreen({ navigation }) {
       contentContainerStyle={memoryStyles.listContainer}
       showsVerticalScrollIndicator={false}
     />
+    </View>
   );
 }
 

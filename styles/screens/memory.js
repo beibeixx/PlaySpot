@@ -8,6 +8,7 @@ import { cardStyles } from "../components/card";
 const screenWidth = Dimensions.get("window").width;
 
 export const memoryStyles = StyleSheet.create({
+  mainContainer: cardStyles.mainContainer,
   listContainer: cardStyles.listContainer,
 
   planCard: cardStyles.cardContainer,

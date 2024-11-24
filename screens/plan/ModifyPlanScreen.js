@@ -27,6 +27,7 @@ import {
   cancelNotification,
 } from "../../utils/helpers";
 import LocationManager from "../../components/map/LocationManager";
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
 export default function ModifyPlanScreen({ navigation, route }) {
   const { item } = route.params;
@@ -54,7 +55,6 @@ export default function ModifyPlanScreen({ navigation, route }) {
   const [notificationId, setNotificationId] = useState(
     isModify ? item.notificationId : null
   );
-  const [location, setLocation] = useState(isModify ? item.location : null);
 
   const searchBarRef = useRef(null);
   const isPastTime = time < new Date();
@@ -69,6 +69,12 @@ export default function ModifyPlanScreen({ navigation, route }) {
     }
   }, [time]);
 
+  useEffect(() => {
+    if (selectedPlayground) {
+      console.log("Selected Playground changed:", selectedPlayground.address);
+    }
+  }, [selectedPlayground]);
+
   function checkPlayground(item) {
     if (isModify) {
       const playground = getItemById(item.playgroundId);
@@ -77,6 +83,11 @@ export default function ModifyPlanScreen({ navigation, route }) {
       return "";
     }
   }
+
+  const selectHandler = (selectedPlayground) => {
+    console.log("Selected", selectedPlayground);
+    setSelectedPlayground(selectedPlayground);
+  };
 
   const handleSearch = (query) => {
     setSearchQuery(query);
@@ -167,6 +178,14 @@ export default function ModifyPlanScreen({ navigation, route }) {
           inputContainerStyle={styles.searchInputContainer}
           inputStyle={styles.searchInput}
         />
+        <View style={commonStyles.buttonContainer}>
+        <Text>Select On Map</Text>
+        <PressableButton
+          pressHandler={() => navigation.navigate("Playground Map", {selectHandler})}
+        >
+          <FontAwesome5 name="map-marked-alt" size={24} color="black" />
+        </PressableButton>
+        </View>
         {searchQuery && !selectedPlayground && (
           <FlatList
             data={filteredPlaygrounds}
@@ -184,14 +203,13 @@ export default function ModifyPlanScreen({ navigation, route }) {
             )}
           />
         )}
-        <Button title="Select on Map" onPress={() => navigation.navigate("Playground Map")} />
         {selectedPlayground && (
+          <>
           <Text style={commonStyles.planName}>
             Selected: {selectedPlayground.name}
           </Text>
-        )}
-        {selectedPlayground && (
           <LocationManager selectedPlace={selectedPlayground.id} />
+          </>
         )}
         {/* Plan Name Input */}
         <Text style={commonStyles.header}>Plan Name:</Text>

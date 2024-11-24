@@ -1,16 +1,22 @@
-import { Button, StyleSheet, Text, View, Modal, TouchableOpacity, Alert } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, View, TouchableOpacity, Alert, Pressable } from 'react-native'
 import React, {useEffect, useState} from 'react'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import MapView, { Marker } from 'react-native-maps'
 import * as Location from 'expo-location'
 import playgrounds from '../../data/playgrounds.json'
 import { getLocationFromAddress } from '../../services/geocodingService'
 import Card from '../../components/common/Card'
+import PressableButton from '../../components/common/PressableButton'
+import commonStyles from '../../utils/style'
 
-export default function PlaygroundMap( {navigation}) {
+export default function PlaygroundMap() {
   const [selectedPlayground, setSelectedPlayground] = useState(null);
   const [playgroundLocations, setPlaygroundLocations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [initialRegion, setInitialRegion] = useState(null);
+  const navigation = useNavigation();
+  const route = useRoute();
+  const selectHandler = route.params?.selectHandler;
 
   useEffect(() => {
     const fetchUserLocation = async () => {
@@ -70,7 +76,25 @@ export default function PlaygroundMap( {navigation}) {
   const handleCloseModal = () => {
     setSelectedPlayground(null);
   };
+
+  function handleSelectPlayground() {
+    console.log('Selected playground:', selectedPlayground);
+    console.log('Select handler:', selectHandler);
+    if (selectHandler) {
+    selectHandler(selectedPlayground);
+    setSelectedPlayground(null);
+    navigation.goBack();
+    }
+  }
   
+  if (loading || !initialRegion) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <MapView
@@ -97,9 +121,18 @@ export default function PlaygroundMap( {navigation}) {
               <Text style={styles.modalTitle}>{selectedPlayground.name}</Text>
               <Text>{selectedPlayground.address}</Text>
               <Text>{selectedPlayground.description}</Text>
-              <TouchableOpacity onPress={handleCloseModal} style={styles.closeButton}>
-                <Text style={styles.closeButtonText}>Close</Text>
-              </TouchableOpacity>
+              <View style={commonStyles.buttonContainer}>
+              <PressableButton 
+                pressHandler={handleCloseModal}
+                componentStyle={commonStyles.cancelButton}>
+              <Text>Cancel</Text>
+              </PressableButton>
+              <PressableButton 
+                pressHandler={handleSelectPlayground}
+                componentStyle={commonStyles.editButton}>
+              <Text>Select</Text>
+              </PressableButton>
+              </View>
             </View>
         </Card>
       )}

@@ -21,6 +21,7 @@ export async function deleteFromDB(deletedID, collectionName) {
 export async function updateDB(updatedID, data, collectionName) {
   try {
     await setDoc(doc(database, collectionName, updatedID), data, { merge: true });
+    console.log('Document updated with ID: ', updatedID);
   } catch (err) {
     console.log('update db', err);
   }

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, Button, StyleSheet, Alert } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebaseSetup";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -26,6 +27,23 @@ export default function Login({ navigation }) {
     navigation.navigate("Signup");
   };
 
+  const handleForgotPassword = async () => {
+    if (!email) {
+      Alert.alert("Error", "Please enter your email address");
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(auth, email);
+      Alert.alert(
+        "Success",
+        "Password reset email has been sent. Please check your inbox."
+      );
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Error", error.message);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Email Address</Text>
@@ -45,6 +63,9 @@ export default function Login({ navigation }) {
       />
       <Button title="Login" onPress={loginHandler} />
       <Button title="New User? Create an account" onPress={loginSignup} />
+      <Text style={styles.forgotPassword} onPress={handleForgotPassword}>
+        Forgot Password?
+      </Text>
     </View>
   );
 }
@@ -67,4 +88,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingHorizontal: 10,
   },
+  forgotPassword: {
+    color: 'blue',
+    textAlign: 'center',
+    marginTop: 10,
+    textDecorationLine: 'underline',
+  }
 });

@@ -30,7 +30,7 @@ export default function LocationManager({selectedPlace}) {
     if (address) {
       fetchData();
     }
-  }, [route]);
+  }, [selectedPlace]);
 
   if (loading) {
     return (

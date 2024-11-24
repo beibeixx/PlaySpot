@@ -12,6 +12,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import commonStyles from '../../utils/style';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/firebaseSetup';
+import * as ImageManipulator from 'expo-image-manipulator';
 
 
 export default function MemoryDetailsScreen( {navigation, route} ) {
@@ -28,12 +29,14 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
   useEffect(() => {
     async function getImageUris() {
       try {
-        const imageUris = await Promise.all(item.photos.map(async (photo) => {
-        const imageRef = ref(storage, photo);
-        const httpsImageUri = await getDownloadURL(imageRef);
-        return httpsImageUri;
-      }));
-        setUserPhotos(imageUris);
+        if (item.photos && item.photos.length > 0) {
+          const imageUris = await Promise.all(item.photos.map(async (photo) => {
+            const imageRef = ref(storage, photo);
+            const httpsImageUri = await getDownloadURL(imageRef);
+            return httpsImageUri;
+          }));
+          setUserPhotos(imageUris);
+        }
       } catch (error) {
         console.error('Error getting image uri:', error);
       }
@@ -68,17 +71,39 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
     setIsMemoVisible(false);
   }
   
+  async function resizeImage(uri) {
+    const manipResult = await ImageManipulator.manipulateAsync(
+      uri,
+      [{resize: {width: 800}}],
+      { compress: 0.7, format: ImageManipulator.SaveFormat.JPEG }
+    );
+    return manipResult.uri;
+  }
+
   async function handleUpdatePhotos(userPhotos) {
     let newPhotos = [];
     if (userPhotos.length > 0) {
-      newPhotos = await fetchAndUploadImage(userPhotos);
+      const resizedPhotos = await Promise.all(userPhotos.map(uri => resizeImage(uri)));
+      newPhotos = await fetchAndUploadImage(resizedPhotos);
+      console.log('new photos', newPhotos);
     }
     if (newPhotos.length > 0) {
       const updatedMemoryData = {
         ...item,
-        photos: [...item.photos, ...newPhotos],
+        photos: [...(item.photos || []), ...newPhotos],
       };
+      console.log('updated memory data', updatedMemoryData);
       updateDB(item.id, updatedMemoryData, 'memory');
+      console.log('update photos success');
+      // Update userPhotos state to trigger re-render
+      const imageUris = await Promise.all(
+        updatedMemoryData.photos.map(async (photo) => {
+          const imageRef = ref(storage, photo);
+          const httpsImageUri = await getDownloadURL(imageRef);
+          return httpsImageUri;
+        })
+      );
+      setUserPhotos(imageUris);
     }
     setShowAddPhotoCard(false);
   }

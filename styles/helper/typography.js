@@ -1,3 +1,4 @@
+//reusable typography
 export const typography = {
   size: {
     xs: 12,

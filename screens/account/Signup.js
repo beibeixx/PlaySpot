@@ -1,3 +1,4 @@
+//Signup Screen
 import { StyleSheet, Text, TextInput, View, Button,Alert } from 'react-native'
 import { useState } from 'react';
 import { auth } from '../../firebase/firebaseSetup';

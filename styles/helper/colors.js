@@ -1,3 +1,4 @@
+//reusable colors
 export const colors = {
   primary: {
     50: "#EFF6FF",

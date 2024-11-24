@@ -1,3 +1,5 @@
+// Google Map API to handle the helper functions for location features like 
+//transfer the address to latitude & longitude
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const formatAddress = (address) => {

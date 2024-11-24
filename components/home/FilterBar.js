@@ -1,3 +1,4 @@
+//FilterBar for Home screen
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { colors } from "../../styles/helper/colors";

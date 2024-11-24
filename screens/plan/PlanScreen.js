@@ -1,3 +1,4 @@
+//Display all plans including upcoming and past plans
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import PressableButton from "../../components/common/PressableButton";

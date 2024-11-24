@@ -1,3 +1,4 @@
+//Favorite list page
 import { FlatList, StyleSheet, Text, View, Alert} from "react-native";
 import React, { useState, useEffect } from "react";
 import FavoriteItemsList from "../../components/favorite/FavoriteItemsList";

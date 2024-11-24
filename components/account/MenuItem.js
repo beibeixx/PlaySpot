@@ -1,3 +1,4 @@
+// Menu items for account screen
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import PressableButton from "../../components/common/PressableButton";

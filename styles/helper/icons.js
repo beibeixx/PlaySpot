@@ -1,3 +1,4 @@
+//expo icon management
 export const iconNames = {
   Amenities: {
     name: "water-pump",

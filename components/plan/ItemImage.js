@@ -28,6 +28,8 @@ export default function ItemImage({ item, screen}) {
         } catch (error) {
           console.error("Error getting image uri:", error);
         }
+      } else {
+        setImageUri(getItemImageById(item.playgroundId));
       }
     }
     fetchLastImage();

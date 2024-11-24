@@ -1,3 +1,4 @@
+//Plan detail page to display specific data from Plan collection
 import {
   StyleSheet,
   Text,

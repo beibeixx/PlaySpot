@@ -1,3 +1,4 @@
+// Common styles for pages using cards to show list items
 import { StyleSheet } from "react-native";
 import { colors } from "../helper/colors";
 import { spacing } from "../helper/spacing";

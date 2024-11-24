@@ -1,3 +1,4 @@
+// FavoriteItemsList for FavoriteList Screen
 import {
   StyleSheet,
   Text,

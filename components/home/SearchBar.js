@@ -1,5 +1,4 @@
 // For search bar on main page
-
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import React from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";

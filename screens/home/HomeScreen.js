@@ -1,3 +1,4 @@
+//Home page to display all playground preview
 import {
   FlatList,
   StyleSheet,

@@ -1,3 +1,4 @@
+// Display reference image or uploaded image
 import { StyleSheet, Image, View } from "react-native";
 import React, { useState, useEffect } from "react";
 import { getItemImageById } from "../../services/dataService";

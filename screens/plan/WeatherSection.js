@@ -1,3 +1,4 @@
+//Display the weather section on plan details page
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getLocationFromAddress } from "../../services/geocodingService";

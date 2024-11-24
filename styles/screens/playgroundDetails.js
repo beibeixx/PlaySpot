@@ -1,3 +1,4 @@
+//Styles for PlaygroundDetails Screen
 import { StyleSheet, Dimensions } from "react-native";
 import { colors } from "../helper/colors";
 import { spacing } from "../helper/spacing";

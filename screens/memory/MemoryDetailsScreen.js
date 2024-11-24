@@ -1,3 +1,4 @@
+//Memory detail page to display specific data from memory collection
 import { StyleSheet, Text, View, FlatList, TextInput, Image, Alert, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { getImagesById, getItemNameById } from '../../services/dataService';

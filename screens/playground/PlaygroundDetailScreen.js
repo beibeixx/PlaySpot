@@ -1,3 +1,4 @@
+//Playground detail page to display specific data from reference Playground json file
 import {
   ScrollView,
   StyleSheet,

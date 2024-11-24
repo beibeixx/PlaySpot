@@ -1,3 +1,4 @@
+// Styles for images components on list pages
 import { StyleSheet, Dimensions } from "react-native";
 import { cardStyles } from "./card";
 

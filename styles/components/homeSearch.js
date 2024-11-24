@@ -1,3 +1,4 @@
+// Styles for home search and filter components
 import { StyleSheet } from "react-native";
 import { colors } from "../../styles/helper/colors";
 import { spacing } from "../../styles/helper/spacing";

@@ -135,8 +135,8 @@ The app uses three main collections that are interconnected through the playgrou
 
 - **Member 1 Xinyu Xie**:
    - UI/UX Improvements:
-      - Revamped overall application styling
-      - Redesigned `HomeScreen` layout and display
+      - Rebuilt overall application styling
+      - Redesigned `HomeScreen`, `PlanScreen`, `MemoryScreen` and `AccountScreen` layout and display
       - Enhanced `PlaygroundDetailScreen` layout
       - Optimized `PlanScreen` layout for better presentation
    - Authentication & Security:
@@ -144,6 +144,8 @@ The app uses three main collections that are interconnected through the playgrou
       - Added auth-based conditional rendering and access control
       - Updated Firebase security rules
       - Restricted user data access to authorized users only
+   - Location:
+      - Implemented `LocationManager` to display the map preview on `PlaygroundDetailScreen`
    - External APIs:
       - Added Google Geocoding API for address-to-coordinates conversion
       - Integrated OpenWeather API for 5-day weather forecasts
@@ -153,11 +155,12 @@ The app uses three main collections that are interconnected through the playgrou
       - Improved plan timing and reminder logic in modify plan feature
    - Others:
       - Updated the README
+      - Organized reusable components and deleted invalidated components
 
 - **Member 2 Yuting Xie**:
 
 
-## Screenshots
+## Screenshots - Iteration 1
 
 - **Home Screen(Playground list)**
 
@@ -216,12 +219,67 @@ The app uses three main collections that are interconnected through the playgrou
 </div>
 
 
+## Screenshots - Iteration 2
+
+
+
+
+
 ## Firebase Settings
 - **Firebase Database Indexes**
-Composite query when read data for plan screen
+   - Composite query when read data for plan screen
 <div style="display: flex; justify-content: space-around;">
 <img src="./assets/screenshots/iteration2/firebase-indexes.png" alt="indexes setting" width="300"  />
 </div>
+
+- **Firebase Database Rules**
+```
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // This rule allows anyone with your Firestore database reference to view, edit,
+    // and delete all data in your Firestore database. It is useful for getting
+    // started, but it is configured to expire after 30 days because it
+    // leaves your app open to attackers. At that time, all client
+    // requests to your Firestore database will be denied.
+    //
+    // Make sure to write security rules for your app before that time, or else
+    // all client requests to your Firestore database will be denied until you Update
+    // your rules
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    function isOwner(owner) {
+      return isAuthenticated() && request.auth.uid == owner;
+    }
+    
+    // Plans Collection
+    match /plan/{planId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update, delete: if isOwner(resource.data.owner);
+    }
+    
+    // Memories Collection
+    match /memory/{memoryId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update, delete: if isOwner(resource.data.owner);
+    }
+    
+    // Favorites Collection
+    match /favorites/{favoriteId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow delete: if isOwner(resource.data.owner);
+      allow update: if false;
+    }
+  
+  }
+}
+```
 
 
 ## External APIs

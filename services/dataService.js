@@ -1,3 +1,4 @@
+//Stores all the helper function for the reference data playgrounds.json
 import data from "../data/playgrounds.json";
 
 export const fetchData = () => {

@@ -1,3 +1,4 @@
+//Account screen to display user info and favorite list entry
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { auth } from "../../firebase/firebaseSetup";

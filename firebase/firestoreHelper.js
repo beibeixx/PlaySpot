@@ -1,4 +1,4 @@
-import { collection, addDoc, getDocs, setDoc, doc, deleteDoc, query, where} from "firebase/firestore";
+import { collection, addDoc, getDocs, setDoc, doc, deleteDoc, updateDoc, arrayRemove, getDoc} from "firebase/firestore";
 import { database } from "./firebaseSetup";
 
 //WRITING RULES HAVE NOT BEEN CHANGED, NEED TO UPDATE ON NEXT ITERTAION.
@@ -52,5 +52,17 @@ export async function getAllDocuments(collectionName) {
     return data;
   } catch (err) {
     console.log("get all docs", err);
+  }
+}
+
+export async function removeImageFromDB(imageUrl, collectionName, documentId) {
+  try {
+    const docRef = doc(database, collectionName, documentId);
+    await updateDoc(docRef, {
+      photos: arrayRemove(imageUrl),
+    });
+    console.log("Image successfully removed from db:", imageUrl);
+  } catch (err) {
+    console.error("Error removing image from db:", err);
   }
 }

@@ -2,7 +2,7 @@
 import { StyleSheet, Text, View, FlatList, TextInput, Image, Alert, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { getImagesById, getItemNameById } from '../../services/dataService';
-import { updateDB, deleteFromDB } from '../../firebase/firestoreHelper';
+import { updateDB, deleteFromDB, removeImageFromDB } from '../../firebase/firestoreHelper';
 import Screen from '../../components/common/Screen';
 import PressableButton from '../../components/common/PressableButton';
 import Card from '../../components/common/Card';
@@ -10,7 +10,7 @@ import AddMemoryPhotoCard from '../../components/memory/AddMemoryPhotoCard';
 import LocationManager from '../../components/map/LocationManager';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import commonStyles from '../../utils/style';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage';
 import { storage } from '../../firebase/firebaseSetup';
 import * as ImageManipulator from 'expo-image-manipulator';
 
@@ -80,21 +80,31 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
     return manipResult.uri;
   }
 
-  async function handleUpdatePhotos(userPhotos) {
+  async function handleUpdatePhotos(newImageUris, deletedImageUris) {
     let newPhotos = [];
-    if (userPhotos.length > 0) {
-      const resizedPhotos = await Promise.all(userPhotos.map(uri => resizeImage(uri)));
+    if (newImageUris.length > 0) {
+      const resizedPhotos = await Promise.all(newImageUris.map(uri => resizeImage(uri)));
       newPhotos = await fetchAndUploadImage(resizedPhotos);
       console.log('new photos', newPhotos);
     }
-    if (newPhotos.length > 0) {
-      const updatedMemoryData = {
-        ...item,
-        photos: [...(item.photos || []), ...newPhotos],
-      };
+
+    // Remove deleted photos from storage
+    if (deletedImageUris.length > 0) {
+      await Promise.all(deletedImageUris.map(async (uri) => {
+        const imageRef = ref(storage, uri);
+        await deleteObject(imageRef);
+        console.log('deleted image', uri);
+        await removeImageFromDB(uri, 'memory', item.id);
+      }));
+    }
+    const updatedMemoryData = {
+      ...item,
+      photos: [...(item.photos || []), ...newPhotos].filter((photo) => !deletedImageUris.includes(photo)),
+    };
       console.log('updated memory data', updatedMemoryData);
       updateDB(item.id, updatedMemoryData, 'memory');
       console.log('update photos success');
+
       // Update userPhotos state to trigger re-render
       const imageUris = await Promise.all(
         updatedMemoryData.photos.map(async (photo) => {
@@ -104,7 +114,6 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
         })
       );
       setUserPhotos(imageUris);
-    }
     setShowAddPhotoCard(false);
   }
 
@@ -249,6 +258,7 @@ export default function MemoryDetailsScreen( {navigation, route} ) {
           isVisible={showAddPhotoCard}
           cancelHandler={photoCardHandler}
           inputHandler={handleUpdatePhotos}
+          existingPhotos={userPhotos}
         />
       )}
       {newMemo && (

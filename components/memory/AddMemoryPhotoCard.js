@@ -4,23 +4,26 @@ import Card from '../common/Card'
 import PressableButton from '../common/PressableButton';
 import ImageManager from '../common/ImageManager';
 
-export default function AddMemoryPhotoCard( {isVisible, cancelHandler, inputHandler} ) {
-  const [newImageUris, setImageUris] = useState([]);
+export default function AddMemoryPhotoCard( {isVisible, cancelHandler, inputHandler, existingPhotos} ) {
+  const [newImageUris, setnewImageUris] = useState([]);
+  const [deletedImageUris, setDeletedImageUris] = useState([]);
 
   function submitHandler() {
-    console.log('submit');
-    inputHandler(newImageUris);
+    console.log('submit:' , newImageUris, deletedImageUris);
+    inputHandler(newImageUris, deletedImageUris);
   }
 
-  function receiveImageUri(uri) {
-    console.log('Received image uri:', uri);
-    setImageUris(uri);
+  function receiveImageUri(newUris, deletedUris) {
+    setnewImageUris(newUris);
+    setDeletedImageUris(deletedUris);
 }
 
   return (
     <Card isVisible={isVisible} onBack={cancelHandler}>
       <Text>Memory Photos:</Text>
-      <ImageManager receiveImageUri={receiveImageUri} />
+      <ImageManager
+        receiveImageUri={receiveImageUri}
+        existingPhotos={existingPhotos}/>
       <View style={styles.buttonContainer}>
         <PressableButton
           pressHandler={cancelHandler}>

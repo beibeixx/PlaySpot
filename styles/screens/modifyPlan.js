@@ -144,6 +144,17 @@ export const modifyPlanStyles = StyleSheet.create({
     borderColor: colors.border.light,
   },
   // Time picker
+  timeDisplayButton: {
+    backgroundColor: colors.background.input,
+    padding: spacing.md,
+    borderRadius: layout.borderRadius.md,
+    borderWidth: 1,
+    borderColor: colors.border.light,
+  },
+  timeDisplayText: {
+    fontSize: typography.size.md,
+    color: colors.text.primary,
+  },
   timeContainer: {
     flexDirection: "row",
     gap: spacing.md,

@@ -6,6 +6,9 @@ import {
   TouchableOpacity,
   Alert,
   ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -23,6 +26,7 @@ import LocationManager from "../../components/map/LocationManager";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { modifyPlanStyles } from "../../styles/screens/modifyPlan";
 import { colors } from "../../styles/helper/colors";
+import CommonDateTimePicker from "../../components/common/CommonDateTimePicker";
 
 export default function ModifyPlanScreen({ navigation, route }) {
   const { item } = route.params;
@@ -43,13 +47,14 @@ export default function ModifyPlanScreen({ navigation, route }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredPlaygrounds, setFilteredPlaygrounds] = useState(playgrounds);
 
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [showTimePicker, setShowTimePicker] = useState(false);
+  const [showPlanDatePicker, setShowPlanDatePicker] = useState(false);
+  // const [showTimePicker, setShowTimePicker] = useState(false);
   const [showReminderDatePicker, setShowReminderDatePicker] = useState(false);
-  const [showReminderTimePicker, setShowReminderTimePicker] = useState(false);
+  // const [showReminderTimePicker, setShowReminderTimePicker] = useState(false);
   const [notificationId, setNotificationId] = useState(
     isModify ? item.notificationId : null
   );
+  const [isSearching, setIsSearching] = useState(false);
 
   const searchBarRef = useRef(null);
   const isPastTime = time < new Date();
@@ -96,7 +101,7 @@ export default function ModifyPlanScreen({ navigation, route }) {
     );
   };
 
-  const handleTimeChange = (event, selectedTime, isReminderTime = false) => {
+  const handleTimeChange = (selectedTime, isReminderTime = false) => {
     if (!selectedTime) return;
 
     if (isReminderTime) {
@@ -163,7 +168,11 @@ export default function ModifyPlanScreen({ navigation, route }) {
   };
 
   return (
-    <View style={modifyPlanStyles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flex: 1 }}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+    >
       <ScrollView
         contentContainerStyle={modifyPlanStyles.contentContainer}
         keyboardShouldPersistTaps="handled"
@@ -174,44 +183,62 @@ export default function ModifyPlanScreen({ navigation, route }) {
             placeholder="Search Playground"
             onChangeText={handleSearch}
             value={searchQuery}
-            onFocus={() => setSelectedPlayground(null)}
+            onFocus={() => {
+              setSelectedPlayground(null);
+              setIsSearching(true);
+            }}
+            onBlur={() => setIsSearching(false)}
             ref={searchBarRef}
             containerStyle={modifyPlanStyles.searchContainer}
             inputContainerStyle={modifyPlanStyles.searchInputContainer}
             inputStyle={modifyPlanStyles.searchInput}
           />
 
-          {searchQuery ? (
-            <View style={modifyPlanStyles.playgroundList}>
-              {filteredPlaygrounds.map((playground) => (
-                <TouchableOpacity
-                  key={playground.id}
-                  style={modifyPlanStyles.playgroundItem}
-                  onPress={() => {
-                    setSelectedPlayground(playground);
-                    setSearchQuery("");
-                    searchBarRef.current?.blur();
-                  }}
-                >
-                  <Text style={modifyPlanStyles.playgroundItemText}>
-                    {playground.name}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          ) : (
-            <TouchableOpacity
-              style={modifyPlanStyles.mapSelectButton}
-              onPress={() => navigation.navigate("Playground Map")}
-            >
-              <FontAwesome5
-                name="map-marked-alt"
-                size={20}
-                color={colors.primary[600]}
-              />
-              <Text style={modifyPlanStyles.mapSelectText}>Select on Map</Text>
-            </TouchableOpacity>
+          {isSearching && (
+            <>
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  setIsSearching(false);
+                  searchBarRef.current?.blur();
+                }}
+              >
+                <View style={modifyPlanStyles.overlay} />
+              </TouchableWithoutFeedback>
+
+              <View style={modifyPlanStyles.searchResultsContainer}>
+                <ScrollView keyboardShouldPersistTaps="handled">
+                  {filteredPlaygrounds.map((playground) => (
+                    <TouchableOpacity
+                      key={playground.id}
+                      style={modifyPlanStyles.playgroundItem}
+                      onPress={() => {
+                        setSelectedPlayground(playground);
+                        setSearchQuery("");
+                        setIsSearching(false);
+                        searchBarRef.current?.blur();
+                      }}
+                    >
+                      <Text style={modifyPlanStyles.playgroundItemText}>
+                        {playground.name}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </ScrollView>
+              </View>
+            </>
           )}
+
+          <TouchableOpacity
+            style={modifyPlanStyles.mapSelectButton}
+            onPress={() => navigation.navigate("Playground Map")}
+          >
+            <FontAwesome5
+              name="map-marked-alt"
+              size={20}
+              color={colors.primary[600]}
+            />
+            <Text style={modifyPlanStyles.mapSelectText}>Select on Map</Text>
+          </TouchableOpacity>
 
           {selectedPlayground && (
             <View style={modifyPlanStyles.selectedLocation}>
@@ -238,24 +265,14 @@ export default function ModifyPlanScreen({ navigation, route }) {
         {/* Plan Time Section */}
         <View style={modifyPlanStyles.section}>
           <Text style={modifyPlanStyles.sectionTitle}>Time</Text>
-          <View style={modifyPlanStyles.timeContainer}>
-            <PressableButton
-              pressHandler={() => setShowDatePicker(true)}
-              componentStyle={modifyPlanStyles.timeButton}
-            >
-              <Text style={modifyPlanStyles.timeButtonText}>
-                {time.toLocaleDateString()}
-              </Text>
-            </PressableButton>
-            <PressableButton
-              pressHandler={() => setShowTimePicker(true)}
-              componentStyle={modifyPlanStyles.timeButton}
-            >
-              <Text style={modifyPlanStyles.timeButtonText}>
-                {time.toLocaleTimeString()}
-              </Text>
-            </PressableButton>
-          </View>
+          <TouchableOpacity
+            style={modifyPlanStyles.timeDisplayButton}
+            onPress={() => setShowPlanDatePicker(true)}
+          >
+            <Text style={modifyPlanStyles.timeDisplayText}>
+              {time.toLocaleString()}
+            </Text>
+          </TouchableOpacity>
         </View>
 
         {/* Reminder Time Section */}
@@ -264,62 +281,37 @@ export default function ModifyPlanScreen({ navigation, route }) {
             <Text style={modifyPlanStyles.sectionTitle}>
               Reminder Time (Optional)
             </Text>
-            <View style={modifyPlanStyles.timeContainer}>
-              <PressableButton
-                pressHandler={() => setShowReminderDatePicker(true)}
-                componentStyle={modifyPlanStyles.timeButton}
-              >
-                <Text style={modifyPlanStyles.timeButtonText}>
-                  {reminderTime
-                    ? reminderTime.toLocaleDateString()
-                    : "Set Date"}
-                </Text>
-              </PressableButton>
-              <PressableButton
-                pressHandler={() => setShowReminderTimePicker(true)}
-                componentStyle={modifyPlanStyles.timeButton}
-              >
-                <Text style={modifyPlanStyles.timeButtonText}>
-                  {reminderTime
-                    ? reminderTime.toLocaleTimeString()
-                    : "Set Time"}
-                </Text>
-              </PressableButton>
-            </View>
+            <TouchableOpacity
+              style={modifyPlanStyles.timeDisplayButton}
+              onPress={() => setShowReminderDatePicker(true)}
+            >
+              <Text style={modifyPlanStyles.timeDisplayText}>
+                {reminderTime 
+                  ? reminderTime.toLocaleString()
+                  : "Set reminder time"}
+              </Text>
+            </TouchableOpacity>
           </View>
         )}
 
         {/* DateTimePicker Components */}
-        {(showDatePicker ||
-          showTimePicker ||
-          showReminderDatePicker ||
-          showReminderTimePicker) && (
-          <DateTimePicker
-            value={
-              showReminderDatePicker || showReminderTimePicker
-                ? reminderTime || time
-                : time
-            }
-            mode={showDatePicker || showReminderDatePicker ? "date" : "time"}
-            display="default"
-            onChange={(event, selectedDate) => {
-              setShowDatePicker(false);
-              setShowTimePicker(false);
-              setShowReminderDatePicker(false);
-              setShowReminderTimePicker(false);
+        <CommonDateTimePicker
+          isVisible={showPlanDatePicker}
+          onClose={() => setShowPlanDatePicker(false)}
+          onSelect={(date) => handleTimeChange(date, false)}
+          currentValue={time}
+          isReminderPicker={false}
+        />
 
-              if (selectedDate) {
-                if (showReminderDatePicker || showReminderTimePicker) {
-                  handleTimeChange(event, selectedDate, true);
-                } else {
-                  handleTimeChange(event, selectedDate);
-                }
-              }
-            }}
-          />
-        )}
+        <CommonDateTimePicker
+          isVisible={showReminderDatePicker}
+          onClose={() => setShowReminderDatePicker(false)}
+          onSelect={(date) => handleTimeChange(date, true)}
+          currentValue={reminderTime || time}
+          isReminderPicker={true}
+        />
+
       </ScrollView>
-
       {/* Action Buttons */}
       <View style={modifyPlanStyles.actionContainer}>
         <PressableButton
@@ -337,6 +329,6 @@ export default function ModifyPlanScreen({ navigation, route }) {
           </Text>
         </PressableButton>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }

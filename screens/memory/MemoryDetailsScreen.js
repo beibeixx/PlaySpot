@@ -295,7 +295,6 @@ export default function MemoryDetailsScreen({ navigation, route }) {
                 item: {
                   planName: newMemoryName,
                   playgroundId: item.playgroundId,
-                  time: new Date(Date.now() + 24 * 60 * 60 * 1000),
                 },
               })
             }

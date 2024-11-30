@@ -80,6 +80,14 @@ export default function ModifyPlanScreen({ navigation, route }) {
     }
   }, [selectedPlayground]);
 
+  useEffect(() => {
+    if (route.params?.selectedPlayground) {
+      setSelectedPlayground(route.params.selectedPlayground);
+      // clear route
+      navigation.setParams({ selectedPlayground: undefined });
+    }
+  }, [route.params?.selectedPlayground]);
+
   function checkPlayground(item) {
     if (isModify) {
       const playground = getItemById(item.playgroundId);
@@ -88,11 +96,6 @@ export default function ModifyPlanScreen({ navigation, route }) {
       return "";
     }
   }
-
-  const selectHandler = (selectedPlayground) => {
-    console.log("Selected", selectedPlayground);
-    setSelectedPlayground(selectedPlayground);
-  };
 
   const handleSearch = (query) => {
     setSearchQuery(query);
@@ -210,7 +213,7 @@ export default function ModifyPlanScreen({ navigation, route }) {
             <TouchableOpacity
               style={modifyPlanStyles.mapSelectButton}
               onPress={() =>
-                navigation.navigate("Playground Map", { selectHandler })
+                navigation.navigate("Playground Map")
               }
             >
               <FontAwesome5

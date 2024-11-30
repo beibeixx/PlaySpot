@@ -65,7 +65,6 @@ export const colors = {
     placeholder: "#9CA3AF",
   },
 
-  // 边框颜色
   border: {
     light: "#E5E7EB",
     default: "#D1D5DB",

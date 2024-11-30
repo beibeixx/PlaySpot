@@ -1,7 +1,7 @@
 //Memory list page
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
-import { collection, onSnapshot, query, where  } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { auth, database } from "../../firebase/firebaseSetup";
 import PressableButton from "../../components/common/PressableButton";
 import ItemImage from "../../components/plan/ItemImage";
@@ -56,27 +56,33 @@ export default function MemoryScreen({ navigation }) {
     );
   }
 
-  if (memories.length === 0) {
+  function MemoryList() {
+    if (memories.length === 0) {
+      return (
+        <View style={memoryStyles.emptyContainer}>
+          <Text style={memoryStyles.emptyText}>
+            {isAuthenticated
+              ? `No memory yet. \n Acheive one of your plan to create memories!`
+              : "Please login to view your Memories"}
+          </Text>
+        </View>
+      );
+    }
+
     return (
-      <View style={memoryStyles.emptyContainer}>
-        <Text style={memoryStyles.emptyText}>
-          {isAuthenticated
-            ? `No memory yet. \n Acheive one of your plan to create memories!`
-            : "Please login to view your Memories"}
-        </Text>
-      </View>
+      <FlatList
+        data={memories}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.time}
+        contentContainerStyle={memoryStyles.listContainer}
+        showsVerticalScrollIndicator={false}
+      />
     );
   }
 
   return (
-    <View style={memoryStyles.mainContainer}>
-    <FlatList
-      data={memories}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.time}
-      contentContainerStyle={memoryStyles.listContainer}
-      showsVerticalScrollIndicator={false}
-    />
+    <View style={[memoryStyles.mainContainer, { flex: 1 }]}>
+      <MemoryList />
     </View>
   );
 }

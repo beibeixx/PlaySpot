@@ -2,8 +2,11 @@
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getLocationFromAddress } from "../../services/geocodingService";
+import { weatherSectionStyles } from "../../styles/components/WeatherSection";
+import { colors } from "../../styles/helper/colors";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-export default function WeatherSection({ address, time=null}) {
+export default function WeatherSection({ address, time = null }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
@@ -27,16 +30,20 @@ export default function WeatherSection({ address, time=null}) {
 
         const weatherResponse = await fetch(endpoint);
         const weatherResult = await weatherResponse.json();
-        if (isCurrentWeather){
+        if (isCurrentWeather) {
           setWeatherData(weatherResult);
         } else {
           const targetTime = new Date(time).getTime();
           const closestForecast = weatherResult.list.reduce((prev, curr) => {
-            const prevDiff = Math.abs(new Date(prev.dt * 1000).getTime() - targetTime);
-            const currDiff = Math.abs(new Date(curr.dt * 1000).getTime() - targetTime);
+            const prevDiff = Math.abs(
+              new Date(prev.dt * 1000).getTime() - targetTime
+            );
+            const currDiff = Math.abs(
+              new Date(curr.dt * 1000).getTime() - targetTime
+            );
             return prevDiff < currDiff ? prev : curr;
           });
-          setWeatherData(closestForecast)
+          setWeatherData(closestForecast);
         }
         setLoading(false);
       } catch (error) {
@@ -53,71 +60,68 @@ export default function WeatherSection({ address, time=null}) {
 
   if (loading) {
     return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" color="#0000ff" />
+      <View style={weatherSectionStyles.container}>
+        <ActivityIndicator size="large" color={colors.primary[500]} />
       </View>
     );
   }
 
   if (error) {
     return (
-      <View style={styles.container}>
-        <Text style={styles.errorText}>Error: {error}</Text>
+      <View style={weatherSectionStyles.container}>
+        <Text style={weatherSectionStyles.errorText}>Error: {error}</Text>
       </View>
     );
   }
-  console.log(weatherData);
+  // console.log(weatherData);
+
+  const getWeatherIcon = (description) => {
+    // Add more mappings as needed
+    const iconMap = {
+      "clear sky": "weather-sunny",
+      "few clouds": "weather-partly-cloudy",
+      "scattered clouds": "weather-cloudy",
+      "broken clouds": "weather-cloudy",
+      "shower rain": "weather-rainy",
+      rain: "weather-pouring",
+      thunderstorm: "weather-lightning-rainy",
+      snow: "weather-snowy",
+      mist: "weather-fog",
+    };
+    return iconMap[description.toLowerCase()] || "weather-cloudy";
+  };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.locationText}>{locationData?.displayName}</Text>
-      <View style={styles.weatherBox}>
-        <Text style={styles.temperature}>
-          {weatherData?.main?.temp.toFixed(1)}°C
-        </Text>
-        <Text style={styles.weatherDesc}>
-          {weatherData?.weather?.[0]?.description}
-        </Text>
-        <Text style={styles.details}>
-          Humidity: {weatherData?.main?.humidity}%
-        </Text>
-        <Text style={styles.details}>Wind: {weatherData?.wind?.speed} m/s</Text>
+    <View style={weatherSectionStyles.container}>
+      <Text style={weatherSectionStyles.locationText}>
+        {locationData?.displayName}
+      </Text>
+      <View style={weatherSectionStyles.weatherBox}>
+        <View style={weatherSectionStyles.mainInfo}>
+          <Text style={weatherSectionStyles.temperature}>
+            {Math.round(weatherData?.main?.temp)}°
+          </Text>
+          <MaterialCommunityIcons
+            name={getWeatherIcon(weatherData?.weather?.[0]?.description)}
+            size={40}
+            color={colors.primary[500]}
+          />
+        </View>
+        <View style={weatherSectionStyles.infoContainer}>
+          <Text style={weatherSectionStyles.weatherDesc}>
+            {weatherData?.weather?.[0]?.description}
+          </Text>
+          <View style={weatherSectionStyles.detailsContainer}>
+            <Text style={weatherSectionStyles.details}>
+              {weatherData?.main?.humidity}% humidity
+            </Text>
+            <Text style={weatherSectionStyles.details}>
+              {weatherData?.wind?.speed}m/s
+            </Text>
+          </View>
+        </View>
       </View>
     </View>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    padding: 15,
-    borderRadius: 10,
-    backgroundColor: "#f5f5f5",
-    marginVertical: 10,
-  },
-  locationText: {
-    fontSize: 16,
-    fontWeight: "500",
-    marginBottom: 10,
-  },
-  weatherBox: {
-    alignItems: "center",
-  },
-  temperature: {
-    fontSize: 36,
-    fontWeight: "bold",
-    marginBottom: 5,
-  },
-  weatherDesc: {
-    fontSize: 18,
-    marginBottom: 10,
-    textTransform: "capitalize",
-  },
-  details: {
-    fontSize: 14,
-    color: "#666",
-    marginBottom: 5,
-  },
-  errorText: {
-    color: "red",
-    textAlign: "center",
-  },
-});
+const styles = StyleSheet.create({});

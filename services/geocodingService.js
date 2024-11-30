@@ -32,7 +32,7 @@ export const getCoordinatesGoogle = async (address) => {
       const cached = await AsyncStorage.getItem(cacheKey);
       if (cached) {
         const cachedData = JSON.parse(cached);
-        console.log("Cache hit:", cachedData);
+        // console.log("Cache hit:", cachedData);
         return cachedData;
       }
     } catch (cacheError) {

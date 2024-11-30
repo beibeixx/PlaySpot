@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { View, ActivityIndicator } from "react-native";
 import React from "react";
 import { colors } from "../../styles/helper/colors";
 import { activityIndicatorStyles } from "../../styles/components/activityIndicator";
@@ -11,4 +11,3 @@ export default function CommonActivityIndicator() {
   );
 }
 
-const styles = StyleSheet.create({});

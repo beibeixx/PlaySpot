@@ -1,12 +1,5 @@
 //Playground detail page to display specific data from reference Playground json file
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Alert,
-} from "react-native";
+import { ScrollView, Text, View, Image, Alert } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import { getItemById } from "../../services/dataService";
 import PressableButton from "../../components/common/PressableButton";
@@ -103,9 +96,7 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
   }, [itemID, favoriteHandler]);
 
   if (!data) {
-    return (
-      <CommonActivityIndicator/>
-    );
+    return <CommonActivityIndicator />;
   }
 
   const renderSection = (sectionData, title) => {
@@ -209,5 +200,3 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

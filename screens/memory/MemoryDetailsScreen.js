@@ -16,13 +16,10 @@ import {
   deleteFromDB,
   removeImageFromDB,
 } from "../../firebase/firestoreHelper";
-import Screen from "../../components/common/Screen";
 import PressableButton from "../../components/common/PressableButton";
-import Card from "../../components/common/Card";
 import AddMemoryPhotoCard from "../../components/memory/AddMemoryPhotoCard";
 import LocationManager from "../../components/map/LocationManager";
 import { AntDesign, Feather } from "@expo/vector-icons";
-import commonStyles from "../../utils/style";
 import {
   ref,
   uploadBytesResumable,
@@ -92,12 +89,13 @@ export default function MemoryDetailsScreen({ navigation, route }) {
     setIsEditing(false);
   }
 
-  function handleMemoSubmit() {
+  function handleMemoSubmit(newMemo) {
     const updatedMemoryData = {
       ...item,
-      memo: memo,
+      memo: newMemo.trim(),
     };
     updateDB(item.id, updatedMemoryData, "memory");
+    setMemo(newMemo.trim());
     setIsMemoVisible(false);
   }
 
@@ -157,32 +155,7 @@ export default function MemoryDetailsScreen({ navigation, route }) {
     return <Image source={{ uri: item }} style={memoryDetailStyles.image} />;
   }
 
-  function handleAddMemo() {
-    setIsMemoVisible(true);
-  }
-
-  function memoModalHandler() {
-    setIsMemoVisible(false);
-  }
-
-  function handleEditPhotos() {
-    setShowAddPhotoCard(true);
-  }
-
-  function photoCardHandler() {
-    setShowAddPhotoCard(false);
-  }
-
-  function createNewPlan() {
-    const newPlanData = {
-      planName: item.memoryName,
-      playgroundId: item.playgroundId,
-    };
-    console.log(newPlanData);
-    navigation.navigate("Modify Plan", { item: newPlanData });
-  }
-
-  function pressDelete() {
+  function handleDelete() {
     Alert.alert("Important", "Are you sure you want to delete this memory?", [
       { text: "No", style: "cancel" },
       {
@@ -322,6 +295,7 @@ export default function MemoryDetailsScreen({ navigation, route }) {
                 item: {
                   planName: newMemoryName,
                   playgroundId: item.playgroundId,
+                  time: new Date(Date.now() + 24 * 60 * 60 * 1000),
                 },
               })
             }
@@ -332,7 +306,7 @@ export default function MemoryDetailsScreen({ navigation, route }) {
           </PressableButton>
 
           <PressableButton
-            pressHandler={pressDelete}
+            pressHandler={handleDelete}
             componentStyle={[
               memoryDetailStyles.primaryButton,
               memoryDetailStyles.deleteButton,
@@ -342,69 +316,6 @@ export default function MemoryDetailsScreen({ navigation, route }) {
             <Text style={memoryDetailStyles.buttonText}>Delete Memory</Text>
           </PressableButton>
         </View>
-
-        {/* <View style={styles.buttonContainer}>
-          <PressableButton
-            pressHandler={handleAddMemo}
-            componentStyle={commonStyles.editButton}
-          >
-            <Text>Add Memo</Text>
-          </PressableButton>
-          <PressableButton
-            pressHandler={handleEditPhotos}
-            componentStyle={commonStyles.editButton}
-          >
-            <Text>Edit Photos</Text>
-          </PressableButton>
-        </View>
-        <View style={styles.buttonContainer}>
-          <PressableButton
-            pressHandler={createNewPlan}
-            componentStyle={commonStyles.editButton}
-          >
-            <Text>Create New Plan Again</Text>
-          </PressableButton>
-        </View>
-        {isMemoVisible && (
-          <Card isVisible={isMemoVisible} onBack={memoModalHandler}>
-            <TextInput
-              value={memo}
-              onChangeText={setMemo}
-              placeholder={memo ? memo : "Add your memo here"}
-            />
-            <View style={styles.buttonContainer}>
-              <PressableButton pressHandler={memoModalHandler}>
-                <Text>Cancel</Text>
-              </PressableButton>
-              <PressableButton pressHandler={handleUpdateMeno}>
-                <Text>Save Memo</Text>
-              </PressableButton>
-            </View>
-          </Card>
-        )}
-        {showAddPhotoCard && (
-          <AddMemoryPhotoCard
-            isVisible={showAddPhotoCard}
-            cancelHandler={photoCardHandler}
-            inputHandler={handleUpdatePhotos}
-            existingPhotos={userPhotos}
-          />
-        )}
-        {memo && (
-          <View>
-            <Text style={commonStyles.header}>Memo</Text>
-            <Text>{memo}</Text>
-          </View>
-        )}
-        <LocationManager selectedPlace={item.playgroundId} />
-        <View style={styles.buttonContainer}>
-          <PressableButton
-            pressHandler={pressDelete}
-            componentStyle={commonStyles.alertButton}
-          >
-            <Text>Delete This Memory</Text>
-          </PressableButton>
-        </View> */}
       </ScrollView>
       <MemoCard
         isVisible={isMemoVisible}

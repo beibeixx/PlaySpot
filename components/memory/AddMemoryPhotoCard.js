@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, Modal, Pressable} from "react-native";
 import React, { useState } from "react";
-import Card from "../common/Card";
 import PressableButton from "../common/PressableButton";
 import ImageManager from "../common/ImageManager";
 import { addMemoryPhotoStyles } from "../../styles/components/addMemoryPhoto";

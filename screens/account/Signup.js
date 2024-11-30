@@ -1,92 +1,165 @@
 //Signup Screen
-import { StyleSheet, Text, TextInput, View, Button,Alert } from 'react-native'
-import { useState } from 'react';
-import { auth } from '../../firebase/firebaseSetup';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import React from 'react'
+import {
+  Text,
+  TextInput,
+  View,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Image,
+  ActivityIndicator,
+} from "react-native";
+import { useState } from "react";
+import { auth } from "../../firebase/firebaseSetup";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import React from "react";
+import { loginStyles } from "../../styles/screens/login";
+import { colors } from "../../styles/helper/colors";
+import PressableButton from "../../components/common/PressableButton";
+import { AntDesign } from "@expo/vector-icons";
+import { validateSignupForm } from "../../utils/validation";
 
-export default function Signup({navigation}) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+export default function Signup({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const signupHandler = async () => {
-    if (!email || !password || !confirmPassword) {
-      Alert.alert('Error', 'All fields are required');  
+    const formErrors = validateSignupForm(email, password);
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
       return;
     }
-    if (password !== confirmPassword) {
-      Alert.alert('Error', 'Passwords do not match');
-      return;
-    }
-    // check fegex for email
-    if (!email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/)) {
-      Alert.alert('Error', 'Invalid email address');
-      return;
-    }
-    // check password length
-    if (password.length < 6) {
-      Alert.alert('Error', 'Password must be at least 6 characters');
-      return;
-    }
+    setIsLoading(true);
 
     try {
-      const userCred = await createUserWithEmailAndPassword(auth, email, password);
-      console.log('Signup successful');
-      navigation.navigate('Account');
+      const userCred = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      // console.log("Signup successful");
+      navigation.navigate("Account");
     } catch (error) {
-      console.log(error);
-      Alert.alert('Error', error.message);
+      // console.log(error);
+      Alert.alert("Error", error.message);
+    } finally {
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Email Address</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <Text style={styles.header}>Password</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry={true}
-      />
-      <Text style={styles.header}>Confirm password</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        value={confirmPassword}
-        onChangeText={setConfirmPassword}
-        secureTextEntry={true}
-      />
-      <Button title="Register" onPress={signupHandler} />
-      <Button title="Already Registered? Login" onPress={() => navigation.navigate('Login')} />
-    </View>
-  )
-}
+    <KeyboardAvoidingView
+      style={loginStyles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <ScrollView
+        contentContainerStyle={loginStyles.scrollContainer}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={loginStyles.contentContainer}>
+          {/* Header */}
+          <View style={loginStyles.headerContainer}>
+            <Image
+              source={require("../../assets/favicon.png")}
+              style={loginStyles.logo}
+              resizeMode="contain"
+            />
+            <Text style={loginStyles.title}>Create Account</Text>
+            <Text style={loginStyles.subtitle}>Sign up to get started</Text>
+          </View>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 20,
-  },
-  header: {
-    fontSize: 24,
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 20,
-    paddingHorizontal: 10,
-  },
-})
+          {/* Input Fields */}
+          <View style={loginStyles.inputContainer}>
+            <View style={loginStyles.inputWrapper}>
+              <Text style={loginStyles.inputLabel}>Email</Text>
+              <TextInput
+                style={[
+                  loginStyles.input,
+                  errors.email && loginStyles.inputError,
+                ]}
+                placeholder="Enter your email"
+                value={email}
+                onChangeText={setEmail}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoComplete="email"
+              />
+              {errors.email && (
+                <Text style={loginStyles.errorText}>{errors.email}</Text>
+              )}
+            </View>
+
+            <View style={loginStyles.inputWrapper}>
+              <Text style={loginStyles.inputLabel}>Password</Text>
+              <TextInput
+                style={[
+                  loginStyles.input,
+                  errors.password && loginStyles.inputError,
+                ]}
+                placeholder="Create password"
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry
+              />
+              {errors.password && (
+                <Text style={loginStyles.errorText}>{errors.password}</Text>
+              )}
+            </View>
+
+            <View style={loginStyles.inputWrapper}>
+              <Text style={loginStyles.inputLabel}>Confirm Password</Text>
+              <TextInput
+                style={[
+                  loginStyles.input,
+                  errors.confirmPassword && loginStyles.inputError,
+                ]}
+                placeholder="Confirm password"
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
+                secureTextEntry
+              />
+              {errors.confirmPassword && (
+                <Text style={loginStyles.errorText}>
+                  {errors.confirmPassword}
+                </Text>
+              )}
+            </View>
+          </View>
+          {/* Action Buttons */}
+          <View style={loginStyles.buttonsContainer}>
+            <PressableButton
+              componentStyle={loginStyles.loginButton}
+              pressHandler={signupHandler}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <ActivityIndicator color={colors.text.white} />
+              ) : (
+                <>
+                  <Text style={loginStyles.buttonText}>Create Account</Text>
+                  <AntDesign
+                    name="adduser"
+                    size={20}
+                    color={colors.text.white}
+                  />
+                </>
+              )}
+            </PressableButton>
+
+            <PressableButton
+              componentStyle={loginStyles.registerButton}
+              pressHandler={() => navigation.navigate("Login")}
+            >
+              <Text style={loginStyles.buttonText}>Back to Login</Text>
+              <AntDesign name="login" size={20} color={colors.text.white} />
+            </PressableButton>
+          </View>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
+  );
+}

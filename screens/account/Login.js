@@ -18,6 +18,7 @@ import { loginStyles } from "../../styles/screens/login";
 import { colors } from "../../styles/helper/colors";
 import PressableButton from "../../components/common/PressableButton";
 import { AntDesign } from "@expo/vector-icons";
+import { validateLoginForm } from "../../utils/validation";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -25,26 +26,12 @@ export default function Login({ navigation }) {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
-  const validateForm = () => {
-    const newErrors = {};
-
-    if (!email) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
-      newErrors.email = "Email is invalid";
-    }
-
-    if (!password) {
-      newErrors.password = "Password is required";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
   const loginHandler = async () => {
-    if (!validateForm()) return;
-
+    const formErrors = validateLoginForm(email, password);
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
     setIsLoading(true);
 
     try {
@@ -140,9 +127,7 @@ export default function Login({ navigation }) {
                 secureTextEntry
               />
               {errors.password && (
-                <Text style={loginStyles.errorText}>
-                  {loginStyles.password}
-                </Text>
+                <Text style={loginStyles.errorText}>{errors.password}</Text>
               )}
             </View>
 

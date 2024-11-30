@@ -1,1 +1,0 @@
-// For markers on map 

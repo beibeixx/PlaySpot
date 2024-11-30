@@ -1,9 +1,7 @@
 //Plan detail page to display specific data from Plan collection
 import {
-  StyleSheet,
   Text,
   View,
-  FlatList,
   Image,
   Alert,
   ScrollView,
@@ -199,5 +197,3 @@ export default function PlanDetailsScreen({ navigation, route }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

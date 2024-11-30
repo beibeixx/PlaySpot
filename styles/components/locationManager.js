@@ -1,10 +1,6 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
 import { colors } from "../helper/colors";
-import { spacing } from "../helper/spacing";
-import { layout } from "../helper/layout";
-import { typography } from "../helper/typography";
 
-const { width } = Dimensions.get("window");
 
 export const locationManagerStyles = StyleSheet.create({
   container: {

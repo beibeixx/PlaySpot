@@ -4,7 +4,7 @@ import { spacing } from "../../styles/helper/spacing";
 import { layout } from "../../styles/helper/layout";
 import { typography } from "../../styles/helper/typography";
 
-const { height: SCREEN_HEIGHT } = Dimensions.get("window");
+const screenHeight = Dimensions.get("window").height;
 
 export const addMemoryPhotoStyles = StyleSheet.create({
   modalContainer: {
@@ -16,8 +16,7 @@ export const addMemoryPhotoStyles = StyleSheet.create({
     backgroundColor: colors.background.card,
     borderTopLeftRadius: layout.borderRadius.xl,
     borderTopRightRadius: layout.borderRadius.xl,
-    minHeight: SCREEN_HEIGHT * 0.7,
-    maxHeight: SCREEN_HEIGHT * 0.9,
+    height: screenHeight * 0.75,
     paddingTop: spacing.lg,
   },
   handle: {

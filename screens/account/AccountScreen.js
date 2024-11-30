@@ -1,5 +1,5 @@
 //Account screen to display user info and favorite list entry
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import React from "react";
 import { auth } from "../../firebase/firebaseSetup";
 import { useSelector } from "react-redux";
@@ -109,5 +109,3 @@ export default function AccountScreen({ navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

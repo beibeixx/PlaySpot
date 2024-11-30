@@ -1,6 +1,5 @@
 //Memory detail page to display specific data from memory collection
 import {
-  StyleSheet,
   Text,
   View,
   FlatList,
@@ -330,4 +329,3 @@ export default function MemoryDetailsScreen({ navigation, route }) {
   );
 }
 
-const styles = StyleSheet.create({});

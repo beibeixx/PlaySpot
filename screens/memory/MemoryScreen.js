@@ -1,5 +1,5 @@
 //Memory list page
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { Text, View, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { auth, database } from "../../firebase/firebaseSetup";
@@ -86,5 +86,3 @@ export default function MemoryScreen({ navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

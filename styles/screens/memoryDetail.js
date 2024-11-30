@@ -1,10 +1,9 @@
-import { StyleSheet, Platform, Dimensions } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 import { colors } from "../../styles/helper/colors";
 import { spacing } from "../../styles/helper/spacing";
 import { layout } from "../../styles/helper/layout";
 import { typography } from "../../styles/helper/typography";
 
-const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 export const memoryDetailStyles = StyleSheet.create({
   container: {

@@ -1,20 +1,12 @@
 //Home page to display all playground preview
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-} from "react-native";
+import { FlatList, Text, View, Image } from "react-native";
 import React, { useState, useEffect } from "react";
-import dataService, { fetchData } from "../../services/dataService";
+import { fetchData } from "../../services/dataService";
 import SearchBar from "../../components/home/SearchBar";
 import FilterBar from "../../components/home/FilterBar";
 import PressableButton from "../../components/common/PressableButton";
 import { homeStyles } from "../../styles/screens/home";
 import { colors, getTagColors } from "../../styles/helper/colors";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import CommonActivityIndicator from "../../components/common/CommonActivityIndicator";
 
@@ -134,9 +126,7 @@ export default function HomeScreen({ navigation }) {
   };
 
   if (loading) {
-    return (
-      <CommonActivityIndicator />
-    );
+    return <CommonActivityIndicator />;
   }
 
   const handleSearch = (search) => {
@@ -171,5 +161,3 @@ export default function HomeScreen({ navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

@@ -1,12 +1,11 @@
 //Styles for Home Screen
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
 import { colors } from "../helper/colors";
 import { spacing } from "../helper/spacing";
 import { layout } from "../helper/layout";
 import { typography } from "../helper/typography";
 import { cardStyles } from "../components/card";
 
-const screenWidth = Dimensions.get("window").width;
 
 export const homeStyles = StyleSheet.create({
   container: cardStyles.mainContainer,

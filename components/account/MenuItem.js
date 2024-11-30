@@ -1,5 +1,5 @@
 // Menu items for account screen
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import React from "react";
 import PressableButton from "../../components/common/PressableButton";
 import { accountStyles } from "../../styles/screens/account";
@@ -24,7 +24,10 @@ export default function MenuItem({ icon, title, onPress, type = "default" }) {
           style={accountStyles.menuIcon}
         />
         <Text
-          style={[accountStyles.menuText, type === "danger" && accountStyles.menuTextDanger]}
+          style={[
+            accountStyles.menuText,
+            type === "danger" && accountStyles.menuTextDanger,
+          ]}
         >
           {title}
         </Text>
@@ -38,5 +41,3 @@ export default function MenuItem({ icon, title, onPress, type = "default" }) {
     </PressableButton>
   );
 }
-
-const styles = StyleSheet.create({});

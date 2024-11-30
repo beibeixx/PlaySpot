@@ -1,5 +1,5 @@
 //Display all plans including upcoming and past plans
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import PressableButton from "../../components/common/PressableButton";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -74,5 +74,3 @@ export default function PlanScreen({ navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

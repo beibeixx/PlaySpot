@@ -1,21 +1,16 @@
 // Add or Update plan
 import {
-  StyleSheet,
   Text,
   View,
   TextInput,
   TouchableOpacity,
   Alert,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { SearchBar } from "@rneui/themed";
-import {
-  fetchData,
-  getItemById,
-  getItemNameById,
-} from "../../services/dataService";
+import { fetchData, getItemById } from "../../services/dataService";
 import { writeToDB, updateDB } from "../../firebase/firestoreHelper";
 import PressableButton from "../../components/common/PressableButton";
 import { auth } from "../../firebase/firebaseSetup";
@@ -207,9 +202,7 @@ export default function ModifyPlanScreen({ navigation, route }) {
           ) : (
             <TouchableOpacity
               style={modifyPlanStyles.mapSelectButton}
-              onPress={() =>
-                navigation.navigate("Playground Map")
-              }
+              onPress={() => navigation.navigate("Playground Map")}
             >
               <FontAwesome5
                 name="map-marked-alt"
@@ -347,5 +340,3 @@ export default function ModifyPlanScreen({ navigation, route }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

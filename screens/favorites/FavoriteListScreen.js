@@ -1,5 +1,5 @@
 //Favorite list page
-import { FlatList, StyleSheet, Text, View, Alert } from "react-native";
+import { FlatList, Text, View, Alert } from "react-native";
 import React, { useState, useEffect } from "react";
 import FavoriteItemsList from "../../components/favorite/FavoriteItemsList";
 import { deleteFromDB } from "../../firebase/firestoreHelper";
@@ -56,25 +56,20 @@ export default function FavoriteListScreen({ navigation }) {
 
   return (
     <View style={favoriteStyles.container}>
-
-    <FlatList
-      data={data}
-      keyExtractor={(item) => item.id}
-      contentContainerStyle={favoriteStyles.listContainer}
-
-      renderItem={({ item }) => {
-        return (
-          <FavoriteItemsList
-            playgroundItem={item}
-            navigation={navigation}
-            removeHandler={handleFavoriteRomove}
-          />
-        );
-      }}
-    ></FlatList>
-        </View>
-
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={favoriteStyles.listContainer}
+        renderItem={({ item }) => {
+          return (
+            <FavoriteItemsList
+              playgroundItem={item}
+              navigation={navigation}
+              removeHandler={handleFavoriteRomove}
+            />
+          );
+        }}
+      ></FlatList>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({});

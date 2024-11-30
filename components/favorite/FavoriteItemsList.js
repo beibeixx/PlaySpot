@@ -1,10 +1,9 @@
 // FavoriteItemsList for FavoriteList Screen
-import { StyleSheet, Text, View, Image } from "react-native";
+import { Text, View, Image } from "react-native";
 import React from "react";
 import { getItemImageById, getItemNameById } from "../../services/dataService";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import PressableButton from "../common/PressableButton";
-import commonStyles from "../../utils/style";
 import { favoriteItemStyles } from "../../styles/components/favoriteItem";
 
 export default function FavoriteItemsList({
@@ -26,7 +25,7 @@ export default function FavoriteItemsList({
     <View style={favoriteItemStyles.container}>
       <PressableButton
         pressHandler={handlePress}
-        componentStyle={commonStyles.contentContainer}
+        componentStyle={favoriteItemStyles.contentContainer}
       >
         <View style={favoriteItemStyles.contentContainer}>
           <View style={favoriteItemStyles.imageContainer}>
@@ -58,5 +57,3 @@ export default function FavoriteItemsList({
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

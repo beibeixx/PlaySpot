@@ -2,7 +2,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 import { colors } from "../helper/colors";
 import { spacing } from "../helper/spacing";
-import { layout } from "../helper/layout";
 import { typography } from "../helper/typography";
 import { cardStyles } from "../components/card";
 

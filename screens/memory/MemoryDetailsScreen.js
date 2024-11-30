@@ -1,6 +1,5 @@
 //Memory detail page to display specific data from memory collection
 import {
-  StyleSheet,
   Text,
   View,
   FlatList,
@@ -267,7 +266,7 @@ export default function MemoryDetailsScreen({ navigation, route }) {
             <Text
               style={[
                 memoryDetailStyles.buttonText,
-                styles.secondaryButtonText,
+                memoryDetailStyles.secondaryButtonText,
               ]}
             >
               Edit Photos
@@ -333,4 +332,3 @@ export default function MemoryDetailsScreen({ navigation, route }) {
   );
 }
 
-const styles = StyleSheet.create({});

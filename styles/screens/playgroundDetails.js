@@ -12,11 +12,6 @@ export const detailStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background.secondary,
   },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   imageContainer: {
     height: 250,
     width: '100%',

@@ -21,6 +21,7 @@ import { useSelector } from "react-redux";
 import LocationManager from "../../components/map/LocationManager";
 import { LinearGradient } from "expo-linear-gradient";
 import { getIconNames } from "../../styles/helper/icons";
+import CommonActivityIndicator from "../../components/common/CommonActivityIndicator";
 
 export default function PlaygroundDetailScreen({ navigation, route }) {
   const [data, setData] = useState(null);
@@ -103,9 +104,7 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
 
   if (!data) {
     return (
-      <View style={detailStyles.loadingContainer}>
-        <ActivityIndicator size="large" color={colors.primary[500]} />
-      </View>
+      <CommonActivityIndicator/>
     );
   }
 

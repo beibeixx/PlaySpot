@@ -1,14 +1,32 @@
-//Styles for Favorite Screen
-import { StyleSheet, Dimensions } from "react-native";
-import { colors } from "../helper/colors";
-import { spacing } from "../helper/spacing";
-import { layout } from "../helper/layout";
-import { typography } from "../helper/typography";
-import { cardStyles } from "../components/card";
-
-const screenWidth = Dimensions.get("window").width;
+import { StyleSheet } from "react-native";
+import { colors } from "../../styles/helper/colors";
+import { spacing } from "../../styles/helper/spacing";
+import { layout } from "../../styles/helper/layout";
+import { typography } from "../../styles/helper/typography";
 
 export const favoriteStyles = StyleSheet.create({
-  emptyContainer: cardStyles.emptyContainer,
-  emptyText: cardStyles.emptyText,
+  container: {
+    flex: 1,
+    backgroundColor: colors.background.secondary,
+  },
+  listContainer: {
+    paddingVertical: spacing.md,
+  },
+  emptyContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.background.secondary,
+    padding: spacing.xl,
+  },
+  emptyText: {
+    fontSize: typography.size.lg,
+    color: colors.text.secondary,
+    textAlign: "center",
+    marginTop: spacing.sm,
+  },
+  emptyIcon: {
+    color: colors.neutral[300],
+    marginBottom: spacing.md,
+  },
 });

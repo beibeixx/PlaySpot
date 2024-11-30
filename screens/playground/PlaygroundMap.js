@@ -1,14 +1,20 @@
-import { StyleSheet, Text, View, TouchableOpacity, Alert } from "react-native";
+import {
+  Text,
+  View,
+  Alert,
+  Modal,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import playgrounds from "../../data/playgrounds.json";
 import { getLocationFromAddress } from "../../services/geocodingService";
-import Card from "../../components/common/Card";
 import PressableButton from "../../components/common/PressableButton";
-import commonStyles from "../../utils/style";
 import CommonActivityIndicator from "../../components/common/CommonActivityIndicator";
+import { playgroundMapStyles } from "../../styles/screens/playgroundMap";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { colors } from "../../styles/helper/colors";
 
 export default function PlaygroundMap() {
   const [selectedPlayground, setSelectedPlayground] = useState(null);
@@ -101,8 +107,13 @@ export default function PlaygroundMap() {
   }
 
   return (
-    <View style={styles.container}>
-      <MapView style={styles.map} initialRegion={initialRegion}>
+    <View style={playgroundMapStyles.container}>
+      <MapView
+        style={playgroundMapStyles.map}
+        initialRegion={initialRegion}
+        showsUserLocation
+        showsMyLocationButton
+      >
         {playgroundLocations.map((playground) => (
           <Marker
             key={playground.id}
@@ -112,41 +123,96 @@ export default function PlaygroundMap() {
             }}
             title={playground.name}
             onPress={() => handleMarkerPress(playground)}
-          />
+          >
+            <View
+              style={[
+                playgroundMapStyles.customMarker,
+                selectedPlayground?.id === playground.id &&
+                  playgroundMapStyles.selectedMarker,
+              ]}
+            >
+              <MaterialIcons
+                name="location-pin"
+                size={24}
+                color={colors.text.white}
+              />
+            </View>
+          </Marker>
         ))}
       </MapView>
-      {selectedPlayground && (
-        <Card isVisible={selectedPlayground !== null} onBack={handleCloseModal}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>{selectedPlayground.name}</Text>
-            <Text>{selectedPlayground.address}</Text>
-            <Text>{selectedPlayground.description}</Text>
-            <View style={commonStyles.buttonContainer}>
-              <PressableButton
-                pressHandler={handleCloseModal}
-                componentStyle={commonStyles.cancelButton}
-              >
-                <Text>Cancel</Text>
-              </PressableButton>
-              <PressableButton
-                pressHandler={handleSelectPlayground}
-                componentStyle={commonStyles.editButton}
-              >
-                <Text>Select</Text>
-              </PressableButton>
-            </View>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={selectedPlayground !== null}
+        onRequestClose={handleCloseModal}
+      >
+        <PressableButton
+          componentStyle={{ flex: 1 }}
+          pressHandler={handleCloseModal}
+        >
+          <View style={{ flex: 1, justifyContent: "flex-end" }}>
+            <PressableButton
+              componentStyle={playgroundMapStyles.modalContainer}
+              pressHandler={(e) => e.stopPropagation()}
+            >
+              <View style={playgroundMapStyles.handle} />
+              <View style={playgroundMapStyles.modalContent}>
+                <Text style={playgroundMapStyles.playgroundTitle}>
+                  {selectedPlayground?.name}
+                </Text>
+
+                <View style={playgroundMapStyles.addressContainer}>
+                  <MaterialIcons
+                    name="location-on"
+                    size={20}
+                    style={playgroundMapStyles.addressIcon}
+                  />
+                  <Text style={playgroundMapStyles.addressText}>
+                    {selectedPlayground?.address}
+                  </Text>
+                </View>
+
+                <View style={playgroundMapStyles.descriptionContainer}>
+                  <Text style={playgroundMapStyles.descriptionText}>
+                    {selectedPlayground?.description}
+                  </Text>
+                </View>
+
+                <View style={playgroundMapStyles.actionContainer}>
+                  <PressableButton
+                    pressHandler={handleCloseModal}
+                    componentStyle={playgroundMapStyles.cancelButton}
+                  >
+                    <Text
+                      style={[
+                        playgroundMapStyles.buttonText,
+                        playgroundMapStyles.cancelButtonText,
+                      ]}
+                    >
+                      Cancel
+                    </Text>
+                  </PressableButton>
+
+                  <PressableButton
+                    pressHandler={handleSelectPlayground}
+                    componentStyle={playgroundMapStyles.selectButton}
+                  >
+                    <Text
+                      style={[
+                        playgroundMapStyles.buttonText,
+                        playgroundMapStyles.selectButtonText,
+                      ]}
+                    >
+                      Select
+                    </Text>
+                  </PressableButton>
+                </View>
+              </View>
+            </PressableButton>
           </View>
-        </Card>
-      )}
+        </PressableButton>
+      </Modal>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  map: {
-    flex: 1,
-  },
-});

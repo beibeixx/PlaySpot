@@ -107,91 +107,93 @@ export default function PlanDetailsScreen({ navigation, route }) {
   return (
     <View style={planDetailStyles.container}>
       {/* Header Image Section */}
-      <View style={planDetailStyles.imageContainer}>
-        <Image
-          source={{ uri: images[0] }}
-          style={planDetailStyles.image}
-          resizeMode="cover"
-        />
-        <LinearGradient
-          colors={["transparent", "rgba(0,0,0,0.3)"]}
-          style={planDetailStyles.gradient}
-        />
-      </View>
-
-      {/* Content Section */}
-      <ScrollView style={planDetailStyles.contentContainer}>
-        {/* Time Section - Moved to top */}
-        <View style={planDetailStyles.section}>
-          <Text style={planDetailStyles.sectionTitle}>Time</Text>
-          <Text style={planDetailStyles.timeText}>
-            {formatDate(item.time.toDate())}
-          </Text>
+      <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
+        <View style={planDetailStyles.imageContainer}>
+          <Image
+            source={{ uri: images[0] }}
+            style={planDetailStyles.image}
+            resizeMode="cover"
+          />
+          <LinearGradient
+            colors={["transparent", "rgba(0,0,0,0.3)"]}
+            style={planDetailStyles.gradient}
+          />
         </View>
 
-        {/* Location Section */}
-        <View style={planDetailStyles.section}>
-          <Text style={planDetailStyles.sectionTitle}>Location</Text>
-          <Text style={planDetailStyles.locationName}>{playgroundName}</Text>
-          <View style={planDetailStyles.mapContainer}>
-            <LocationManager selectedPlace={item.playgroundId} />
+        <View style={planDetailStyles.contentContainer}>
+          {/* Content Section */}
+          <View style={planDetailStyles.section}>
+            <Text style={planDetailStyles.sectionTitle}>Time</Text>
+            <Text style={planDetailStyles.timeText}>
+              {formatDate(item.time.toDate())}
+            </Text>
           </View>
-        </View>
 
-        {/* Weather Sections */}
-        {!pastMode && (
-          <View style={planDetailStyles.weatherContainer}>
-            <Text style={planDetailStyles.weatherTitle}>Current Weather</Text>
-            <WeatherSection address={getAddressById(item.playgroundId)} />
+          {/* Location Section */}
+          <View style={planDetailStyles.section}>
+            <Text style={planDetailStyles.sectionTitle}>Location</Text>
+            <Text style={planDetailStyles.locationName}>{playgroundName}</Text>
+            <View style={planDetailStyles.mapContainer}>
+              <LocationManager selectedPlace={item.playgroundId} />
+            </View>
+          </View>
 
-            {Math.abs(diffDays) <= 5 ? (
-              <>
-                <Text
-                  style={[
-                    planDetailStyles.weatherTitle,
-                    { marginTop: spacing.lg },
-                  ]}
-                >
-                  Weather on your plan date
+          {/* Weather Sections */}
+          {!pastMode && (
+            <View style={planDetailStyles.weatherContainer}>
+              <Text style={planDetailStyles.weatherTitle}>Current Weather</Text>
+              <WeatherSection address={getAddressById(item.playgroundId)} />
+
+              {Math.abs(diffDays) <= 5 ? (
+                <>
+                  <Text
+                    style={[
+                      planDetailStyles.weatherTitle,
+                      { marginTop: spacing.lg },
+                    ]}
+                  >
+                    Weather on your plan date
+                  </Text>
+                  <WeatherSection
+                    address={getAddressById(item.playgroundId)}
+                    time={item.time}
+                  />
+                </>
+              ) : (
+                <Text style={planDetailStyles.warningText}>
+                  Weather on your plan date will be shown 5 days before your
+                  plan
                 </Text>
-                <WeatherSection
-                  address={getAddressById(item.playgroundId)}
-                  time={item.time}
-                />
-              </>
+              )}
+            </View>
+          )}
+
+          {/* Buttons */}
+          <View style={planDetailStyles.buttonContainer}>
+            <PressableButton
+              pressHandler={pressDelete}
+              componentStyle={planDetailStyles.deleteButton}
+            >
+              <Text style={planDetailStyles.buttonText}>Delete</Text>
+            </PressableButton>
+
+            {!pastMode ? (
+              <PressableButton
+                pressHandler={handleEdit}
+                componentStyle={planDetailStyles.editButton}
+              >
+                <Text style={planDetailStyles.buttonText}>Edit</Text>
+              </PressableButton>
             ) : (
-              <Text style={planDetailStyles.warningText}>
-                Weather on your plan date will be shown 5 days before your plan
-              </Text>
+              <PressableButton
+                pressHandler={pressArchive}
+                disabled={item.archived}
+                componentStyle={planDetailStyles.archiveButton}
+              >
+                <Text style={planDetailStyles.buttonText}>Archive</Text>
+              </PressableButton>
             )}
           </View>
-        )}
-
-        {/* Buttons */}
-        <View style={planDetailStyles.buttonContainer}>
-          <PressableButton
-            pressHandler={pressDelete}
-            componentStyle={planDetailStyles.deleteButton}
-          >
-            <Text style={planDetailStyles.buttonText}>Delete</Text>
-          </PressableButton>
-
-          {!pastMode ? (
-            <PressableButton
-              pressHandler={handleEdit}
-              componentStyle={planDetailStyles.editButton}
-            >
-              <Text style={planDetailStyles.buttonText}>Edit</Text>
-            </PressableButton>
-          ) : (
-            <PressableButton
-              pressHandler={pressArchive}
-              disabled={item.archived}
-              componentStyle={planDetailStyles.archiveButton}
-            >
-              <Text style={planDetailStyles.buttonText}>Archive</Text>
-            </PressableButton>
-          )}
         </View>
       </ScrollView>
     </View>

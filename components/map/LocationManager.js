@@ -1,10 +1,4 @@
-import {
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-} from "react-native";
+import { Button, StyleSheet, Text, View, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as Location from "expo-location";
 import { Dimensions } from "react-native";
@@ -41,12 +35,14 @@ export default function LocationManager({ selectedPlace }) {
     if (address) {
       fetchData();
     }
+    return () => {
+      setLocation(null);
+      setLoading(true);
+    };
   }, [selectedPlace]);
 
   if (loading) {
-    return (
-      <CommonActivityIndicator />
-    );
+    return <CommonActivityIndicator />;
   }
 
   return (
@@ -65,10 +61,3 @@ export default function LocationManager({ selectedPlace }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  map: {
-    width: 300,
-    height: 200,
-  },
-});

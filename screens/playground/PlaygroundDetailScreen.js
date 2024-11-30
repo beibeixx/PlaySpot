@@ -5,7 +5,6 @@ import {
   Text,
   View,
   Image,
-  Pressable,
   Alert,
 } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
@@ -22,6 +21,7 @@ import { useSelector } from "react-redux";
 import LocationManager from "../../components/map/LocationManager";
 import { LinearGradient } from "expo-linear-gradient";
 import { getIconNames } from "../../styles/helper/icons";
+import CommonActivityIndicator from "../../components/common/CommonActivityIndicator";
 
 export default function PlaygroundDetailScreen({ navigation, route }) {
   const [data, setData] = useState(null);
@@ -88,28 +88,23 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Pressable
-          style={({ pressed }) => [
-            detailStyles.headerButton,
-            pressed && { opacity: 0.7 },
-          ]}
-          onPress={favoriteHandler}
+        <PressableButton
+          componentStyle={detailStyles.headerButton}
+          pressHandler={favoriteHandler}
         >
           <MaterialCommunityIcons
             name={isFavorite ? "heart" : "heart-outline"}
             size={24}
             color={colors.primary[500]}
           />
-        </Pressable>
+        </PressableButton>
       ),
     });
   }, [itemID, favoriteHandler]);
 
   if (!data) {
     return (
-      <View style={detailStyles.loadingContainer}>
-        <ActivityIndicator size="large" color={colors.primary[500]} />
-      </View>
+      <CommonActivityIndicator/>
     );
   }
 

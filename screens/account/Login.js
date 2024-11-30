@@ -1,25 +1,53 @@
 //Login screen
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebaseSetup";
 import { sendPasswordResetEmail } from "firebase/auth";
+import { loginStyles } from "../../styles/screens/login";
+import { colors } from "../../styles/helper/colors";
+import PressableButton from "../../components/common/PressableButton";
+import { AntDesign } from "@expo/vector-icons";
+import { validateLoginForm } from "../../utils/validation";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const loginHandler = async () => {
-    if (!email || !password) {
-      Alert.alert("Error", "All fields are required");
+    const formErrors = validateLoginForm(email, password);
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
       return;
     }
+    setIsLoading(true);
+
     try {
       const userCred = await signInWithEmailAndPassword(auth, email, password);
-      navigation.navigate("Account");
+      navigation.goBack();
     } catch (error) {
-      console.log(error);
-      Alert.alert("Error", error.message);
+      let errorMessage = "Login failed. Please try again.";
+      if (
+        error.code === "auth/user-not-found" ||
+        error.code === "auth/wrong-password"
+      ) {
+        errorMessage = "Invalid email or password";
+      }
+      Alert.alert("Error", errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -45,53 +73,103 @@ export default function Login({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Email Address</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <Text style={styles.header}>Password</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry={true}
-      />
-      <Button title="Login" onPress={loginHandler} />
-      <Button title="New User? Create an account" onPress={loginSignup} />
-      <Text style={styles.forgotPassword} onPress={handleForgotPassword}>
-        Forgot Password?
-      </Text>
-    </View>
+    <KeyboardAvoidingView
+      style={loginStyles.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <ScrollView
+        contentContainerStyle={loginStyles.scrollContainer}
+        keyboardShouldPersistTaps="handled"
+      >
+        <View style={loginStyles.contentContainer}>
+          {/* Header */}
+          <View style={loginStyles.headerContainer}>
+            <Image
+              source={require("../../assets/favicon.png")}
+              style={loginStyles.logo}
+              resizeMode="contain"
+            />
+            <Text style={loginStyles.title}>Welcome Back!</Text>
+            <Text style={loginStyles.subtitle}>Sign in to continue</Text>
+          </View>
+
+          {/* Input Fields */}
+          <View style={loginStyles.inputContainer}>
+            <View style={loginStyles.inputWrapper}>
+              <Text style={loginStyles.inputLabel}>Email</Text>
+              <TextInput
+                style={[
+                  loginStyles.input,
+                  errors.email && loginStyles.inputError,
+                ]}
+                placeholder="Enter your email"
+                value={email}
+                onChangeText={setEmail}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoComplete="email"
+              />
+              {errors.email && (
+                <Text style={loginStyles.errorText}>{errors.email}</Text>
+              )}
+            </View>
+
+            <View style={loginStyles.inputWrapper}>
+              <Text style={loginStyles.inputLabel}>Password</Text>
+              <TextInput
+                style={[
+                  loginStyles.input,
+                  errors.password && loginStyles.inputError,
+                ]}
+                placeholder="Enter your password"
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry
+              />
+              {errors.password && (
+                <Text style={loginStyles.errorText}>{errors.password}</Text>
+              )}
+            </View>
+
+            <View style={loginStyles.forgotPasswordContainer}>
+              <PressableButton
+                componentStyle={loginStyles.forgotPasswordButton}
+                pressHandler={handleForgotPassword}
+              >
+                <Text style={loginStyles.forgotPasswordText}>
+                  Forgot Password?
+                </Text>
+              </PressableButton>
+            </View>
+          </View>
+
+          {/* Action Buttons */}
+          <View style={loginStyles.buttonsContainer}>
+            <PressableButton
+              componentStyle={loginStyles.loginButton}
+              pressHandler={loginHandler}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <ActivityIndicator color={colors.text.white} />
+              ) : (
+                <>
+                  <Text style={loginStyles.buttonText}>Sign In</Text>
+                  <AntDesign name="login" size={20} color={colors.text.white} />
+                </>
+              )}
+            </PressableButton>
+
+            <PressableButton
+              componentStyle={loginStyles.registerButton}
+              pressHandler={loginSignup}
+            >
+              <Text style={loginStyles.buttonText}>Create Account</Text>
+              <AntDesign name="adduser" size={20} color={colors.text.white} />
+            </PressableButton>
+          </View>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    padding: 20,
-  },
-  header: {
-    fontSize: 24,
-    marginBottom: 20,
-    textAlign: "center",
-  },
-  input: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginBottom: 20,
-    paddingHorizontal: 10,
-  },
-  forgotPassword: {
-    color: 'blue',
-    textAlign: 'center',
-    marginTop: 10,
-    textDecorationLine: 'underline',
-  }
-});

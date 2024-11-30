@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Modal, Pressable} from "react-native";
+import { StyleSheet, Text, View, Modal} from "react-native";
 import React, { useState } from "react";
 import PressableButton from "../common/PressableButton";
 import ImageManager from "../common/ImageManager";
@@ -30,13 +30,13 @@ export default function AddMemoryPhotoCard({
       visible={isVisible}
       onRequestClose={cancelHandler}
     >
-      <Pressable 
-        style={addMemoryPhotoStyles.modalContainer}
-        onPress={cancelHandler}
+      <PressableButton 
+        componentStyle={addMemoryPhotoStyles.modalContainer}
+        pressHandler={cancelHandler}
       >
-        <Pressable 
-          style={addMemoryPhotoStyles.contentContainer}
-          onPress={e => e.stopPropagation()}
+        <PressableButton 
+          componentStyle={addMemoryPhotoStyles.contentContainer}
+          pressHandler={e => e.stopPropagation()}
         >
           <View style={addMemoryPhotoStyles.handle} />
           
@@ -73,8 +73,8 @@ export default function AddMemoryPhotoCard({
               </Text>
             </PressableButton>
           </View>
-        </Pressable>
-      </Pressable>
+        </PressableButton>
+      </PressableButton>
     </Modal>
   );
 }

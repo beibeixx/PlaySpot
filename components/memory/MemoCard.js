@@ -4,7 +4,10 @@ import {
   View,
   Modal,
   TextInput,
-  Pressable,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 import React from "react";
 import PressableButton from "../common/PressableButton";
@@ -30,59 +33,66 @@ export default function MemoCard({
       visible={isVisible}
       onRequestClose={onCancel}
     >
-      <Pressable style={memoCardStyles.modalContainer} onPress={onCancel}>
-        <Pressable
-          style={memoCardStyles.contentContainer}
-          onPress={(e) => e.stopPropagation()}
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={memoCardStyles.modalContainer}
         >
-          <View style={memoCardStyles.handle} />
-
-          <View style={memoCardStyles.header}>
-            <Text style={memoCardStyles.title}>Add Memo</Text>
-          </View>
-
-          <View style={memoCardStyles.inputContainer}>
-            <TextInput
-              value={memo}
-              onChangeText={setMemo}
-              style={memoCardStyles.input}
-              multiline
-              placeholder="Write your memo here..."
-              placeholderTextColor={colors.text.placeholder}
-            />
-          </View>
-
-          <View style={memoCardStyles.actionContainer}>
+          <PressableButton componentStyle={memoCardStyles.modalContainer} pressHandler={onCancel}>
             <PressableButton
-              pressHandler={onCancel}
-              componentStyle={memoCardStyles.cancelButton}
+              componentStyle={memoCardStyles.contentContainer}
+              pressHandler={(e) => e.stopPropagation()}
             >
-              <Text
-                style={[
-                  memoCardStyles.buttonText,
-                  memoCardStyles.cancelButtonText,
-                ]}
-              >
-                Cancel
-              </Text>
-            </PressableButton>
+              <View style={memoCardStyles.handle} />
 
-            <PressableButton
-              pressHandler={handleSubmit}
-              componentStyle={memoCardStyles.submitButton}
-            >
-              <Text
-                style={[
-                  memoCardStyles.buttonText,
-                  memoCardStyles.submitButtonText,
-                ]}
-              >
-                Save
-              </Text>
+              <View style={memoCardStyles.header}>
+                <Text style={memoCardStyles.title}>Add Memo</Text>
+              </View>
+
+              <View style={memoCardStyles.inputContainer}>
+                <TextInput
+                  value={memo}
+                  onChangeText={setMemo}
+                  style={memoCardStyles.input}
+                  multiline
+                  placeholder="Write your memo here..."
+                  placeholderTextColor={colors.text.placeholder}
+                />
+              </View>
+
+              <View style={memoCardStyles.actionContainer}>
+                <PressableButton
+                  pressHandler={onCancel}
+                  componentStyle={memoCardStyles.cancelButton}
+                >
+                  <Text
+                    style={[
+                      memoCardStyles.buttonText,
+                      memoCardStyles.cancelButtonText,
+                    ]}
+                  >
+                    Cancel
+                  </Text>
+                </PressableButton>
+
+                <PressableButton
+                  pressHandler={handleSubmit}
+                  componentStyle={memoCardStyles.submitButton}
+                >
+                  <Text
+                    style={[
+                      memoCardStyles.buttonText,
+                      memoCardStyles.submitButtonText,
+                    ]}
+                  >
+                    Save
+                  </Text>
+                </PressableButton>
+              </View>
             </PressableButton>
-          </View>
-        </Pressable>
-      </Pressable>
+          </PressableButton>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 }

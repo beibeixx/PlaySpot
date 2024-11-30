@@ -11,10 +11,6 @@ export default function Signup({navigation}) {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const signupHandler = async () => {
-    // do some validation
-    // 1. email password and confirmpassword are not empty
-    // 2. password and confirmpassword are the same
-    // create a new user using createUserWithEmailAndPassword
     if (!email || !password || !confirmPassword) {
       Alert.alert('Error', 'All fields are required');  
       return;

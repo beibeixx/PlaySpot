@@ -4,11 +4,8 @@ import {
   Text,
   View,
   TextInput,
-  FlatList,
   TouchableOpacity,
   Alert,
-  Button,
-  SafeAreaView,
   ScrollView
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
@@ -20,9 +17,7 @@ import {
   getItemNameById,
 } from "../../services/dataService";
 import { writeToDB, updateDB } from "../../firebase/firestoreHelper";
-import Screen from "../../components/common/Screen";
 import PressableButton from "../../components/common/PressableButton";
-import commonStyles from "../../utils/style";
 import { auth } from "../../firebase/firebaseSetup";
 import {
   requestNotificationPermissions,

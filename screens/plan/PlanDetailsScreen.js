@@ -21,7 +21,6 @@ import {
 } from "../../firebase/firestoreHelper";
 import { formatDate } from "../../utils/helpers";
 import PressableButton from "../../components/common/PressableButton";
-import commonStyles from "../../utils/style";
 import { auth } from "../../firebase/firebaseSetup";
 import WeatherSection from "./WeatherSection";
 import LocationManager from "../../components/map/LocationManager";

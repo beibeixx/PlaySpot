@@ -13,12 +13,14 @@ import { getImagesById, getItemNameById } from "../../services/dataService";
 import {
   updateDB,
   deleteFromDB,
+  addImageToDB,
   removeImageFromDB,
+  getPhotosFromDB,
 } from "../../firebase/firestoreHelper";
 import PressableButton from "../../components/common/PressableButton";
 import AddMemoryPhotoCard from "../../components/memory/AddMemoryPhotoCard";
 import LocationManager from "../../components/map/LocationManager";
-import { AntDesign, Feather } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import {
   ref,
   uploadBytesResumable,
@@ -45,16 +47,14 @@ export default function MemoryDetailsScreen({ navigation, route }) {
   useEffect(() => {
     async function getImageUris() {
       try {
-        if (item.photos && item.photos.length > 0) {
+        const photos = await getPhotosFromDB("memory", item.id);
           const imageUris = await Promise.all(
-            item.photos.map(async (photo) => {
-              const imageRef = ref(storage, photo);
-              const httpsImageUri = await getDownloadURL(imageRef);
-              return httpsImageUri;
-            })
-          );
-          setUserPhotos(imageUris);
-        }
+          photos.map(async (photo) => {
+            const imageRef = ref(storage, photo);
+            const httpsImageUri = await getDownloadURL(imageRef);
+            return httpsImageUri;
+          }));
+        setUserPhotos(imageUris);
       } catch (error) {
         console.error("Error getting image uri:", error);
       }
@@ -108,13 +108,18 @@ export default function MemoryDetailsScreen({ navigation, route }) {
   }
 
   async function handleUpdatePhotos(newImageUris, deletedImageUris) {
-    let newPhotos = [];
     if (newImageUris.length > 0) {
+      let newPhotos = [];
       const resizedPhotos = await Promise.all(
         newImageUris.map((uri) => resizeImage(uri))
       );
       newPhotos = await fetchAndUploadImage(resizedPhotos);
       console.log("new photos", newPhotos);
+      await Promise.all(
+        newPhotos.map(async (photo) => {
+          await addImageToDB(photo, "memory", item.id);
+        })
+      );
     }
 
     // Remove deleted photos from storage
@@ -128,19 +133,11 @@ export default function MemoryDetailsScreen({ navigation, route }) {
         })
       );
     }
-    const updatedMemoryData = {
-      ...item,
-      photos: [...(item.photos || []), ...newPhotos].filter(
-        (photo) => !deletedImageUris.includes(photo)
-      ),
-    };
-    console.log("updated memory data", updatedMemoryData);
-    updateDB(item.id, updatedMemoryData, "memory");
-    console.log("update photos success");
 
     // Update userPhotos state to trigger re-render
+    const photos = await getPhotosFromDB("memory", item.id);
     const imageUris = await Promise.all(
-      updatedMemoryData.photos.map(async (photo) => {
+      photos.map(async (photo) => {
         const imageRef = ref(storage, photo);
         const httpsImageUri = await getDownloadURL(imageRef);
         return httpsImageUri;

@@ -125,6 +125,15 @@ export default function ImageManager({ receiveImageUri, existingPhotos }) {
   }
 
   function renderImage(uri, index, type) {
+    if (type === 'add Image') {
+      return (
+        <PressableButton 
+          pressHandler={showImagePickerOptions}
+          componentStyle={styles.addImage}>
+          <MaterialCommunityIcons name="image-plus" size={90} color="gray" />
+        </PressableButton>
+      );
+    }
     return (
       <View key={index} style={imageManagerStyles.imageContainer}>
         <Image

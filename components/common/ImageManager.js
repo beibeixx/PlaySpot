@@ -126,7 +126,7 @@ export default function ImageManager({ receiveImageUri, existingPhotos }) {
 
   function renderImage(uri, index, type) {
     return (
-      <View key={index} style={imageManagerStyles.imageContainer}>
+      <View key={index} style={imageManagerStyles.imageContainer} pointerEvents="none">
         <Image
           source={{ uri: uri }}
           style={imageManagerStyles.image}

@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   Alert,
   ScrollView,
+  KeyboardAvoidingView,
+  Platform
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -163,7 +165,11 @@ export default function ModifyPlanScreen({ navigation, route }) {
   };
 
   return (
-    <View style={modifyPlanStyles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flex: 1 }}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+    >
       <ScrollView
         contentContainerStyle={modifyPlanStyles.contentContainer}
         keyboardShouldPersistTaps="handled"
@@ -319,7 +325,6 @@ export default function ModifyPlanScreen({ navigation, route }) {
           />
         )}
       </ScrollView>
-
       {/* Action Buttons */}
       <View style={modifyPlanStyles.actionContainer}>
         <PressableButton
@@ -337,6 +342,6 @@ export default function ModifyPlanScreen({ navigation, route }) {
           </Text>
         </PressableButton>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }

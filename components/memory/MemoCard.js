@@ -4,7 +4,6 @@ import {
   View,
   Modal,
   TextInput,
-  Pressable,
   KeyboardAvoidingView,
   Platform,
   TouchableWithoutFeedback,
@@ -39,10 +38,10 @@ export default function MemoCard({
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={memoCardStyles.modalContainer}
         >
-          <Pressable style={memoCardStyles.modalContainer} onPress={onCancel}>
-            <Pressable
-              style={memoCardStyles.contentContainer}
-              onPress={(e) => e.stopPropagation()}
+          <PressableButton componentStyle={memoCardStyles.modalContainer} pressHandler={onCancel}>
+            <PressableButton
+              componentStyle={memoCardStyles.contentContainer}
+              pressHandler={(e) => e.stopPropagation()}
             >
               <View style={memoCardStyles.handle} />
 
@@ -90,8 +89,8 @@ export default function MemoCard({
                   </Text>
                 </PressableButton>
               </View>
-            </Pressable>
-          </Pressable>
+            </PressableButton>
+          </PressableButton>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>
     </Modal>

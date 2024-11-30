@@ -1,10 +1,8 @@
 //Account screen to display user info and favorite list entry
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 import { auth } from "../../firebase/firebaseSetup";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { setUser, clearUser } from "../../redux/authSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { handleSignOut } from "../../redux/authService";
 import { LinearGradient } from "expo-linear-gradient";
 import { accountStyles } from "../../styles/screens/account";

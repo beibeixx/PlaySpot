@@ -3,12 +3,9 @@ import {
   StyleSheet,
   Text,
   View,
-  FlatList,
-  Pressable,
   Image,
-  Alert,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { getItemImageById, getItemNameById } from "../../services/dataService";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import PressableButton from "../common/PressableButton";
@@ -43,13 +40,13 @@ export default function FavoriteItemsList({
           <Text>{getItemNameById(playgroundItem.playgroundID)}</Text>
         </View>
       </PressableButton>
-      <Pressable onPress={handleRemove}>
+      <PressableButton pressHandler={handleRemove}>
         <MaterialCommunityIcons
           name="heart-remove-outline"
           size={24}
           color="black"
         />
-      </Pressable>
+      </PressableButton>
     </View>
   );
 }

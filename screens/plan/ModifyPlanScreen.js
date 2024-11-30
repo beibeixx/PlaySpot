@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
   Alert,
   Button,
+  SafeAreaView,
+  ScrollView
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -28,7 +30,9 @@ import {
   cancelNotification,
 } from "../../utils/helpers";
 import LocationManager from "../../components/map/LocationManager";
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import { modifyPlanStyles } from "../../styles/screens/modifyPlan";
+import { colors } from "../../styles/helper/colors";
 
 export default function ModifyPlanScreen({ navigation, route }) {
   const { item } = route.params;
@@ -166,118 +170,115 @@ export default function ModifyPlanScreen({ navigation, route }) {
   };
 
   return (
-    <Screen>
-      <View style={styles.container}>
-        <Text style={commonStyles.header}>Location: </Text>
-        <SearchBar
-          placeholder="Search Playground"
-          onChangeText={handleSearch}
-          value={searchQuery}
-          onFocus={() => setSelectedPlayground("")}
-          ref={searchBarRef}
-          containerStyle={styles.searchContainer}
-          inputContainerStyle={styles.searchInputContainer}
-          inputStyle={styles.searchInput}
-        />
-        <View style={commonStyles.buttonContainer}>
-        <Text>Select On Map</Text>
-        <PressableButton
-          pressHandler={() => navigation.navigate("Playground Map", {selectHandler})}
-        >
-          <FontAwesome5 name="map-marked-alt" size={24} color="black" />
-        </PressableButton>
-        </View>
-        {searchQuery && !selectedPlayground && (
-          <FlatList
-            data={filteredPlaygrounds}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                onPress={() => {
-                  setSelectedPlayground(item);
-                  setSearchQuery("");
-                  searchBarRef.current.blur();
-                }}
-              >
-                <Text style={styles.playgroundItem}>{item.name}</Text>
-              </TouchableOpacity>
-            )}
+    <View style={modifyPlanStyles.container}>
+      <ScrollView
+        contentContainerStyle={modifyPlanStyles.contentContainer}
+        keyboardShouldPersistTaps="handled"
+      >
+        {/* Search Section */}
+        <View style={modifyPlanStyles.searchSection}>
+          <SearchBar
+            placeholder="Search Playground"
+            onChangeText={handleSearch}
+            value={searchQuery}
+            onFocus={() => setSelectedPlayground(null)}
+            ref={searchBarRef}
+            containerStyle={modifyPlanStyles.searchContainer}
+            inputContainerStyle={modifyPlanStyles.searchInputContainer}
+            inputStyle={modifyPlanStyles.searchInput}
           />
-        )}
-        {selectedPlayground && (
-          <>
-          <Text style={commonStyles.planName}>
-            Selected: {selectedPlayground.name}
-          </Text>
-          <LocationManager selectedPlace={selectedPlayground.id} />
-          </>
-        )}
-        {/* Plan Name Input */}
-        <Text style={commonStyles.header}>Plan Name:</Text>
-        <TextInput
-          placeholder="Plan Name"
-          value={planName}
-          onChangeText={setPlanName}
-          style={styles.input}
-        />
 
-        {/* Date and Time Pickers for Plan Time */}
-        <Text style={commonStyles.header}>Time:</Text>
-        <View style={commonStyles.buttonContainer}>
-          <PressableButton
-            pressHandler={() => setShowDatePicker(true)}
-            componentStyle={commonStyles.timeButton}
-          >
-            <Text>{time.toLocaleDateString()}</Text>
-          </PressableButton>
-          <PressableButton
-            pressHandler={() => setShowTimePicker(true)}
-            componentStyle={commonStyles.timeButton}
-          >
-            <Text>{time.toLocaleTimeString()}</Text>
-          </PressableButton>
-        </View>
-        <View style={commonStyles.buttonContainer}>
-          {showDatePicker && (
-            <DateTimePicker
-              value={time}
-              mode="date"
-              display="default"
-              onChange={(event, selectedDate) => {
-                setShowDatePicker(false);
-                if (selectedDate) handleTimeChange(event, selectedDate);
-              }}
-            />
+          {searchQuery ? (
+            <View style={modifyPlanStyles.playgroundList}>
+              {filteredPlaygrounds.map((playground) => (
+                <TouchableOpacity
+                  key={playground.id}
+                  style={modifyPlanStyles.playgroundItem}
+                  onPress={() => {
+                    setSelectedPlayground(playground);
+                    setSearchQuery("");
+                    searchBarRef.current?.blur();
+                  }}
+                >
+                  <Text style={modifyPlanStyles.playgroundItemText}>
+                    {playground.name}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          ) : (
+            <TouchableOpacity
+              style={modifyPlanStyles.mapSelectButton}
+              onPress={() =>
+                navigation.navigate("Playground Map", { selectHandler })
+              }
+            >
+              <FontAwesome5
+                name="map-marked-alt"
+                size={20}
+                color={colors.primary[600]}
+              />
+              <Text style={modifyPlanStyles.mapSelectText}>Select on Map</Text>
+            </TouchableOpacity>
           )}
-          {showTimePicker && (
-            <DateTimePicker
-              value={time}
-              mode="time"
-              display="default"
-              onChange={(event, selectedTime) => {
-                setShowTimePicker(false);
-                if (selectedTime) {
-                  const newTime = new Date(time);
-                  newTime.setHours(
-                    selectedTime.getHours(),
-                    selectedTime.getMinutes()
-                  );
-                  handleTimeChange(event, newTime);
-                }
-              }}
-            />
+
+          {selectedPlayground && (
+            <View style={modifyPlanStyles.selectedLocation}>
+              <Text style={modifyPlanStyles.selectedLocationText}>
+                {selectedPlayground.name}
+              </Text>
+              <LocationManager selectedPlace={selectedPlayground.id} />
+            </View>
           )}
         </View>
-        {/* Date and Time Pickers for Reminder Time */}
+
+        {/* Plan Name Section */}
+        <View style={modifyPlanStyles.section}>
+          <Text style={modifyPlanStyles.sectionTitle}>Plan Name</Text>
+          <TextInput
+            placeholder="Enter plan name"
+            value={planName}
+            onChangeText={setPlanName}
+            style={modifyPlanStyles.input}
+            placeholderTextColor={colors.text.placeholder}
+          />
+        </View>
+
+        {/* Plan Time Section */}
+        <View style={modifyPlanStyles.section}>
+          <Text style={modifyPlanStyles.sectionTitle}>Time</Text>
+          <View style={modifyPlanStyles.timeContainer}>
+            <PressableButton
+              pressHandler={() => setShowDatePicker(true)}
+              componentStyle={modifyPlanStyles.timeButton}
+            >
+              <Text style={modifyPlanStyles.timeButtonText}>
+                {time.toLocaleDateString()}
+              </Text>
+            </PressableButton>
+            <PressableButton
+              pressHandler={() => setShowTimePicker(true)}
+              componentStyle={modifyPlanStyles.timeButton}
+            >
+              <Text style={modifyPlanStyles.timeButtonText}>
+                {time.toLocaleTimeString()}
+              </Text>
+            </PressableButton>
+          </View>
+        </View>
+
+        {/* Reminder Time Section */}
         {!isPastTime && (
-          <>
-            <Text style={commonStyles.header}>Reminder Time:</Text>
-            <View style={commonStyles.buttonContainer}>
+          <View style={modifyPlanStyles.section}>
+            <Text style={modifyPlanStyles.sectionTitle}>
+              Reminder Time (Optional)
+            </Text>
+            <View style={modifyPlanStyles.timeContainer}>
               <PressableButton
                 pressHandler={() => setShowReminderDatePicker(true)}
-                componentStyle={commonStyles.timeButton}
+                componentStyle={modifyPlanStyles.timeButton}
               >
-                <Text>
+                <Text style={modifyPlanStyles.timeButtonText}>
                   {reminderTime
                     ? reminderTime.toLocaleDateString()
                     : "Set Date"}
@@ -285,98 +286,68 @@ export default function ModifyPlanScreen({ navigation, route }) {
               </PressableButton>
               <PressableButton
                 pressHandler={() => setShowReminderTimePicker(true)}
-                componentStyle={commonStyles.timeButton}
+                componentStyle={modifyPlanStyles.timeButton}
               >
-                <Text>
+                <Text style={modifyPlanStyles.timeButtonText}>
                   {reminderTime
                     ? reminderTime.toLocaleTimeString()
                     : "Set Time"}
                 </Text>
               </PressableButton>
             </View>
-          </>
+          </View>
         )}
-        <View style={commonStyles.buttonContainer}>
-          {showReminderDatePicker && (
-            <DateTimePicker
-              value={reminderTime || time}
-              mode="date"
-              display="default"
-              onChange={(event, selectedDate) => {
-                setShowReminderDatePicker(false);
-                if (selectedDate) handleTimeChange(event, selectedDate, true);
-              }}
-            />
-          )}
-          {showReminderTimePicker && (
-            <DateTimePicker
-              value={reminderTime || time}
-              mode="time"
-              display="default"
-              onChange={(event, selectedTime) => {
-                setShowReminderTimePicker(false);
-                if (selectedTime) {
-                  const newTime = new Date(reminderTime || time);
-                  newTime.setHours(
-                    selectedTime.getHours(),
-                    selectedTime.getMinutes()
-                  );
-                  handleTimeChange(event, newTime, true);
-                }
-              }}
-            />
-          )}
-        </View>
 
-        <View style={styles.buttonContainer}>
-          <PressableButton
-            pressHandler={() => navigation.goBack()}
-            componentStyle={commonStyles.editButton}
-          >
-            <Text>Cancel</Text>
-          </PressableButton>
-          <PressableButton
-            pressHandler={handleSave}
-            componentStyle={commonStyles.editButton}
-          >
-            <Text>Submit</Text>
-          </PressableButton>
-        </View>
+        {/* DateTimePicker Components */}
+        {(showDatePicker ||
+          showTimePicker ||
+          showReminderDatePicker ||
+          showReminderTimePicker) && (
+          <DateTimePicker
+            value={
+              showReminderDatePicker || showReminderTimePicker
+                ? reminderTime || time
+                : time
+            }
+            mode={showDatePicker || showReminderDatePicker ? "date" : "time"}
+            display="default"
+            onChange={(event, selectedDate) => {
+              setShowDatePicker(false);
+              setShowTimePicker(false);
+              setShowReminderDatePicker(false);
+              setShowReminderTimePicker(false);
+
+              if (selectedDate) {
+                if (showReminderDatePicker || showReminderTimePicker) {
+                  handleTimeChange(event, selectedDate, true);
+                } else {
+                  handleTimeChange(event, selectedDate);
+                }
+              }
+            }}
+          />
+        )}
+      </ScrollView>
+
+      {/* Action Buttons */}
+      <View style={modifyPlanStyles.actionContainer}>
+        <PressableButton
+          pressHandler={() => navigation.goBack()}
+          componentStyle={modifyPlanStyles.cancelButton}
+        >
+          <Text style={modifyPlanStyles.cancelButtonText}>Cancel</Text>
+        </PressableButton>
+        <PressableButton
+          pressHandler={handleSave}
+          componentStyle={modifyPlanStyles.submitButton}
+        >
+          <Text style={modifyPlanStyles.submitButtonText}>
+            {route.params.item ? "Update" : "Create"}
+          </Text>
+        </PressableButton>
       </View>
-    </Screen>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-  },
-  input: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginBottom: 12,
-    paddingHorizontal: 8,
-  },
-  playgroundItem: {
-    padding: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: "gray",
-  },
-  searchContainer: {
-    backgroundColor: "white",
-    borderBottomColor: "transparent",
-    borderTopColor: "transparent",
-  },
-  searchInputContainer: {
-    backgroundColor: "#e0e0e0",
-  },
-  searchInput: {
-    color: "black",
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginTop: 16,
-  },
-});
+const styles = StyleSheet.create({});

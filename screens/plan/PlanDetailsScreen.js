@@ -25,6 +25,9 @@ import commonStyles from "../../utils/style";
 import { auth } from "../../firebase/firebaseSetup";
 import WeatherSection from "./WeatherSection";
 import LocationManager from "../../components/map/LocationManager";
+import { planDetailStyles } from "../../styles/screens/planDetail";
+import { LinearGradient } from "expo-linear-gradient";
+import { spacing } from "../../styles/helper/spacing";
 
 export default function PlanDetailsScreen({ navigation, route }) {
   const { item } = route.params;
@@ -38,11 +41,17 @@ export default function PlanDetailsScreen({ navigation, route }) {
   useEffect(() => {
     navigation.setOptions({
       title: item.planName,
+      headerTransparent: true,
+      headerBackground: () => (
+        <View style={{ flex: 1, backgroundColor: "transparent" }} />
+      ),
     });
   }, [navigation, item]);
 
   function renderImage({ item }) {
-    return <Image source={{ uri: item }} style={{ width: 350, height: 200 }} />;
+    <View style={planDetailStyles.imageContainer}>
+      <Image source={{ uri: item }} style={planDetailStyles.image} />
+    </View>;
   }
 
   function handleEdit() {
@@ -97,81 +106,97 @@ export default function PlanDetailsScreen({ navigation, route }) {
   }
 
   return (
-    <ScrollView>
-      <Text style={commonStyles.header}>Location</Text>
-      <Text>{playgroundName}</Text>
-      <LocationManager selectedPlace={item.playgroundId} />
-      <Text style={commonStyles.header}>Time</Text>
-      <Text>{formatDate(item.time.toDate())}</Text>
-
-      {!pastMode && (
-        <View>
-          <Text style={commonStyles.header}>Current Weather</Text>
-          <WeatherSection address={getAddressById(item.playgroundId)} />
-          {Math.abs(diffDays) <= 5 ? (
-            <View>
-              <Text style={commonStyles.header}>Weather on your plan date</Text>
-              <WeatherSection
-                address={getAddressById(item.playgroundId)}
-                time={item.time}
-              />
-            </View>
-          ) : (
-            <Text style={commonStyles.header}>
-              Weather on your plan date will be shown 5 days before your plan
-            </Text>
-          )}
-        </View>
-      )}
-
-      <View style={styles.galleryContainer}>
-        <FlatList
-          data={images} // Assuming item.images is an array of image URLs
-          renderItem={renderImage}
-          horizontal
-          showsHorizontalScrollIndicator={false}
+    <View style={planDetailStyles.container}>
+      {/* Header Image Section */}
+      <View style={planDetailStyles.imageContainer}>
+        <Image
+          source={{ uri: images[0] }}
+          style={planDetailStyles.image}
+          resizeMode="cover"
+        />
+        <LinearGradient
+          colors={["transparent", "rgba(0,0,0,0.3)"]}
+          style={planDetailStyles.gradient}
         />
       </View>
-      {!pastMode && (
-        <View style={styles.buttonContainer}>
+
+      {/* Content Section */}
+      <ScrollView style={planDetailStyles.contentContainer}>
+        {/* Time Section - Moved to top */}
+        <View style={planDetailStyles.section}>
+          <Text style={planDetailStyles.sectionTitle}>Time</Text>
+          <Text style={planDetailStyles.timeText}>
+            {formatDate(item.time.toDate())}
+          </Text>
+        </View>
+
+        {/* Location Section */}
+        <View style={planDetailStyles.section}>
+          <Text style={planDetailStyles.sectionTitle}>Location</Text>
+          <Text style={planDetailStyles.locationName}>{playgroundName}</Text>
+          <View style={planDetailStyles.mapContainer}>
+            <LocationManager selectedPlace={item.playgroundId} />
+          </View>
+        </View>
+
+        {/* Weather Sections */}
+        {!pastMode && (
+          <View style={planDetailStyles.weatherContainer}>
+            <Text style={planDetailStyles.weatherTitle}>Current Weather</Text>
+            <WeatherSection address={getAddressById(item.playgroundId)} />
+
+            {Math.abs(diffDays) <= 5 ? (
+              <>
+                <Text
+                  style={[
+                    planDetailStyles.weatherTitle,
+                    { marginTop: spacing.lg },
+                  ]}
+                >
+                  Weather on your plan date
+                </Text>
+                <WeatherSection
+                  address={getAddressById(item.playgroundId)}
+                  time={item.time}
+                />
+              </>
+            ) : (
+              <Text style={planDetailStyles.warningText}>
+                Weather on your plan date will be shown 5 days before your plan
+              </Text>
+            )}
+          </View>
+        )}
+
+        {/* Buttons */}
+        <View style={planDetailStyles.buttonContainer}>
           <PressableButton
             pressHandler={pressDelete}
-            componentStyle={commonStyles.alertButton}
+            componentStyle={planDetailStyles.deleteButton}
           >
-            <Text>Delete</Text>
+            <Text style={planDetailStyles.buttonText}>Delete</Text>
           </PressableButton>
-          <PressableButton
-            pressHandler={handleEdit}
-            componentStyle={commonStyles.editButton}
-          >
-            <Text>Edit</Text>
-          </PressableButton>
+
+          {!pastMode ? (
+            <PressableButton
+              pressHandler={handleEdit}
+              componentStyle={planDetailStyles.editButton}
+            >
+              <Text style={planDetailStyles.buttonText}>Edit</Text>
+            </PressableButton>
+          ) : (
+            <PressableButton
+              pressHandler={pressArchive}
+              disabled={item.archived}
+              componentStyle={planDetailStyles.archiveButton}
+            >
+              <Text style={planDetailStyles.buttonText}>Archive</Text>
+            </PressableButton>
+          )}
         </View>
-      )}
-      {pastMode && (
-        <View style={commonStyles.buttonContainer}>
-          <PressableButton
-            pressHandler={pressDelete}
-            componentStyle={commonStyles.alertButton}
-          >
-            <Text>Delete</Text>
-          </PressableButton>
-          <PressableButton
-            pressHandler={pressArchive}
-            disabled={item.archived}
-            componentStyle={commonStyles.editButton}
-          >
-            <Text>Archive</Text>
-          </PressableButton>
-        </View>
-      )}
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
-  buttonContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
-});
+const styles = StyleSheet.create({});

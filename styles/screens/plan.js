@@ -9,7 +9,7 @@ import { cardStyles } from "../components/card";
 const screenWidth = Dimensions.get("window").width;
 
 export const planStyles = StyleSheet.create({
-  mainContainer: cardStyles.cardContainer,
+  mainContainer: cardStyles.mainContainer,
   addButton: {
     padding: spacing.xs,
     borderRadius: layout.borderRadius.md,

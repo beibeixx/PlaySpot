@@ -5,7 +5,6 @@ import {
   Text,
   View,
   Image,
-  ActivityIndicator,
   Pressable,
   Alert,
 } from "react-native";

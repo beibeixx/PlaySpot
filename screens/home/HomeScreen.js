@@ -6,8 +6,6 @@ import {
   TouchableOpacity,
   View,
   Image,
-  Pressable,
-  ActivityIndicator,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import dataService, { fetchData } from "../../services/dataService";
@@ -18,6 +16,7 @@ import { homeStyles } from "../../styles/screens/home";
 import { colors, getTagColors } from "../../styles/helper/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import CommonActivityIndicator from "../../components/common/CommonActivityIndicator";
 
 export default function HomeScreen({ navigation }) {
   const [data, setData] = useState([]);
@@ -136,9 +135,7 @@ export default function HomeScreen({ navigation }) {
 
   if (loading) {
     return (
-      <View>
-        <ActivityIndicator size="large" color={colors.primary[500]} />
-      </View>
+      <CommonActivityIndicator />
     );
   }
 

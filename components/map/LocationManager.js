@@ -4,7 +4,6 @@ import {
   Text,
   View,
   Image,
-  ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as Location from "expo-location";
@@ -17,6 +16,7 @@ import { getAddressById } from "../../services/dataService";
 import { getLocationFromAddress } from "../../services/geocodingService";
 import { locationManagerStyles } from "../../styles/components/locationManager";
 import { colors } from "../../styles/helper/colors";
+import CommonActivityIndicator from "../common/CommonActivityIndicator";
 
 export default function LocationManager({ selectedPlace }) {
   const [loading, setLoading] = useState(true);
@@ -45,9 +45,7 @@ export default function LocationManager({ selectedPlace }) {
 
   if (loading) {
     return (
-      <View style={locationManagerStyles.loadingContainer}>
-        <ActivityIndicator size="large" color={colors.primary[500]} />
-      </View>
+      <CommonActivityIndicator />
     );
   }
 

@@ -1,10 +1,11 @@
 //Display the weather section on plan details page
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getLocationFromAddress } from "../../services/geocodingService";
 import { weatherSectionStyles } from "../../styles/components/WeatherSection";
 import { colors } from "../../styles/helper/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import CommonActivityIndicator from "../../components/common/CommonActivityIndicator";
 
 export default function WeatherSection({ address, time = null }) {
   const [loading, setLoading] = useState(true);
@@ -60,9 +61,7 @@ export default function WeatherSection({ address, time = null }) {
 
   if (loading) {
     return (
-      <View style={weatherSectionStyles.container}>
-        <ActivityIndicator size="large" color={colors.primary[500]} />
-      </View>
+      <CommonActivityIndicator/>
     );
   }
 

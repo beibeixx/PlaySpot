@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import PressableButton from "../../components/common/PressableButton";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import Screen from "../../components/common/Screen";
 import PlanList from "../../components/plan/PlanList";
 import { useSelector } from "react-redux";
 import { planStyles } from "../../styles/screens/plan";

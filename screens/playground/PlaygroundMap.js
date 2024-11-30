@@ -1,13 +1,20 @@
-import { ActivityIndicator, StyleSheet, Text, View, TouchableOpacity, Alert, Pressable } from 'react-native'
-import React, {useEffect, useState} from 'react'
-import { useNavigation, useRoute } from '@react-navigation/native'
-import MapView, { Marker } from 'react-native-maps'
-import * as Location from 'expo-location'
-import playgrounds from '../../data/playgrounds.json'
-import { getLocationFromAddress } from '../../services/geocodingService'
-import Card from '../../components/common/Card'
-import PressableButton from '../../components/common/PressableButton'
-import commonStyles from '../../utils/style'
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
+import React, { useEffect, useState } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import MapView, { Marker } from "react-native-maps";
+import * as Location from "expo-location";
+import playgrounds from "../../data/playgrounds.json";
+import { getLocationFromAddress } from "../../services/geocodingService";
+import Card from "../../components/common/Card";
+import PressableButton from "../../components/common/PressableButton";
+import commonStyles from "../../utils/style";
+import CommonActivityIndicator from "../../components/common/CommonActivityIndicator";
 
 export default function PlaygroundMap() {
   const [selectedPlayground, setSelectedPlayground] = useState(null);
@@ -22,20 +29,20 @@ export default function PlaygroundMap() {
     const fetchUserLocation = async () => {
       try {
         let { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== 'granted') {
-          Alert.alert('Permission to access location was denied');
+        if (status !== "granted") {
+          Alert.alert("Permission to access location was denied");
           return;
-      }
+        }
 
-      let location = await Location.getCurrentPositionAsync({});
-      setInitialRegion({
-        latitude: location.coords.latitude,
-        longitude: location.coords.longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      });
+        let location = await Location.getCurrentPositionAsync({});
+        setInitialRegion({
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        });
       } catch (error) {
-        console.error('Error fetching user location:', error);
+        console.error("Error fetching user location:", error);
       }
     };
 
@@ -43,22 +50,29 @@ export default function PlaygroundMap() {
       try {
         const locations = await Promise.all(
           playgrounds.map(async (playground) => {
-            console.log('Fetching location for:', playground.address);
+            console.log("Fetching location for:", playground.address);
             const result = await getLocationFromAddress(playground.address);
-            if (result.success && result.data && result.data.latitude && result.data.longitude) {
-            return {
-              ...playground,
-              latitude: result.data.latitude,
-              longitude: result.data.longitude,
-            };
-          } else {
-            console.error("Error fetching location:", result);
-            return null;
-          }
-      })
-      );
-      setPlaygroundLocations(locations.filter((location) => location !== null));
-      setLoading(false);
+            if (
+              result.success &&
+              result.data &&
+              result.data.latitude &&
+              result.data.longitude
+            ) {
+              return {
+                ...playground,
+                latitude: result.data.latitude,
+                longitude: result.data.longitude,
+              };
+            } else {
+              console.error("Error fetching location:", result);
+              return null;
+            }
+          })
+        );
+        setPlaygroundLocations(
+          locations.filter((location) => location !== null)
+        );
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching playground locations:", error);
         setLoading(false);
@@ -67,7 +81,6 @@ export default function PlaygroundMap() {
     fetchUserLocation();
     fetchPlaygroundLocations();
   }, []);
-
 
   const handleMarkerPress = (playground) => {
     setSelectedPlayground(playground);
@@ -78,29 +91,22 @@ export default function PlaygroundMap() {
   };
 
   function handleSelectPlayground() {
-    console.log('Selected playground:', selectedPlayground);
-    console.log('Select handler:', selectHandler);
+    console.log("Selected playground:", selectedPlayground);
+    console.log("Select handler:", selectHandler);
     if (selectHandler) {
-    selectHandler(selectedPlayground);
-    setSelectedPlayground(null);
-    navigation.goBack();
+      selectHandler(selectedPlayground);
+      setSelectedPlayground(null);
+      navigation.goBack();
     }
   }
-  
+
   if (loading || !initialRegion) {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    );
+    return <CommonActivityIndicator />;
   }
 
   return (
     <View style={styles.container}>
-      <MapView
-        style={styles.map}
-        initialRegion={initialRegion}
-      >
+      <MapView style={styles.map} initialRegion={initialRegion}>
         {playgroundLocations.map((playground) => (
           <Marker
             key={playground.id}
@@ -114,26 +120,26 @@ export default function PlaygroundMap() {
         ))}
       </MapView>
       {selectedPlayground && (
-        <Card 
-          isVisible={selectedPlayground !== null}
-          onBack={handleCloseModal}>  
+        <Card isVisible={selectedPlayground !== null} onBack={handleCloseModal}>
           <View style={styles.modalContent}>
-              <Text style={styles.modalTitle}>{selectedPlayground.name}</Text>
-              <Text>{selectedPlayground.address}</Text>
-              <Text>{selectedPlayground.description}</Text>
-              <View style={commonStyles.buttonContainer}>
-              <PressableButton 
+            <Text style={styles.modalTitle}>{selectedPlayground.name}</Text>
+            <Text>{selectedPlayground.address}</Text>
+            <Text>{selectedPlayground.description}</Text>
+            <View style={commonStyles.buttonContainer}>
+              <PressableButton
                 pressHandler={handleCloseModal}
-                componentStyle={commonStyles.cancelButton}>
-              <Text>Cancel</Text>
+                componentStyle={commonStyles.cancelButton}
+              >
+                <Text>Cancel</Text>
               </PressableButton>
-              <PressableButton 
+              <PressableButton
                 pressHandler={handleSelectPlayground}
-                componentStyle={commonStyles.editButton}>
-              <Text>Select</Text>
+                componentStyle={commonStyles.editButton}
+              >
+                <Text>Select</Text>
               </PressableButton>
-              </View>
             </View>
+          </View>
         </Card>
       )}
     </View>
@@ -147,4 +153,4 @@ const styles = StyleSheet.create({
   map: {
     flex: 1,
   },
-})
+});

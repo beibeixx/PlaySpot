@@ -30,14 +30,8 @@ export default function AddMemoryPhotoCard({
       visible={isVisible}
       onRequestClose={cancelHandler}
     >
-      <PressableButton 
-        componentStyle={addMemoryPhotoStyles.modalContainer}
-        pressHandler={cancelHandler}
-      >
-        <PressableButton 
-          componentStyle={addMemoryPhotoStyles.contentContainer}
-          pressHandler={e => e.stopPropagation()}
-        >
+      <View style={addMemoryPhotoStyles.modalContainer}>
+        <View style={addMemoryPhotoStyles.contentContainer} >
           <View style={addMemoryPhotoStyles.handle} />
           
           <View style={addMemoryPhotoStyles.header}>
@@ -73,8 +67,8 @@ export default function AddMemoryPhotoCard({
               </Text>
             </PressableButton>
           </View>
-        </PressableButton>
-      </PressableButton>
+        </View>
+      </View>
     </Modal>
   );
 }

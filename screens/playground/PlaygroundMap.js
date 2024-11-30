@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import MapView, { Marker } from "react-native-maps";
@@ -93,10 +87,12 @@ export default function PlaygroundMap() {
   function handleSelectPlayground() {
     console.log("Selected playground:", selectedPlayground);
     console.log("Select handler:", selectHandler);
-    if (selectHandler) {
-      selectHandler(selectedPlayground);
-      setSelectedPlayground(null);
-      navigation.goBack();
+    if (selectedPlayground) {
+      navigation.navigate({
+        name: "Modify Plan",
+        params: { selectedPlayground },
+        merge: true,
+      });
     }
   }
 

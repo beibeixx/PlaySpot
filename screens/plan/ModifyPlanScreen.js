@@ -7,7 +7,8 @@ import {
   Alert,
   ScrollView,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  TouchableWithoutFeedback,
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -52,6 +53,7 @@ export default function ModifyPlanScreen({ navigation, route }) {
   const [notificationId, setNotificationId] = useState(
     isModify ? item.notificationId : null
   );
+  const [isSearching, setIsSearching] = useState(false);
 
   const searchBarRef = useRef(null);
   const isPastTime = time < new Date();
@@ -180,44 +182,62 @@ export default function ModifyPlanScreen({ navigation, route }) {
             placeholder="Search Playground"
             onChangeText={handleSearch}
             value={searchQuery}
-            onFocus={() => setSelectedPlayground(null)}
+            onFocus={() => {
+              setSelectedPlayground(null);
+              setIsSearching(true);
+            }}
+            onBlur={() => setIsSearching(false)}
             ref={searchBarRef}
             containerStyle={modifyPlanStyles.searchContainer}
             inputContainerStyle={modifyPlanStyles.searchInputContainer}
             inputStyle={modifyPlanStyles.searchInput}
           />
 
-          {searchQuery ? (
-            <View style={modifyPlanStyles.playgroundList}>
-              {filteredPlaygrounds.map((playground) => (
-                <TouchableOpacity
-                  key={playground.id}
-                  style={modifyPlanStyles.playgroundItem}
-                  onPress={() => {
-                    setSelectedPlayground(playground);
-                    setSearchQuery("");
-                    searchBarRef.current?.blur();
-                  }}
-                >
-                  <Text style={modifyPlanStyles.playgroundItemText}>
-                    {playground.name}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          ) : (
-            <TouchableOpacity
-              style={modifyPlanStyles.mapSelectButton}
-              onPress={() => navigation.navigate("Playground Map")}
-            >
-              <FontAwesome5
-                name="map-marked-alt"
-                size={20}
-                color={colors.primary[600]}
-              />
-              <Text style={modifyPlanStyles.mapSelectText}>Select on Map</Text>
-            </TouchableOpacity>
+          {isSearching && (
+            <>
+              <TouchableWithoutFeedback
+                onPress={() => {
+                  setIsSearching(false);
+                  searchBarRef.current?.blur();
+                }}
+              >
+                <View style={modifyPlanStyles.overlay} />
+              </TouchableWithoutFeedback>
+
+              <View style={modifyPlanStyles.searchResultsContainer}>
+                <ScrollView keyboardShouldPersistTaps="handled">
+                  {filteredPlaygrounds.map((playground) => (
+                    <TouchableOpacity
+                      key={playground.id}
+                      style={modifyPlanStyles.playgroundItem}
+                      onPress={() => {
+                        setSelectedPlayground(playground);
+                        setSearchQuery("");
+                        setIsSearching(false);
+                        searchBarRef.current?.blur();
+                      }}
+                    >
+                      <Text style={modifyPlanStyles.playgroundItemText}>
+                        {playground.name}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </ScrollView>
+              </View>
+            </>
           )}
+
+          <TouchableOpacity
+            style={modifyPlanStyles.mapSelectButton}
+            onPress={() => navigation.navigate("Playground Map")}
+          >
+            <FontAwesome5
+              name="map-marked-alt"
+              size={20}
+              color={colors.primary[600]}
+            />
+            <Text style={modifyPlanStyles.mapSelectText}>Select on Map</Text>
+          </TouchableOpacity>
 
           {selectedPlayground && (
             <View style={modifyPlanStyles.selectedLocation}>

@@ -15,8 +15,42 @@ export const modifyPlanStyles = StyleSheet.create({
     paddingTop: spacing.lg,
   },
   // Search section
+  overlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0, 0, 0, 0.3)",
+    zIndex: 1,
+  },
   searchSection: {
+    position: "relative",
+    zIndex: 2,
     marginBottom: spacing.lg,
+  },
+  searchResultsContainer: {
+    position: "absolute",
+    top: 44, // Height of search input
+    left: 0,
+    right: 0,
+    backgroundColor: colors.background.card,
+    borderRadius: layout.borderRadius.lg,
+    maxHeight: 300,
+    zIndex: 2,
+    borderWidth: 1,
+    borderColor: colors.border.light,
+    ...Platform.select({
+      ios: {
+        shadowColor: colors.neutral[900],
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 3,
+      },
+    }),
   },
   searchContainer: {
     backgroundColor: "transparent",

@@ -1,4 +1,4 @@
-import { Alert, Button, StyleSheet, View, Image, ScrollView } from 'react-native';
+import { Alert, StyleSheet, View, Image, FlatList } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -92,28 +92,44 @@ export default function ImageManager( {receiveImageUri, existingPhotos} ) {
   }
 
   function renderImage(uri, index, type) {
+    if (type === 'add Image') {
+      return (
+        <PressableButton 
+          pressHandler={showImagePickerOptions}
+          componentStyle={styles.addImage}>
+          <MaterialCommunityIcons name="image-plus" size={90} color="gray" />
+        </PressableButton>
+      );
+    }
     return (
-      <View key={index}>
+      <View key={index} style={styles.imageContainer}>
         <Image
           source={{ uri: uri }}
           style={styles.Image}
           alt={`previed of the image ${index + 1}`}/>
-        <PressableButton pressHandler={() => deleteImageHandler(uri, type)}>
-          <MaterialCommunityIcons name="delete" size={24} color="black" />
+        <PressableButton 
+          pressHandler={() => deleteImageHandler(uri, type)}
+          componentStyle={styles.deleteButton}>
+          <MaterialCommunityIcons name="delete" size={24} color="gray" />
         </PressableButton>
       </View>
     );
   }
 
+  const combinedUris = [
+    ...existUris.map((uri) => ({ uri, type: 'existing' })),
+    ...imageUri.map((uri) => ({ uri, type: 'new' })),
+    { type: 'add Image' },];
+
   return (
     <View>
-      <ScrollView horizontal={true} style={styles.scrollView}>
-        {existUris.map((uri, index) => renderImage(uri, index, 'existing'))}
-        {imageUri.map((uri, index) => renderImage(uri, index, 'new'))}
-      <PressableButton pressHandler={showImagePickerOptions}>
-        <MaterialCommunityIcons name="image-plus" size={100} color="black" />
-      </PressableButton>
-      </ScrollView>
+      <FlatList
+        data={combinedUris}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item, index }) => renderImage(item.uri, index, item.type)}
+        numColumns={2}
+        contentContainerStyle={styles.flatList}
+      />
     </View>
   )
 }
@@ -127,4 +143,23 @@ const styles = StyleSheet.create({
   scrollView: {
     margin: 10,
   },
+  imageContainer: {
+    position: 'relative',
+    marginHorizontal: 5,
+  },
+  deleteButton: {
+    position: 'absolute',
+    top: -3,
+    right: -3,
+  },
+  flatList: {
+    marginVertical: 10,
+  },
+  addImage: {
+    width: 150,
+    height: 150,
+    margin: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 })

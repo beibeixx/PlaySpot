@@ -1,5 +1,4 @@
 import {
-  StyleSheet,
   Text,
   View,
   Modal,
@@ -38,7 +37,10 @@ export default function MemoCard({
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={memoCardStyles.modalContainer}
         >
-          <PressableButton componentStyle={memoCardStyles.modalContainer} pressHandler={onCancel}>
+          <PressableButton
+            componentStyle={memoCardStyles.modalContainer}
+            pressHandler={onCancel}
+          >
             <PressableButton
               componentStyle={memoCardStyles.contentContainer}
               pressHandler={(e) => e.stopPropagation()}
@@ -96,5 +98,3 @@ export default function MemoCard({
     </Modal>
   );
 }
-
-const styles = StyleSheet.create({});

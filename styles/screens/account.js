@@ -6,8 +6,6 @@ import { layout } from "../helper/layout";
 import { typography } from "../helper/typography";
 import { cardStyles } from "../components/card";
 
-const screenWidth = Dimensions.get("window").width;
-
 export const accountStyles = StyleSheet.create({
   container: cardStyles.mainContainer,
   header: {

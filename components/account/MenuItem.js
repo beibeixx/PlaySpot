@@ -24,7 +24,10 @@ export default function MenuItem({ icon, title, onPress, type = "default" }) {
           style={accountStyles.menuIcon}
         />
         <Text
-          style={[accountStyles.menuText, type === "danger" && accountStyles.menuTextDanger]}
+          style={[
+            accountStyles.menuText,
+            type === "danger" && accountStyles.menuTextDanger,
+          ]}
         >
           {title}
         </Text>

@@ -67,6 +67,12 @@ export const playgroundMapStyles = StyleSheet.create({
   descriptionContainer: {
     marginBottom: spacing.xl,
   },
+  tagsContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: spacing.sm,
+    marginBottom: spacing.xl,
+  },
   descriptionText: {
     fontSize: typography.size.md,
     color: colors.text.secondary,

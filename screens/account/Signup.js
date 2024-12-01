@@ -19,6 +19,7 @@ import { colors } from "../../styles/helper/colors";
 import PressableButton from "../../components/common/PressableButton";
 import { AntDesign } from "@expo/vector-icons";
 import { validateSignupForm } from "../../utils/validation";
+import { writeToDB } from "../../firebase/firestoreHelper";
 
 export default function Signup({ navigation }) {
   const [email, setEmail] = useState("");
@@ -28,7 +29,7 @@ export default function Signup({ navigation }) {
   const [errors, setErrors] = useState({});
 
   const signupHandler = async () => {
-    const formErrors = validateSignupForm(email, password);
+    const formErrors = validateSignupForm(email, password, confirmPassword);
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
       return;
@@ -41,6 +42,12 @@ export default function Signup({ navigation }) {
         email,
         password
       );
+      const userData = {
+        uid: userCred.user.uid,
+        email: userCred.user.email,
+        avatar: "",
+      };
+      await writeToDB(userData, "users");
       // console.log("Signup successful");
       navigation.navigate("Account");
     } catch (error) {

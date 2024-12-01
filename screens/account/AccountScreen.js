@@ -11,10 +11,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors } from "../../styles/helper/colors";
 import MenuItem from "../../components/account/MenuItem";
 import Avatar from "../../components/account/Avatar";
-import * as ImagePicker from 'expo-image-picker';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase/firebaseSetup';
-import { getAvatarFromDB, updateAvatarInDB } from "../../firebase/firestoreHelper";
+import { getAvatarFromDB } from "../../firebase/firestoreHelper";
 
 export default function AccountScreen({ navigation }) {
   const { isAuthenticated } = useSelector((state) => state.auth);

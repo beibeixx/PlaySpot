@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, StyleSheet, Alert } from 'react-native';
+import { View, Image, StyleSheet, Alert, ActionSheetIOS } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { colors } from '../../styles/helper/colors';
@@ -11,7 +11,59 @@ import { updateAvatarInDB } from '../../firebase/firestoreHelper';
 
 export default function Avatar({ uid, avatarUrl, pickImage }) {
   async function showImagePickerOptions() {
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        options: ['Cancel', 'Take Photo', 'Choose from Library'],
+        cancelButtonIndex: 0,
+      },
+      async (buttonIndex) => {
+        if (buttonIndex === 1) {
+          takePhoto();
+        } else if (buttonIndex === 2) {
+          pickImageFromLibrary();
+        }
+      }
+    );
+  }
+
+  async function requestCameraPermissions() {
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert('Permission Denied', 'Camera access is required to take photos.');
+      throw new Error('Camera permission not granted');
+    }
+  }
+
+  async function requestLibraryPermissions() {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+      Alert.alert('Permission Denied', 'Library access is required to pick images.');
+      throw new Error('Library permission not granted');
+    }
+  }
+
+  async function takePhoto() {    
     try {
+      await requestCameraPermissions();
+      const result = await ImagePicker.launchCameraAsync({
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 1,
+      });
+      if (!result.canceled) {
+        const { uri } = result.assets[0];
+        const resizedUri = await resizeImage(uri);
+        await uploadImage(resizedUri);
+      }
+    } catch (err) {
+      console.log('Error taking photo:', err);
+      Alert.alert('Error', 'Failed to take photo. Please try again.');
+    }
+  }
+
+  async function pickImageFromLibrary() {
+    try {
+      await requestLibraryPermissions();
       const result = await ImagePicker.launchImageLibraryAsync({
         allowsEditing: true,
         aspect: [1, 1],
@@ -26,7 +78,7 @@ export default function Avatar({ uid, avatarUrl, pickImage }) {
       console.log('Error picking image:', err);
       Alert.alert('Error', 'Failed to pick image. Please try again.');
     }
-  }
+}
 
   async function resizeImage(uri) {
     try {

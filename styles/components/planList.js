@@ -12,6 +12,11 @@ export const planListStyles = StyleSheet.create({
   cardContent: {
     padding: spacing.sm,
   },
+  nameContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
   planName: {
     marginBottom: spacing.xxs,
     ...cardStyles.title,

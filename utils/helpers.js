@@ -53,8 +53,10 @@ export async function scheduleNotification(title, body, triggerDate) {
       },
       trigger: {
         date: triggerDate,
+        type: Notifications.SchedulableTriggerInputTypes.DATE,
       },
     });
+    console.log(notificationId)
     return notificationId;
   } catch (error) {
     console.error("Error scheduling notification:", error);

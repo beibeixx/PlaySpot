@@ -1,6 +1,6 @@
 //Account screen to display user info and favorite list entry
 import { Text, View } from "react-native";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { auth } from "../../firebase/firebaseSetup";
 import { useSelector } from "react-redux";
 import { handleSignOut } from "../../redux/authService";
@@ -10,9 +10,35 @@ import PressableButton from "../../components/common/PressableButton";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors } from "../../styles/helper/colors";
 import MenuItem from "../../components/account/MenuItem";
+import Avatar from "../../components/account/Avatar";
+import { ref, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../firebase/firebaseSetup';
+import { getAvatarFromDB } from "../../firebase/firestoreHelper";
 
 export default function AccountScreen({ navigation }) {
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const [user, setUser] = useState({});
+  const [avatarUrl, setAvatarUrl] = useState(null);
+
+  useEffect(() => {
+    async function fetchAvatar() {
+    if (isAuthenticated) {
+      setUser(auth.currentUser);
+      const avatarUri = await getAvatarFromDB("users", auth.currentUser.uid);
+      if (avatarUri) {
+        const downloadURL = await getDownloadURL(ref(storage, avatarUri));
+        setAvatarUrl(downloadURL);
+      }
+    }
+  }
+    fetchAvatar();
+  }, [isAuthenticated]);
+
+  async function pickImage(url) {
+    if (url) {
+      setAvatarUrl(url);
+    }
+  }
 
   const favoriteHandle = () => {
     navigation.navigate("Favorite List");
@@ -29,15 +55,9 @@ export default function AccountScreen({ navigation }) {
         style={accountStyles.header}
       >
         <View style={accountStyles.headerContent}>
-          {isAuthenticated ? (
+          {isAuthenticated  && user ? (
             <>
-              <View style={accountStyles.avatarContainer}>
-                <MaterialCommunityIcons
-                  name="account-circle"
-                  size={60}
-                  color={colors.background.primary}
-                />
-              </View>
+              <Avatar uid={user.uid} avatarUrl={avatarUrl} pickImage={pickImage}/>
               <Text style={accountStyles.emailText}>
                 {auth.currentUser.email}
               </Text>

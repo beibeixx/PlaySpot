@@ -1,4 +1,4 @@
-import { collection, addDoc, getDocs, setDoc, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove, getDoc} from "firebase/firestore";
+import { collection, addDoc, getDocs, setDoc, doc, deleteDoc, updateDoc, arrayUnion, arrayRemove, getDoc, query, where} from "firebase/firestore";
 import { database } from "./firebaseSetup";
 
 //WRITING RULES HAVE NOT BEEN CHANGED, NEED TO UPDATE ON NEXT ITERTAION.
@@ -88,5 +88,36 @@ export async function getPhotosFromDB(collectionName, documentId) {
     }
   } catch (err) {
     console.error("Error getting photos from db:", err);
+  }
+}
+
+export async function getAvatarFromDB(collectionName, uid) {
+  try {
+    // query to get the user document field 'uid' ==== 'uid'
+    const q = query(collection(database, collectionName), where("uid", "==", uid));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      const document = querySnapshot.docs[0];
+      return document.data().avatar;
+    }
+  } catch (err) {
+    console.error("Error getting avatar from db:", err);
+  }
+}
+
+export async function updateAvatarInDB(collectionName, uid, avatarUrl) {
+  console.log("Updating avatar in db:", avatarUrl);
+  try {
+    const q = query(collection(database, collectionName), where("uid", "==", uid));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (document) => {
+      const docRef = doc(database, collectionName, document.id);
+      await updateDoc(docRef, {
+        avatar: avatarUrl,
+      });
+      console.log("Avatar successfully updated in db:", avatarUrl);
+    });
+  } catch (err) {
+    console.error("Error updating avatar in db:", err);
   }
 }

@@ -1,5 +1,5 @@
 // Planlist for use on Plan Screen
-import { FlatList, Text, View, StyleSheet } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import React, { useState, useEffect } from "react";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { database } from "../../firebase/firebaseSetup";
@@ -9,6 +9,7 @@ import { formatDate } from "../../utils/helpers";
 import { auth } from "../../firebase/firebaseSetup";
 import { useSelector } from "react-redux";
 import { planListStyles } from "../../styles/components/planList";
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
 export default function PlanList({ timetype, navigation }) {
   const [plans, setPlans] = useState([]);
@@ -32,6 +33,7 @@ export default function PlanList({ timetype, navigation }) {
           ...docSnapshot.data(),
           id: docSnapshot.id,
           time: docSnapshot.data().time,
+          archived: docSnapshot.data().archived,
         });
       });
       if (timetype === "past") {
@@ -54,7 +56,12 @@ export default function PlanList({ timetype, navigation }) {
       >
         <ItemImage item={item} screen="plan"/>
         <View style={planListStyles.cardContent}>
+          <View style={planListStyles.nameContainer}>
           <Text style={planListStyles.planName}>{item.planName}</Text>
+          {item.archived && (
+            <FontAwesome5 name="archive" size={18} color="black" style={planListStyles.planName}/>
+          )}
+          </View>
           <Text style={planListStyles.timeText}>
             {formatDate(item.time.toDate())}
           </Text>
@@ -84,5 +91,3 @@ export default function PlanList({ timetype, navigation }) {
     />
   );
 }
-
-const styles = StyleSheet.create({});

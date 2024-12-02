@@ -22,6 +22,7 @@ import PressableButton from "../../components/common/PressableButton";
 import { auth } from "../../firebase/firebaseSetup";
 import WeatherSection from "./WeatherSection";
 import LocationManager from "../../components/map/LocationManager";
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { planDetailStyles } from "../../styles/screens/planDetail";
 import { LinearGradient } from "expo-linear-gradient";
 import { spacing } from "../../styles/helper/spacing";
@@ -129,7 +130,15 @@ export default function PlanDetailsScreen({ navigation, route }) {
 
           {/* Location Section */}
           <View style={planDetailStyles.section}>
+            <View style={planDetailStyles.locationContainer}>
             <Text style={planDetailStyles.sectionTitle}>Location</Text>
+            <PressableButton 
+              pressHandler={() => navigation.navigate("Direction", { playgroundId: item.playgroundId })}
+              componentStyle={planDetailStyles.directionButton}
+            >
+              <FontAwesome5 name="directions" size={24} color="black" />
+            </PressableButton>
+            </View>
             <Text style={planDetailStyles.locationName}>{playgroundName}</Text>
             <View style={planDetailStyles.mapContainer}>
               <LocationManager selectedPlace={item.playgroundId} />

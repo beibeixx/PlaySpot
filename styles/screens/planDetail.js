@@ -38,6 +38,12 @@ export const planDetailStyles = StyleSheet.create({
     backgroundColor: colors.background.secondary,
     paddingTop: spacing.lg,
   },
+  locationContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginRight: spacing.lg,
+  },
   // Section Styles
   section: {
     marginHorizontal: spacing.lg,

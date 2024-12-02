@@ -11,6 +11,7 @@ import FavoriteListScreen from "../screens/favorites/FavoriteListScreen";
 import Login from "../screens/account/Login";
 import Signup from "../screens/account/Signup";
 import PlaygroundMap from "../screens/playground/PlaygroundMap";
+import DirectionScreen from "../screens/plan/DirectionScreen";
 import { colors } from "../styles/helper/colors";
 
 const Stack = createNativeStackNavigator();
@@ -55,6 +56,7 @@ export default function AppNavigator() {
         <Stack.Screen name="Memory Details" component={MemoryDetailsScreen} />
         <Stack.Screen name="Favorite List" component={FavoriteListScreen} />
         <Stack.Screen name="Playground Map" component={PlaygroundMap} />
+        <Stack.Screen name="Direction" component={DirectionScreen} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
       </Stack.Group>

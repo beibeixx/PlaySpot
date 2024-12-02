@@ -69,7 +69,7 @@ export default function ImageManager({ receiveImageUri, existingPhotos }) {
 
       const result = await ImagePicker.launchImageLibraryAsync({
         allowsEditing: true,
-        aspect: [4, 3],
+        aspect: [16, 9],
         quality: 1,
       });
       if (!result.canceled) {

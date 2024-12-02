@@ -7,6 +7,7 @@ import {
   Image,
   Alert,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { getImagesById, getItemNameById } from "../../services/dataService";
@@ -43,20 +44,29 @@ export default function MemoryDetailsScreen({ navigation, route }) {
   const [isMemoVisible, setIsMemoVisible] = useState(false);
   const [showAddPhotoCard, setShowAddPhotoCard] = useState(false);
   const [userPhotos, setUserPhotos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getImageUris() {
+      setLoading(true);
       try {
         const photos = await getPhotosFromDB("memory", item.id);
+        if (photos && Array.isArray(photos)) {
           const imageUris = await Promise.all(
-          photos.map(async (photo) => {
-            const imageRef = ref(storage, photo);
-            const httpsImageUri = await getDownloadURL(imageRef);
-            return httpsImageUri;
-          }));
-        setUserPhotos(imageUris);
+            photos.map(async (photo) => {
+              const imageRef = ref(storage, photo);
+              const httpsImageUri = await getDownloadURL(imageRef);
+              return httpsImageUri;
+            })
+          );
+          setUserPhotos(imageUris);
+        } else {
+          console.log("No photos found");
+        }
       } catch (error) {
         console.error("Error getting image uri:", error);
+      } finally {
+        setLoading(false);
       }
     }
     getImageUris();
@@ -238,13 +248,16 @@ export default function MemoryDetailsScreen({ navigation, route }) {
           <View style={memoryDetailStyles.sectionHeader}>
             <Text style={memoryDetailStyles.sectionTitle}>Photos</Text>
           </View>
+          {loading ? (
+            <ActivityIndicator size="large" color={colors.primary[500]} />
+          ) : (
           <FlatList
             data={userPhotos.length > 0 ? userPhotos : images}
             renderItem={renderImage}
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={memoryDetailStyles.imageList}
-          />
+          />)}
         </View>
 
         {/* Memo Section */}

@@ -120,4 +120,22 @@ export const detailStyles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: typography.weight.medium,
   },
+  actionContainer: {
+    paddingHorizontal: spacing.md,
+    gap: spacing.xl,
+  },
+  primaryButton: {
+    backgroundColor: colors.primary[500],
+    borderRadius: layout.borderRadius.md,
+    padding: spacing.md,
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "center",
+    gap: spacing.sm,
+  },
+  buttonText: {
+    fontSize: typography.size.md,
+    fontWeight: typography.weight.semibold,
+    color: colors.text.white,
+  },
 });

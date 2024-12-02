@@ -34,7 +34,7 @@ export default function ModifyPlanScreen({ navigation, route }) {
   const playgrounds = fetchData();
   const defaultPlanTime = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
-  const [planName, setPlanName] = useState(isModify ? item.planName : "");
+  const [planName, setPlanName] = useState(isModify && item.planName ? item.planName : "");
   const [selectedPlayground, setSelectedPlayground] = useState(
     checkPlayground(item)
   );

@@ -10,6 +10,7 @@ import { auth, database } from "../../firebase/firebaseSetup";
 import { detailStyles } from "../../styles/screens/playgroundDetails";
 import { getSectionColors, colors } from "../../styles/helper/colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import LocationManager from "../../components/map/LocationManager";
 import { LinearGradient } from "expo-linear-gradient";
@@ -195,6 +196,22 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
           {renderSection(data.amenities, "Amenities")}
           {renderSection(data.features, "Features")}
           {renderSection(data.environment, "Environment")}
+
+          <View style={detailStyles.actionContainer}>
+            <PressableButton
+              pressHandler={() =>
+                navigation.navigate("Modify Plan", {
+                  item: {
+                    playgroundId: itemID,
+                  },
+                })
+              }
+              componentStyle={detailStyles.primaryButton}
+            >
+              <Feather name="calendar" size={20} color={colors.text.white} />
+              <Text style={detailStyles.buttonText}>Create Plan</Text>
+            </PressableButton>
+          </View>
         </View>
       </ScrollView>
     </View>

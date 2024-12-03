@@ -52,11 +52,19 @@ The app uses three main collections that are interconnected through the playgrou
   - `playgroundId`: string
   - `time`: timestamp
   - `memo`: string (optional)
-  - `photo`: string (optional)
+  - `photo`: Array of strings (optional)
   - `owner`: string
 - **Description**: Stores memories created by users.
 
 #### Favorites Collection
+- **Fields**:
+  - `avatar`: string
+  - `email`: string
+  - `nickname`: string
+  - `uid`: String
+- **Description**: Stores user's info.
+
+#### User Collection
 - **Fields**:
   - `playgroundId`: string
   - `addedAt`: timestamp

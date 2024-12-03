@@ -30,6 +30,7 @@ import CommonDateTimePicker from "../../components/common/CommonDateTimePicker";
 import { setDateWithoutSeconds, timeOptions } from "../../utils/helpers";
 
 export default function ModifyPlanScreen({ navigation, route }) {
+  // const { item } = route.params;
   const { item } = route.params;
   const isModify = item ? true : false;
   const playgrounds = fetchData();
@@ -63,6 +64,13 @@ export default function ModifyPlanScreen({ navigation, route }) {
   useEffect(() => {
     requestNotificationPermissions();
   }, []);
+
+  useEffect(() => {
+    if (route.params?.selectedPlayground) {
+      setSelectedPlayground(route.params.selectedPlayground);
+      navigation.setParams({ selectedPlayground: undefined });
+    }
+  }, [route.params?.selectedPlayground]);
 
   useEffect(() => {
     if (reminderTime && time < reminderTime) {

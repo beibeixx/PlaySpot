@@ -20,6 +20,7 @@ import PressableButton from "../../components/common/PressableButton";
 import { AntDesign } from "@expo/vector-icons";
 import { validateSignupForm } from "../../utils/validation";
 import { writeToDB } from "../../firebase/firestoreHelper";
+import { generateNickname } from "../../utils/helpers";
 
 export default function Signup({ navigation }) {
   const [email, setEmail] = useState("");
@@ -46,6 +47,7 @@ export default function Signup({ navigation }) {
         uid: userCred.user.uid,
         email: userCred.user.email,
         avatar: "",
+        nickname: generateNickname(),
       };
       await writeToDB(userData, "users");
       // console.log("Signup successful");

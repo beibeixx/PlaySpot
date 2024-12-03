@@ -7,7 +7,7 @@ import PressableButton from '../common/PressableButton';
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage';
 import { storage } from '../../firebase/firebaseSetup';
 import * as ImageManipulator from 'expo-image-manipulator';
-import { updateAvatarInDB } from '../../firebase/firestoreHelper';
+import { updateDB } from '../../firebase/firestoreHelper';
 
 export default function Avatar({ uid, avatarUrl, pickImage }) {
   async function showImagePickerOptions() {
@@ -107,7 +107,7 @@ export default function Avatar({ uid, avatarUrl, pickImage }) {
       const storageRef = ref(storage, `avatars/${imageName}`);
       const uploadResult = await uploadBytesResumable(storageRef, blob);
       const uploadURL = uploadResult.metadata.fullPath;
-      await updateAvatarInDB("users", uid, uploadURL);
+      await updateDB(uid, { avatar: uploadURL }, "users");
       const httpsImageURi = await getDownloadURL(storageRef);
       pickImage(httpsImageURi);
     } catch (err) {

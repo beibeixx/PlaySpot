@@ -36,6 +36,28 @@ export const setDateWithoutSeconds = (date) => {
   return newDate;
 };
 
+// generate nickname when signup
+export const generateNickname = () => {
+  const adjectives = [
+    "Happy", "Bright", "Cool", "Super", "Awesome", 
+    "Amazing", "Clever", "Lucky", "Sunny", "Swift"
+  ];
+  
+  const nouns = [
+    "Panda", "Tiger", "Eagle", "Dolphin", "Fox",
+    "Star", "Moon", "Cloud", "River", "Forest"
+  ];
+  
+  const randomNum = Math.floor(Math.random() * 9000 + 1000);
+  
+  const adjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+  const noun = nouns[Math.floor(Math.random() * nouns.length)];
+  
+  return `${adjective}${noun}${randomNum}`;
+}
+
+
+
 //Notifications
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

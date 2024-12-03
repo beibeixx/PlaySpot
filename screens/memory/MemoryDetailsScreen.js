@@ -16,7 +16,7 @@ import {
   deleteFromDB,
   addImageToDB,
   removeImageFromDB,
-  getPhotosFromDB,
+  getOneDocument,
 } from "../../firebase/firestoreHelper";
 import PressableButton from "../../components/common/PressableButton";
 import AddMemoryPhotoCard from "../../components/memory/AddMemoryPhotoCard";
@@ -50,8 +50,9 @@ export default function MemoryDetailsScreen({ navigation, route }) {
     async function getImageUris() {
       setLoading(true);
       try {
-        const photos = await getPhotosFromDB("memory", item.id);
-        if (photos && Array.isArray(photos)) {
+        const docData = await getOneDocument(item.id, "memory");
+        const photos = docData?.photos;
+        if (Array.isArray(photos) && photos.length > 0) {
           const imageUris = await Promise.all(
             photos.map(async (photo) => {
               const imageRef = ref(storage, photo);
@@ -118,43 +119,49 @@ export default function MemoryDetailsScreen({ navigation, route }) {
   }
 
   async function handleUpdatePhotos(newImageUris, deletedImageUris) {
-    if (newImageUris.length > 0) {
-      let newPhotos = [];
-      const resizedPhotos = await Promise.all(
-        newImageUris.map((uri) => resizeImage(uri))
-      );
-      newPhotos = await fetchAndUploadImage(resizedPhotos);
-      console.log("new photos", newPhotos);
-      await Promise.all(
-        newPhotos.map(async (photo) => {
-          await addImageToDB(photo, "memory", item.id);
+    try {
+      if (newImageUris.length > 0) {
+        let newPhotos = [];
+        const resizedPhotos = await Promise.all(
+          newImageUris.map((uri) => resizeImage(uri))
+        );
+        newPhotos = await fetchAndUploadImage(resizedPhotos);
+        console.log("new photos", newPhotos);
+        await Promise.all(
+          newPhotos.map(async (photo) => {
+            await addImageToDB(photo, "memory", item.id);
+          })
+        );
+      }
+
+      // Remove deleted photos from storage
+      if (deletedImageUris.length > 0) {
+        await Promise.all(
+          deletedImageUris.map(async (uri) => {
+            const imageRef = ref(storage, uri);
+            await deleteObject(imageRef);
+            console.log("deleted image", uri);
+            await removeImageFromDB(uri, "memory", item.id);
+          })
+        );
+      }
+
+      // Update userPhotos state to trigger re-render
+      const docData = await getOneDocument(item.id, "memory");
+      const photos = docData?.photos;
+      const imageUris = await Promise.all(
+        photos.map(async (photo) => {
+          const imageRef = ref(storage, photo);
+          const httpsImageUri = await getDownloadURL(imageRef);
+          return httpsImageUri;
         })
       );
+      setUserPhotos(imageUris);
+      setShowAddPhotoCard(false);
+    } catch (error) {
+      console.error("Error updating photos:", error);
+      throw error;
     }
-
-    // Remove deleted photos from storage
-    if (deletedImageUris.length > 0) {
-      await Promise.all(
-        deletedImageUris.map(async (uri) => {
-          const imageRef = ref(storage, uri);
-          await deleteObject(imageRef);
-          console.log("deleted image", uri);
-          await removeImageFromDB(uri, "memory", item.id);
-        })
-      );
-    }
-
-    // Update userPhotos state to trigger re-render
-    const photos = await getPhotosFromDB("memory", item.id);
-    const imageUris = await Promise.all(
-      photos.map(async (photo) => {
-        const imageRef = ref(storage, photo);
-        const httpsImageUri = await getDownloadURL(imageRef);
-        return httpsImageUri;
-      })
-    );
-    setUserPhotos(imageUris);
-    setShowAddPhotoCard(false);
   }
 
   function renderImage({ item }) {
@@ -251,13 +258,14 @@ export default function MemoryDetailsScreen({ navigation, route }) {
           {loading ? (
             <ActivityIndicator size="large" color={colors.primary[500]} />
           ) : (
-          <FlatList
-            data={userPhotos.length > 0 ? userPhotos : images}
-            renderItem={renderImage}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={memoryDetailStyles.imageList}
-          />)}
+            <FlatList
+              data={userPhotos.length > 0 ? userPhotos : images}
+              renderItem={renderImage}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={memoryDetailStyles.imageList}
+            />
+          )}
         </View>
 
         {/* Memo Section */}
@@ -341,4 +349,3 @@ export default function MemoryDetailsScreen({ navigation, route }) {
     </View>
   );
 }
-

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, StyleSheet, Alert, ActionSheetIOS } from 'react-native';
+import { View, Image, StyleSheet, Alert} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { colors } from '../../styles/helper/colors';
@@ -8,13 +8,19 @@ import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebas
 import { storage } from '../../firebase/firebaseSetup';
 import * as ImageManipulator from 'expo-image-manipulator';
 import { updateDB } from '../../firebase/firestoreHelper';
+import { useActionSheet } from '@expo/react-native-action-sheet';
 
 export default function Avatar({ uid, avatarUrl, pickImage }) {
+  const { showActionSheetWithOptions } = useActionSheet();
+
   async function showImagePickerOptions() {
-    ActionSheetIOS.showActionSheetWithOptions(
+    console.log('showImagePickerOptions');
+    const options = ['Cancel', 'Take Photo', 'Choose from Library'];
+    const cancelButtonIndex = 0;
+    showActionSheetWithOptions(
       {
-        options: ['Cancel', 'Take Photo', 'Choose from Library'],
-        cancelButtonIndex: 0,
+        options,
+        cancelButtonIndex,
       },
       async (buttonIndex) => {
         if (buttonIndex === 1) {

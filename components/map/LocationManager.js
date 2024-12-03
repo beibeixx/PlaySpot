@@ -1,15 +1,11 @@
-import { Button, StyleSheet, Text, View, Image } from "react-native";
+import { View, Image } from "react-native";
 import React, { useEffect, useState } from "react";
-import * as Location from "expo-location";
 import { Dimensions } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 const windowWidth = Dimensions.get("window").width;
 import { useRoute } from "@react-navigation/native";
-import { auth } from "../../firebase/firebaseSetup";
 import { getAddressById } from "../../services/dataService";
 import { getLocationFromAddress } from "../../services/geocodingService";
 import { locationManagerStyles } from "../../styles/components/locationManager";
-import { colors } from "../../styles/helper/colors";
 import CommonActivityIndicator from "../common/CommonActivityIndicator";
 
 export default function LocationManager({ selectedPlace }) {

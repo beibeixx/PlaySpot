@@ -1,6 +1,6 @@
-import { Modal, View, Text, TouchableOpacity, ScrollView } from "react-native";
-import DateTimePicker from "@react-native-community/datetimepicker";
 import React, { useState } from "react";
+import { Modal, View, Text, TouchableOpacity, ScrollView, Platform } from "react-native";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import { datetimePickerStyles } from "../../styles/components/datetimePicker";
 import { setDateWithoutSeconds } from "../../utils/helpers";
 
@@ -12,6 +12,52 @@ export default function CommonDateTimePicker({
   isReminderPicker = false,
 }) {
   const [tempDate, setTempDate] = useState(setDateWithoutSeconds(currentValue || new Date()));
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showTimePicker, setShowTimePicker] = useState(false);
+
+  const handleDateChange = (event, selectedDate) => {
+    if (event.type === "dismissed") {
+      setShowDatePicker(false);
+      return;
+    }
+    if (selectedDate) {
+      // Update only the date portion
+      const updatedDate = new Date(
+        selectedDate.getFullYear(),
+        selectedDate.getMonth(),
+        selectedDate.getDate(),
+        tempDate.getHours(),
+        tempDate.getMinutes()
+      );
+      setTempDate(updatedDate);
+      setShowDatePicker(false);
+      setShowTimePicker(true); // Show time picker next
+    }
+  };
+
+  const handleTimeChange = (event, selectedTime) => {
+    if (event.type === "dismissed") {
+      setShowTimePicker(false);
+      return;
+    }
+    if (selectedTime) {
+      // Update only the time portion
+      const updatedDate = new Date(
+        tempDate.getFullYear(),
+        tempDate.getMonth(),
+        tempDate.getDate(),
+        selectedTime.getHours(),
+        selectedTime.getMinutes()
+      );
+      setTempDate(updatedDate);
+      setShowTimePicker(false);
+    }
+  };
+
+  const confirmSelection = () => {
+    onSelect(tempDate);
+    onClose();
+  };
 
   const quickOptions = isReminderPicker
     ? [
@@ -68,28 +114,68 @@ export default function CommonDateTimePicker({
             ))}
           </ScrollView>
 
-          <DateTimePicker
-            value={tempDate}
-            mode="datetime"
-            display="spinner"
-            onChange={(event, date) => {
-              if (date) {
-                const dateWithoutSeconds = setDateWithoutSeconds(date);
-                setTempDate(dateWithoutSeconds);
-                onSelect(dateWithoutSeconds);
-              }
-            }}
-          />
+          {Platform.OS === "ios" ? (
+            <>
+              <DateTimePicker
+                value={tempDate}
+                mode="datetime"
+                display="spinner"
+                onChange={(event, date) => {
+                  if (date) {
+                    const dateWithoutSeconds = setDateWithoutSeconds(date);
+                    setTempDate(dateWithoutSeconds);
+                    onSelect(dateWithoutSeconds);
+                  }
+                }}
+              />
+              <TouchableOpacity
+                style={datetimePickerStyles.confirmButton}
+                onPress={confirmSelection}
+              >
+                <Text style={datetimePickerStyles.confirmText}>Confirm</Text>
+              </TouchableOpacity>
+            </>
+          ) : (
+            <>
+              {showDatePicker && (
+                <DateTimePicker
+                  value={tempDate}
+                  mode="date"
+                  display="default"
+                  onChange={handleDateChange}
+                />
+              )}
 
-          <TouchableOpacity
-            style={datetimePickerStyles.confirmButton}
-            onPress={() => {
-              onSelect(tempDate);
-              onClose();
-            }}
-          >
-            <Text style={datetimePickerStyles.confirmText}>Confirm</Text>
-          </TouchableOpacity>
+              {showTimePicker && (
+                <DateTimePicker
+                  value={tempDate}
+                  mode="time"
+                  display="default"
+                  onChange={handleTimeChange}
+                />
+              )}
+
+              {!showDatePicker && !showTimePicker && (
+                <>
+                  <TouchableOpacity
+                    style={datetimePickerStyles.confirmButton}
+                    onPress={() => setShowDatePicker(true)}
+                  >
+                    <Text style={datetimePickerStyles.confirmText}>
+                      {tempDate.toLocaleDateString()} {tempDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                    </Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={datetimePickerStyles.confirmButton}
+                    onPress={confirmSelection}
+                  >
+                    <Text style={datetimePickerStyles.confirmText}>Confirm</Text>
+                  </TouchableOpacity>
+                </>
+              )}
+            </>
+          )}
         </View>
       </View>
     </Modal>

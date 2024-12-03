@@ -40,12 +40,6 @@ export default function PlanDetailsScreen({ navigation, route }) {
     });
   }, [navigation, item]);
 
-  function renderImage({ item }) {
-    <View style={planDetailStyles.imageContainer}>
-      <Image source={{ uri: item }} style={planDetailStyles.image} />
-    </View>;
-  }
-
   function handleEdit() {
     navigation.navigate("Modify Plan", { item });
   }

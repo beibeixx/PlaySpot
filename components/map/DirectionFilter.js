@@ -1,4 +1,4 @@
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView } from "react-native";
 import React from 'react'
 import { filterBarStyles } from "../../styles/components/homeSearch";
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';

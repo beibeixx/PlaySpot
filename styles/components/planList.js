@@ -16,6 +16,7 @@ export const planListStyles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
+    paddingRight: spacing.sm,
   },
   planName: {
     marginBottom: spacing.xxs,

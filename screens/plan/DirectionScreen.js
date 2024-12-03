@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { View } from 'react-native'
 import { useState, useEffect, useRef } from 'react'
 import React from 'react'
 import * as Location from "expo-location";
-import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import MapViewDirections from 'react-native-maps-directions';
 import { getItemNameById, getAddressById } from '../../services/dataService';
 import { getLocationFromAddress } from '../../services/geocodingService';
@@ -114,5 +114,3 @@ export default function DirectionScreen( { route }) {
     </View>
   )
 }
-
-const styles = StyleSheet.create({})

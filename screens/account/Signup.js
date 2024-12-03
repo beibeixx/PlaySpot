@@ -19,7 +19,7 @@ import { colors } from "../../styles/helper/colors";
 import PressableButton from "../../components/common/PressableButton";
 import { AntDesign } from "@expo/vector-icons";
 import { validateSignupForm } from "../../utils/validation";
-import { writeToDB } from "../../firebase/firestoreHelper";
+import { writeToDB, updateDB } from "../../firebase/firestoreHelper";
 import { generateNickname } from "../../utils/helpers";
 
 export default function Signup({ navigation }) {
@@ -49,7 +49,7 @@ export default function Signup({ navigation }) {
         avatar: "",
         nickname: generateNickname(),
       };
-      await writeToDB(userData, "users");
+      updateDB(auth.currentUser.uid, userData, "users");
       // console.log("Signup successful");
       navigation.navigate("Account");
     } catch (error) {

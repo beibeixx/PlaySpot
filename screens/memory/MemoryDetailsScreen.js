@@ -212,13 +212,22 @@ export default function MemoryDetailsScreen({ navigation, route }) {
               value={newMemoryName}
               onChangeText={setNewMemoryName}
               onBlur={handleUpdateName}
+              onSubmitEditing={handleUpdateName}
               style={memoryDetailStyles.nameInput}
               autoFocus
+              returnKeyType="done"
             />
           ) : (
             <Text>{newMemoryName}</Text>
           )}
-          <PressableButton pressHandler={() => setIsEditing(!isEditing)}>
+          <PressableButton
+            pressHandler={() => {
+              if (isEditing) {
+                handleUpdateName();
+              }
+              setIsEditing(!isEditing);
+            }}
+          >
             <Feather
               name={isEditing ? "check" : "edit-2"}
               size={24}

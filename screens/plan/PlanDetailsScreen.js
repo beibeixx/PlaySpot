@@ -121,13 +121,14 @@ export default function PlanDetailsScreen({ navigation, route }) {
               {formatDate(item.time.toDate())}
             </Text>
           </View>
-
-          <View style={planDetailStyles.section}>
-            <Text style={planDetailStyles.sectionTitle}>Reminder Time</Text>
-            <Text style={planDetailStyles.timeText}>
-              {formatDate(item.reminderTime.toDate())}
-            </Text>
-          </View>
+          {item.reminderTime && (
+            <View style={planDetailStyles.section}>
+              <Text style={planDetailStyles.sectionTitle}>Reminder Time</Text>
+              <Text style={planDetailStyles.timeText}>
+                {formatDate(item.reminderTime.toDate())}
+              </Text>
+            </View>
+          )}
 
           {/* Location Section */}
           <View style={planDetailStyles.section}>

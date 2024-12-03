@@ -190,6 +190,40 @@ The app uses three main collections that are interconnected through the playgrou
       - Updated the README
       - Organized reusable components and deleted invalidated components
 
+## Team Contributions - Iteration 3
+
+### App Progress
+   - All functionalities should be ready for iteration 3 evalution
+      - Authentication
+      - Notification
+      - External API use
+      - Location use
+      - Camera use
+
+### Detailed Contributions
+
+- **Member 1 Xinyu Xie**:
+   - UI/UX Improvements:
+      - Rebuilt overall application styling
+      - Redesigned all the pages
+   - Feature Improvements:
+      - Added auto-generate nickname field in `Signup`
+      - Displayed nickname and change name feature on `AccountScreen`
+      - Implemented reminder detail display on `PlanDetailsScreen`
+      - Modified plan time and reminder time display on to the `ModifyPlanScreen`
+      - Added create a plan button from the `PlaygroundDetailScreen`
+   - Fix Bugs:
+      - Fix push error on `Notification`
+      - Fix the error of multiple clicks on uploading photos on `MemoryDetailsScreen`
+      - Fix font overflow on `PlaygroundDetailScreen`  
+   - Others:
+      - Updated the README
+      - Organized reusable components and deleted invalidated components
+      - Changed DB firebase settings 
+      - Removed duplicate functions of firebase
+
+- **Member 2 Yuting Xie**:
+
 
 
 ## Screenshots - Iteration 1

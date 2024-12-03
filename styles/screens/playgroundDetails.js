@@ -124,4 +124,9 @@ export const detailStyles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: typography.weight.medium,
   },
+  headerButtonGroup: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
 });

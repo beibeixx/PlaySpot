@@ -30,6 +30,7 @@ import CommonDateTimePicker from "../../components/common/CommonDateTimePicker";
 import { setDateWithoutSeconds, timeOptions } from "../../utils/helpers";
 
 export default function ModifyPlanScreen({ navigation, route }) {
+  // const { item } = route.params;
   const { item } = route.params;
   const isModify = item ? true : false;
   const playgrounds = fetchData();
@@ -65,6 +66,19 @@ export default function ModifyPlanScreen({ navigation, route }) {
   }, []);
 
   useEffect(() => {
+    navigation.setOptions({
+      title: isModify ? "Edit Plan" : "Add a New Plan",
+    });
+  }, [navigation, isModify]);
+
+  useEffect(() => {
+    if (route.params?.selectedPlayground) {
+      setSelectedPlayground(route.params.selectedPlayground);
+      navigation.setParams({ selectedPlayground: undefined });
+    }
+  }, [route.params?.selectedPlayground]);
+
+  useEffect(() => {
     if (reminderTime && time < reminderTime) {
       setReminderTime(null);
     }
@@ -77,12 +91,14 @@ export default function ModifyPlanScreen({ navigation, route }) {
   }, [selectedPlayground]);
 
   useEffect(() => {
-    if (route.params?.selectedPlayground) {
-      setSelectedPlayground(route.params.selectedPlayground);
+    if (route.params?.selectedPlaygroundID) {
+      const selectedPlaygroundData = getItemById(route.params.selectedPlaygroundID)
+      // setSelectedPlayground(route.params.selectedPlayground);
+      setSelectedPlayground(selectedPlaygroundData);
       // clear route
-      navigation.setParams({ selectedPlayground: undefined });
+      navigation.setParams({ selectedPlaygroundID: undefined });
     }
-  }, [route.params?.selectedPlayground]);
+  }, [route.params?.selectedPlaygroundID]);
 
   function checkPlayground(item) {
     if (isModify) {

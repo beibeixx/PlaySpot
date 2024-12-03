@@ -77,20 +77,42 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
   const handleLogin = () => {
     navigation.navigate("Login");
   };
+  const handleCreatePlan = () => {
+    if (isAuthenticated) {
+      navigation.navigate("Modify Plan", {
+        item: null,
+        selectedPlaygroundID: itemID,
+      });
+    } else {
+      handleLogin();
+    }
+  };
 
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <PressableButton
-          componentStyle={detailStyles.headerButton}
-          pressHandler={favoriteHandler}
-        >
-          <MaterialCommunityIcons
-            name={isFavorite ? "heart" : "heart-outline"}
-            size={24}
-            color={colors.primary[500]}
-          />
-        </PressableButton>
+        <View style={detailStyles.headerButtonGroup}>
+          <PressableButton
+            componentStyle={detailStyles.headerButton}
+            pressHandler={handleCreatePlan}
+          >
+            <MaterialCommunityIcons
+              name="calendar-plus"
+              size={24}
+              color={colors.primary[500]}
+            />
+          </PressableButton>
+          <PressableButton
+            componentStyle={detailStyles.headerButton}
+            pressHandler={favoriteHandler}
+          >
+            <MaterialCommunityIcons
+              name={isFavorite ? "heart" : "heart-outline"}
+              size={24}
+              color={colors.primary[500]}
+            />
+          </PressableButton>
+        </View>
       ),
     });
   }, [itemID, favoriteHandler]);
@@ -191,7 +213,6 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
               <Text style={detailStyles.address}>{data.address}</Text>
             </View>
           </View>
-
           {renderSection(data.amenities, "Amenities")}
           {renderSection(data.features, "Features")}
           {renderSection(data.environment, "Environment")}

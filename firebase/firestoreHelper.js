@@ -93,18 +93,6 @@ export async function addImageToDB(imageUrl, collectionName, documentId) {
   }
 }
 
-export async function getPhotosFromDB(collectionName, documentId) {
-  try {
-    const docRef = doc(database, collectionName, documentId);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      return docSnap.data().photos;
-    }
-  } catch (err) {
-    console.error("Error getting photos from db:", err);
-  }
-}
-
 export async function getOneDocument(id, collectionName) {
   try {
     const docSnapshot = await getDoc(doc(database, collectionName, id));

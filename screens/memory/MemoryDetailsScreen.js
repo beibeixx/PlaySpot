@@ -16,7 +16,7 @@ import {
   deleteFromDB,
   addImageToDB,
   removeImageFromDB,
-  getPhotosFromDB,
+  getOneDocument
 } from "../../firebase/firestoreHelper";
 import PressableButton from "../../components/common/PressableButton";
 import AddMemoryPhotoCard from "../../components/memory/AddMemoryPhotoCard";
@@ -50,8 +50,9 @@ export default function MemoryDetailsScreen({ navigation, route }) {
     async function getImageUris() {
       setLoading(true);
       try {
-        const photos = await getPhotosFromDB("memory", item.id);
-        if (photos && Array.isArray(photos)) {
+        const docData = await getOneDocument(item.id, "memory");
+        const photos = docData?.photos;
+        if (Array.isArray(photos) && photos.length > 0) {
           const imageUris = await Promise.all(
             photos.map(async (photo) => {
               const imageRef = ref(storage, photo);
@@ -145,7 +146,8 @@ export default function MemoryDetailsScreen({ navigation, route }) {
     }
 
     // Update userPhotos state to trigger re-render
-    const photos = await getPhotosFromDB("memory", item.id);
+    const docData = await getOneDocument(item.id, "memory");
+    const photos = docData?.photos;
     const imageUris = await Promise.all(
       photos.map(async (photo) => {
         const imageRef = ref(storage, photo);

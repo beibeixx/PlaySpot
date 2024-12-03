@@ -107,6 +107,10 @@ export const detailStyles = StyleSheet.create({
   featureValue: {
     fontSize: typography.size.md,
     fontWeight: typography.weight.medium,
+    flex: 1,
+    marginLeft: spacing.md,
+    textAlign: 'right',
+    flexWrap: 'wrap',
   },
   emptyContainer: {
     alignItems: 'center',

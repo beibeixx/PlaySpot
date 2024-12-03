@@ -81,7 +81,7 @@ export default function PlaygroundDetailScreen({ navigation, route }) {
     if (isAuthenticated) {
       navigation.navigate("Modify Plan", {
         item: null,
-        selectedPlayground: data,
+        selectedPlaygroundID: itemID,
       });
     } else {
       handleLogin();

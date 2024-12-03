@@ -231,8 +231,20 @@ The app uses three main collections that are interconnected through the playgrou
       - Removed duplicate functions of firebase
 
 - **Member 2 Yuting Xie**:
-
-
+   - UI/UX Improvements:
+      - Debugged the style in Android environment
+      - Built the style for `Direction Map`
+   - Feature Improvements:
+      - Added multiple photos (camera/gallery file) upload and delete functionality in `MemoryDetailsScreen`
+      - Implemented direction feature in `PlanDetailsScreen` and `MemoryDetailsScreen`
+      - Added avatar upload and update feature
+      - Implemented creation of plans from `PlaygroundDetailsScreen`
+   - Fix Bugs:
+      - Fixed the display error in `DateTimePicker`
+      - Fixed various bugs in Android
+   - Others:
+      - Updated the README and screenshots
+      - Organized reusable components and deleted invalid components
 
 ## Screenshots - Iteration 1
 
@@ -358,6 +370,67 @@ The app uses three main collections that are interconnected through the playgrou
          <img src="./assets/screenshots/iteration2/memory_list.png" alt="memory photo" width="300" />
       </div>
 
+## Screenshots - Iteration 3
+
+   - **Home Screen**
+
+   - Playground List
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration3/home_playground_list1.PNG" alt="Playground List" width="300" />
+         <img src="./assets/screenshots/iteration3/home_playground_list2.PNG" alt="Search and Filter playground" width="300" />
+      </div>
+
+   - Playground Detail
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration3/playground_details.PNG" alt="Playground Detail" width="300" />
+      </div>
+
+   -  **Plan Screen**
+   - Plan List
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration3/planlist_1.PNG" alt="Planlist 1" width="300" />
+         <img src="./assets/screenshots/iteration3/planlist_2.PNG" alt="Planlist 2" width="300" />
+      </div>
+   
+   - Modify Plan
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration3/playground_map.png" alt="Select playground from map" width="300" />
+         <img src="./assets/screenshots/iteration3/modify_plan_ios.PNG" alt="Modify plan iOS" width="300" />
+         <img src="./assets/screenshots/iteration3/modify_plan_android.png" alt="Modify plan android" width="300" />
+      </div>
+   
+   - Direction
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration3/direction_1.png" alt="direction 1" width="300" />
+         <img src="./assets/screenshots/iteration3/direction_2.png" alt="direction 2" width="300" />
+      </div>
+   
+   - ** Memory Screen**
+   - Memory List
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration3/memory_list.png" alt="Memory list" width="300" />
+      </div>
+   
+   - Update photos
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration3/memory_upload_photos_1.png" alt="upload photos 1" width="300" />
+         <img src="./assets/screenshots/iteration3/memory_upload_photos_2.png" alt="upload photos 2" width="300" />
+         <img src="./assets/screenshots/iteration3/memory_delete_photos.png" alt="delete photos" width="300" />
+         <img src="./assets/screenshots/iteration3/memory_details_photos.png" alt="take photo from camera" width="300" />
+      </div>
+   
+   - **Account Screen**
+   - Update profile
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration3/account_update_avatar.png" alt="update avatar" width="300" />
+         <img src="./assets/screenshots/iteration3/account_update_username.png" alt="update username" width="300" />
+      </div>
+   
+   - Favorite list
+      <div style="display: flex; justify-content: space-around;">
+         <img src="./assets/screenshots/iteration3/favourite.PNG" alt="favorite lists" width="300" />
+      </div>
+   
 
 
 ## Firebase Settings

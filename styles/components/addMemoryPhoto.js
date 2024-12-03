@@ -83,4 +83,7 @@ export const addMemoryPhotoStyles = StyleSheet.create({
   submitButtonText: {
     color: colors.text.white,
   },
+  submitButtonDisabled: {
+    opacity: 0.5,
+  },
 });

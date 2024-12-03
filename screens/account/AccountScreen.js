@@ -1,6 +1,6 @@
 //Account screen to display user info and favorite list entry
 import { Text, View } from "react-native";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { auth } from "../../firebase/firebaseSetup";
 import { useSelector } from "react-redux";
 import { handleSignOut } from "../../redux/authService";
@@ -11,27 +11,43 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { colors } from "../../styles/helper/colors";
 import MenuItem from "../../components/account/MenuItem";
 import Avatar from "../../components/account/Avatar";
-import { ref, getDownloadURL } from 'firebase/storage';
-import { storage } from '../../firebase/firebaseSetup';
-import { getAvatarFromDB } from "../../firebase/firestoreHelper";
+import { ref, getDownloadURL } from "firebase/storage";
+import { storage } from "../../firebase/firebaseSetup";
+import {
+  getOneDocument,
+  updateDB,
+} from "../../firebase/firestoreHelper";
 
 export default function AccountScreen({ navigation }) {
   const { isAuthenticated } = useSelector((state) => state.auth);
   const [user, setUser] = useState({});
   const [avatarUrl, setAvatarUrl] = useState(null);
+  const [nickname, setNickname] = useState("");
+  const [isEditingNickname, setIsEditingNickname] = useState(false);
 
   useEffect(() => {
-    async function fetchAvatar() {
-    if (isAuthenticated) {
-      setUser(auth.currentUser);
-      const avatarUri = await getAvatarFromDB("users", auth.currentUser.uid);
-      if (avatarUri) {
-        const downloadURL = await getDownloadURL(ref(storage, avatarUri));
-        setAvatarUrl(downloadURL);
+    async function fetchUserData() {
+      if (isAuthenticated) {
+        setUser(auth.currentUser);
+        const userDoc = await getOneDocument(auth.currentUser.uid, "users");
+        //avatar
+        if (userDoc && userDoc.avatar) {
+          try {
+            const downloadURL = await getDownloadURL(
+              ref(storage, userDoc.avatar)
+            );
+            setAvatarUrl(downloadURL);
+          } catch (error) {
+            console.error("Error getting avatar URL:", error);
+          }
+        }
+        //nickname
+        if (userDoc) {
+          setNickname(userDoc.nickname || "");
+        }
       }
     }
-  }
-    fetchAvatar();
+    fetchUserData();
   }, [isAuthenticated]);
 
   async function pickImage(url) {
@@ -48,16 +64,30 @@ export default function AccountScreen({ navigation }) {
     navigation.navigate("Login");
   };
 
+  const handleUpdateNickname = async (newNickname) => {
+    try {
+      await updateDB(auth.currentUser.uid, { nickname: newNickname }, "users");
+      setNickname(newNickname);
+      setIsEditingNickname(false);
+    } catch (error) {
+      console.error("Error updating nickname:", error);
+    }
+  };
+
   return (
     <View style={accountStyles.container}>
       <LinearGradient
-        colors={[colors.primary[200],colors.primary[400], colors.primary[800]]}
+        colors={[colors.primary[200], colors.primary[400], colors.primary[800]]}
         style={accountStyles.header}
       >
         <View style={accountStyles.headerContent}>
-          {isAuthenticated  && user ? (
+          {isAuthenticated && user ? (
             <>
-              <Avatar uid={user.uid} avatarUrl={avatarUrl} pickImage={pickImage}/>
+              <Avatar
+                uid={user.uid}
+                avatarUrl={avatarUrl}
+                pickImage={pickImage}
+              />
               <Text style={accountStyles.emailText}>
                 {auth.currentUser.email}
               </Text>
@@ -91,13 +121,6 @@ export default function AccountScreen({ navigation }) {
               title="Favorite Playgrounds"
               onPress={favoriteHandle}
             />
-            {/* TO BE ADDED */}
-            {/* <MenuItem
-              icon="bell-outline"
-              title="Notifications"
-              onPress={() => {}}
-            /> */}
-            {/* <MenuItem icon="cog-outline" title="Settings" onPress={() => {}} /> */}
             <MenuItem
               icon="logout"
               title="Sign Out"

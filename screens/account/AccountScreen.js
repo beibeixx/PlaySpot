@@ -1,5 +1,5 @@
 //Account screen to display user info and favorite list entry
-import { Text, View } from "react-native";
+import { Text, View, TouchableOpacity, TextInput} from "react-native";
 import React, { useEffect, useState } from "react";
 import { auth } from "../../firebase/firebaseSetup";
 import { useSelector } from "react-redux";
@@ -13,10 +13,7 @@ import MenuItem from "../../components/account/MenuItem";
 import Avatar from "../../components/account/Avatar";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase/firebaseSetup";
-import {
-  getOneDocument,
-  updateDB,
-} from "../../firebase/firestoreHelper";
+import { getOneDocument, updateDB } from "../../firebase/firestoreHelper";
 
 export default function AccountScreen({ navigation }) {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -88,6 +85,36 @@ export default function AccountScreen({ navigation }) {
                 avatarUrl={avatarUrl}
                 pickImage={pickImage}
               />
+
+              <View style={accountStyles.nicknameContainer}>
+                {isEditingNickname ? (
+                  <View style={accountStyles.editNicknameContainer}>
+                    <TextInput
+                      style={accountStyles.nicknameInput}
+                      value={nickname}
+                      onChangeText={setNickname}
+                      placeholder="Enter nickname"
+                      autoFocus
+                      onBlur={() => setIsEditingNickname(false)}
+                      onSubmitEditing={() => handleUpdateNickname(nickname)}
+                    />
+                  </View>
+                ) : (
+                  <TouchableOpacity
+                    onPress={() => setIsEditingNickname(true)}
+                    style={accountStyles.nicknameDisplay}
+                  >
+                    <Text style={accountStyles.nicknameText}>
+                      {nickname || "Set Nickname"}
+                    </Text>
+                    <MaterialCommunityIcons
+                      name="pencil-outline"
+                      size={16}
+                      color={colors.background.primary}
+                    />
+                  </TouchableOpacity>
+                )}
+              </View>
               <Text style={accountStyles.emailText}>
                 {auth.currentUser.email}
               </Text>

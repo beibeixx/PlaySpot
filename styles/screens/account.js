@@ -115,4 +115,31 @@ export const accountStyles = StyleSheet.create({
     fontSize: typography.size.md,
     fontWeight: typography.weight.bold,
   },
+  nicknameContainer: {
+    marginTop: 8,
+    alignItems: "center",
+  },
+  nicknameDisplay: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 4,
+  },
+  nicknameText: {
+    color: colors.background.primary,
+    fontSize: 18,
+    fontWeight: "500",
+    marginRight: 8,
+  },
+  editNicknameContainer: {
+    backgroundColor: colors.background.primary,
+    borderRadius: 4,
+    padding: 4,
+    minWidth: 120,
+  },
+  nicknameInput: {
+    fontSize: 18,
+    color: colors.text.primary,
+    textAlign: "center",
+    padding: 4,
+  },
 });

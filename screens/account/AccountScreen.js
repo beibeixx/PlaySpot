@@ -14,6 +14,7 @@ import Avatar from "../../components/account/Avatar";
 import { ref, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase/firebaseSetup";
 import { getOneDocument, updateDB } from "../../firebase/firestoreHelper";
+import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 
 export default function AccountScreen({ navigation }) {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -72,6 +73,7 @@ export default function AccountScreen({ navigation }) {
   };
 
   return (
+    <ActionSheetProvider>
     <View style={accountStyles.container}>
       <LinearGradient
         colors={[colors.primary[200], colors.primary[400], colors.primary[800]]}
@@ -177,5 +179,6 @@ export default function AccountScreen({ navigation }) {
         )}
       </View>
     </View>
+    </ActionSheetProvider>
   );
 }

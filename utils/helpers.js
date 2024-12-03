@@ -19,6 +19,23 @@ export function formatDate(date) {
   return `${year}-${month}-${day} ${weekday} ${timeString}`;
 }
 
+//plan time setting format
+export const timeOptions = {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: false
+};
+
+export const setDateWithoutSeconds = (date) => {
+  const newDate = new Date(date);
+  newDate.setSeconds(0);
+  newDate.setMilliseconds(0);
+  return newDate;
+};
+
 //Notifications
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

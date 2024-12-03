@@ -11,7 +11,6 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import React, { useState, useRef, useEffect } from "react";
-import DateTimePicker from "@react-native-community/datetimepicker";
 import { SearchBar } from "@rneui/themed";
 import { fetchData, getItemById } from "../../services/dataService";
 import { writeToDB, updateDB } from "../../firebase/firestoreHelper";

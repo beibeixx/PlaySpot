@@ -404,6 +404,11 @@ service cloud.firestore {
       allow update: if false;
     }
   
+      
+    // User Collection
+    match /users/{user} {
+      allow read, write: if request.auth != null;
+    }
   }
 }
 ```

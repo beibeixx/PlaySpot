@@ -2,6 +2,7 @@ import { Modal, View, Text, TouchableOpacity, ScrollView } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import React, { useState } from "react";
 import { datetimePickerStyles } from "../../styles/components/datetimePicker";
+import { setDateWithoutSeconds } from "../../utils/helpers";
 
 export default function CommonDateTimePicker({
   isVisible,
@@ -10,7 +11,7 @@ export default function CommonDateTimePicker({
   currentValue,
   isReminderPicker = false,
 }) {
-  const [tempDate, setTempDate] = useState(currentValue || new Date());
+  const [tempDate, setTempDate] = useState(setDateWithoutSeconds(currentValue || new Date()));
 
   const quickOptions = isReminderPicker
     ? [
@@ -20,14 +21,14 @@ export default function CommonDateTimePicker({
         { label: "1 day before", value: 24 * 60 * 60 * 1000 },
       ]
     : [
-        { label: "Today", value: new Date() },
+        { label: "Today", value: setDateWithoutSeconds(new Date()) },
         {
           label: "Tomorrow",
-          value: new Date(Date.now() + 24 * 60 * 60 * 1000),
+          value: setDateWithoutSeconds(new Date(Date.now() + 24 * 60 * 60 * 1000)),
         },
         {
           label: "Next week",
-          value: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+          value: setDateWithoutSeconds(new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)),
         },
       ];
 
@@ -73,8 +74,9 @@ export default function CommonDateTimePicker({
             display="spinner"
             onChange={(event, date) => {
               if (date) {
-                setTempDate(date);
-                onSelect(date);
+                const dateWithoutSeconds = setDateWithoutSeconds(date);
+                setTempDate(dateWithoutSeconds);
+                onSelect(dateWithoutSeconds);
               }
             }}
           />

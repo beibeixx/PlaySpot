@@ -27,12 +27,13 @@ import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { modifyPlanStyles } from "../../styles/screens/modifyPlan";
 import { colors } from "../../styles/helper/colors";
 import CommonDateTimePicker from "../../components/common/CommonDateTimePicker";
+import { setDateWithoutSeconds, timeOptions } from "../../utils/helpers";
 
 export default function ModifyPlanScreen({ navigation, route }) {
   const { item } = route.params;
   const isModify = item ? true : false;
   const playgrounds = fetchData();
-  const defaultPlanTime = new Date(Date.now() + 24 * 60 * 60 * 1000);
+  const defaultPlanTime = setDateWithoutSeconds(new Date(Date.now() + 24 * 60 * 60 * 1000));
 
   const [planName, setPlanName] = useState(isModify ? item.planName : "");
   const [selectedPlayground, setSelectedPlayground] = useState(
@@ -167,6 +168,7 @@ export default function ModifyPlanScreen({ navigation, route }) {
     }
   };
 
+  console.log(time.toLocaleString())
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -270,7 +272,7 @@ export default function ModifyPlanScreen({ navigation, route }) {
             onPress={() => setShowPlanDatePicker(true)}
           >
             <Text style={modifyPlanStyles.timeDisplayText}>
-              {time.toLocaleString()}
+              {time.toLocaleString('zh-CN', timeOptions)}
             </Text>
           </TouchableOpacity>
         </View>
@@ -287,7 +289,7 @@ export default function ModifyPlanScreen({ navigation, route }) {
             >
               <Text style={modifyPlanStyles.timeDisplayText}>
                 {reminderTime 
-                  ? reminderTime.toLocaleString()
+                  ? reminderTime.toLocaleString('zh-CN', timeOptions)
                   : "Set reminder time"}
               </Text>
             </TouchableOpacity>

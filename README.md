@@ -58,18 +58,18 @@ The app uses three main collections that are interconnected through the playgrou
 
 #### Favorites Collection
 - **Fields**:
+  - `playgroundId`: string
+  - `addedAt`: timestamp
+  - `owner`: string
+- **Description**: Stores favorite playgrounds added from the playground list.
+
+#### User Collection
+- **Fields**:
   - `avatar`: string
   - `email`: string
   - `nickname`: string
   - `uid`: String
 - **Description**: Stores user's info.
-
-#### User Collection
-- **Fields**:
-  - `playgroundId`: string
-  - `addedAt`: timestamp
-  - `owner`: string
-- **Description**: Stores favorite playgrounds added from the playground list.
 
 ### Refernce Data
 #### Playgrounds Collection (stored locally `data/playgrounds.json`)
